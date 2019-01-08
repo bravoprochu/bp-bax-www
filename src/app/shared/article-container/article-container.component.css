@@ -1,0 +1,26 @@
+.svgContainer {
+  margin: 0;
+}
+
+.svg-image {
+  border-width: 3em;
+  background-position: center;
+}
+
+.font-title {
+  font-family: 'Roboto Condensed', sans-serif;
+  text-anchor: middle; 
+}
+
+.title-text {
+  text-anchor: middle; 
+  fill: lightgrey;
+  opacity: 0.75;
+}
+
+.masked-bg-text {
+  opacity: 0.25;
+  font-size: 80em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+}

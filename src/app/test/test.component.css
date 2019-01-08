@@ -1,0 +1,4 @@
+.svgRect {
+    transform-origin: 50px 50px;
+    -webkit-transform-origin: 50px 50px;
+}

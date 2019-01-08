@@ -1,0 +1,34 @@
+<svg #svgContainer xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="100%" width="100%"
+  preserveAspectRatio="xMidYMid slice" [attr.viewBox]="svgViewBox" (mouseover)="isMouseOver=true;" (mouseleave)="isMouseOver=false">
+  <defs>
+    <linearGradient [attr.id]="svgGradientId" x1="0%" y1="0%" x2="100%" y2="0%" spreadMethod="pad">
+      <stop offset="0%" [attr.stop-color]="colorGradientFrom" stop-opacity="1" />
+      <stop offset="100%" [attr.stop-color]="colorGradientTo" stop-opacity="1" />
+    </linearGradient>
+
+    <mask [attr.id]="svgTextMaskId">
+      <text #svgBgText x="5%" y="95%" height="100%" [style.fill]="getSvgGradientId()" class="masked-bg-text" [@moveBgText]="isMouseOver? 'leave' : 'over'">{{title
+        | uppercase}}</text>
+    </mask>
+
+  </defs>
+
+  <!-- <image [@scaleIt]="imageScaleIsDone ? 'scaleDown': 'scaleUp'" (@scaleIt.done)="imageScaleIsDone=!imageScaleIsDone"
+    #svgImage *ngIf="isSvgImageLoaded" [attr.height]="svgHeight+ 'px'" [attr.width]="svgWidth+ 'px'" [attr.alt]="imageUrl"
+    [attr.xlink:href]="imageUrl">
+  </image> -->
+
+  <image 
+    #svgImage *ngIf="isSvgImageLoaded" [attr.height]="svgHeight+ 'px'" [attr.width]="svgWidth+ 'px'" [attr.alt]="imageUrl"
+    [attr.xlink:href]="imageUrl">
+  </image>
+  <rect x="0" y="0" height="100%" width="100%" [attr.fill]="colorBg" style="opacity: 0.5"></rect>
+  <rect x="0" y="0" height="100%" width="100%" [style.fill]="getSvgGradientId()" [style.mask]="getSvgTextMaskId()" />
+
+
+  <circle #svgBaxSign style="opacity:0" cx="0" cy="0" r="15%" [attr.fill]="colorBg"></circle>
+  <text [@titleText]="isMouseOver? 'over' : 'leave'" #svgTitleText x="50%" y="50%" width="100%" font-size="8em" class="title-text">
+    {{isSvgImageLoaded ? title: info}}
+  </text>>
+
+</svg>
