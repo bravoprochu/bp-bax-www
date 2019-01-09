@@ -1,0 +1,27 @@
+<div *ngIf="!isSmall()" class="date-block" fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start center">
+  <div class="date-block-1" fxLayout="column" fxLayout.sm="row" fxLayoutAlign="center center">
+    <div class="date-day">
+      {{date | date:'dd'}}
+    </div>
+    <div class="date-underline">&nbsp;</div>
+    <div class="date-month">
+      {{date | date:'MM'}}
+    </div>
+  </div>
+  <div class="date-year">
+    {{date | date:'yyyy'}}
+  </div>
+</div>
+
+
+<div *ngIf="isSmall()" class="date-block-sm" fxLayout="row" fxLayoutAlign="start center">
+  <div class="date-day-sm">
+    {{date | date:'dd'}}
+  </div>
+  <div class="date-month-sm">
+    {{date | date:'MM'}}
+  </div>
+  <div class="date-year-sm">
+    {{date | date:'yyyy'}}
+  </div>
+</div>

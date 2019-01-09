@@ -1,198 +1,91 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy, Input, Sanitizer, AfterViewInit, Renderer2 } from '@angular/core';
-import { fromEvent, Observable, Subject, interval, timer, merge } from 'rxjs';
-import { takeUntil, switchMap, map, timeInterval, timeout, mergeAll, combineAll, mergeMap, take, repeat, retry, repeatWhen, mergeMapTo, switchMapTo, sampleTime, last, takeWhile, tap, count } from 'rxjs/operators';
-import { AnimationBuilder, animate, style, AnimationPlayer } from '@angular/animations';
-import { SvgCommonFunctionsService } from 'src/app/shared/svg/svg-common-functions.service';
-import { ISVGPoint } from 'src/app/shared/svg/interfaces/i-svg-point';
-import { ISvgViewBox } from 'src/app/shared/svg/interfaces/i-svg-viewbox';
-import { BP_ANIM_OPACITY_OVER_LEAVE } from 'src/app/animations/opacity-over-leave'
-import { BP_ANIM_SCALE_ORIGIN_OVER_LEAVE } from 'src/app/animations/scale-origin-over-leave';
-import { BP_ANIM_TRANSFORM_ORIGIN } from 'src/app/animations/transform-origin';
-import { SVGElementProp } from 'src/app/shared/svg/classes/svg-element-prop';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { map, takeWhile, tap } from 'rxjs/operators';
+import { INewsArticle } from '../interfaces/i-news-article';
+import { DomSanitizer } from '@angular/platform-browser';
+import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-news-article',
   templateUrl: './news-article.component.html',
-  styleUrls: ['./news-article.component.css'],
-  animations: [
-    BP_ANIM_SCALE_ORIGIN_OVER_LEAVE(0, 1, 1, 0.0),
-  ]
+  styleUrls: ['./news-article.component.css']
 })
-export class NewsArticleComponent implements OnInit, AfterViewInit, OnDestroy {
-  @Input('fill') fill: string;
-  @Input('invert') invert: boolean;
-  @Input('pointer') pointer: string;
-  @Input('url') url: string;
-  @Input('title') title: string;
-  @ViewChild('followMouse') followMouse: ElementRef;
-  @ViewChild('svg') svg: ElementRef;
-  @ViewChild('titleText') titleText:ElementRef;
-  bgUrl: SafeResourceUrl;
-  image: SVGElementProp;
-  isReady:boolean;
-  isDestroyed$: Subject<boolean>;
-  isMouseOver: boolean;
-  mousePoint: ISVGPoint;
-  player: AnimationPlayer;
-  svgViewBox = '0 0 1920 1080';
-  followMousePos: ISVGPoint = <ISVGPoint>{ x: 0, y: 0 };
-  lastMousePos: ISVGPoint = <ISVGPoint>{ x: -1, y: -1 };
-  titleTextBox: ClientRect;
-
-
-
-
+export class NewsArticleComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
+    this.isDestroyed$.next(true);
+    this.isDestroyed$.complete();
   }
-  // @ViewChild('box') box: ElementRef;
-  // @ViewChild('elToMove') elToMove: ElementRef;
+  data: INewsArticle;
+  isDestroyed$: Subject<boolean>;
+  isReady: boolean;
+
 
   constructor(
-    private renderer: Renderer2,
-    private sanitize: DomSanitizer,
-    private _builder: AnimationBuilder,
-    private svgCF: SvgCommonFunctionsService
+    private cf: CommonFunctionsService,
+    private sanitizer: DomSanitizer,
+    private router: Router,
+    private actRoute: ActivatedRoute
   ) { }
 
-  followFn: any;
-
-
   ngOnInit() {
-    this.bgUrl = this.url ?  'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg': this.sanitize.bypassSecurityTrustResourceUrl('https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg');
-    this.url = this.url ? this.url : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
-    this.fill = this.fill ? this.fill : 'green';
-    this.pointer = this.pointer ? this.pointer : 'brown'
-    this.title = this.title ? this.title : 'uzupełnij tytuł'
-    this.image = new SVGElementProp();
-    this.image.size.width = 960;
-    this.image.size.height = 480;
     this.isDestroyed$ = new Subject();
     this.initObservable();
   }
 
-
-  ngAfterViewInit(): void {
-    // this.titleTextBox = (<SVGTextElement>this.titleText.nativeElement).getBoundingClientRect();
-    // const tSVG = this.titleText.nativeElement;
-    // const title: SVGTextElement = this.renderer.createElement('text', 'svg');
-    // const t = this.renderer.createText("whaaaaa ?");
-    // const rect = <SVGRectElement>this.renderer.createElement('rect', 'svg')
-    // rect.setAttributeNS('svg', 'x', '0');
-    // rect.setAttributeNS('svg', 'y', '0');
-    // rect.setAttributeNS('svg', 'height', '150');
-    // rect.setAttributeNS('svg', 'width', '200');
-    
-
-    // title.setAttribute("x", "0");
-    // title.setAttribute("y", "0");
-    // title.setAttribute("width", "200");
-    // title.setAttribute("height", "200");
-    // title.setAttribute("font-size", "64px");
-
-    // this.renderer.appendChild(t, title);
-    // this.renderer.appendChild(tSVG, title);
-    // this.renderer.appendChild(tSVG, rect);
-
-
-
-
+  getNext() {
+    const nextIdx = this.getArticleIdx() + 1;
+    if(this.dataJson.length -1 >= nextIdx){
+      this.router.navigateByUrl(`/news/${this.dataJson[nextIdx].id}`);
+    }
   }
-
   
-
-  initObservable() {
-
-    const fn = (()=>{
-      console.log('start');
-      const counter = 0;
-      setTimeout((counter: number)=>{
-        counter ++
-      }, 250)
-    })();
-
-    const over$ = fromEvent(this.svg.nativeElement, 'mouseover').pipe(
-      map(is => {
-        this.isMouseOver = true;
-        return is
-      })
-    );
-    const leave$ = fromEvent(this.svg.nativeElement, 'mouseleave').pipe(
-      map(leave=>{
-        //this.svgCF.updateSVGViewBoxPosition(svg, this.followMousePos, this.lastMousePos, null, this.followMouse, ease);
-        this.isMouseOver = false;
-        return leave;
-      })
-    );
-    const move$ = fromEvent(this.svg.nativeElement, 'mousemove').pipe(
-      takeUntil(leave$)
-    );
-    const timeToRefresh = 1;
-    const refresh$ = interval(timeToRefresh).pipe(
-    );
-    const mouseMove$ = move$.pipe(
-      sampleTime(timeToRefresh),
-
-    )
-
-
-    const up$ = over$.pipe(
-      switchMap(isOn => merge(refresh$, mouseMove$).pipe(takeUntil(leave$))),
-      map(val => {
-        const svg = (<SVGSVGElement>this.svg.nativeElement);
-        const ease = 15;
-        if (val instanceof MouseEvent) {
-          val.preventDefault();
-          const _mousePoint: ISVGPoint = <ISVGPoint>{
-            x: val.clientX,
-            y: val.clientY
-          }
-          this.mousePoint = _mousePoint;
-          this.svgCF.updateSVGViewBoxPosition(svg, this.followMousePos, this.lastMousePos, _mousePoint, this.followMouse, ease);
-        } else {
-          this.svgCF.updateSVGViewBoxPosition(svg, this.followMousePos, this.lastMousePos, null, this.followMouse, ease);
-        }
-        return val;
-      })
-    )
-      .subscribe(
-        (_data: any) => {
-          // console.log('interval', _data);
-        },
-        (err) => console.log('interval error', err),
-        () => console.log('interval finish..')
-      );
-
-
-    const m$ = over$.pipe(
-      switchMap(ov => move$),
-      map((_mouseEv: MouseEvent) => {
-
-        return _mouseEv;
-      })
-    );
-    // .subscribe(
-    //   (_data: MouseEvent) => {
-    //   // console.log('moveTo', _data);
-    //   },
-    //   (err) => console.log('moveTo error', err),
-    //   () => console.log('moveTo finish..')
-    // );
-  }
-
-  sqrtIt(num: number): number {
-    if (num == 0) { return 0 };
-    if (num > 0) { return Math.round(Math.sqrt(num)); }
-    if (num < 0) {
-      let res = Math.abs(num);
-      res = Math.sqrt(res);
-      res = Math.round(res);
-      res = res
-      return res;
-      Math.round(Math.sqrt(Math.abs(num)) * -1);
+  getPrev() {
+    const prevIdx = this.getArticleIdx() - 1;
+    if(prevIdx >= 0){
+      this.router.navigateByUrl(`/news/${this.dataJson[prevIdx].id}`);
     }
   }
 
-  count: number = 0;
-}
+  getArticleIdx(): number{
+    return this.dataJson.indexOf(this.dataJson.find(f=>f.id==this.data.id));
+  }
 
+  initObservable() {
+    this.actRoute.params.pipe(
+      tap(()=>this.isReady = false)
+    )
+      .subscribe(
+        (_data: any) => {
+          
+          this.initData(_data['id']);
+        },
+        (err) => console.log('actRoute error', err),
+        () => console.log('actRoute finish..')
+      )
+  }
+
+  isSmall(): boolean{
+    return this.cf.getMediaChange().mqAlias == 'xs' ? true: false;
+  }
+
+
+  initData(routeId: string) {
+    this.data = <INewsArticle>{};
+    const d = this.dataJson.find(f => f.id == routeId);
+    if (d) {
+      this.data = Object.assign({}, d);
+      this.data.youtubeEmbedUrl = this.data.youtubeEmbedUrl ? this.sanitizer.bypassSecurityTrustResourceUrl(this.data.youtubeEmbedUrl) : null;
+      this.data.text = d.text ? this.sanitizer.bypassSecurityTrustHtml(this.data.text) : null;
+      this.isReady = true;
+    }
+    
+  }
+
+
+  dataJson: INewsArticle[] = [
+    { creationDate: '2018-10-01', id: 'kopanie-to-nasza-pasja', title: { title: "Kopanie to nasza pasja", shortTitle: "Weryfikacja w terenie", subtitle: "WY-KOP Krzysztof Konieczny" }, imgUrl: 'kopanieToNaszaPasja Weryfikacja WY-KOP_resize.png', youtubeEmbedUrl: 'https://www.youtube.com/embed/kxyBC86G0sk', text: 'Naszym pierszym gościem jest <strong>Krzysztof Konieczny</strong>, osoba której w branży nie trzeba przedstawiać, sprawdźcie jakimi informacjami się z nami podzielił, poznajcie jego opinie bazującą na ogromnym doświadczeniu, przekonajcie się czy warto kupić Yanmar Global. <br>Chcesz żebyśmy i Ciebie odwiedzili ??? Skontaktuj się z naszym dealerem Krzysztof Grodzki Sprawdźmy się w terenie ! Zapraszamy do polubienia i UDOSTĘPNIENIA tego filmu ! Czekamy na Wasze pytania, dotyczące maszyny jak i warunków jej zakupu.. Jesteśmy do Waszej dyspozycji !' },
+    { creationDate: '2018-10-16', id: 'eRobocze-show-turek-2018', title: { title: "e-Robocze SHOW Turek 2018", shortTitle: "eRobocze SHOW Turek", subtitle: "podsumowanie" }, imgUrl: 'eRobocze SHOW_Turek_2018_podsumowanie.jpg', youtubeEmbedUrl: 'https://www.youtube.com/embed/mb7eg8vTyt4', text: 'Fantastyczna impreza, rewelacyjna pogoda, mnóstwo zainteresowanych, niezliczona ilość wymienionych cennych, fachowych opinii. Serdecznie, miło, piknikowo ! <br> Firma BAX jest dealerem marek Yanmar Global oraz SENNEBOGEN Maschinenfabrik GmbH. Na eRobocze była też współorganizatorem jak i fundatorem głównej nagrody w konkursie BAX Sennebogen - Mistrzowski chwyt; Jeszcze raz serdecznie gratulujemy zwycięzcy p. Paweł Lipiński który z czasem 1:38min ułożył konkursowe zadanie; Na wyróżnienie zasługują również Mariusz Andrzejczak oraz Krzysztof Konieczny którzy w naszym konkursie zajęli kolejno drugie i trzecie miejsce. Jesteśmy przekonani że Operatorzy którzy w tak krótkim czasie poradzili sobie z tak wymagającym zadaniem, dają radę w każdych warunkach, na każdym modelu maszyny. Panowie, czapy z głów. <br>Gościnnie przy naszym stoisku gościł "Kura" Krzysztof Domogała, rozpoznawany jako bohater serii Złomowisko PL w firmie Olmet. Inspiruje nas ZŁOM; wyjątkowo barwna, dusza towarzystwa. Było nam niezmiernie miło Ciebie spotkać ! <br> Organizatorom, w szczególności Zbigniew Migda po raz kolejny należy się wielkie uznanie. Każda kolejna edycja jest coraz ciekawsza, skupiająca zainteresowanie coraz większej ilości osób. <br> Jedno jest pewne: piszemy się na kolejną edycję, a Ty ?<br>Krótka relacja z naszej perspektywy. Byliście, widzieliście, zostawcie swój komentarz !' }
+  ];
+
+}

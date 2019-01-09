@@ -1,0 +1,67 @@
+.date-block {
+    line-height: 2em;
+}
+
+.date-block-1 {
+    line-height: 2em;
+}
+
+.date-day {
+    position: relative;
+    margin: 0;
+    padding: 15px;
+    font-size: 3em;
+    font-weight: 500;
+    color: #5E545B;
+}
+.date-month {
+    position: relative;
+    margin: 0;
+    padding: 15px;
+    font-size: 3em;
+    color: red;
+    font-weight: 900;
+}
+
+.date-year {
+    font-size: 9em;
+    font-weight: 500;
+    color: #000023;
+}
+
+.date-underline {
+    background-color: #5E545B;
+    line-height: 5px;
+    width: 70%;
+}
+
+
+
+
+.date-block-sm {
+    line-height: 1em;
+}
+
+
+.date-day-sm {
+    position: relative;
+    margin: 0;
+    padding: 0px;
+    font-size: 1em;
+    font-weight: 500;
+    color: #5E545B;
+}
+.date-month-sm {
+    position: relative;
+    margin: 0;
+    padding: 2px;
+    font-size: 1em;
+    color: red;
+    font-weight: 900;
+}
+
+.date-year-sm {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #000023;
+}

@@ -1,0 +1,58 @@
+<!-- <div class="box" #box>
+    <div class="box-el-container" #elfollowMousePos>
+        <div class="box-border">
+            <div class="box-border-text">Finansowanie fabryczne</div>
+        </div>
+    </div>
+</div> -->
+
+
+
+<svg #svg xmlns="http://www.w3.org/2000/svg" [attr.viewBox]="svgViewBox" preserveAspectRatio="none" (click)="goTo()">
+    <image [attr.xlink:href]="imgUrl" x="0" y="0" width="1920" height="1080"></image>
+    <circle cx="50%" cy="50%" r="1" fill="red"></circle>
+    <rect x="0" y="0" width="1920" height="1080" class="rect-fill" [style.fill]="fill"></rect>
+
+
+    <svg *ngIf="invert" #titleText x="480" y="340" width="960" height="400">
+        <g>
+            <rect class="title-box-border" x="0" y="0" width="960" height="400" [ngStyle]="invert? {fill: fill, fillOpacity: 0.45}: {}"></rect>
+            <title>{{title}}</title>
+        </g>
+    </svg>
+
+
+    <svg #followMouse [attr.x]="followMousePos.x" width="550" height="550" viewBox="0 0 200 200" [attr.y]="followMousePos.y">
+        <g [@scaleOriginOverLeave]="{value: isMouseOver? 'over' : 'leave', params: {x: 100, y: 100}}">
+            <circle cx="50%" cy="50%" r="100" [attr.fill]="pointer"></circle>
+        </g>
+
+        <!-- <image 
+    [@scaleOriginOverLeave]="{value: isMouseOver? 'over' : 'leave', params: {x: 960, y: 540}}" 
+     xlink:href="http://bdotp.pl/images/kopanieToNaszaPasja Weryfikacja WY-KOP_resize.png" x="0" y="0" width="1920" height="1080" preserveAspectRatio="none"></image> -->
+    </svg>
+    <!-- <rect #followMouse [attr.x]="followMousePos.x"
+            [attr.y]="followMousePos.y" width="1000" height="50" fill="blue" onmouseover="this.style.stroke = '#ff0000'; this.style['stroke-width'] = 5;"
+            onmouseout="this.style.stroke = '#000000'; this.style['stroke-width'] = 1;"></rect>             -->
+
+
+    <!-- <image  
+            [@opacityOverLeave]="isMouseOver? 'over' : 'leave'" 
+            [@scaleOriginOverLeave]="isMouseOver? 'over' : 'leave'" 
+             xlink:href="http://bdotp.pl/images/kopanieToNaszaPasja Weryfikacja WY-KOP_resize.png" [attr.x]="followMousePos.x"
+                [attr.y]="followMousePos.y" [attr.width]="image.size.width" [attr.height]="image.size.height" preserveAspectRatio="xMidYMid slice"></image> -->
+
+    <svg #titleText x="480" y="340" width="960" height="400">
+        <g>
+            <rect class="title-box-border" x="0" y="0" width="960" height="400"></rect>
+            <title>{{title}}</title>
+            <text x="50%" y="56%" width="480" height="400" font-size="64px" class="title-box-text">{{title |
+                uppercase}}</text>
+            <line x1="10%" y1="65%" x2="90%" y2="65%" stroke="white" stroke-width="10px"></line>
+        </g>
+    </svg>
+
+</svg>
+
+
+{{followMousePos.x-480}} {{followMousePos.y-270}}

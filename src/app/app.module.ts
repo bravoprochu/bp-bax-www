@@ -3,9 +3,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule} from '@angular/material';
-import { FlexLayoutModule} from '@angular/flex-layout';
-import { trigger, state, style, animate, transition} from '@angular/animations';
 import 'hammerjs';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -24,13 +21,12 @@ import { TestComponent } from './test/test.component';
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
-    MatCardModule,
     AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
   exports: [
-    SharedModule
+    SharedModule,
   ]
 })
 export class AppModule { }
