@@ -1,18 +1,3 @@
-<section>
-    <a class="mat-display-1" routerLink="/">HOME</a>
-</section>
-<section>
-    <div fxLayout="row">
-        <div fxFlex>
-            a
-        </div>
-        <div fxFlex>
-            b
-        </div>
-    </div>
-</section>
-
-<hr>
 <div [@routeAnimations]="prepareRoute(outlet)">
     <router-outlet #outlet="outlet"></router-outlet>
 </div>

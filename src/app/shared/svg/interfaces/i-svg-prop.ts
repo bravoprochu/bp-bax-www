@@ -4,6 +4,7 @@ import { ISVGSize } from './i-svg-size';
 
 export interface ISVGProp {
     pos: ISVGPoint;
-    svgViewBox: ISvgViewBox;
     size: ISVGSize;
+    viewBox(): string;
+    viewBoxObj: ISvgViewBox;
 }

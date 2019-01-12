@@ -8,12 +8,16 @@ import { SvgCommonModule } from './svg/svg-common.module';
 import { MatCardModule} from '@angular/material';
 import { FacebookButtonComponent } from './facebook-button/facebook-button.component'
 import { CommonFunctionsService } from './common-functions.service';
+import { HeaderComponent } from './header/header/header.component';
+import { HeaderMenuBigComponent } from './header/header-menu-big/header-menu-big.component';
 
 @NgModule({
   declarations: [
     RouterGoBackComponent,
     ArticleContainerComponent,
-    FacebookButtonComponent
+    FacebookButtonComponent,
+    HeaderComponent,
+    HeaderMenuBigComponent
   ],
   imports: [
     CommonModule,
@@ -30,6 +34,8 @@ import { CommonFunctionsService } from './common-functions.service';
     FlexLayoutModule,
     MatCardModule,
     FacebookButtonComponent,
+    HeaderComponent,
+    HeaderMenuBigComponent,
   ],
   providers: [
     CommonFunctionsService

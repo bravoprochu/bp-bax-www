@@ -22,9 +22,7 @@ export class NewsArticleDateComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
     this.date = changes.inputDate.currentValue ? new Date(changes.inputDate.currentValue) : null;
-    
   }
 
   isSmall():boolean {

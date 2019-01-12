@@ -2,6 +2,8 @@ import { Injectable, ElementRef } from '@angular/core';
 import { ISvgViewBox } from './interfaces/i-svg-viewbox';
 import { ISVGPoint } from './interfaces/i-svg-point';
 import { ISVGVector } from './interfaces/i-svg-vector';
+import { ISVGProp } from './interfaces/i-svg-prop';
+import { ISVGSize } from './interfaces/i-svg-size';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +31,21 @@ export class SvgCommonFunctionsService {
     if (viewBoxArr.length < 3) { return false; }
     return true;
   }
+
+  convertDOMPointsToSVGPoint(_domPoint: DOMPoint): ISVGPoint {
+    return <ISVGPoint> {
+      x: _domPoint.x,
+      y: _domPoint.y
+    }
+  }
+
+  convertMouseEvToSvgPoint(_mouseEv: MouseEvent):ISVGPoint {
+    return <ISVGPoint>{
+      x: _mouseEv.clientX,
+      y: _mouseEv.clientY,      
+    }
+  }
+
   convertToViewBoxObject(viewBox: string): ISvgViewBox {
     const res: ISvgViewBox = <ISvgViewBox>{ point: <ISVGPoint>{} };
     const viewBoxArr = viewBox.split(' ');
@@ -41,6 +58,24 @@ export class SvgCommonFunctionsService {
     //
     return res;
   }
+
+  initSVGProp(res: ISVGProp) {
+    res.pos = <ISVGPoint>{};
+    res.size = <ISVGSize> {
+      height: 1080,
+      width: 1920
+    };
+    res.viewBoxObj = <ISvgViewBox> {
+      height: 1080,
+      point: <ISVGPoint>{
+        x: 0,
+        y: 0
+      },
+      width: 1920
+    }
+  }
+
+
   translateSVGPoints(svg: SVGSVGElement, point: ISVGPoint): DOMPoint {
     const pt = svg.createSVGPoint();
     pt.x = point.x;
