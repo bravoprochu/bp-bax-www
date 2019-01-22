@@ -5,39 +5,39 @@ import { fadeOutStaggerAnimation } from './fade-in-stagger';
 
 export const routeAnimation =
   trigger('routeAnimations', [
-    transition('*=>*', [
-      query(':enter, :leave', [
-        style({ position: 'fixed', opacity:0}),
-        //query('*', style({opacity: 0}))
-      ], { optional: true }),
+    // transition('*=>*', [
+    //   query(':enter, :leave', [
+    //     style({ position: 'fixed', opacity:0}),
+    //     //query('*', style({opacity: 0}))
+    //   ], { optional: true }),
       
-      
-      sequence([
-        query(':leave', [
-          style({ opacity: 1 }),
-          query('section', stagger(-150, [
-            style({ transform: 'translate3d(0,0,0)' }),
-            animate('0.5s ease-in', style({ transform: 'translate3d(100%, 0, 0)', opacity: 0 }))
-          ]), { optional: true }
-          ),
-          animate('100ms', style({transform: 'translate3d(100%, 0, 0'}))
-        ], { optional: true }),
+    //   sequence([
+    //     query(':leave', [
+    //       style({ opacity: 1 }),
+    //       query('section', stagger(-150, [
+    //         style({ transform: 'translate3d(0,0,0)' }),
+    //         animate('0.5s ease-in', style({ transform: 'translate3d(100%, 0, 0)', opacity: 0 }))
+    //       ]), { optional: true }
+    //       ),
+    //       animate('100ms', style({transform: 'translate3d(100%, 0, 0'}))
+    //     ], { optional: true }),
 
 
-        query(':enter', [
-          style({transform: 'translate3d(-100%, 0, 0)'}),
-          animate('200ms', style({opacity:1, transform: 'translate3d(0, 0, 0)'})),
-          // query('section', stagger(250, [
-          //   style({ transform: 'translate3d(-100%, 0, 0)', opacity: 0 }),
-          //   animate('0.25s ease-out', style({ transform: 'translate3d(0, 0, 0)', opacity: 1 }))
-          // ]), { optional: true })
-        ]
-          , { optional: true })
+    //     query(':enter', [
+    //       style({transform: 'translate3d(-100%, 0, 0)'}),
+    //       animate('200ms', style({opacity:1, transform: 'translate3d(0, 0, 0)'})),
+    //       // query('section', stagger(250, [
+    //       //   style({ transform: 'translate3d(-100%, 0, 0)', opacity: 0 }),
+    //       //   animate('0.25s ease-out', style({ transform: 'translate3d(0, 0, 0)', opacity: 1 }))
+    //       // ]), { optional: true })
+    //       animateChild()
+    //     ]
+    //       , { optional: true })
 
-        //style({transform: 'translate3d(-100%, 0, 0)'}),
-        // animate(200, style({transform: 'translate3d(-100%, 0, 0)', opacity:1})),
-      ])
-    ])
+    //     //style({transform: 'translate3d(-100%, 0, 0)'}),
+    //     // animate(200, style({transform: 'translate3d(-100%, 0, 0)', opacity:1})),
+    //   ])
+    // ])
   ]);
     // transition('oferta <=> *', [
     //   style({ position: 'relative' }),

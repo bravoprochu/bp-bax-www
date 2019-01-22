@@ -10,6 +10,9 @@ import { FacebookButtonComponent } from './facebook-button/facebook-button.compo
 import { CommonFunctionsService } from './common-functions.service';
 import { HeaderComponent } from './header/header/header.component';
 import { HeaderMenuBigComponent } from './header/header-menu-big/header-menu-big.component';
+import { DeferLoadDirective } from './defer-load.directive';
+import { DetectIntersectionDirective } from './directives/detect-intersection.directive';
+import { PantoneToHexModule } from '../pantoneToHex/pantone-to-hex.module';
 
 @NgModule({
   declarations: [
@@ -17,14 +20,18 @@ import { HeaderMenuBigComponent } from './header/header-menu-big/header-menu-big
     ArticleContainerComponent,
     FacebookButtonComponent,
     HeaderComponent,
-    HeaderMenuBigComponent
+    HeaderMenuBigComponent,
+    DeferLoadDirective,
+    DetectIntersectionDirective
   ],
   imports: [
     CommonModule,
     RouterModule,
     FlexLayoutModule,
     MatCardModule,
-    SvgCommonModule
+    PantoneToHexModule,
+    SvgCommonModule,
+    
   ],
   exports: [
     CommonModule,
@@ -36,6 +43,8 @@ import { HeaderMenuBigComponent } from './header/header-menu-big/header-menu-big
     FacebookButtonComponent,
     HeaderComponent,
     HeaderMenuBigComponent,
+    DeferLoadDirective,
+    DetectIntersectionDirective,
   ],
   providers: [
     CommonFunctionsService

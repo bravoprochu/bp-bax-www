@@ -12,6 +12,9 @@ import { SVGElementProp } from 'src/app/shared/svg/classes/svg-element-prop';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { BP_ANIM_ENTER_LEAVE_GROUP } from 'src/app/animations/enter-leave-group';
 import { Router } from '@angular/router';
+import { bp_anim_svg_init } from 'src/app/animations/bp_anim_svg-init';
+import { INewsArticleMini } from '../interfaces/i-news-article-mini';
+import { PantoneToHexService } from 'src/app/pantoneToHex/pantone-to-hex.service';
 
 @Component({
   selector: 'app-news-article-mini',
@@ -19,20 +22,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./news-article-mini.component.css'],
   animations: [
     BP_ANIM_SCALE_ORIGIN_OVER_LEAVE(0, 1, 1, 0.0),
-    BP_ANIM_ENTER_LEAVE_GROUP(1300, 1200)
+    BP_ANIM_ENTER_LEAVE_GROUP(1300, 1200),
+    bp_anim_svg_init()
     
   ]
 })
 export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestroy {
-  @Input('fill') fill: string;
-  @Input('imgUrl') imgUrl: string;
-  @Input('invert') invert: boolean;
-  @Input('pointer') pointer: string;
-  @Input('url') url: string;
-  @Input('title') title: string;
+  @Input('miniInfo') miniInfo: INewsArticleMini;
   @ViewChild('followMouse') followMouse: ElementRef;
   @ViewChild('svg') svg: ElementRef;
   @ViewChild('titleText') titleText:ElementRef;
+  fill: string;
+  imgUrl: string;
+  invert: boolean;
+  pointer: string;
+  url: string;
+  title: string;
+
   bgUrl: SafeResourceUrl;
   image: SVGElementProp;
   isReady:boolean = false;
@@ -59,19 +65,23 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
     private sanitize: DomSanitizer,
     private _builder: AnimationBuilder,
     private svgCF: SvgCommonFunctionsService,
-    private router: Router
+    private router: Router,
+    private pantoneService: PantoneToHexService,
   ) { }
 
   followFn: any;
 
 
   ngOnInit() {
-    this.bgUrl = this.imgUrl ?  'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg': this.sanitize.bypassSecurityTrustResourceUrl('https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg');
-    this.imgUrl = this.imgUrl ? this.imgUrl : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
-    this.fill = this.fill ? this.fill : 'green';
+    this.miniInfo = this.miniInfo ? this.miniInfo : <INewsArticleMini>{};
+
+
+    this.bgUrl = this.miniInfo.imgUrl ?  'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg': this.sanitize.bypassSecurityTrustResourceUrl('https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg');
+    this.imgUrl = this.miniInfo.imgUrl ? this.imgUrl : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
+    this.fill = this.fill ? this.fill : '#ff00ff';
+    
     this.pointer = this.pointer ? this.pointer : 'brown'
     this.title = this.title ? this.title : 'uzupełnij tytuł';
-    this.routeUrl = this.url ? [`news/${this.url}`] : ['/news'];
     this.image = new SVGElementProp();
     this.image.size.width = 960;
     this.image.size.height = 480;
@@ -105,16 +115,12 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   goTo(){
-    console.log('start');
-    this.router.navigate(this.routeUrl);
-
+    this.router.navigateByUrl(`news/${this.miniInfo.url}#top`, {preserveFragment: false, fragment: 'top'});
   }
   
 
   initObservable() {
-
     const fn = (()=>{
-
       const counter = 0;
       setTimeout((counter: number)=>{
         counter ++
@@ -190,19 +196,6 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
     // );
   }
 
-  sqrtIt(num: number): number {
-    if (num == 0) { return 0 };
-    if (num > 0) { return Math.round(Math.sqrt(num)); }
-    if (num < 0) {
-      let res = Math.abs(num);
-      res = Math.sqrt(res);
-      res = Math.round(res);
-      res = res
-      return res;
-      Math.round(Math.sqrt(Math.abs(num)) * -1);
-    }
-  }
 
-  count: number = 0;
 }
 

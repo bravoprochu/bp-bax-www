@@ -17,7 +17,6 @@ import { SVGElementProp } from '../../svg/classes/svg-element-prop';
 })
 export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
-    console.log('onDestroy');
     this.isDestroyed$.next(true);
     this.isDestroyed$.complete();
   }
@@ -53,8 +52,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.svgBaxLogSecondLineProp.viewBox.copyFrom(this.svgProp.viewBox);
     this.svgBaxLogSecondLineProp.svgElement = this.svg.nativeElement;
-
-
 
     
     this.isDestroyed$ = new Subject();

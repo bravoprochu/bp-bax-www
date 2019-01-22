@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {OfertaModule} from './oferta/oferta.module';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
@@ -14,6 +13,11 @@ const routes: Routes = [
     path: 'oferta',
     loadChildren: './oferta/oferta.module#OfertaModule',
     data: {animation: 'oferta'}
+  },
+  {
+    path: 'kontakt', 
+    loadChildren: './contact/contact.module#ContactModule',
+    data: {animation: 'kontakt'}
   },
   {
     path: '',

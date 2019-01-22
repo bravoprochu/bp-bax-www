@@ -1,3 +1,4 @@
+
 .svg-container {
     position: absolute;
     z-index: -1;
@@ -6,7 +7,6 @@
 
 .yt {
     position: relative;
-    top: 250px;
     padding: 25px;
     width: 560px;
     height: 316px;
@@ -20,18 +20,23 @@
 }
 
 .bg {
-    z-index: -1;
-    position: absolute;
-    background-image: url('http://bdotp.pl/textury/mini-02.svg');
-    background-size: cover;
-    background-repeat: repeat-y;
-    opacity: 0.15;
-    width: 100%;
+    /* background-image: url('http://bdotp.pl/textury/mini-02.svg');
+    background-size: cover; */
+
+    /* background-repeat: repeat-y; */
+    margin: 0;
+    padding: 0;
+    min-height: 98vh;
     height: 100%;
 }
 
+
 .content-text {
-    padding: 20px;
+    padding: 15px;
+
+    /* line-height: 1.2em;
+    font-size: 1.4em; */
+    /* font-stretch: extra-expanded; */
 }
 
 .header-title-container {

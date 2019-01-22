@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NewsRoutingModule } from './news-routing.module';
@@ -11,12 +11,23 @@ import { NewsArticleDateComponent } from './news-article-date/news-article-date.
 
 
 @NgModule({
-  declarations: [NewsListComponent, NewsArticleMiniComponent, NewsArticleTitleComponent, NewsArticleComponent, NewsArticleDateComponent],
+  declarations: [
+    NewsListComponent, 
+    NewsArticleMiniComponent, 
+    NewsArticleTitleComponent,
+    NewsArticleComponent,
+    NewsArticleDateComponent,
+  ],
   imports: [
     SharedModule,
     CommonModule,
     NewsRoutingModule
   ],
-  exports: [NewsArticleTitleComponent]
+  exports: [
+    NewsArticleTitleComponent, 
+  ],
+  schemas: [
+    NO_ERRORS_SCHEMA
+  ]
 })
 export class NewsModule { }

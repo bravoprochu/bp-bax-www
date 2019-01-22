@@ -75,15 +75,11 @@ export class SvgCommonFunctionsService {
     }
   }
 
-
-  translateSVGPoints(svg: SVGSVGElement, point: ISVGPoint): DOMPoint {
-    const pt = svg.createSVGPoint();
-    pt.x = point.x;
-    pt.y = point.y;
-    //pt.z = point.z;
-    const res = pt.matrixTransform(svg.getScreenCTM().inverse());
-    return res;
+  generateRect(): SVGRectElement {
+    return null;
   }
+
+
   getHTMLNativeElementMiddlePoint(el: ElementRef): ISVGPoint {
     const box = (<HTMLElement>el.nativeElement).getBoundingClientRect();
     return <ISVGPoint>{
@@ -125,6 +121,15 @@ export class SvgCommonFunctionsService {
       x: divideBy ? vector.x / divideBy : this.mathRootAndRound(vector.x),
       y: divideBy ? vector.y / divideBy : this.mathRootAndRound(vector.y)
     }
+  }
+
+  translateSVGPoints(svg: SVGSVGElement, point: ISVGPoint): DOMPoint {
+    const pt = svg.createSVGPoint();
+    pt.x = point.x;
+    pt.y = point.y;
+    //pt.z = point.z;
+    const res = pt.matrixTransform(svg.getScreenCTM().inverse());
+    return res;
   }
 
   updateSVGViewBoxPosition(svgContainer: SVGSVGElement, followPosition: ISVGPoint, lastMousePosition: ISVGPoint, _mousePoint?: ISVGPoint, ancorPointRectElement?: ElementRef, easeDivideBy?: number) {

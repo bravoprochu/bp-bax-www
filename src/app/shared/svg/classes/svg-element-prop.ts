@@ -42,6 +42,13 @@ export class SVGElementProp {
         }
     }
 
+    getCenterPositionByPercent(percentOfSize: number): ISVGPoint {
+        return <ISVGPoint>{
+            x: (this.viewBox.width - (this.viewBox.width*percentOfSize))/2, 
+            y: (this.viewBox.height - (this.viewBox.height*percentOfSize))/2
+        }
+    }
+
     private getPositionsVector(p0: ISVGPoint, p1: ISVGPoint): ISVGVector {
         return <ISVGVector>{
             x: p1.x - p0.x,
@@ -98,7 +105,7 @@ export class SVGElementProp {
              y: (elementMaxPosFromMiddle.y * mouseVectorAbsoluteBasedOnMiddlPoint.y)
         }
 
-       
+      
         const stepsRatio = 1 / (animSteps.stepsCount - animSteps.step);
         let activePosToMaxposVector = this.getPositionsVector(this.pos, elementMaxPosFromMiddleAfterShrinkVector);
         activePosToMaxposVector = this.shrinkVector(activePosToMaxposVector, stepsRatio)
@@ -107,6 +114,7 @@ export class SVGElementProp {
         let lengthVector = this.getPositionsVector(this.pos, elementMaxPos);
         lengthVector = this.shrinkVector(lengthVector, stepsRatio);
 
+        const pos: ISVGPoint = <ISVGPoint>{}
 
         if(isOnRightSide) {
 
@@ -124,11 +132,41 @@ export class SVGElementProp {
         }
     }
 
+    setPositionAttributeByXY(src: SVGElement, x: number, y: number) {
+        src.setAttribute('x', x.toString());
+        src.setAttribute('y', y.toString());
+    }
+
+    setPositionAttributeByPoint(src: SVGElement, pos: ISVGPoint) {
+        src.setAttribute('x', pos.x.toString());
+        src.setAttribute('y', pos.y.toString());
+    }
+
+    setPositionAttributeByCenterViewBoxPercent(src: SVGElement, viewBoxPercent: number, naturalHeight=1920, naturalWidth=1080) {
+        const center = this.getCenterPositionByPercent(viewBoxPercent);
+        const naturalRatio = naturalWidth/naturalHeight;
+        const h = this.viewBox.height * viewBoxPercent;
+        const w = h * naturalRatio;
+        
+        src.setAttribute('x', (center.x).toString());
+        src.setAttribute('y', (center.y).toString());
+        src.setAttribute('width', w.toString());
+        src.setAttribute('height', h.toString());
+    }
+
+    setRectBorder(src: SVGElement, strokeWidth=20, color='#0000ff', strokeOpacity=1, roundX=0, roundY=0 ){
+        src.setAttribute('stroke', color);
+        src.setAttribute('stroke-width', strokeWidth.toString());
+        src.setAttribute('fill', "none");
+        src.setAttribute('stroke-opacity', strokeOpacity.toString())
+        src.setAttribute('rx', roundX.toString())
+        src.setAttribute('ry', roundY.toString())
+    }
 
     private shrinkVector(vector: ISVGVector, diffPercent?: number): ISVGVector {
         return <ISVGVector>{
-            x: diffPercent ? Math.round(vector.x * diffPercent) : this.mathRootAndRound(vector.x),
-            y: diffPercent ? Math.round(vector.y * diffPercent) : this.mathRootAndRound(vector.y)
+            x: diffPercent ? (vector.x * diffPercent) : this.mathRootAndRound(vector.x),
+            y: diffPercent ? (vector.y * diffPercent) : this.mathRootAndRound(vector.y)
         }
     }
 
@@ -141,7 +179,7 @@ export class SVGElementProp {
         return res;
     }
 
-
+    
 
 
 }
