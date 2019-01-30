@@ -3,12 +3,9 @@ import { environment } from 'src/environments/environment';
 import { fromEvent, Observable, observable, empty, of } from 'rxjs';
 import { take, map, debounceTime, delay, switchMap, takeUntil, retry, repeat, sampleTime, tap, pairwise, buffer, bufferCount, bufferWhen, bufferTime, bufferToggle, merge, mergeAll } from 'rxjs/operators';
 import { IMouseMovePosition } from './interfaces/i-mouse-move-position';
-import { IBrickBlock } from './interfaces/i-brick-block';
 import { DomSanitizer } from '@angular/platform-browser';
 import { state, style, transition, animate, trigger, query, AnimationBuilder, group, AnimationPlayer, animation } from '@angular/animations';
-import { RouterState } from '@angular/router';
-import { IMoveItPosition } from './interfaces/i-move-it-position';
-import { IMoveCoordinates } from './interfaces/i-move-coordinates';
+
 
 
 @Component({
@@ -57,8 +54,7 @@ export class ArticleContainerComponent implements OnInit, AfterViewInit {
   @ViewChild('svgContainer') svgContainer: ElementRef;
   @ViewChild('svgBaxSign') svgBaxSign: ElementRef;
   @ViewChild('svgTitleText') svgTitleText: ElementRef;
-
-
+  
 
   constructor(
     private renderer2: Renderer2,

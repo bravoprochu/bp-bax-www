@@ -1,14 +1,28 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerGestureConfig } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import 'hammerjs';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SharedModule } from './shared/shared.module';
 import { TestComponent } from './test/test.component';
 
+
+
+export class BaluHammerConfig extends HammerGestureConfig {
+  overrides = {
+      pan: {
+           direction: 6
+    },
+    pinch: {
+        enable: false
+    },
+    rotate: {
+        enable: false
+    }
+};
+}
 
 
 @NgModule({
@@ -24,13 +38,16 @@ import { TestComponent } from './test/test.component';
     SharedModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    // {
+    //   provide: HammerGestureConfig,
+    //   useClass: BaluHammerConfig
+    // }
+  ],
   bootstrap: [AppComponent],
   exports: [
     SharedModule,
   ],
-  schemas: [
-
-  ]
+  schemas: []
 })
 export class AppModule { }

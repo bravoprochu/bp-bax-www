@@ -8,12 +8,12 @@ const routes: Routes = [
   {
     path: ':id',
     component: NewsArticleComponent,
-    data: { animation: 'newsHome' }
+    data: { animation: 'article' }
   },
   {
     path: '',
     component: NewsListComponent,
-    data: {animation: 'list'}
+    data: {animation: 'newsList'}
   }
 ];
 

@@ -1,0 +1,21 @@
+<svg @svgInit [attr.x]="x" [attr.y]="y" [attr.height]="height" [attr.width]="width" viewBox="0 0 120 120">
+    <defs>
+        <filter id="dropshadow" height="130%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="3"/> <!-- stdDeviation is how much to blur -->
+            <feOffset dx="2" dy="2" result="offsetblur"/> <!-- how much to offset -->
+            <feComponentTransfer>
+              <feFuncA type="linear" slope="0.5"/> <!-- slope is the opacity of the shadow -->
+            </feComponentTransfer>
+            <feMerge> 
+              <feMergeNode/> <!-- this contains the offset blurred image -->
+              <feMergeNode in="SourceGraphic"/> <!-- this contains the element that the filter is applied to -->
+            </feMerge>
+          </filter>
+    </defs>
+    
+  <title>{{title}}</title>
+  <g (click)="goto()" style="cursor: pointer; filter:url(#dropshadow)">
+    <path d="M94.9,24.6A12.3,12.3,0,0,0,85,18.1c-7.2-.7-14.3-1-21.5-1.1-10.5-.1-21-.2-31.5.2-6,.2-12.5,0-18.5,1.2a11.5,11.5,0,0,0-8.8,7.8c-2.2,6.3-1.9,13.4-2.2,20a123.5,123.5,0,0,0,.3,13.6c.3,4.6.5,9.3,2,13.7a11.8,11.8,0,0,0,10.4,8.4c7.2.7,14.3,1,21.5,1.1H62.2c6.5-.1,13.1-.5,19.7-.9s11.9-2.8,13.8-9.6a56.7,56.7,0,0,0,1.9-14.8V42.1C97.6,36.4,97.4,29.8,94.9,24.6Z" style="fill:#ed2224"/>
+    <polygon points="34.6 34.3 34.6 65.7 64.8 50 34.6 34.3" style="fill:#fff;stroke:#fff;stroke-miterlimit:10"/>
+  </g>
+</svg>

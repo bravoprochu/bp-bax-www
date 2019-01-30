@@ -5,30 +5,39 @@ import { INewsArticle } from '../interfaces/i-news-article';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
 import { Subject, timer } from 'rxjs';
-import { bp_anim_svg_init } from 'src/app/animations/bp_anim_svg-init';
 import { NewsService } from '../news.service';
 import { PantoneToHexService } from 'src/app/pantoneToHex/pantone-to-hex.service';
 import { IPantoneToHex } from 'src/app/pantoneToHex/interfaces/i-pantone-to-hex';
 import { SVGElementProp } from 'src/app/shared/svg/classes/svg-element-prop';
 import { bp_anim_SVGBorderImage as bp_anim_svgBorderImage } from 'src/app/animations/bp_anim_svg-border-image';
-import { ISVGPoint } from 'src/app/shared/svg/interfaces/i-svg-point';
 import { ISVGRectBorder } from 'src/app/shared/svg/interfaces/i-svg-rect-border';
+import { BP_ANIM_OPACITY_OVER_LEAVE } from 'src/app/animations/opacity-over-leave';
+import { BP_ANIM_GROUP_APPEARING } from 'src/app/animations/bp_anim_group_appearing';
+import { BP_ANIM_OPACITY_INIT } from 'src/app/animations/bp-anim-opacity-init';
+import * as Hammer from 'hammerjs';
+
 
 @Component({
   selector: 'app-news-article',
   templateUrl: './news-article.component.html',
   styleUrls: ['./news-article.component.css'],
   animations: [
-    bp_anim_svg_init(),
-    bp_anim_svgBorderImage()
+    bp_anim_svgBorderImage(750, 350),
+    BP_ANIM_OPACITY_OVER_LEAVE(350, 0.5, 1),
+    BP_ANIM_GROUP_APPEARING(250, 100, 'svg, rect, h1, app-news-article-date, .content-text, iframe'),
+    BP_ANIM_OPACITY_INIT(750, 250)
   ]
 })
 export class NewsArticleComponent implements OnInit, OnDestroy {
   @ViewChild('svgImage') svgImageTEST: ElementRef;
+  @ViewChild('bg') bg: ElementRef;
+  bgColor: any;
+  bgImageColor: any;
   data: INewsArticle;
+  isArticleNavOver: boolean;
   isDestroyed$: Subject<boolean>;
   isReady: boolean;
-  bgColor: any;
+
   rectBorders: ISVGRectBorder[] = [];
   svgImage: ISVGRectBorder = <ISVGRectBorder>{};
   isSVGImageIsReady: boolean;
@@ -37,7 +46,7 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private cf: CommonFunctionsService,
+    public cf: CommonFunctionsService,
     private sanitizer: DomSanitizer,
     private router: Router,
     private actRoute: ActivatedRoute,
@@ -54,38 +63,64 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isDestroyed$ = new Subject();
     this.initObservable();
+
+
+    const hammerManager = new Hammer(this.bg.nativeElement, {})
+
+    hammerManager.get('swipe').set({direction: Hammer.DIRECTION_HORIZONTAL});
+    hammerManager.get('pinch').set({enable: false});
+    hammerManager.get('rotate').set({enable: false});
+
+    hammerManager.on('swipe', (ev)=>{
+      if(ev.direction == 2) {
+        // swipe left
+        this.getNext();
+      }
+      if(ev.direction == 4) {
+        // swipe right
+        this.getPrev();
+      }
+    })
+
+
     //this.initSVGData();
     //this.initSVGImage();
 
-
     //this.colorBrick = this.pantoneService.getNextPaletteColors("185", 10);
+  }
+
+  articleNavPos():number {
+    const bInfo = this.cf.windowBasicInfo;
+    const pos = bInfo.isPortrait ? bInfo.height/10 : bInfo.width/2.5;
+    return pos;
   }
 
   initSVGData() {
     this.rectBorders = [];
     this.isSVGImageIsReady = false;
     const rectQt = 6;
-    const colors = this.pantoneService.getNextPaletteColors(this.data.miniInfo.fill, rectQt, 3)
+    const colors = this.pantoneService.getNextPaletteColors(this.data.miniInfo.fill, rectQt, 3);
     const imageFillHeightPercent = 0.70;
     const maxOpacity = 1;
+
+    const rgba1 = this.pantoneService.colorToRGBA(colors[0], 0.2);
+    const rgba2 = this.pantoneService.colorToRGBA(colors[2], 0.2);
+    const rgba3 = this.pantoneService.colorToRGBA(colors[4], 0.2);
+    this.bgImageColor = this.sanitizer.bypassSecurityTrustStyle(`linear-gradient(to right, ${rgba1}, ${rgba2}, ${rgba3})`);
+
     
     const img = new Image();
     img.setAttribute('src', this.data.miniInfo.imgUrl);
     img.onload = (imgEv: Event)=>{
-      console.log('img loaded...', imgEv.timeStamp);
-      const mozz = imgEv['explicitOriginalTarget'];
-      const chr = imgEv['path'];
       
-      const i: HTMLImageElement  = mozz ? mozz : chr[0];
-      console.log('now preping borders.....');
+      const naturalWidth = (<HTMLImageElement>imgEv.srcElement).naturalWidth;
+      const naturalHeight = (<HTMLImageElement>imgEv.srcElement).naturalHeight;
       
-      const imageRatio = i.naturalWidth / i.naturalHeight;
+      const imageRatio = naturalWidth / naturalHeight;
       const h = this.svgImageProp.viewBox.height * imageFillHeightPercent;
       const w = h * imageRatio;
       let rotateStep = -1* (Math.floor((Math.random()*10) ));
       
-      
-
       const middlePoint = this.svgImageProp.getCenterPositionByPercent(imageFillHeightPercent);
       for(let i=0; i < rectQt; i++) {
         const r = <ISVGRectBorder> {
@@ -110,10 +145,9 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
         width: w.toString(),
         transform: this.rectBorders[this.rectBorders.length-1].transform
       }
-      console.log(rotateStep, rotateStep);
-      // console.table(this.rectBorders);
-      this.isSVGImageIsReady = true;
+      
       this.setBackgroundColor(colors[colors.length-1]);
+      this.isSVGImageIsReady = true;
     }
   }
 
@@ -156,13 +190,10 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
     preImg.src = this.data.imgUrl;
 
     const onLoadImageFn = () => (ev:Event)=>{
-      console.log('svgImage', ev)
       ev.preventDefault();
 
       this.renderer.appendChild(this.svgImageTEST.nativeElement, image1);
       const ratio = preImg.naturalWidth/preImg.naturalHeight;
-      console.log(ratio);
-      console.log(this.svgImageProp.viewBox.width, image1);
       // image1.setAttribute('height', preImg.naturalHeight);
       // image1.setAttribute('width', preImg.naturalWidth);
       this.svgImageProp.setPositionAttributeByCenterViewBoxPercent(image1, 0.8, preImg.naturalHeight, preImg.naturalWidth)
@@ -177,7 +208,6 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
       
       for (let i = 0; i < rectBorderNo; i++) {
         const imgBorder = <SVGRectElement>this.renderer.createElement('rect', 'svg');
-        console.log(h,w);
         imgBorder.setAttribute('transform', `rotate(${step}, ${this.svgImageProp.viewBox.middlePoint().x}, ${this.svgImageProp.viewBox.middlePoint().y})`);
         imgBorder.setAttribute('height', "864");
         imgBorder.setAttribute('width', "1534");
@@ -204,7 +234,6 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
     //
 
     const onLoadImgFn = () => (evImg: Event) => {
-      console.log('start', evImg);
       evImg.preventDefault();
       evImg.stopImmediatePropagation();
 
@@ -217,13 +246,11 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
 
   
     preImg.onload = (imgEv:Event)=>{
-      console.log('img loaded...', imgEv.timeStamp);
       const mozz = imgEv['explicitOriginalTarget'];
       const chr = imgEv['path'];
       
       const i: HTMLImageElement  = mozz ? mozz : chr[0];
 
-      console.log('now image1.....');
     }
 
     // image1.onload = (imagesEv) => {
@@ -281,7 +308,7 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
     const d = this.ns.findById(routeId);
     if (d) {
       this.data = Object.assign({}, d);
-      this.data.youtubeEmbedUrl = this.data.youtubeEmbedUrl ? this.sanitizer.bypassSecurityTrustResourceUrl(this.data.youtubeEmbedUrl) : null;
+      // this.data.youtubeEmbedUrl = this.data.youtubeEmbedUrl ? this.sanitizer.bypassSecurityTrustResourceUrl(this.data.youtubeEmbedUrl) : null;
       this.data.text = d.text ? this.sanitizer.bypassSecurityTrustHtml(this.data.text) : null;
       this.isReady = true;
     }
@@ -292,6 +319,42 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
     this.bgColor = this.sanitizer.bypassSecurityTrustStyle(`rgba(${color.r}, ${color.g}, ${color.b}, 0.2)`)
   }
 
+
+  swipeLeft(ev: any) {
+    console.log('swipeLeft');
+    this.getNext();
+  }
+
+  swipeRight(ev: any){
+    console.log('swipeRight');
+    this.getPrev();
+  }
+
+
+
+  swipe(ev: any) {
+    console.log(ev);
+    // ev.preventDefault();
+    // window.scrollTo({top: ev.center.y})
+    // switch (ev.direction) {
+    //   case 8:
+    //   //this.getNext();
+    //   window.scrollTo({top: ev.center.y})
+    //   break;
+
+    //   case 16:
+    //   window.scrollTo({top: ev.center.y})
+    //    //this.getPrev();
+    //   break;
+
+
+    //   default:
+        
+    //   break
+    // }
+    // console.log('swipe', ev);
+
+  }
 
 
 

@@ -5,14 +5,13 @@ import { AnimationBuilder, animate, style, AnimationPlayer } from '@angular/anim
 import { SvgCommonFunctionsService } from 'src/app/shared/svg/svg-common-functions.service';
 import { ISVGPoint } from 'src/app/shared/svg/interfaces/i-svg-point';
 import { ISvgViewBox } from 'src/app/shared/svg/interfaces/i-svg-viewbox';
-import { BP_ANIM_OPACITY_OVER_LEAVE } from 'src/app/animations/opacity-over-leave'
 import { BP_ANIM_SCALE_ORIGIN_OVER_LEAVE } from 'src/app/animations/scale-origin-over-leave';
 import { BP_ANIM_TRANSFORM_ORIGIN } from 'src/app/animations/transform-origin';
 import { SVGElementProp } from 'src/app/shared/svg/classes/svg-element-prop';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { BP_ANIM_ENTER_LEAVE_GROUP } from 'src/app/animations/enter-leave-group';
 import { Router } from '@angular/router';
-import { bp_anim_svg_init } from 'src/app/animations/bp_anim_svg-init';
+import { BP_ANIM_SVG_INIT } from 'src/app/animations/bp_anim_svg-init';
 import { INewsArticleMini } from '../interfaces/i-news-article-mini';
 import { PantoneToHexService } from 'src/app/pantoneToHex/pantone-to-hex.service';
 
@@ -23,7 +22,7 @@ import { PantoneToHexService } from 'src/app/pantoneToHex/pantone-to-hex.service
   animations: [
     BP_ANIM_SCALE_ORIGIN_OVER_LEAVE(0, 1, 1, 0.0),
     BP_ANIM_ENTER_LEAVE_GROUP(1300, 1200),
-    bp_anim_svg_init()
+    BP_ANIM_SVG_INIT()
     
   ]
 })
@@ -38,7 +37,7 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
   pointer: string;
   url: string;
   title: string;
-
+  
   bgUrl: SafeResourceUrl;
   image: SVGElementProp;
   isReady:boolean = false;

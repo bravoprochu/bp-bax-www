@@ -10,9 +10,15 @@ import { fadeInStaggerAnimation, fadeOutStaggerAnimation } from '../animations/f
   ]
 
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  ngOnInit(): void {
+    
+  }
 
-  
+info: string[] = [
+  'news article gradient background based on pantone last 3 colors',
+  'News article swipe right/left navigation'
+];  
 
 
 

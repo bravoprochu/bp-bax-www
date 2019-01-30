@@ -1,8 +1,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:400,400i,700');
 
-
-
- /* body {
+/* body {
      font-family: Roboto, 
     "Helvetica Neue", sans-serif;
     color: #0054A6;
@@ -21,10 +20,14 @@
     line-height: 1.275em;
 } */
 
-
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   font-size: 100%;
+  color: #0054A6;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 body, caption, th, td, input, textarea, select, option, legend, fieldset, h1, h2, h3, h4, h5, h6 {
@@ -146,4 +149,10 @@ blockquote {
   }
 }
 
-p { font-size: 1.6em; /* 10 x 1.6 = 16 */ }
+p { font-size: 1.4em; /* 10 x 1.6 = 16 */ }
+
+
+.bp-svg-drop-shadow {
+  -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+  filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+}

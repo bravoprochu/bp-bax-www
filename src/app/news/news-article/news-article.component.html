@@ -1,137 +1,78 @@
-<div [style.background]="bgColor" class="bg">
+<div #bg @groupAppearing [style.background-image]="bgImageColor" class="bg" >
+  <app-article-navigation [data]="data" [@opacityOverLeave]="isArticleNavOver ? 'over': 'leave'" class="article-navigation"
+    [style.opacity]="isArticleNavOver ? 1 : 0.4 " (mouseover)="isArticleNavOver=true" (mouseleave)="isArticleNavOver=false"></app-article-navigation>
 
-  <!-- <div class="bg">
- </div> -->
-  <div @svgInit>
-    <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" class="svg-container" viewBox="0 0 800 1200">
-  <title>BAX news article background</title>
-  <defs>
-    <style>
-      .cls-1 {
-        fill: url(#linear-gradient);
-      }
-    </style>
-    <linearGradient id="linear-gradient" x1="615.38" y1="870.44" x2="615.38" y2="-177.11" gradientUnits="userSpaceOnUse">
-      <stop offset="0" [attr.stop-color]="data?.miniInfo?.fill" [attr.stop-opacity]="data?.miniInfo?.invert? 0.2 : 0.75" />
-
-      <stop offset="1" stop-color="#0054A6" />
-    </linearGradient>
-  </defs>
-  <title>news_colorful_blob</title>
-  <g data-name="bax_logo_sign_only">
-      <image x="0" y="0" height="100%" width="100%" xlink:href="./assets/svg/baxSignOnly.svg" opacity="0.4" ></image>
-  </g>
-  <g>
-      <path xmlns="http://www.w3.org/2000/svg" opacity="0.05" d="M327.93,868.76h0C123.53,764.28,42.52,513.89,147,309.48L459-301l740.2,378.34-312,610.49C782.73,892.23,532.33,973.23,327.93,868.76Z"/>
-  </g>
-  <g data-name="Layer 1">
-    <path class="cls-1" d="M782.07,768.22h28.61a13.68,13.68,0,0,1,13.65,13.64v6.25a13.69,13.69,0,0,1-13.65,13.65H741.82c-96,68.87-222.46,88.87-338.12,46.62H329.14a9.82,9.82,0,0,1,0-19.63h30.18a364.66,364.66,0,0,1-95.55-72H369.22a9.82,9.82,0,1,0,0-19.63H246.42A365.46,365.46,0,0,1,220.89,702h-36a13.69,13.69,0,0,1-13.64-13.65,19.94,19.94,0,0,1,19.89-19.89H201.9q-6.42-12.85-11.8-26.18H123a9.82,9.82,0,1,1,0-19.63H182.8a364.13,364.13,0,0,1,20.61-283.69l53.16-104h417A89.69,89.69,0,0,0,763,145.48V142c0-49.2-40.24-89.44-89.43-89.44H349.81L467.17-177.11l650.4,332.45-263.76,516A364.2,364.2,0,0,1,782.07,768.22Z" />
-  </g>
-</svg> -->
-
-
-
-    <!-- <svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" viewBox="0 0 800 250">
-  <defs>
-    <style>
-      .t-align {
-        text-align: start;
-      }
-      .cls-10,
-      .cls-4,
-      .cls-5 {
-        fill: #0455a4;
-      }
-
-      .cls-5 {
-        font-size: 50px;
-        letter-spacing: 0.08em;
-      }
-
-      .cls-10,
-      .cls-5 {
-        font-family: RobotoCondensed-Bold, Roboto Condensed;
-        font-weight: 700;
-      }
-
-      .cls-10 {
-        font-size: 40px;
-        letter-spacing: 0.08em;
-      }
-    </style>
-  </defs>
-  <title>news_colorful_blob_weryfikacja</title>
-
-
-
-  <g>
-    <text class="cls-5 t-align" transform="translate(15 145)">{{data.title.title | uppercase}}</text>
-  </g>
-  <g>
-      <text class="cls-10 t-align" transform="translate(15 195)">{{data.title.subtitle | uppercase}}</text>
-  </g>
-    
-  
-</svg> -->
-
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <div fxLayout="column" fxLayout.gt-md="row">
-    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" fxFlex.gt-md="70">
-      <iframe *ngIf="data.youtubeEmbedUrl && !data.imgUrl" [ngClass]="isSmall() ? 'yt-sm' : 'yt'" [attr.src]="data.youtubeEmbedUrl"
-        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-      </iframe>
-      <svg fxFlex="100" @svgInit x="50%" width="100%" height="100%" [attr.viewBox]="svgImageProp.viewBox.toString()"
-        preserveAspectRation="xMidYMid meet">
+    <div *ngIf="!cf.isGtMd()">
+      <svg x="50%" width="100%" height="100%" [attr.viewBox]="svgImageProp.viewBox.toString()" preserveAspectRation="xMidYMid meet">
         <title>{{data.title.title}}</title>
         <g *ngIf="isSVGImageIsReady">
-          <rect @svgBorderImage *ngFor="let rb of rectBorders" [attr.x]="rb.posX" [attr.y]="rb.posY" [attr.width]="rb.width"
-            [attr.height]="rb.height" fill="none" [attr.stroke]="rb.color" [attr.rx]="rb.radius" [attr.ry]="rb.radius"
-            [style.strokeWidth]="rb.strokeWidth" [style.strokeOpacity]="rb.strokeOpacity" [attr.transform]="rb.transform"></rect>
-          <image [attr.x]="svgImage.posX" [attr.y]="svgImage.posY" [attr.width]="svgImage.width" [attr.height]="svgImage.height"
+          <g @svgBorderImage>
+            <rect *ngFor="let rb of rectBorders" [attr.x]="rb.posX" [attr.y]="rb.posY" [attr.width]="rb.width"
+              [attr.height]="rb.height" fill="none" [attr.stroke]="rb.color" [attr.rx]="rb.radius" [attr.ry]="rb.radius"
+              [style.strokeWidth]="rb.strokeWidth" [style.strokeOpacity]="rb.strokeOpacity" [attr.transform]="rb.transform"></rect>
+          </g>
+          <image @opacityInit [attr.x]="svgImage.posX" [attr.y]="svgImage.posY" [attr.width]="svgImage.width" [attr.height]="svgImage.height"
             [attr.xlink:href]="data.miniInfo.imgUrl" [attr.transform]="svgImage.transform"></image>
+          <!-- <g *ngFor="let rb of rectBorders; last as isLast">
+            <rect *ngIf="isLast" [attr.x]="rb.posX" [attr.y]="rb.posY" [attr.width]="rb.width" [attr.height]="rb.height"
+              fill="none" [attr.stroke]="rb.color" [attr.rx]="rb.radius" [attr.ry]="rb.radius" [style.strokeWidth]="rb.strokeWidth"
+              [style.strokeOpacity]="rb.strokeOpacity" [attr.transform]="rb.transform"></rect>
+          </g> -->
         </g>
+        <svg:g *ngIf="data.youtubeUrl && isSVGImageIsReady" class="anim-init" svg-button-youtube x="50" y="700" height="400"
+          width="400" title="zobacz clip {{data.title.title}} na Youtube" [url]="data.youtubeUrl"></svg:g>
       </svg>
-
-      <app-facebook-button fxFlex="100"></app-facebook-button>
+      <app-facebook-button></app-facebook-button>
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="15px">
+        <app-news-article-date *ngIf="!isSmall()" [date]="data.creationDate"></app-news-article-date>
+        <h1 style="text-align: center">{{data.title.title | uppercase}}</h1>
+      </div>
+      <div class="content-text" [innerHtml]="data.text" [ngClass]="cf.isGtMd() ? 'content-text-big': null"></div>
     </div>
 
-    <div fxLayout="column" fxLayoutGap="15px" fxLayout.gt-sm="row" fxLayoutAlign="center center">
-      <app-news-article-date *ngIf="!isSmall()" [date]="data.creationDate"></app-news-article-date>
-      <h1>{{data.title.title | uppercase}}</h1>
-      <!-- <div fxLayout="column" class="header-title-container" fxLayoutAlign="center center">
-      <div class="header-title">
-        <u>{{data.title.title | uppercase}}</u>
+
+
+    <div *ngIf="cf.isGtMd()" fxLayout="row" style="min-height: 98vh" fxLayoutAlign="center center">
+      <div fxFlex="100" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" fxFlex.gt-md="65">
+        <iframe *ngIf="data.youtubeEmbedUrl && !data.imgUrl" [ngClass]="isSmall() ? 'yt-sm' : 'yt'" [attr.src]="data.youtubeEmbedUrl"
+          frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+        <svg x="50%" style="min-height: 600px" width="100%" height="100%" [attr.viewBox]="svgImageProp.viewBox.toString()"
+          preserveAspectRation="xMidYMid meet">
+          <title>{{data.title.title}}</title>
+          <g *ngIf="isSVGImageIsReady">
+            <g @svgBorderImage>
+              <rect *ngFor="let rb of rectBorders" [attr.x]="rb.posX" [attr.y]="rb.posY" [attr.width]="rb.width"
+                [attr.height]="rb.height" fill="none" [attr.stroke]="rb.color" [attr.rx]="rb.radius" [attr.ry]="rb.radius"
+                [style.strokeWidth]="rb.strokeWidth" [style.strokeOpacity]="rb.strokeOpacity" [attr.transform]="rb.transform"></rect>
+            </g>
+            <image [attr.x]="svgImage.posX" [attr.y]="svgImage.posY" [attr.width]="svgImage.width" [attr.height]="svgImage.height"
+              [attr.xlink:href]="data.miniInfo.imgUrl" [attr.transform]="svgImage.transform"></image>
+            <!-- <g *ngFor="let rb of rectBorders; last as isLast">
+              <rect *ngIf="isLast" [attr.x]="rb.posX" [attr.y]="rb.posY" [attr.width]="rb.width" [attr.height]="rb.height"
+                fill="none" [attr.stroke]="rb.color" [attr.rx]="rb.radius" [attr.ry]="rb.radius" [style.strokeWidth]="rb.strokeWidth"
+                [style.strokeOpacity]="rb.strokeOpacity" [attr.transform]="rb.transform"></rect>
+            </g> -->
+          </g>
+          <svg:g *ngIf="data.youtubeUrl && isSVGImageIsReady" svg-button-youtube x="50" y="700" height="400" width="400"
+            title="zobacz clip {{data.title.title}} na Youtube" [url]="data.youtubeUrl"></svg:g>
+        </svg>
+        <app-facebook-button></app-facebook-button>
       </div>
-      <div class="header-subtitle">
-        {{data.title.subtitle | uppercase}}
+
+      <div fxFlex="100" fxFlex.gt-md="35" fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="center center">
+        <app-news-article-date *ngIf="!isSmall()" [date]="data.creationDate"></app-news-article-date>
+        <h1 style="text-align: center">{{data.title.title | uppercase}}</h1>
+        <div class="content-text" [innerHtml]="data.text" [ngClass]="cf.isGtMd() ? 'content-text-big': null"></div>
       </div>
-    </div> -->
+
     </div>
-    <div class="content-text" [innerHtml]="data.text"></div>
-  </div>
 
 
-  <div style="position: fixed; top: 25px;">
+    <!-- <div style="position: fixed; top: 25px;">
     <button [disabled]="!ns.isPrev(data)" (click)="getPrev()">prev</button>
     <button [disabled]="!ns.isNext(data)" (click)="getNext()">next</button>
     <button routerLink="/news">news</button>
-  </div>
-
-
+  </div> -->
 </div>

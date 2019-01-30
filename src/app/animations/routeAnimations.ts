@@ -1,10 +1,39 @@
-import { animation, trigger, transition, animate, style, query, animateChild, group, useAnimation, sequence, stagger } from "@angular/animations";
+import { animation, trigger, transition, animate, style, query, animateChild, group, useAnimation, sequence, stagger, state } from "@angular/animations";
 import { fadeOutStaggerAnimation } from './fade-in-stagger';
+import { BP_ANIM_OPACITY_TRANSITION_STYLE } from './bp-anim-init-style';
+import { BP_ANIM_BRICK_LIST } from './bp-anim-brick-list';
 //export const query = (s, a, o = {optional: true})=> q(s,a,o);
 
 
 export const routeAnimation =
   trigger('routeAnimations', [
+    transition('newsList => article', [
+      query('*', [
+        BP_ANIM_OPACITY_TRANSITION_STYLE(),
+      ]),
+      sequence([
+        animate('350ms', BP_ANIM_OPACITY_TRANSITION_STYLE(1, '0')),
+        //query('@*', animateChild())
+      ])
+      //query(':leave', animateChild())
+    ]),
+
+    // transition('article=>newsList', [
+    //     query(':leave', [
+    //       animateChild({delay: '1s'}),
+    //       //animate(1400, BP_ANIM_OPACITY_TRANSITION_STYLE(0, "100%"))
+    //     ]),
+    //     query(':enter', [
+    //       BP_ANIM_OPACITY_TRANSITION_STYLE(0.5, "-100%"),
+    //       sequence([
+    //         //animate(1000, BP_ANIM_OPACITY_TRANSITION_STYLE(1,"0")),
+    //         animateChild()
+    //       ])
+    //     ]),
+    // ])
+
+
+
     // transition('*=>*', [
     //   query(':enter, :leave', [
     //     style({ position: 'fixed', opacity:0}),

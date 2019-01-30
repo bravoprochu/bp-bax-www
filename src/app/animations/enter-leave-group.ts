@@ -1,16 +1,19 @@
 import { transition, animation, trigger, animate, style, group, query, stagger } from '@angular/animations';
 
-export function BP_ANIM_ENTER_LEAVE_GROUP (enterDurationTime: number, leaveDurationTime: number) {
+export function BP_ANIM_ENTER_LEAVE_GROUP (enterDurationTime: number, staggerDuration: number, queryElements: string = 'rect,  text, line') {
     return trigger('enterLeaveGroup', [
         transition(':enter', [
-            query('rect,  text, line', stagger('1550ms', 
+            query(queryElements, stagger(`${staggerDuration}ms`, 
                 [
                     style({opacity:0}),
-                    animate(`${enterDurationTime}ms`, style({opacity: 1}))
+                    animate(`${enterDurationTime}ms`, style({opacity: '*'}))
                 ]))
         ]),
-        transition(':leave', [
-            animate(`${leaveDurationTime}ms`, style({opacity: 0}))
+        transition(':leave, :decrement', [
+            query(queryElements, stagger(`-${staggerDuration}ms`, 
+            [
+                animate(`${enterDurationTime}ms`, style({opacity: 0}))
+            ]))
         ])
     ])
     

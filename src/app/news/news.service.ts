@@ -6,6 +6,8 @@ import { NullTemplateVisitor } from '@angular/compiler';
   providedIn: 'root'
 })
 export class NewsService {
+  isAscendindSortOrder : boolean;
+  isSortByDate : boolean = true;
 
   constructor() { }
 
@@ -24,7 +26,7 @@ export class NewsService {
   }
 
   getArticleIdx(data: INewsArticle): number {
-    return this.dataJson.indexOf(this.dataJson.find(f => f.id == data.id));
+    return this.getNews().indexOf(this.dataJson.find(f => f.id == data.id));
   }
 
   getNext(data: INewsArticle): INewsArticle {
@@ -35,7 +37,15 @@ export class NewsService {
   }
 
   getNews(): INewsArticle[] {
-    return this.dataJson;
+    return this.isSortByDate ? this.getNewsByDate() : this.getNewsByName();
+  }
+
+  private getNewsByDate(): INewsArticle[] {
+    return this.dataJson.sort(this.sortBy('creationDate', this.isAscendindSortOrder));
+  }
+
+  private getNewsByName(): INewsArticle[] {
+    return this.dataJson.sort(this.sortBy('name', this.isAscendindSortOrder));
   }
 
   getPrev(data: INewsArticle): INewsArticle {
@@ -44,6 +54,21 @@ export class NewsService {
       return this.dataJson[act - 1];
     }
   }
+
+  sortBy(propName: string, isAsc: boolean) {
+    return function(a: INewsArticle, b: INewsArticle) {
+        if(a[propName]== undefined || b[propName] == undefined) {return }
+        if(a[propName].toLocaleLowerCase() > b[propName].toLocaleLowerCase()) {
+      return isAsc ? 1: -1;
+    }
+    if(a[propName].toLocaleLowerCase() < b[propName].toLocaleLowerCase() ) {
+      return isAsc ? -1 : 1;
+    }
+    return 0
+  }
+  };
+
+
 
 
   dataJson: INewsArticle[] = [
@@ -55,12 +80,13 @@ export class NewsService {
         shortTitle: "Weryfikacja w terenie",
         subtitle: "WY-KOP Krzysztof Konieczny"
       },
-      imgUrl: './assets/images/news/kopanie-to-nasza-pasja-weryfikacja-WY_KOP.png',
+      imgUrl: './assets/images/news/kopanieToNaszaPasja_Weryfikacja_WY-KOP.jpg',
+      youtubeUrl: 'https://youtu.be/kxyBC86G0sk',
       youtubeEmbedUrl: 'https://www.youtube.com/embed/kxyBC86G0sk',
       text: `<p>Naszym pierszym gościem jest <strong>Krzysztof Konieczny</strong>, osoba której w branży nie trzeba przedstawiać, sprawdźcie jakimi informacjami się z nami podzielił, poznajcie jego opinie bazującą na ogromnym doświadczeniu, przekonajcie się czy warto kupić <strong>Yanmar Global.</strong></p> <p>Chcesz żebyśmy i Ciebie odwiedzili ??? Skontaktuj się z naszym dealerem <strong>Krzysztof Grodzki</strong> Sprawdźmy się w terenie ! Zapraszamy do polubienia i UDOSTĘPNIENIA tego filmu ! Czekamy na Wasze pytania, dotyczące maszyny jak i warunków jej zakupu.. Jesteśmy do Waszej dyspozycji !</p>`,
       miniInfo: {
         fill: '#f2bad8',
-        imgUrl: './assets/images/news/kopanie-to-nasza-pasja-weryfikacja-WY_KOP.png',
+        imgUrl: './assets/images/news/kopanieToNaszaPasja_Weryfikacja_WY-KOP.jpg',
         pointer: '#FFC61E',
         title: 'Weryfikacja w terenie',
         url: 'kopanie-to-nasza-pasja-weryfikacja-WY_KOP',
@@ -75,6 +101,7 @@ export class NewsService {
         subtitle: "podsumowanie"
       },
       imgUrl: './assets/images/news/eRobocze-show-turek-2018.png',
+      youtubeUrl: 'https://youtu.be/IJHUXefLflQ',
       youtubeEmbedUrl: 'https://www.youtube.com/embed/mb7eg8vTyt4',
       text: `<p>Fantastyczna impreza, rewelacyjna pogoda, mnóstwo zainteresowanych, niezliczona ilość wymienionych cennych, fachowych opinii. Serdecznie, miło, piknikowo ! </p> <p>Firma BAX jest dealerem marek Yanmar Global oraz <strong>SENNEBOGEN Maschinenfabrik GmbH.</strong> Na eRobocze była też współorganizatorem jak i fundatorem głównej nagrody w konkursie BAX Sennebogen - Mistrzowski chwyt; Jeszcze raz serdecznie gratulujemy zwycięzcy p. <strong>Paweł Lipiński</strong> który z czasem 1:38min ułożył konkursowe zadanie; Na wyróżnienie zasługują również Mariusz Andrzejczak oraz Krzysztof Konieczny którzy w naszym konkursie zajęli kolejno drugie i trzecie miejsce. Jesteśmy przekonani że Operatorzy którzy w tak krótkim czasie poradzili sobie z tak wymagającym zadaniem, dają radę w każdych warunkach, na każdym modelu maszyny. Panowie, czapy z głów.</p> <p>Gościnnie przy naszym stoisku gościł <strong><em>"Kura"</em> Krzysztof Domogała</strong>, rozpoznawany jako bohater serii Złomowisko PL w firmie Olmet. Inspiruje nas ZŁOM; wyjątkowo barwna, dusza towarzystwa. Było nam niezmiernie miło Ciebie spotkać !</p> <p> Organizatorom, w szczególności <strong>Zbigniew Migda</strong> po raz kolejny należy się wielkie uznanie. Każda kolejna edycja jest coraz ciekawsza, skupiająca zainteresowanie coraz większej ilości osób. </p> <p>Jedno jest pewne: piszemy się na kolejną edycję, a Ty ?</p><p>Krótka relacja z naszej perspektywy. Byliście, widzieliście, zostawcie swój komentarz !</p>`,
       miniInfo: {
@@ -120,8 +147,8 @@ export class NewsService {
   </p>
   <p>
           Aktualnie program ten jest przewidziany do końca tego roku; Nie czekaj z decyzją, szczegółowe informacje dotyczące
-          parametrów technicznych jak i finansowych – skontaktuj się z naszym brand managerem <strong>Krzysztof Grodzki (<em>+48 506 000 100</em>
-                  lub stacjonarnie: <em>+48 61 828 33 66</em>)</strong>
+          parametrów technicznych jak i finansowych – skontaktuj się z naszym brand managerem <strong>Krzysztof Grodzki <a href="tel:+48 506 000 100"> <i>506 000 100</i></a>
+                  lub stacjonarnie: <a href="tel:+48 61 828 33 66"> <i>+48 61 828 33 66</i></a>)</strong>
           
   </p>
   <p>
@@ -137,6 +164,7 @@ export class NewsService {
         title: 'Finansowanie fabryczne',
         subtitle: 'Yanmar 2018'
       },
+      youtubeUrl: 'https://youtu.be/_7vPeRw0jqA',
       youtubeEmbedUrl: 'https://www.youtube.com/embed/_7vPeRw0jqA',
       miniInfo: {
         fill: '#2b1166',
@@ -166,6 +194,7 @@ export class NewsService {
         title: 'Happy New Year 2019',
         subtitle: ''
       },
+      youtubeUrl: 'https://youtu.be/7nRgtXfnHM4',
       youtubeEmbedUrl: 'https://www.youtube.com/embed/7nRgtXfnHM4',
 
     },
@@ -190,15 +219,16 @@ export class NewsService {
       Kevin MacLeod: Jingle Bells – na licencji Creative Commons Attribution (https://creativecommons.org/licenses/...)<br>
       Źródło: http://incompetech.com/music/royalty-...<br>
       Wykonawca: http://incompetech.com/</h6>`,
+      youtubeUrl: 'https://youtu.be/QIT6_-IHTQQ',
       youtubeEmbedUrl: 'https://www.youtube.com/embed/QIT6_-IHTQQ'
     },
     {
       creationDate: '2018-12-08',
       id: 'wymiatamy-magazyn-czesci-case-2018',
-      imgUrl: './assets/images/news/wymiatamy-magazyn-czesci-case-2018.png',
+      imgUrl: './assets/images/news/wymiatamy_magazyn_czesci_CASE_small.png',
       miniInfo: {
         fill: '#fcbf49',
-        imgUrl: './assets/images/news/wymiatamy-magazyn-czesci-case-2018.png',
+        imgUrl: './assets/images/news/wymiatamy_magazyn_czesci_CASE_small.png',
         pointer: '#2D338E',
         title: 'Wymiatamy magazyn części',
         url: 'wymiatamy-magazyn-czesci-case-2018'
@@ -208,7 +238,7 @@ export class NewsService {
         title: 'wymiatamy magazyn części CASE',
       },
       text: `<p>WYMIATAMY magazyn z części CASE ‼ Oferta ważna do wyczerpania zapasów. ☎ Zadzwoń ☎ przekonaj się że tak korzystnych cen nie znajdziesz NIGDZIE ‼</p>
-      <p><strong>UWAGA ‼ EXTRA RABAT +5% ‼</strong> dla każdej osoby która zadzwoni na bezpośredni numer naszego handlowca (508 368 258) i powie: <em>"Miami, daj mi upust !"</em></p>`,
+      <p><strong>UWAGA ‼ EXTRA RABAT +5% ‼</strong> dla każdej osoby która zadzwoni na bezpośredni numer naszego handlowca tel. <a href="tel:+48 508 368 258"> <i>508 368 258</i></a> i powie: <em>"Miami, daj mi upust !"</em></p>`,
     },
     {
       creationDate: '2018-11-22',
@@ -221,7 +251,7 @@ export class NewsService {
         title: 'Black friday',
         url: 'black-friday-2018',
       },
-      text: `<p>📣<strong>BLACK FRIDAY w BAX</strong> 👍 💲Promocja💲 WSZYSTKIE CZĘŚCI TANIEJ O 15%, TYLKO JUTRO ‼ (23-11-2018), Zadzwoń: dział części: +48 508 368 258 👊</p>`,
+      text: `<p>📣<strong>BLACK FRIDAY w BAX</strong> 👍 💲Promocja💲 WSZYSTKIE CZĘŚCI TANIEJ O 15%, TYLKO JUTRO ‼ (23-11-2018), Zadzwoń: dział części: <a href="tel:+48 508 368 258"> <i>508 368 258</i></a> 👊</p>`,
       title: {
         shortTitle: 'Black Friday',
         title: 'Black Friday',
@@ -244,6 +274,7 @@ export class NewsService {
         shortTitle: 'Pol-Eco System',
         title: 'Pol-Eco System 2018',
       },
+      youtubeUrl: 'https://youtu.be/fHRasVqxB_E',
       youtubeEmbedUrl: 'https://www.youtube.com/embed/fHRasVqxB_E'
     },
     {
@@ -263,7 +294,9 @@ export class NewsService {
         title: '75 Rajd Polski',
         subtitle: 'Wspieramy ekipę Pieniążek Team'
       },
-      youtubeEmbedUrl: 'https://www.youtube.com/embed/oP3xNNaWiuo'
+      youtubeUrl: 'https://youtu.be/oP3xNNaWiuo',
+      youtubeEmbedUrl: 'https://www.youtube.com/embed/oP3xNNaWiuo',
+      
     },
     {
       creationDate: '2018-09-16',
@@ -288,12 +321,34 @@ export class NewsService {
       
       <p>Po tej, pełnej zaangażowania i przepięknych bramek, jak sądzimy, rozgrywce zapraszamy jej uczestników oraz zaproszonych gości na piknik połączony z wymianą opinii na temat zakupionych maszyn i nie tylko...</p>
       
-      <p>Wszelkie osoby zainteresowane wzięciem udziału w meczu, prosimy o kontakt z: <br> <strong>Krzysztof Grodzki <em>(506 000 100)</em></strong></p>`,
+      <p>Wszelkie osoby zainteresowane wzięciem udziału w meczu, prosimy o kontakt z: <br> <strong>Krzysztof Grodzki, tel <a href="tel:+48 506 000 100"> <i>506 000 100</i></a></strong></p>`,
       title: {
         shortTitle: 'mecz piłki nożnej',
         title: 'BAX - Yanmar Team',
       },
+      youtubeUrl: 'https://youtu.be/aNaBJaW4ZQg',
       youtubeEmbedUrl: 'https://www.youtube.com/embed/aNaBJaW4ZQg'
+    },
+    {
+      creationDate: '2019-01-29',
+      id: 'yanmar-four-seasons-promotion-2019-02',
+      imgUrl: './assets/images/news/BAX_Yanmar_Four_Seasons_Promotion_2019_02.png',
+      miniInfo: {
+        fill: '#e87511',
+        imgUrl: './assets/images/news/BAX_Yanmar_Four_Seasons_Promotion_2019_02_small.png',
+        pointer: '#568e14',
+        title: 'Luty - Gąsienice -20%',
+        url: 'yanmar-four-seasons-promotion-2019-02',
+      },
+      text: `<p>LUTY miesiącem (nie)OBOWIĄZKOWEJ zmiany gąsienic‼ </p> <p><strong>Skorzystaj‼ </strong> Yanmar Global Four Seasons Promotion <strong>-20 %‼</strong></p>
+      <p> 🛍 <i>Kup swej "Gąsce" nowe butki...,</i>😃 </p> <p><i>..idzie luty, czas na nowe buty..... </i>‼</p>
+      <p>Dział części: <strong>Krzysztof Bereźnicki</strong> aka "Miami" <a href="tel:+48 508 368 258"> <i>508 368 258</i></a></p>`,
+      title: {
+        shortTitle: 'short',
+        subtitle: 'Luty - Gąsienice -20%',
+        subtitle2: 'Yanmar Four Seasons Promotion',
+        title: 'Luty - Gąsienice -20%'
+      },
     }
 
 

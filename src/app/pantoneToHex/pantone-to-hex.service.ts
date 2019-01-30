@@ -8,6 +8,10 @@ export class PantoneToHexService {
 
   constructor() { }
 
+  colorToRGBA(pantoneColor: IPantoneToHex, opacity: number = 0.5): string {
+    return `rgba(${pantoneColor.r}, ${pantoneColor.g}, ${pantoneColor.b}, ${opacity})`;
+  }
+
   getColor(pantoneName: string):IPantoneToHex {
     return this.getColorIdx(pantoneName)>=0 ? this.pantoneToHexDb[this.getColorIdx(pantoneName)] : null;
   }

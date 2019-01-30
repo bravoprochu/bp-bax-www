@@ -9,6 +9,7 @@ export interface INewsArticle {
     isIntersected?: boolean;
     imgUrl: string,
     text: any;
+    youtubeUrl?: any;
     youtubeEmbedUrl?: any;
     miniInfo?: INewsArticleMini;
 }

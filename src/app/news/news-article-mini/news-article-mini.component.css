@@ -2,7 +2,6 @@
     text-anchor: middle;
     fill: white;
     font-weight: 400;
-
 }
 
 .title-box-border {
@@ -10,7 +9,6 @@
     stroke: white;
     stroke-width: 36px;
 }
-
 
 .rect-fill {
     opacity: 0.4;

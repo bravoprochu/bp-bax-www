@@ -13,6 +13,9 @@ import { HeaderMenuBigComponent } from './header/header-menu-big/header-menu-big
 import { DeferLoadDirective } from './defer-load.directive';
 import { DetectIntersectionDirective } from './directives/detect-intersection.directive';
 import { PantoneToHexModule } from '../pantoneToHex/pantone-to-hex.module';
+import { SvgButtonYoutubeComponent } from './svg/svg-button-youtube/svg-button-youtube.component';
+import { ArticleNavigationComponent } from './svg/article-navigation/article-navigation.component';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import { PantoneToHexModule } from '../pantoneToHex/pantone-to-hex.module';
     HeaderComponent,
     HeaderMenuBigComponent,
     DeferLoadDirective,
-    DetectIntersectionDirective
+    DetectIntersectionDirective,
+    SvgButtonYoutubeComponent,
+    ArticleNavigationComponent
   ],
   imports: [
     CommonModule,
@@ -45,9 +50,11 @@ import { PantoneToHexModule } from '../pantoneToHex/pantone-to-hex.module';
     HeaderMenuBigComponent,
     DeferLoadDirective,
     DetectIntersectionDirective,
+    SvgButtonYoutubeComponent,
+    ArticleNavigationComponent,
   ],
   providers: [
-    CommonFunctionsService
+    CommonFunctionsService,
   ]
 })
 export class SharedModule { }
