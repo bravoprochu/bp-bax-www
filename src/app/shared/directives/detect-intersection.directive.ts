@@ -1,5 +1,4 @@
 import { Directive, OnInit, Host, ElementRef, AfterViewInit, Renderer2, Output, EventEmitter, Input } from '@angular/core';
-import { NewsArticleMiniComponent } from 'src/app/news/news-article-mini/news-article-mini.component';
 
 
 @Directive({

@@ -15,6 +15,7 @@ import { BP_ANIM_OPACITY_OVER_LEAVE } from 'src/app/animations/opacity-over-leav
 import { BP_ANIM_GROUP_APPEARING } from 'src/app/animations/bp_anim_group_appearing';
 import { BP_ANIM_OPACITY_INIT } from 'src/app/animations/bp-anim-opacity-init';
 import * as Hammer from 'hammerjs';
+import { bpActiveRouteChange$ } from 'src/app/rxConst/bpActRouteChange';
 
 
 @Component({
@@ -285,12 +286,13 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
 
   initObservable() {
     this.actRoute.params.pipe(
-      tap(()=>this.isReady = false)
+      bpActiveRouteChange$(this.isDestroyed$),
+      tap(()=>this.isReady = false),
     )
       .subscribe(
         (_data: any) => {
           
-          this.initData(_data['id']);
+          this.initData(_data);
           this.initSVGData();
         },
         (err) => console.log('actRoute error', err),

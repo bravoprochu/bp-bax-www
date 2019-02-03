@@ -2,7 +2,20 @@
   oferta works!
 </p>
 
-<button matButton (click)="isClicked=!isClicked">show/hide</button>
+<a routerLink="/" >home</a>
+
+
+<ul>
+  <li routerLink="model">marka</li>
+  <li>zastosowanie</li>
+  <li>praca</li>
+</ul>
+
+
+
+
+
+<!-- <button matButton (click)="isClicked=!isClicked">show/hide</button>
 
 <div fxLayout="row wrap" *ngIf="isClicked" @brickList>
   <div fxFlex="calc(50%-10pt)" fxFlex.xs="100" fxFlex.gt-md="calc(33%-10pt)" *ngFor="let brick of bricks; index as i"
@@ -12,7 +25,7 @@
         [colorGradientFrom]="brick.colors.colorGradientFrom" [colorGradientTo]="brick.colors.colorGradientTo"></app-article-container>
     </section>
   </div>
-</div>
+</div> -->
 
 <router-outlet></router-outlet>
 

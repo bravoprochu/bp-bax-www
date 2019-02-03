@@ -114,7 +114,7 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   goTo(){
-    this.router.navigateByUrl(`news/${this.miniInfo.url}#top`, {preserveFragment: false, fragment: 'top'});
+    this.router.navigateByUrl(`news/${this.miniInfo.url}`, {preserveFragment: false, fragment: 'top'});
   }
   
 

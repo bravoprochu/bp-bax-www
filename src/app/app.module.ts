@@ -9,22 +9,6 @@ import { SharedModule } from './shared/shared.module';
 import { TestComponent } from './test/test.component';
 
 
-
-export class BaluHammerConfig extends HammerGestureConfig {
-  overrides = {
-      pan: {
-           direction: 6
-    },
-    pinch: {
-        enable: false
-    },
-    rotate: {
-        enable: false
-    }
-};
-}
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,12 +22,7 @@ export class BaluHammerConfig extends HammerGestureConfig {
     SharedModule,
     AppRoutingModule,
   ],
-  providers: [
-    // {
-    //   provide: HammerGestureConfig,
-    //   useClass: BaluHammerConfig
-    // }
-  ],
+  providers: [],
   bootstrap: [AppComponent],
   exports: [
     SharedModule,

@@ -4,6 +4,7 @@ import { MediaObserver, MediaChange, } from '@angular/flex-layout';
 import { takeUntil, map, switchMap, tap } from 'rxjs/operators';
 import { IWindowBasicInfo } from './svg/interfaces/i-window-basic-info';
 import { _getTestBedRender3 } from '@angular/core/testing/src/r3_test_bed';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class CommonFunctionsService implements OnDestroy, OnInit {
 
   constructor(
     private mediaObserver: MediaObserver,
+    private sanitzer: DomSanitizer,
   ) {
     this.isDestroyed$ = new Subject();
 
@@ -101,12 +103,30 @@ export class CommonFunctionsService implements OnDestroy, OnInit {
   getMediaChange(): MediaChange {
     return this._mediaChange;
   }
+
+  getUrlPath(elName: string): any {
+    return this.sanitzer.bypassSecurityTrustStyle(`url(${window.location.href}#${elName})`);
+  }
+
+  isViewXs(): boolean {
+    return this.getMediaChange().mqAlias == 'xs';
+  }
+
+  isViewSm(): boolean {
+    return this.getMediaChange().mqAlias == 'sm';
+  }
+
+
+
   isSmall() {
     return (this.getMediaChange().mqAlias == 'xs' || this.getMediaChange().mqAlias == 'sm') ? true : false;
   }
+
   isGtMd() {
     return (this.getMediaChange().mqAlias == 'lg' || this.getMediaChange().mqAlias == 'xl') ? true : false;
   }
+
+
 
 
 }

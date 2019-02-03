@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 80">
+  <defs>
+    <style>
+      .a {
+        fill: #e30020;
+      }
+    </style>
+  </defs>
+  <title>logo_yanmar_signOnly</title>
+  <g>
+    <polygon class="a" points="78.4 70.5 136 46.6 136 32.1 78.4 56 78.4 70.5"/>
+    <polygon class="a" points="75 34.8 14 9.5 14 24 75 49.3 136 24 136 9.5 75 34.8"/>
+    <polygon class="a" points="14 46.6 71.6 70.5 71.6 56 14 32.1 14 46.6"/>
+  </g>
+</svg>

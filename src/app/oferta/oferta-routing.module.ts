@@ -1,8 +1,23 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { OfertaComponent } from "./oferta/oferta.component";
+import { ModelListComponent } from './model-list/model-list.component';
+import { ModelSpecComponent } from './model-spec/model-spec.component';
+
 
 const routes: Routes = [
+  {
+    path: 'model/:id',
+    component: ModelSpecComponent
+  },
+  {
+    path: 'model',
+    component: ModelListComponent
+  },
+  {
+    path: 'listaModeli',
+    component: ModelListComponent
+  },
   {
     path: 'yanmar',
     loadChildren: './yanmar/yanmar.module#YanmarModule',

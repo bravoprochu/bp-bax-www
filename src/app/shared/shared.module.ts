@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { ArticleContainerComponent } from './article-container/article-container.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SvgCommonModule } from './svg/svg-common.module';
-import { MatCardModule} from '@angular/material';
+import { MatCardModule, MatSidenavModule} from '@angular/material';
 import { FacebookButtonComponent } from './facebook-button/facebook-button.component'
 import { CommonFunctionsService } from './common-functions.service';
 import { HeaderComponent } from './header/header/header.component';
@@ -34,6 +34,7 @@ import { ArticleNavigationComponent } from './svg/article-navigation/article-nav
     RouterModule,
     FlexLayoutModule,
     MatCardModule,
+    MatSidenavModule,
     PantoneToHexModule,
     SvgCommonModule,
     
@@ -45,6 +46,7 @@ import { ArticleNavigationComponent } from './svg/article-navigation/article-nav
     ArticleContainerComponent,
     FlexLayoutModule,
     MatCardModule,
+    MatSidenavModule,
     FacebookButtonComponent,
     HeaderComponent,
     HeaderMenuBigComponent,

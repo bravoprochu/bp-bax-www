@@ -24,6 +24,7 @@ export class NewsListComponent implements OnInit {
 
   ngOnInit() {
     this.news = this.ns.getNews();
+    //this.news.forEach(f=>f.isIntersected = true);
   }
 
   

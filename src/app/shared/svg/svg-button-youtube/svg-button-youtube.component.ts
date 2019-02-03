@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BP_ANIM_SVG_INIT } from 'src/app/animations/bp_anim_svg-init';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CommonFunctionsService } from '../../common-functions.service';
 
 @Component({
   selector: '[svg-button-youtube]',
@@ -19,6 +20,7 @@ export class SvgButtonYoutubeComponent implements OnInit {
   @Input('url') url: any = "http://google.com";
 
   constructor(
+    public cf: CommonFunctionsService
   ) { }
 
   ngOnInit() {

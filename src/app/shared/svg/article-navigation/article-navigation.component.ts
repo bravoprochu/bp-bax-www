@@ -11,7 +11,8 @@ import { startWith, takeUntil, switchMap, map } from 'rxjs/operators';
 import { CommonFunctionsService } from '../../common-functions.service';
 import { ViewportScroller } from '@angular/common';
 import { IWindowBasicInfo } from '../interfaces/i-window-basic-info';
-import { BP_ANIM_ENTER_LEAVE_GROUP } from 'src/app/animations/enter-leave-group';
+import { BP_ANIM_GROUP_APPEARING } from 'src/app/animations/bp_anim_group_appearing';
+
 
 
 @Component({
@@ -20,7 +21,7 @@ import { BP_ANIM_ENTER_LEAVE_GROUP } from 'src/app/animations/enter-leave-group'
   styleUrls: ['./article-navigation.component.css'],
   animations: [
     BP_ANIM_SVG_INIT(200, 100, 'svg'),
-    BP_ANIM_ENTER_LEAVE_GROUP(400, 150, 'g')
+    BP_ANIM_GROUP_APPEARING(200, 1550, 'g')
   ]
 })
 export class ArticleNavigationComponent implements OnInit, OnChanges, OnDestroy {
@@ -48,7 +49,7 @@ export class ArticleNavigationComponent implements OnInit, OnChanges, OnDestroy 
 
 
   constructor(
-    private cf: CommonFunctionsService,
+    public cf: CommonFunctionsService,
     public ns: NewsService,
     private router: Router,
     private viewPortScroller: ViewportScroller
