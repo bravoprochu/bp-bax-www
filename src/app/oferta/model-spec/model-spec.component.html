@@ -1,6 +1,9 @@
 <p>
   model-spec works!
 </p>
-
-
-{{model?.model}}
+<div fxLayout="row" fxLayout.xs="column">
+  <div>
+    Whaa ?
+  </div>
+  <app-model-maszyny *ngIf="isReady" [model]="model" style="transform: rotate(5deg)" ></app-model-maszyny>
+</div>

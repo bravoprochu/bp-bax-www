@@ -50,7 +50,7 @@ export class DetectIntersectionDirective implements OnInit, AfterViewInit {
         
         
       })
-     }, {threshold: [0.2, 0.35, 0.75]});
+     }, {threshold: [0, 0.2, 0.35, 0.75, 1]});
   
      observe.observe(this.el.nativeElement);    
   }

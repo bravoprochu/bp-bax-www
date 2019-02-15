@@ -15,6 +15,7 @@ import { DetectIntersectionDirective } from './directives/detect-intersection.di
 import { PantoneToHexModule } from '../pantoneToHex/pantone-to-hex.module';
 import { SvgButtonYoutubeComponent } from './svg/svg-button-youtube/svg-button-youtube.component';
 import { ArticleNavigationComponent } from './svg/article-navigation/article-navigation.component';
+import { FillChangeDirective } from './directives/fill-change.directive';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ArticleNavigationComponent } from './svg/article-navigation/article-nav
     DeferLoadDirective,
     DetectIntersectionDirective,
     SvgButtonYoutubeComponent,
-    ArticleNavigationComponent
+    ArticleNavigationComponent,
+    FillChangeDirective
   ],
   imports: [
     CommonModule,
@@ -45,6 +47,7 @@ import { ArticleNavigationComponent } from './svg/article-navigation/article-nav
     RouterGoBackComponent,
     ArticleContainerComponent,
     FlexLayoutModule,
+    FillChangeDirective,
     MatCardModule,
     MatSidenavModule,
     FacebookButtonComponent,

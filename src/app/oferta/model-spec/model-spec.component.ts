@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IModelSpec } from '../interfaces/i-model-spec';
 import { ActivatedRoute } from '@angular/router';
-import { Subject, empty } from 'rxjs';
-import { tap, takeUntil, map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 import { bpActiveRouteChange$ } from 'src/app/rxConst/bpActRouteChange';
+import { OfertaService } from '../oferta.service';
+import { IBaxModelSpec } from '../interfaces/i-bax-model-spec';
 
 
 @Component({
@@ -12,6 +12,10 @@ import { bpActiveRouteChange$ } from 'src/app/rxConst/bpActRouteChange';
   styleUrls: ['./model-spec.component.css']
 })
 export class ModelSpecComponent implements OnInit, OnDestroy {
+  isReady: boolean;
+  model: IBaxModelSpec;
+
+
 ngOnDestroy(): void {
 this.isDestroyed$.next(true);
 this.isDestroyed$.complete();
@@ -22,6 +26,7 @@ this.isDestroyed$.unsubscribe();
 isDestroyed$: Subject<boolean> = new Subject();
   constructor(
     private actRoute: ActivatedRoute,
+    private ofertaSrv: OfertaService
   ) { }
 
   ngOnInit() {
@@ -31,13 +36,18 @@ isDestroyed$: Subject<boolean> = new Subject();
 
 
   initRoute(){
-    console.log('init..');
     this.actRoute.params.pipe(
       bpActiveRouteChange$(this.isDestroyed$)
     )
     .subscribe(
-      (_data: any) => {
-      console.log('model actRoute', _data);
+      (_modelId: any) => {
+      console.log('model actRoute: ', _modelId);
+      console.log(this.ofertaSrv.getModelList())
+
+      this.model =  this.ofertaSrv.getModelList().find(f=>f.id == _modelId);
+      console.log(this.model);
+      this.isReady = true;
+
       
       },
       (err) => console.log('model actRoute error', err),

@@ -81,7 +81,8 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
         // swipe right
         this.getPrev();
       }
-    })
+    });
+    
 
 
     //this.initSVGData();

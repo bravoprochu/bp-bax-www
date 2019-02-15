@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   }
 
 info: string[] = [
+//  'modele-list swipe up/down; intersection, preloader',
   'f safari iOS, gradient/fill fix !!',
   'oferta/marka model card awers/rewers podstawowe dane',
   'news article gradient background based on pantone last 3 colors',

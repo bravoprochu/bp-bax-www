@@ -1,14 +1,14 @@
 <p>
   model-list works! <a routerLink="/oferta">back to oferta</a>
 </p>
-<button mat-mini-fab (click)="sideNav.toggle()">
+<!-- <button mat-mini-fab (click)="sideNav.toggle()">
   <mat-icon>more_horizontal</mat-icon>
-</button>
+</button> -->
 
 <div>
 
 
-  <mat-sidenav-container>
+  <!-- <mat-sidenav-container>
     <mat-sidenav mode="push" #sideNav [(opened)]="isOpen" fxFlex="30">
       <div fxFlex="30">
         opt:1
@@ -17,15 +17,18 @@
       </div>
     </mat-sidenav>
     <mat-sidenav-content>
-      <div fxLayout="row wrap" fxLayoutGap="10px" fxLayout.xs="column" @brickList>
-        <div *ngFor="let model of modelList" fxFlex="0 0 calc(33%-10px)" fxFlex.xs="0 0 100%" fxFlex.lg="0 0 calc(25%-10px)"
-          fxFlex.gt-lg="0 0 calc(20%-10px)">
 
-          <app-model-maszyny [model]="model"></app-model-maszyny>
-
-
-        </div>
-      </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
-</div>
+</div> -->
+
+
+<div #container fxLayout="row wrap" fxLayoutGap="10px" fxLayout.xs="column" @brickList >
+    <div *ngFor="let model of modelList index as i"  fxFlex="0 0 calc(33%-10px)" fxFlex.xs="100" fxFlex.sm="0 0 calc(50% - 10px)" fxFlex.lg="0 0 calc(25%-10px)"
+      fxFlex.gt-lg="0 0 calc(20%-10px)">
+
+      <app-model-maszyny [model]="model"></app-model-maszyny>
+
+
+    </div>
+  </div>

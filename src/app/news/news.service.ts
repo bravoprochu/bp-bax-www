@@ -349,6 +349,26 @@ export class NewsService {
         subtitle2: 'Yanmar Four Seasons Promotion',
         title: 'Luty - Gąsienice -20%'
       },
+    },
+    {
+      creationDate: '2019-02-14',
+      id: 'walentynki_2019',
+      imgUrl: './assets/images/news/bax_walentynki_2019.png',
+      miniInfo: {
+        fill: '#C6AADB',
+        imgUrl: './assets/images/news/bax_walentynki_2019.png',
+        pointer: '#D36BC6',
+        title: 'Walentynki 2019',
+        url: 'walentynki_2019',
+      },
+      text: `<p>💖 W tym wyjątkowym dniu 💗 okażmy uczucia tym na których najbardziej nam zależy, tym dla których serce bije mocniej 💓, tym na widok których za każdym razem pojawia się uśmiech na twarzy... Drobny upominek 🎁, gest, słowo; extra usługę serwisową, akcesoria.. </p>
+      <p>PS Oczywiście nie zapomnijmy o małżonkach.. im również należy złożyć życzenia.. 😜💙😁</p>`,
+      title: {
+        shortTitle: 'short',
+        subtitle: null,
+        subtitle2: null,
+        title: 'Walentynki 2019'
+      },
     }
 
 

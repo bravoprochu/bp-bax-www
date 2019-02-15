@@ -1,3 +1,24 @@
+.path {
+    stroke-dasharray: 300;
+    stroke-dashoffset: 200;
+    animation: dash 1s linear forwards;
+  }
+
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+.bg-cover {
+      fill: green;
+      transition: d 300ms;
+  }
+
+.bg-cover:hover path {
+    d: path("M0,0V57.5s150,10,200,10,200-10,200-10V0H0Z")
+}
+
 .awers-width-height-caption {
     font-size: 18px;
 }
@@ -14,6 +35,11 @@
     text-anchor: end;
     fill: #fff;
     font-weight: 600;
+}
+
+.flip-model-maszyny {
+    position: absolute;
+    top: 325px;
 }
 
 .ramka-stroke {
@@ -56,7 +82,7 @@
 
 
 .silnik-type {
-    font-size: 40px;
+    font-size: 36px;
     fill: #0655a5;
     text-anchor: end;
 }
