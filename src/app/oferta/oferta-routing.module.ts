@@ -1,36 +1,30 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { OfertaComponent } from "./oferta/oferta.component";
-import { ModelListComponent } from './model-list/model-list.component';
-import { ModelSpecComponent } from './model-spec/model-spec.component';
 
 
 const routes: Routes = [
   {
-    path: 'model/:id',
-    component: ModelSpecComponent
-  },
-  {
-    path: 'model',
-    component: ModelListComponent
-  },
-  {
-    path: 'listaModeli',
-    component: ModelListComponent
+    path: 'maszynyNowe',
+    loadChildren: './maszynyNowe/maszyny-nowe.module#MaszynyNoweModule',
+    data: {animation: 'maszynyNowe'},
   },
   {
     path: 'yanmar',
     loadChildren: './yanmar/yanmar.module#YanmarModule',
-    data: {animation: 'yanmar'}
+    data: { animation: 'yanmar' }
   },
   {
     path: 'sennebogen',
     loadChildren: './sennebogen/sennebogen.module#SennebogenModule',
-    data: {animation: 'sennebogen'}
+    data: { animation: 'sennebogen' }
   },
   {
     path: '',
-    component: OfertaComponent
+    redirectTo: 'maszynyNowe',
+    pathMatch: 'full'
+
+    //component: OfertaComponent
   },
   // {
   //   path: '',
@@ -43,6 +37,6 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class OfertaRoutingModule { 
-  
+export class OfertaRoutingModule {
+
 }

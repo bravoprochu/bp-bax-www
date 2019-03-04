@@ -1,0 +1,16 @@
+      <svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1600 900">
+        <defs>
+          <linearGradient id="linear-gradient" x2="1600" y1="450" y2="450" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#4daa2b" />
+            <stop offset="0.18" stop-color="#7fc15f" />
+            <stop offset="0.45" stop-color="#c4e1a7" />
+            <stop offset="0.65" stop-color="#eff5d4" />
+            <stop offset="0.75" stop-color="#fffde5" />
+            <stop offset="0.99" stop-color="#dee3e6" />
+          </linearGradient>
+        </defs>
+        <title>
+          bax bauma 2019 sennebogen voucher info background
+        </title>
+            <rect width="1600" height="900" fill="url(#linear-gradient)" />
+      </svg>

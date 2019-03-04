@@ -2,8 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { bpActiveRouteChange$ } from 'src/app/rxConst/bpActRouteChange';
-import { OfertaService } from '../oferta.service';
-import { IBaxModelSpec } from '../interfaces/i-bax-model-spec';
+import { IBaxModelMaszynaNowa } from '../../interfaces/i-bax-model-maszyna-nowa';
+import { OfertaService } from '../../oferta.service';
+import { MaszynyNoweService } from '../maszyny-nowe.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { IBaxModelSpec } from '../interfaces/i-bax-model-spec';
 })
 export class ModelSpecComponent implements OnInit, OnDestroy {
   isReady: boolean;
-  model: IBaxModelSpec;
+  model: IBaxModelMaszynaNowa;
 
 
 ngOnDestroy(): void {
@@ -22,11 +23,12 @@ this.isDestroyed$.complete();
 this.isDestroyed$.unsubscribe();
 }
 
-
 isDestroyed$: Subject<boolean> = new Subject();
-  constructor(
+
+
+constructor(
     private actRoute: ActivatedRoute,
-    private ofertaSrv: OfertaService
+    private mnSrv: MaszynyNoweService
   ) { }
 
   ngOnInit() {
@@ -41,17 +43,10 @@ isDestroyed$: Subject<boolean> = new Subject();
     )
     .subscribe(
       (_modelId: any) => {
-      console.log('model actRoute: ', _modelId);
-      console.log(this.ofertaSrv.getModelList())
-
-      this.model =  this.ofertaSrv.getModelList().find(f=>f.id == _modelId);
+      this.model =  this.mnSrv.getModelList().find(f=>f.id == _modelId);
       console.log(this.model);
       this.isReady = true;
-
-      
       },
-      (err) => console.log('model actRoute error', err),
-      () => console.log('model actRoute finish..')
     )
   }
 

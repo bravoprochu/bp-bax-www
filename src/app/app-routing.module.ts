@@ -5,6 +5,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 const routes: Routes = [
   {
+    path: 'info',
+    loadChildren: './info/info.module#InfoModule',
+    data: {animation: 'info'}
+  },
+  {
     path: 'news',
     loadChildren: './news/news.module#NewsModule',
     data: {animation: 'news'}

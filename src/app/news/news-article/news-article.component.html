@@ -13,11 +13,6 @@
           </g>
           <image @opacityInit [attr.x]="svgImage.posX" [attr.y]="svgImage.posY" [attr.width]="svgImage.width" [attr.height]="svgImage.height"
             [attr.xlink:href]="data.miniInfo.imgUrl" [attr.transform]="svgImage.transform"></image>
-          <!-- <g *ngFor="let rb of rectBorders; last as isLast">
-            <rect *ngIf="isLast" [attr.x]="rb.posX" [attr.y]="rb.posY" [attr.width]="rb.width" [attr.height]="rb.height"
-              fill="none" [attr.stroke]="rb.color" [attr.rx]="rb.radius" [attr.ry]="rb.radius" [style.strokeWidth]="rb.strokeWidth"
-              [style.strokeOpacity]="rb.strokeOpacity" [attr.transform]="rb.transform"></rect>
-          </g> -->
         </g>
         <svg:g *ngIf="data.youtubeUrl && isSVGImageIsReady" class="anim-init" svg-button-youtube x="50" y="700" height="400"
           width="400" title="zobacz clip {{data.title.title}} na Youtube" [url]="data.youtubeUrl"></svg:g>
@@ -27,6 +22,11 @@
         <app-news-article-date *ngIf="!isSmall()" [date]="data.creationDate"></app-news-article-date>
         <h1 style="text-align: center">{{data.title.title | uppercase}}</h1>
       </div>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <div class="mat-h2">{{data.title.subtitle}}</div>
+        <div class="mat-h3">{{data.title.subtitle2}}</div>
+      </div>
+      
       <div class="content-text" [innerHtml]="data.text" [ngClass]="cf.isGtMd() ? 'content-text-big': null"></div>
     </div>
 
@@ -49,11 +49,6 @@
             </g>
             <image [attr.x]="svgImage.posX" [attr.y]="svgImage.posY" [attr.width]="svgImage.width" [attr.height]="svgImage.height"
               [attr.xlink:href]="data.miniInfo.imgUrl" [attr.transform]="svgImage.transform"></image>
-            <!-- <g *ngFor="let rb of rectBorders; last as isLast">
-              <rect *ngIf="isLast" [attr.x]="rb.posX" [attr.y]="rb.posY" [attr.width]="rb.width" [attr.height]="rb.height"
-                fill="none" [attr.stroke]="rb.color" [attr.rx]="rb.radius" [attr.ry]="rb.radius" [style.strokeWidth]="rb.strokeWidth"
-                [style.strokeOpacity]="rb.strokeOpacity" [attr.transform]="rb.transform"></rect>
-            </g> -->
           </g>
           <svg:g *ngIf="data.youtubeUrl && isSVGImageIsReady" svg-button-youtube x="50" y="700" height="400" width="400"
             title="zobacz clip {{data.title.title}} na Youtube" [url]="data.youtubeUrl"></svg:g>
@@ -63,16 +58,13 @@
 
       <div fxFlex="100" fxFlex.gt-md="35" fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="center center">
         <app-news-article-date *ngIf="!isSmall()" [date]="data.creationDate"></app-news-article-date>
-        <h1 style="text-align: center">{{data.title.title | uppercase}}</h1>
+        <div class="mat-h1" style="text-align: center">{{data.title.title | uppercase}}</div>
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <div class="mat-h2">{{data.title.subtitle}}</div>
+          <div class="mat-h3">{{data.title.subtitle2}}</div>
+        </div>
         <div class="content-text" [innerHtml]="data.text" [ngClass]="cf.isGtMd() ? 'content-text-big': null"></div>
       </div>
 
     </div>
-
-
-    <!-- <div style="position: fixed; top: 25px;">
-    <button [disabled]="!ns.isPrev(data)" (click)="getPrev()">prev</button>
-    <button [disabled]="!ns.isNext(data)" (click)="getNext()">next</button>
-    <button routerLink="/news">news</button>
-  </div> -->
 </div>

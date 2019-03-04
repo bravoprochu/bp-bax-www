@@ -1,0 +1,124 @@
+<mat-drawer-container>
+  <mat-drawer #drawer fxLayout="row" opened="true" [mode]="drawerMode()" [style.width.vw]="drawerWidth()">
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Nawigacja, przejdź do:
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-list>
+          <mat-list-item style="cursor: pointer;" routerLink="/">Start</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item style="cursor: pointer;" routerLink="../../../oferta">Oferta</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item style="cursor: pointer;" routerLink="/news">News</mat-list-item>
+          
+        </mat-list>
+
+      </mat-expansion-panel>
+
+      <mat-expansion-panel expanded="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div>
+              Filtry
+              <span *ngIf="!mnSrv.isFilterLengthCount">&nbsp;(przeliczam...)</span>
+              <span *ngIf="mnSrv.maszynyNoweList.length > 0 && mnSrv.isFilterLengthCount">(znaleziono: </span>
+              <span *ngIf="mnSrv.isFilterLengthCount && mnSrv.maszynyNoweList.length > 0" class="mat-body-2"
+                @pulseText>&nbsp;{{mnSrv.maszynyNoweList.length}})</span>
+              <span *ngIf="mnSrv.isFilterLengthCount && mnSrv.maszynyNoweList.length == 0">(nie znaleziono maszyny spełniającej
+                kryteria wyszukania)</span>
+            </div>
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        
+        <div fxLayout="column" fxLayoutGap="10px">
+          <div fxLayoutAlign="space-between center">
+            <div *ngIf="mnSrv.filterSelected$.dirty">
+              <button mat-mini-fab (click)="mnSrv.maszynyNoweFilterClear()" matTooltip="wyczyść filtr">
+                <mat-icon>clear</mat-icon>
+              </button>
+            </div>
+
+            <button mat-mini-fab (click)="drawer.close()" matTooltip="zamknij sidenav">
+              <mat-icon>exit_to_app</mat-icon>
+            </button>
+          </div>
+
+          <!-- <mat-form-field>
+            <mat-select placeholder="wybierz atrybuty dla filtru" [formControl]="mnSrv.filterSelect$" multiple>
+              <mat-option *ngFor="let filter of mnSrv.filterAvailable" [value]="filter">{{filter.label}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> -->
+          <mat-form-field>
+            <input type="search" matInput placeholder="wyszukaj frazę">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select placeholder="wybierz atrybuty dla filtru" [formControl]="mnSrv.filterSelect$" multiple>
+              <mat-optgroup *ngFor="let group of mnSrv.filterGroupsAvailable" [label]="group.groupName">
+                  <mat-option *ngFor="let filter of group.filters" [value]="filter">{{filter.label}}
+                    </mat-option>
+              </mat-optgroup>
+             
+            </mat-select>
+          </mat-form-field>
+
+          <!-- <div *ngFor="let filter of mnSrv.maszynyNoweListFilter odd as isOdd; even as isEven" fxLayout="column" fxLayoutAlign="center start" [style.backgroundColor]="isEven? colorEven : colorOdd"> -->
+          <div>
+            <div *ngFor="let filter of mnSrv.filterSelected$.controls even as isEven; odd as isOdd" fxLayout="column"
+            fxLayoutAlign="center center" [style.backgroundColor]="isEven ? colorEven : colorOdd">
+            <div style="padding: 10px" class="mat-body-1">{{filter.value.label}} <strong>{{filter.value.minFilter}} -
+                {{filter.value.maxFilter}}</strong></div>
+            <div fxLayout="row">
+              <mat-slider fxFlex="50" thumbLabel [min]="filter.value.min" [max]="filter.value.maxFilter"
+                [formControl]="filter.get('minFilter')"></mat-slider>
+              <mat-slider fxFlex="50" thumbLabel [min]="filter.value.minFilter" [max]="filter.value.max"
+                [formControl]="filter.get('maxFilter')"></mat-slider>
+            </div>
+          </div>
+          </div>
+            
+
+        </div>
+
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Opcje dodatkowe
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+      </mat-expansion-panel>
+
+    </mat-accordion>
+
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <div fxLayout="column">
+      <div style="height: 55px;" fxLayoutAlign="space-between center">
+        <div>
+          <button mat-mini-fab (click)="modelSpecCardInfoShow()" *ngIf="!mnSrv.isModelSpecCardInfo.value" matTooltip="pokaż info">
+            <mat-icon>toggle_off</mat-icon>
+          </button>
+          <button mat-mini-fab (click)="modelSpecCardInfoShow()" *ngIf="mnSrv.isModelSpecCardInfo.value" matTooltip="ukryj info">
+            <mat-icon>toggle_on</mat-icon>
+          </button>
+        </div>
+        <button mat-mini-fab (click)="drawer.toggle()">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </div>
+      <div style="overflow-y: auto; height: 93vh;">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

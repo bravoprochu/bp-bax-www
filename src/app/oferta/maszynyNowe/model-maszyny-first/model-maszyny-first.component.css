@@ -1,0 +1,55 @@
+.awers-width-height-caption {
+    text-anchor: end;
+    font-size: 10px;
+}
+.awers-width-height-caption-unit {
+    text-anchor: start;
+    font-size: 8px;
+
+}
+
+.awers-engine-caption {
+    font-size: 20px;
+    text-anchor: end;
+}
+.awers-engine-value {
+    font-size: 32px;
+    padding-right: 5px;
+    text-anchor: end;
+    fill: #fff;
+    font-weight: 600;
+}
+
+.silnik-type {
+    font-size: 50px;
+    fill: #0655a5;
+    text-anchor: middle;
+}
+
+.silnik-type-caption {
+    font-size: 24px;
+    fill: #4d4d4d;
+    text-anchor: middle;
+}
+
+
+
+.szer-wys-stroke {
+    fill: none;
+    stroke: #000;
+    stroke-miterlimit: 10;
+    stroke-width: 1px;
+}
+
+
+.waga-wartosc {
+    font-size: 24px;
+    fill: #fff;
+    text-anchor: middle;
+}
+.waga-jednostka {
+    font-size: 18px;
+    fill: #b3b3b3;
+    text-anchor: middle;
+}
+

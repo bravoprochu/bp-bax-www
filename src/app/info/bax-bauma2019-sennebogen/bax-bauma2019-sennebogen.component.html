@@ -1,0 +1,167 @@
+<!-- <img *ngIf="!isReady" src="./assets/svg/preloaders/sennebogenPreloader.svg" alt="bax-sennebogen-preloader" width="100%"
+  height="56.25%" /> -->
+
+
+  <div>
+  <mat-card>
+    <mat-card-content>
+      <div class="img-shadow" baxPreloader [imgUrl]="imgSrcUrl" [marka]="1"></div>
+    </mat-card-content>
+  </mat-card>
+
+
+<div fxLayout="column" fxLayout.gt-md="row" >
+
+<mat-card fxFlex="100" fxFlex.gt-md="35">
+  <mat-card-content>
+      <mat-tab-group mat-align-tabs="center">
+          <mat-tab label="PL">
+            <mat-card>
+              <mat-card-title>
+                Ważna informacja dla klientów
+              </mat-card-title>
+              <mat-card-content>
+                <div>
+                  <div class="mat-h4">Oto jak to działa: <br>
+                    Prosimy upewnić się, że voucher można zrealizować na stronie:
+                    <a href="https://tickets.messe-muenchen.de/MM/BMA19/Register?culture=en&_gl=1*1gfs26z*_ga*MjA4NzUwNzAyOC4xNTUwNzU2MTUz*_gid*MTUyMjY1MTk4NS4xNTUwNzU2MTUz"
+                      target="_blank">
+                      <span style="text-decoration: underline; ">www.bauma.de/tickets/en</span>
+                    </a>
+                    przed rozpoczęciem targów.
+                  </div>
+                  <div class="mat-h4">Nie można zrealizować w kasie biletowej na targach Voucherów otrzymanych online. <br>
+                    System poprowadzi Cię krok po kroku przez proces rejestracji online, zrealizuj swój numer vouchera i
+                    otrzymaj
+                    bilet mobilny lub przez Print@home-Ticket. <br>
+                    Skorzystaj z biletu na swoim smartfonie! <br>
+                    Wystarczy zeskanować bilet na smartfonie na czytniku<br>
+                    Realizacja voucherów online jest możliwa do końca targów.<br>
+                    Bony nie mogą być sprzedane osobom trzecim.
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+      
+          </mat-tab>
+          <mat-tab label="EN">
+      
+            <mat-card>
+              <mat-card-title>
+                Important information for your customers
+              </mat-card-title>
+              <mat-card-content>
+                <div>
+                  <div class="mat-h4">This is how it works: <br>
+                    Please be sure to redeem your voucher easily at
+                    <a href="https://tickets.messe-muenchen.de/MM/BMA19/Register?culture=en&_gl=1*1gfs26z*_ga*MjA4NzUwNzAyOC4xNTUwNzU2MTUz*_gid*MTUyMjY1MTk4NS4xNTUwNzU2MTUz"
+                      target="_blank">
+                      <span style="text-decoration: underline; ">www.bauma.de/tickets/en</span>
+                    </a>
+                    before the fair.
+                  </div>
+                  <div class="mat-h4">Online vouchers cannot be redeemed at the ticket counter at the fair! <br>
+                    You will be lead step by step through the online registration,
+                    redeem your voucher number and receive your ticket as Mobile or Print@home-Ticket. <br>
+                    Use the ticket on your smartphone! <br>
+                    Simply scan the ticket on your smartphone at the turnstiles to enter.
+                    <br>
+                    Redeeming vouchers online is possible until the end of the fair.<br>
+                    Online vouchers may not be sold to third parties.
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+      
+      
+          </mat-tab>
+          <mat-tab label="DE">
+      
+            <mat-card>
+              <mat-card-title>
+                Wichtige Information für Ihre Kunden
+              </mat-card-title>
+              <mat-card-content>
+                <div>
+                  <div class="mat-h4">So funktioniert es: <br>
+                    Bitte lösen Sie Ihren Gutschein unbedingt vor Messebesuch ein unter
+                    <a href="https://tickets.messe-muenchen.de/MM/BMA19/Register?culture=en&_gl=1*1gfs26z*_ga*MjA4NzUwNzAyOC4xNTUwNzU2MTUz*_gid*MTUyMjY1MTk4NS4xNTUwNzU2MTUz"
+                      target="_blank">
+                      <span style="text-decoration: underline; ">www.bauma.de/tickets/en</span>
+                    </a>
+                  </div>
+                  <div class="mat-h4">Der Online-Gutschein kann nicht an den Kassen vor Ort eingelöst werden! <br>
+                    Sie werden schrittweise durch das Eingabemenü geführt, lösen die Gutschein-Nummer ein und erhalten im
+                    Anschluss eine E-Mail mit Ihrem Mobile und Print@home-Ticket. <br>
+                    Nutzen Sie das Ticket auf Ihrem Smartphone! <br>
+                    Die Online-Registrierung ist bis einschließlich des letzten Messetags möglich.<br>
+                    Der Verkauf von Online-Gutscheinen ist nicht gestattet.
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+      
+          </mat-tab>
+        </mat-tab-group>
+  </mat-card-content>
+</mat-card>
+
+
+
+  <mat-card fxFlex="100" fxFlex.gt-md="65">
+    <mat-card-title>
+
+    </mat-card-title>
+    <mat-card-content>
+      <!-- <img *ngIf="!isBaumaImgReady" src="./assets/svg/preloaders/sennebogenPreloader.svg" alt="bax-sennebogen-preloader"
+        width="100%" height="56.25%" />
+
+      <div class="img-box-container" *ngIf="isBaumaImgReady">
+        <a href="http://bauma.sennebogen.de" target="_blank">
+          <img [src]="baumaUrl" width="100%" alt="Bauma Sennebogen BIG EXPERIENCE"
+            style="filter: drop-shadow(10px 10px 4px grey)" />
+        </a>
+        <div *ngIf="cf.isViewXs()"
+          style="position: absolute; bottom: 25px; left: 25px; font-size: 16pt; text-shadow: #0655a5 0 5px 20px">
+          Bauma Sennebogen BIG Experience
+        </div>
+
+        <div *ngIf="!cf.isViewXs()"
+          style="position: absolute; top: 50px; left: 50px; font-size: 36pt; text-shadow: #0655a5 0 5px 20px">
+          Bauma Sennebogen BIG Experience
+        </div>
+      </div> -->
+
+      <a href="http://bauma.sennebogen.com" target="_blank">
+        <div class="img-shadow" baxPreloader [imgUrl]="baumaUrl" title="Bauma Sennebogen BIG Experience" [showInfo]="true" subtitle="przejdź na stronę http://bauma.sennebogen.com" [marka]="1"></div>
+      </a>
+
+    </mat-card-content>
+
+  </mat-card>
+
+
+</div>
+
+  <mat-card>
+    <mat-card-content>
+
+
+
+      <div class="mat-caption">
+        Efektywna i Efektowna maszyna do przeładunku drzewa pick & carry 735M-E (43t masy roboczej, zasięg pracy 11,3m,
+        kabina MAXCAB – największa w swojej klasie), Precyzyjna i jedyna na rynku kołowa maszyna przeładunkowa 355-E do
+        recyklingu (12t masy roboczej, zasięg pracy 8,5m, udźwig 5,5t, hydraulicznie podnoszona kabina 5m od gruntu),
+        Najszybsza w swojej klasie maszyna 817M-E do recyklingu (17t masy roboczej, zasięg pracy 9m, zasilanie diesel,
+        elektryczne a może jedno i drugie? – hybrydowe),
+        Najnowsza maszyna portowa model 875-E HYBRID (165t masy roboczej, zasięg pracy 29m, kabina MASTERCAB –
+        największa w swojej klasie, 30% oszczędności energii – GREEN HYBRID SYSTEM), Największa maszyna wyburzeniowa
+        870-E (115t masy roboczej, zasięg pracy 36m, kabina MAXCAB – hydraulicznie podnoszona i wysuwana do przodu),
+        Oszczędna i Ekologiczna maszyna 830-E (38,5t masz roboczej, zasięg pracy 17m, silnik elektryczny o mocy 132kW) –
+        zobacz jak będą wyglądały maszyny w przyszłości, Największa na świecie maszyna przeładunkowa 895-E (390t masy
+        roboczej, zasięg pracy 40m, zasilanie HYBRYDOWE: silnik elektryczny 670HP i silnik diesel 755HP)
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+</div>

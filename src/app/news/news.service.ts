@@ -369,9 +369,49 @@ export class NewsService {
         subtitle2: null,
         title: 'Walentynki 2019'
       },
+    },
+    {
+      creationDate: '2019-02-22',
+      id: 'bax-dlaczego-yanmar',
+      imgUrl: './assets/images/news/bax-dlaczego_yanmar05x.png',
+      miniInfo: {
+        fill: '#2B2147',
+        imgUrl: './assets/images/news/bax-dlaczego_yanmar05x.png',
+        pointer: '#82C6E2',
+        title: 'BAX, dlaczego Yanmar ?',
+        url: 'bax-dlaczego-yanmar',
+      },
+      text: `<p>Krzysztof Grodzki, brand manager w firmie BAX uzasadnia wybór marki Yanmar Global</p>`,
+      title: {
+        shortTitle: 'short',
+        subtitle: null,
+        subtitle2: null,
+        title: 'BAX, dlaczego Yanmar ?'
+      },
+      youtubeUrl: 'https://youtu.be/G9qm9xIgreY'
     }
-
-
+,
+    {
+      creationDate: '2019-03-01',
+      id: 'bauma2019',
+      imgUrl: './assets/images/news/bax_bauma_2019.png',
+      miniInfo: {
+        fill: '#A5DDE2',
+        imgUrl: './assets/images/news/bax_bauma_2019.png',
+        pointer: '#0072C6',
+        title: 'bauma 2019',
+        url: 'bauma2019',
+      },
+      text: `<p>WIELKIMI krokami zbliżają się największe targi na świecie - 😍bauma😍. Parafrazując organizatora, to bijące serce przemysłu 💓, wytyczające trendy, tempo i dynamikę rynku. Targom bauma zawsze przyświeca idea by koncentrować się na następnym wyzwaniu, bo nie chodzi o zachowanie stanu rzeczy tylko o PRZYSZŁOŚĆ ! Nie chodzi o punkt widzenia jednostki tylko o szerszy kontekst..</p>
+      <p>Na targach będziemy do Państwa dyspozycji jako autoryzowani przedstawiciele <strong>SENNEBOGEN</strong> Maschinenfabrik GmbH, <strong>Yanmar</strong> Global czy <strong>ARJES</strong> - Recycling Innovation Dla tych którzy nie będą mieli możliwości być tam z nami, obiecujemy fascynującą, bezpośrednią 📷relację !</p>`,
+      title: {
+        shortTitle: 'short',
+        subtitle: '8-14 kwietnia',
+        subtitle2: 'Messe München GmbH Messegelände, 81829 Monachium',
+        title: 'bauma 2019'
+      },
+      youtubeUrl: null
+    }
 
 
   ];

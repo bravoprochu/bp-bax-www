@@ -24,6 +24,13 @@
   font-family: 'Ubuntu', sans-serif;
 }
 
+.img-shadow {
+  filter: drop-shadow(10px 10px 4px grey);
+}
+
+.logo-bax-color {
+  fill: 0054A6;
+}
 
 .logo-yanmar-color {
   fill: #E30020;

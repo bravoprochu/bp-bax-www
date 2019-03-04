@@ -104,17 +104,30 @@ export class CommonFunctionsService implements OnDestroy, OnInit {
     return this._mediaChange;
   }
 
+  getUniqueId(prefix?: string):string {
+    return prefix + Math.random().toString().replace(',', "");
+  }
+
   getUrlPath(elName: string): any {
     return this.sanitzer.bypassSecurityTrustStyle(`url(${window.location.href}#${elName})`);
   }
 
   isViewXs(): boolean {
-    return this.getMediaChange().mqAlias == 'xs';
+    return this._mediaChange.mqAlias == 'xs';
+  }
+  isViewSm(): boolean {
+    return this._mediaChange.mqAlias == 'sm';
+  }
+  isViewMd(): boolean {
+    return this._mediaChange.mqAlias == 'md';
+  }
+  isViewLg(): boolean {
+    return this._mediaChange.mqAlias == 'lg';
+  }
+  isViewXl(): boolean {
+    return this._mediaChange.mqAlias == 'xl';
   }
 
-  isViewSm(): boolean {
-    return this.getMediaChange().mqAlias == 'sm';
-  }
 
 
 

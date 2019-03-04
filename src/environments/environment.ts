@@ -10,7 +10,7 @@ export const environment = {
   
   colorArjes: '#FF5E0E',
   colorBax: '#0054A6',
-  colorSennebogen: '4DAA2B',
+  colorSennebogen: '#4DAA2B',
   colorZemler: '#007843',
   colorYanmar: '#E30020',
 

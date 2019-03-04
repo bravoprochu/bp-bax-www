@@ -4,9 +4,12 @@ import { BP_ANIM_GROUP_APPEAR_ONLY } from 'src/app/animations/bp_anim_group_appe
 import { Subject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { IBaxModelSpec } from '../interfaces/i-bax-model-spec';
-import { BaxMarka } from '../enums/bax-marka-enum';
 import { SvgCommonFunctionsService } from 'src/app/shared/svg/svg-common-functions.service';
+import { IBaxModelMaszynaNowa } from '../../interfaces/i-bax-model-maszyna-nowa';
+import { BaxMarka } from '../../enums/bax-marka-enum';
+import { takeUntil } from 'rxjs/operators';
+import { MaszynyNoweService } from '../maszyny-nowe.service';
+import { bp_anim_appearUpDown } from 'src/app/animations/bp_anim_appear-up-down';
 
 
 @Component({
@@ -14,20 +17,26 @@ import { SvgCommonFunctionsService } from 'src/app/shared/svg/svg-common-functio
   templateUrl: './model-maszyny.component.html',
   styleUrls: ['./model-maszyny.component.css'],
   animations: [
-    BP_ANIM_GROUP_APPEAR_ONLY(200, 50, 'image, g')
+    BP_ANIM_GROUP_APPEAR_ONLY(200, 50, 'image, g'),
+    bp_anim_appearUpDown()
   ]
 })
 export class ModelMaszynyComponent implements OnInit, OnChanges, OnDestroy {
-  @Input('model') model: IBaxModelSpec;
+  @Input('model') model: IBaxModelMaszynaNowa;
   @ViewChild('container') container: ElementRef;
   @ViewChild('bgAnim') bgAnim: ElementRef;
   bgColor: string;
   idAwers: string = this.svgCf.getUniqeId('awers');
   intersection$: IntersectionObserver;
+  isCardInfo: boolean;
   isData: boolean
   isImgLoaded: boolean;
   isReady: boolean;
   isRevers: boolean;
+  logoMarka: string;
+  markaGradient: string;
+  preloaderHeight: number = 405;
+  preloaderViewBox: string = "0 0 720 405";
 
   ngOnDestroy(): void {
   this.isDestroyed$.next(true);
@@ -44,31 +53,22 @@ export class ModelMaszynyComponent implements OnInit, OnChanges, OnDestroy {
     public cf: CommonFunctionsService,
     private svgCf: SvgCommonFunctionsService,
     private actRoute: ActivatedRoute,
+    public mnSrv: MaszynyNoweService
   ) {  }
 
   ngOnInit() {
+    this.markaGradient = this.cf.getUniqueId('markaGradient');
+    this.mnSrv.isModelSpecCardInfo.valueChanges.pipe(
+      takeUntil(this.isDestroyed$),
+    )
+    .subscribe(
+      (isSpecCardInfo: boolean) => {
+      this.preloaderHeight = isSpecCardInfo ? 1280 : 405;
+      this.preloaderViewBox = `0 0 720 ${this.preloaderHeight}`;
+      },
+    )
     
-
-    //this.isReady= true;
-    switch(this.model.markaId) {
-      case BaxMarka.Yanmar:
-      this.bgColor = environment.colorYanmar;
-      break;
-      
-      case BaxMarka.Sennebogen:
-      this.bgColor = environment.colorSennebogen
-      break;
-
-      case BaxMarka.Arjes:
-      this.bgColor = environment.colorArjes
-      break;
-
-      case BaxMarka.Zemmler:
-      this.bgColor = environment.colorZemler
-      break;
-
-    }
-    
+   
     this.intersection$ = new IntersectionObserver(entries => {
       entries.forEach((entry: IntersectionObserverEntry)=>{
         if(entry.intersectionRatio>0){

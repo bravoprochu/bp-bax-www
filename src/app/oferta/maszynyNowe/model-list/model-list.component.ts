@@ -1,9 +1,14 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { OfertaService } from '../oferta.service';
 import { BP_ANIM_BRICK_LIST } from 'src/app/animations/bp-anim-brick-list';
 import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
 import * as Hammer from 'hammerjs';
-import { IBaxModelSpec } from '../interfaces/i-bax-model-spec';
+import { IBaxModelMaszynaNowa } from '../../interfaces/i-bax-model-maszyna-nowa';
+import { OfertaService } from '../../oferta.service';
+import { MaszynyNoweService } from '../maszyny-nowe.service';
+import { bp_anim_filter } from 'src/app/animations/bp_anim_filter';
+import { BP_ANIM_GROUP_APPEARING } from 'src/app/animations/bp_anim_group_appearing';
+import { BP_ANIM_GROUP_APPEAR_ONLY } from 'src/app/animations/bp_anim_group_appear_only';
+
 
 @Component({
   selector: 'app-model-list',
@@ -11,24 +16,33 @@ import { IBaxModelSpec } from '../interfaces/i-bax-model-spec';
   styleUrls: ['./model-list.component.css'],
   animations: [
     BP_ANIM_BRICK_LIST(300, 250),
+    bp_anim_filter(),
+    BP_ANIM_GROUP_APPEAR_ONLY(1500, 500,'self, svg, image, rect')
   ]
 })
 export class ModelListComponent implements OnInit {
   @ViewChild('container') container!: ElementRef;
   baseUrl: string = window.location.href;
   isAwers: boolean = true;
-  modelList: IBaxModelSpec[] = [];
+  modelList: IBaxModelMaszynaNowa[] = [];
   modelOnScreenId: number;
+  arr: number[]= [];
+  
+  
   constructor(
-    private osrvc: OfertaService,
+    public mnSrv: MaszynyNoweService,
     public cf: CommonFunctionsService
   ) { }
 
   ngOnInit() {
-    this.modelList = this.osrvc.getModelList();
+  // this.modelList = this.mnSrv.getModelList();
     // this.initHammer();
 
-
+    const arrLength = 50;
+    for(let n=0; n <arrLength; n++)
+    {
+      this.arr.push(n);
+    }
   }
 
   initHammer() {
@@ -65,7 +79,6 @@ export class ModelListComponent implements OnInit {
   }
 
   setAsOnScreen(modelId: number) {
-    
     this.modelOnScreenId = modelId + 1;
     console.log(this.modelOnScreenId);
   }

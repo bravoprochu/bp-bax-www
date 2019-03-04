@@ -16,6 +16,14 @@ export class HomeComponent implements OnInit {
   }
 
 info: string[] = [
+  'baxPreloader..',
+  'modelList filter :increment/:decrement anim',
+  'modelList filter select group, drawer width fix mediaquery, card image toggle, info svg fix (...)',
+  'modelList reacitve filter works !',
+  'modelList sidebar, filter, imagesOnly opt',
+  'modelList - spec props, search$',
+  'modelList raw spec info',
+  'modelList material tab',
 //  'modele-list swipe up/down; intersection, preloader',
   'f safari iOS, gradient/fill fix !!',
   'oferta/marka model card awers/rewers podstawowe dane',

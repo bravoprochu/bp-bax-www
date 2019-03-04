@@ -14,7 +14,7 @@ export class NewsArticleDateComponent implements OnInit, OnChanges {
   
 
   constructor(
-    private cf: CommonFunctionsService
+    public cf: CommonFunctionsService
   ) { }
 
   ngOnInit() {
@@ -25,8 +25,5 @@ export class NewsArticleDateComponent implements OnInit, OnChanges {
     this.date = changes.inputDate.currentValue ? new Date(changes.inputDate.currentValue) : null;
   }
 
-  isSmall():boolean {
-      return this.cf.isSmall();
-  }
 
 }
