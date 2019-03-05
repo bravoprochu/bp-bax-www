@@ -12,8 +12,8 @@ export class SvgCommonFunctionsService {
 
   constructor() { }
 
-  getUniqeId(pre?: string) {
-    return pre+Math.random().toString().replace(',', '');
+  getUniqeId(prefix?: string) {
+    return prefix + Math.random().toString().replace(',', "").replace('.', "");
   }
 
   getViewBoxSize(viewBox: string): ISvgViewBox {

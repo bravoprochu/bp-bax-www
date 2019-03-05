@@ -1,6 +1,7 @@
 import { Directive, Renderer2, Host, OnInit, Input, ViewContainerRef, ElementRef, AfterViewInit } from '@angular/core';
 import { BaxMarka } from 'src/app/oferta/enums/bax-marka-enum';
 import { environment } from 'src/environments/environment.prod';
+import { SvgCommonFunctionsService } from '../svg/svg-common-functions.service';
 
 
 
@@ -12,15 +13,21 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
   @Input('imgUrl') imgUrl: string;
   @Input('showInfo') showInfo: boolean;
   @Input('title') title: string;
+  @Input('titleColor') titleColor: string = "DarkGrey"
   @Input('subtitle') subtitle: string;
-
+  @Input('subtitleColor') subtitleColor: string = "Grey"
+  
+  height: number;
   intersection$: IntersectionObserver;
   isIntersecting: boolean;
   isPortrait: boolean;
   isDimmensionSet: boolean;
   isSvgAppended: boolean;
-  height: number
+  linearGradientId: string = this.svgCf.getUniqeId('linearGradient');
+
+  
   svg: SVGElement;
+  
 
 
   svgImage: SVGImageElement;
@@ -35,6 +42,7 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
   constructor(
     private renderer: Renderer2,
     private el: ElementRef,
+    public svgCf:SvgCommonFunctionsService
   ) { }
 
 
@@ -112,12 +120,20 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
       this.intersectionKill();
     }
     img.onload = (ev) => {
-      this.svgPreloadImg.remove();
-      this.svgImgBaxSign.remove();
-      this.svgPreloadBox.remove();
-      this.svgTextTitle.remove();
-      this.svgTextSubtitle.remove();
+      setTimeout(() => {
       
+      // this.renderer.removeChild(this.svg, this.svgPreloadImg);
+      // this.renderer.removeChild(this.svg, this.svgPreloadBox);
+      // this.renderer.removeChild(this.svg, this.svgTextTitle);
+      // this.renderer.removeChild(this.svg, this.svgTextSubtitle);
+
+      
+      this.renderer.destroyNode(this.svgPreloadImg);
+      this.renderer.destroyNode(this.svgPreloadBox);
+      this.renderer.destroyNode(this.svgTextTitle);
+      this.renderer.destroyNode(this.svgTextSubtitle);
+
+     
       const _w = img.naturalWidth;
       const _h = img.naturalHeight;
       const _isPortrait: boolean = _w >= _h ? false : true;
@@ -135,7 +151,7 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
       this.renderer.setAttribute(this.svgImage, 'width', '1920');
       this.renderer.setAttribute(this.svgImage, 'height', '1080');
 
-      setTimeout(() => {
+
       this.renderer.setAttribute(this.svgImage, 'href', this.imgUrl);
       this.renderer.appendChild(this.svg, this.svgImage);
       if(this.showInfo == true) {
@@ -160,6 +176,16 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
     const _widthStr = _width.toString();
     const _heightStr = _height.toString();
 
+
+
+
+
+    // this.renderer.appendChild(this.renderer.createElement('stop', 'svg'), (this.renderer.setAttribute(this.renderer.createElement('stop', 'svg'), 'offset', '0'))); 
+    // this.renderer.appendChild(this.renderer.createElement('stop', 'svg'), (this.renderer.setAttribute(this.renderer.createElement('stop', 'svg'), 'stop-color', 'white'))); 
+    // this.renderer.appendChild(this.renderer.createElement('stop', 'svg'), (this.renderer.setAttribute(this.renderer.createElement('stop', 'svg'), 'offset', '0.5'))); 
+    // this.renderer.appendChild(this.renderer.createElement('stop', 'svg'), (this.renderer.setAttribute(this.renderer.createElement('stop', 'svg'), 'stop-color', this.getFilColor()))); 
+
+
     this.svg = this.renderer.createElement('svg', 'svg');
     this.renderer.setAttribute(this.svg, 'xmlns', 'http://www.w3.org/2000/svg');
     this.renderer.setAttribute(this.svg, 'xmlns:xlink', 'http://www.w3.org/1999/xlink');
@@ -168,13 +194,53 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
     this.renderer.setAttribute(this.svg, 'width', '100%');
     this.renderer.setAttribute(this.svg, 'height', '100%');
 
+
+    let d:SVGDefsElement = this.renderer.createElement('defs', 'svg');
+    this.renderer.appendChild(this.svg, d);
+
+    let linearGradient:SVGLinearGradientElement = this.renderer.createElement('linearGradient', 'svg');
+    this.renderer.setAttribute(linearGradient, 'id', this.linearGradientId);
+    this.renderer.setAttribute(linearGradient, 'x1', "0%");
+    this.renderer.setAttribute(linearGradient, 'x2', "100%");
+    this.renderer.setAttribute(linearGradient, 'y1', "100%");
+    this.renderer.setAttribute(linearGradient, 'y2', "100%");
+    this.renderer.setAttribute(linearGradient, 'spreadMethod', 'pad');
+    //this.renderer.setAttribute(linearGradient, 'gradientUnits', 'userSpaceOnUse');
+    
+
+    this.renderer.appendChild(d, linearGradient);
+    
+    let s1:SVGStopElement = this.renderer.createElement('stop', 'svg');
+    this.renderer.setAttribute(s1, 'offset', '0');
+    //this.renderer.setAttribute(s1, 'stop-opacity', '0.4');
+    this.renderer.setAttribute(s1, 'stop-color', 'white');
+    this.renderer.appendChild(linearGradient, s1);
+
+    let s2:SVGStopElement = this.renderer.createElement('stop', 'svg');
+    this.renderer.setAttribute(s2, 'offset', '60%');
+    this.renderer.setAttribute(s2, 'stop-color', this.getFilColor());
+    this.renderer.setAttribute(s2, 'stop-opacity', '0.4');
+    this.renderer.appendChild(linearGradient, s2);
+   
+
+    let s3:SVGStopElement = this.renderer.createElement('stop', 'svg');
+    this.renderer.setAttribute(s3, 'offset', '1');
+    this.renderer.setAttribute(s3, 'stop-color', this.getFilColor());
+    this.renderer.setAttribute(s3, 'stop-opacity', '1');
+    this.renderer.appendChild(linearGradient, s3);
+
+
+
+
+
+
     this.svgPreloadBox = this.renderer.createElement('rect', 'svg');
     this.renderer.setAttribute(this.svgPreloadBox, 'width', _widthStr);
     this.renderer.setAttribute(this.svgPreloadBox, 'height', _heightStr);
     this.renderer.setAttribute(this.svgPreloadBox, 'x', '0');
     this.renderer.setAttribute(this.svgPreloadBox, 'y', '0');
-    this.renderer.setAttribute(this.svgPreloadBox, 'fill', this.getFilColor());
-    this.renderer.setAttribute(this.svgPreloadBox, 'opacity', '0.25');
+    this.renderer.setAttribute(this.svgPreloadBox, 'fill', `url(#${this.linearGradientId})`);
+    this.renderer.setAttribute(this.svgPreloadBox, 'opacity', '1');
 
     this.renderer.appendChild(this.svg, this.svgPreloadBox);
 
@@ -210,7 +276,7 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
     this.renderer.setAttribute(this.svgTextTitle, 'height', _heightStr);
     this.renderer.setAttribute(this.svgTextTitle, 'x', '25');
     this.renderer.setAttribute(this.svgTextTitle, 'y',  '920');
-    this.renderer.setAttribute(this.svgTextTitle, 'fill', 'grey');
+    this.renderer.setAttribute(this.svgTextTitle, 'fill', this.titleColor);
     this.renderer.setAttribute(this.svgTextTitle, 'font-size', '100');
     this.svgTextTitle.textContent = this.title;
     // this.renderer.appendChild(this.svg, this.svgTextTitle);
@@ -220,10 +286,14 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
     this.renderer.setAttribute(this.svgTextSubtitle, 'height', _heightStr);
     this.renderer.setAttribute(this.svgTextSubtitle, 'x', '25');
     this.renderer.setAttribute(this.svgTextSubtitle, 'y',  '1000');
-    this.renderer.setAttribute(this.svgTextSubtitle, 'fill', 'grey');
+    this.renderer.setAttribute(this.svgTextSubtitle, 'fill', this.subtitleColor);
     this.renderer.setAttribute(this.svgTextSubtitle, 'font-size', '50');
     this.svgTextSubtitle.textContent = this.subtitle;
     // this.renderer.appendChild(this.svg, this.svgTextSubtitle);
+
+
+
+
 
 
   }
@@ -244,16 +314,16 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
           }
         }
         if (ratio >= 0.25 && ratio <= 0.5) {
-          this.svgPreloadBox.setAttribute('opacity', '0.8');
+        //  this.svgPreloadBox.setAttribute('opacity', '0.8');
         }
         if (ratio > 0.5 && ratio <= 0.75) {
-          this.svgPreloadBox.setAttribute('opacity', '0.4');
+          // this.svgPreloadBox.setAttribute('opacity', '0.4');
         }
         if (ratio > 0.75 && ratio < 1) {
-          this.svgPreloadBox.setAttribute('opacity', '0.2');
+          // this.svgPreloadBox.setAttribute('opacity', '0.2');
         }
         if (ratio == 1) {
-          this.svgPreloadBox.setAttribute('opacity', '0.1');
+          // this.svgPreloadBox.setAttribute('opacity', '0.1');
         }
       })
     }, { threshold: [0, .25, .50, .75, 1] })

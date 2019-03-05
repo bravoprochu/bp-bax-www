@@ -6,7 +6,6 @@ import { IBaxModelMaszynaNowa } from '../../interfaces/i-bax-model-maszyna-nowa'
 import { OfertaService } from '../../oferta.service';
 import { MaszynyNoweService } from '../maszyny-nowe.service';
 import { bp_anim_filter } from 'src/app/animations/bp_anim_filter';
-import { BP_ANIM_GROUP_APPEARING } from 'src/app/animations/bp_anim_group_appearing';
 import { BP_ANIM_GROUP_APPEAR_ONLY } from 'src/app/animations/bp_anim_group_appear_only';
 
 
@@ -17,7 +16,7 @@ import { BP_ANIM_GROUP_APPEAR_ONLY } from 'src/app/animations/bp_anim_group_appe
   animations: [
     BP_ANIM_BRICK_LIST(300, 250),
     bp_anim_filter(),
-    BP_ANIM_GROUP_APPEAR_ONLY(1500, 500,'self, svg, image, rect')
+    BP_ANIM_GROUP_APPEAR_ONLY(1500, 500,'rect, image')
   ]
 })
 export class ModelListComponent implements OnInit {

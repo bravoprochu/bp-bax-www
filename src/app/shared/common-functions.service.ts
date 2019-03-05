@@ -105,7 +105,7 @@ export class CommonFunctionsService implements OnDestroy, OnInit {
   }
 
   getUniqueId(prefix?: string):string {
-    return prefix + Math.random().toString().replace(',', "");
+    return prefix + Math.random().toString().replace(',', "").replace('.', "");
   }
 
   getUrlPath(elName: string): any {
