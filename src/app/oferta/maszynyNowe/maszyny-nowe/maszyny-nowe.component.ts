@@ -22,6 +22,7 @@ export class MaszynyNoweComponent implements OnInit {
   colorEven: string;
   colorOdd: string;
   filterData: IBaxModelMaszynyNoweFilterLine[] = [];
+  filterForm$: FormGroup;
   
   isLengthCount: boolean = true;
   rFiltersList$: FormArray;
@@ -44,6 +45,7 @@ export class MaszynyNoweComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.filterForm$ = this.mnSrv.getFilterForm$(this.fb)
     this.rFiltersList$ = this.fb.array([]);
     const colorPalete = this.pantoSrv.getNextPaletteColors("283", 2, 1);
     const opacity = 0.25;

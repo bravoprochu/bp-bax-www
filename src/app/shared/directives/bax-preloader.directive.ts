@@ -163,7 +163,7 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
         this.renderer.setStyle(this.el.nativeElement, 'width', _w.toString());
 
         this.intersectionKill();
-      }, 7500);
+      }, 0);
     }
 
   }
@@ -213,8 +213,6 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
 
     // const d:HTMLCollectionOf<SVGDefsElement> = this.svg.getElementsByTagName('defs');
     // console.log('getByTag', d, d.length);
-
-
   }
 
 

@@ -22,6 +22,7 @@ export class MaszynyNoweService {
   filterAvailable: IBaxModelMaszynyNoweFilterLine[] = [];
   filterGroupsAvailable: IBaxModelMaszynyNoweFilterGroup[] = [];
   isFilterLengthCount: boolean = true;
+  isModelSpecCardInfo: FormControl = new FormControl(false);
 
   maszynyNoweList: IBaxModelMaszynaNowa[] = [];
   maszynyNoweListAvailable: IBaxModelMaszynaNowa[] = [];
@@ -66,8 +67,6 @@ export class MaszynyNoweService {
   }
 
 
-
-
   filter(srcAllModels: IBaxModelMaszynaNowa[], destFiltered: IBaxModelMaszynaNowa[], filterLines: IBaxModelMaszynyNoweFilterLine[]){
     console.log('filter: filterLines !', filterLines);
     
@@ -86,7 +85,6 @@ export class MaszynyNoweService {
     });
     this.isFilterLengthCount = true;
   }
-
 
 
   filterFilterGroupListUpdate(filterList: IBaxModelMaszynyNoweFilterLine[]) {
@@ -134,39 +132,17 @@ export class MaszynyNoweService {
   }
 
   
-  initObservables(){
-    this.filterSelect$.valueChanges.pipe(
-      map((_filterList: IBaxModelMaszynyNoweFilterLine[])=> {
-        this.filterFilterGroupListUpdate(_filterList);
-        return _filterList;
-      }),
-      switchMap((_list: IBaxModelMaszynyNoweFilterLine[])=>{
-        console.log('sw filter lines...', this.filterSelected$.value);
-        this.filter(this.getModelList(), this.maszynyNoweList, this.filterSelected$.value);
-        console.log('then switchTo selected$ valueChange..');
-        
-        return this.filterSelected$.valueChanges.pipe(
-          tap(()=>this.isFilterLengthCount = false),
-        )
-      }),
-      debounceTime(750),
-      map((_filterChanged: IBaxModelMaszynyNoweFilterLine[])=>{
-        this.filter(this.getModelList(), this.maszynyNoweList, _filterChanged);
-        return _filterChanged;
-      }),
-      //tap(()=>this.isFilterLengthCount=true)
-    )
-    .subscribe(
-      (_data: any) => {
-      },
-      (err) => console.log('filterSelect$ error', err),
-      () => console.log('filterSelect$ finish..')
-    )
-      
+
+
+
+
+  getFilterForm$(formBuilder: FormBuilder) {
+    let rForm = formBuilder.group({
+      stringFilter: formBuilder.array([]),
+      numberFilter: formBuilder.array([]),
+      checkboxesFilter: formBuilder.array([])
+    })
   }
-
-  isModelSpecCardInfo: FormControl = new FormControl(false);
-
 
   getMaszynyNoweFilterGroups(): IBaxModelMaszynyNoweFilterGroup[] {
     this.filterGroupsAvailable = [];
@@ -344,4 +320,36 @@ export class MaszynyNoweService {
     });
   }
 
+  initObservables(){
+    this.filterSelect$.valueChanges.pipe(
+      map((_filterList: IBaxModelMaszynyNoweFilterLine[])=> {
+        this.filterFilterGroupListUpdate(_filterList);
+        return _filterList;
+      }),
+      switchMap((_list: IBaxModelMaszynyNoweFilterLine[])=>{
+        console.log('sw filter lines...', this.filterSelected$.value);
+        this.filter(this.getModelList(), this.maszynyNoweList, this.filterSelected$.value);
+        console.log('then switchTo selected$ valueChange..');
+        
+        return this.filterSelected$.valueChanges.pipe(
+          tap(()=>this.isFilterLengthCount = false),
+        )
+      }),
+      debounceTime(750),
+      map((_filterChanged: IBaxModelMaszynyNoweFilterLine[])=>{
+        this.filter(this.getModelList(), this.maszynyNoweList, _filterChanged);
+        return _filterChanged;
+      }),
+      //tap(()=>this.isFilterLengthCount=true)
+    )
+    .subscribe(
+      (_data: any) => {
+      },
+      (err) => console.log('filterSelect$ error', err),
+      () => console.log('filterSelect$ finish..')
+    )
+      
+  }
+  
+ 
 }

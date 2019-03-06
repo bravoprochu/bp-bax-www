@@ -18,6 +18,7 @@ import { ArticleNavigationComponent } from './svg/article-navigation/article-nav
 import { FillChangeDirective } from './directives/fill-change.directive';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BaxPreloaderDirective } from './directives/bax-preloader.directive';
+import { ImgGalleryComponent } from './img-gallery/img-gallery.component';
 
 
 
@@ -33,7 +34,8 @@ import { BaxPreloaderDirective } from './directives/bax-preloader.directive';
     SvgButtonYoutubeComponent,
     ArticleNavigationComponent,
     FillChangeDirective,
-    BaxPreloaderDirective
+    BaxPreloaderDirective,
+    ImgGalleryComponent
   ],
   imports: [
     CommonModule,
@@ -89,6 +91,7 @@ import { BaxPreloaderDirective } from './directives/bax-preloader.directive';
     RouterGoBackComponent,
     SvgButtonYoutubeComponent,
     BaxPreloaderDirective,
+    ImgGalleryComponent,
 
   ],
   providers: [
