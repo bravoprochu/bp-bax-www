@@ -344,7 +344,7 @@ export class NewsService {
       <p> 🛍 <i>Kup swej "Gąsce" nowe butki...,</i>😃 </p> <p><i>..idzie luty, czas na nowe buty..... </i>‼</p>
       <p>Dział części: <strong>Krzysztof Bereźnicki</strong> aka "Miami" <a href="tel:+48 508 368 258"> <i>508 368 258</i></a></p>`,
       title: {
-        shortTitle: 'short',
+        shortTitle: null,
         subtitle: 'Luty - Gąsienice -20%',
         subtitle2: 'Yanmar Four Seasons Promotion',
         title: 'Luty - Gąsienice -20%'
@@ -364,7 +364,7 @@ export class NewsService {
       text: `<p>💖 W tym wyjątkowym dniu 💗 okażmy uczucia tym na których najbardziej nam zależy, tym dla których serce bije mocniej 💓, tym na widok których za każdym razem pojawia się uśmiech na twarzy... Drobny upominek 🎁, gest, słowo; extra usługę serwisową, akcesoria.. </p>
       <p>PS Oczywiście nie zapomnijmy o małżonkach.. im również należy złożyć życzenia.. 😜💙😁</p>`,
       title: {
-        shortTitle: 'short',
+        shortTitle: null,
         subtitle: null,
         subtitle2: null,
         title: 'Walentynki 2019'
@@ -383,36 +383,35 @@ export class NewsService {
       },
       text: `<p>Krzysztof Grodzki, brand manager w firmie BAX uzasadnia wybór marki Yanmar Global</p>`,
       title: {
-        shortTitle: 'short',
+        shortTitle: null,
         subtitle: null,
         subtitle2: null,
         title: 'BAX, dlaczego Yanmar ?'
       },
       youtubeUrl: 'https://youtu.be/G9qm9xIgreY'
     }
+
 ,
     {
-      creationDate: '2019-03-01',
-      id: 'bauma2019',
-      imgUrl: './assets/images/news/bax_bauma_2019.png',
+      creationDate: '2019-03-07',
+      id: 'yanmarFourSeasonsPromotion-2019-03-Filtry',
+      imgUrl: './assets/images/news/BAX_Yanmar_Four_Seasons_Promotion_2019_03.png',
       miniInfo: {
-        fill: '#A5DDE2',
-        imgUrl: './assets/images/news/bax_bauma_2019.png',
-        pointer: '#0072C6',
-        title: 'bauma 2019',
-        url: 'bauma2019',
+        fill: '#e87511',
+        imgUrl: './assets/images/news/BAX_Yanmar_Four_Seasons_Promotion_2019_03.png',
+        pointer: '#568e14',
+        title: 'marzec - Filtry -20%',
+        url: 'yanmarFourSeasonsPromotion-2019-03-Filtry',
       },
-      text: `<p>WIELKIMI krokami zbliżają się największe targi na świecie - 😍bauma😍. Parafrazując organizatora, to bijące serce przemysłu 💓, wytyczające trendy, tempo i dynamikę rynku. Targom bauma zawsze przyświeca idea by koncentrować się na następnym wyzwaniu, bo nie chodzi o zachowanie stanu rzeczy tylko o PRZYSZŁOŚĆ ! Nie chodzi o punkt widzenia jednostki tylko o szerszy kontekst..</p>
-      <p>Na targach będziemy do Państwa dyspozycji jako autoryzowani przedstawiciele <strong>SENNEBOGEN</strong> Maschinenfabrik GmbH, <strong>Yanmar</strong> Global czy <strong>ARJES</strong> - Recycling Innovation Dla tych którzy nie będą mieli możliwości być tam z nami, obiecujemy fascynującą, bezpośrednią 📷relację !</p>`,
+      text: `<p>😍 Nowa - WIOSENNA Yanmar Global FourSeasonsPromotion 👉 <strong>FILTRY -20%</strong>👀 CO ⁉ Wymieniasz olej silnikowy ? ..olej hydrauliczny ? SKORZYSTAJ ‼ Marzec miesiącem upustów na oryginalne FILTRY Yanmar. Zadzwoń i ubij 🤜 deala z Miami (Krzysztof Bereźnicki) ☎  <a href="tel:+48 508 368 258"> <i>508 368 258</i></a>. Uwaga w ofercie mamy więcej perełek cenowych, sprawdź nas ☎ </p>`,
       title: {
-        shortTitle: 'short',
-        subtitle: '8-14 kwietnia',
-        subtitle2: 'Messe München GmbH Messegelände, 81829 Monachium',
-        title: 'bauma 2019'
+        shortTitle: null,
+        subtitle: null,
+        subtitle2: 'Yanmar Four Seasons Promotion',
+        title: 'Marzec - Filtry -20%'
       },
       youtubeUrl: null
     }
-
 
   ];
 
