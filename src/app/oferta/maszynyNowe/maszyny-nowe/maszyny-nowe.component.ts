@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { OfertaService } from '../../oferta.service';
 import { IBaxModelMaszynyNoweFilterLine } from '../../interfaces/i-bax-model-maszyny-nowe-filter-line';
 import { PantoneToHexService } from 'src/app/pantoneToHex/pantone-to-hex.service';
 import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
-import { takeUntil, debounceTime, tap } from 'rxjs/operators';
 import { Subject, of } from 'rxjs';
 import { bp_anim_pulseText } from 'src/app/animations/bp_anim_pulse-text';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MaszynyNoweService } from '../maszyny-nowe.service';
+import { takeUntil, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-maszyny-nowe',
@@ -23,9 +22,14 @@ export class MaszynyNoweComponent implements OnInit {
   colorOdd: string;
   filterData: IBaxModelMaszynyNoweFilterLine[] = [];
   filterForm$: FormGroup;
-  
+  searchPhrase$: FormControl= new FormControl('whaaat ?');
+
+
+
+    
   isLengthCount: boolean = true;
   rFiltersList$: FormArray;
+  
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);
     this.isDestroyed$.complete();
@@ -45,7 +49,6 @@ export class MaszynyNoweComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.filterForm$ = this.mnSrv.getFilterForm$(this.fb)
     this.rFiltersList$ = this.fb.array([]);
     const colorPalete = this.pantoSrv.getNextPaletteColors("283", 2, 1);
     const opacity = 0.25;
@@ -53,13 +56,14 @@ export class MaszynyNoweComponent implements OnInit {
     this.colorOdd = this.pantoSrv.colorToRGBA(colorPalete[1], opacity);
   }
 
-  clearAll() {
-    // this.maszynyNowefilterSelect$.reset();
+  filterClear() { 
+    this.mnSrv.clearFilterGroup$();
   }
 
   drawerMode(): string {
     return (this.cf.isViewXs() || this.cf.isViewSm()) ? 'over' : 'side';
   }
+  
   drawerWidth(): number {
     if(this.cf.isViewXs()) {return 90;}
     if(this.cf.isViewSm()) {return 70;}
@@ -68,11 +72,28 @@ export class MaszynyNoweComponent implements OnInit {
     if(this.cf.isViewXl()) {return 20;}
   }
 
-
-
   modelSpecCardInfoShow() {
     this.mnSrv.isModelSpecCardInfo.setValue(!this.mnSrv.isModelSpecCardInfo.value);
   }
+
+  get filterGroup$(): FormGroup {
+    return <FormGroup>this.mnSrv.filterGroup$;
+  }
+
+  get modelSearch$(): FormGroup {
+    return <FormGroup>this.mnSrv.modelSearchGroup$;
+    // return new FormControl();
+  }
+
+  get filterNumberSelect$() : FormControl {
+    return <FormControl>this.mnSrv.filterNumberSelect$;
+  }
+
+  get filterNumberArr$(): FormArray  {
+    return <FormArray>this.mnSrv.filterNumberArr$;
+  }
+
+
 
 }
 

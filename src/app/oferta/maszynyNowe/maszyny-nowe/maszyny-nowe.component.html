@@ -15,7 +15,7 @@
           <mat-list-item style="cursor: pointer;" routerLink="../../../oferta">Oferta</mat-list-item>
           <mat-divider></mat-divider>
           <mat-list-item style="cursor: pointer;" routerLink="/news">News</mat-list-item>
-          
+
         </mat-list>
 
       </mat-expansion-panel>
@@ -29,17 +29,18 @@
               <span *ngIf="mnSrv.maszynyNoweList.length > 0 && mnSrv.isFilterLengthCount">(znaleziono: </span>
               <span *ngIf="mnSrv.isFilterLengthCount && mnSrv.maszynyNoweList.length > 0" class="mat-body-2"
                 @pulseText>&nbsp;{{mnSrv.maszynyNoweList.length}})</span>
-              <span *ngIf="mnSrv.isFilterLengthCount && mnSrv.maszynyNoweList.length == 0">(nie znaleziono maszyny spełniającej
+              <span *ngIf="mnSrv.isFilterLengthCount && mnSrv.maszynyNoweList.length == 0">(nie znaleziono maszyny
+                spełniającej
                 kryteria wyszukania)</span>
             </div>
           </mat-panel-title>
 
         </mat-expansion-panel-header>
-        
+
         <div fxLayout="column" fxLayoutGap="10px">
           <div fxLayoutAlign="space-between center">
-            <div *ngIf="mnSrv.filterSelected$.dirty">
-              <button mat-mini-fab (click)="mnSrv.maszynyNoweFilterClear()" matTooltip="wyczyść filtr">
+            <div *ngIf="filterGroup$.dirty">
+              <button mat-mini-fab (click)="filterClear()" matTooltip="wyczyść filtr">
                 <mat-icon>clear</mat-icon>
               </button>
             </div>
@@ -55,35 +56,37 @@
               </mat-option>
             </mat-select>
           </mat-form-field> -->
-          <mat-form-field>
-            <input type="search" matInput placeholder="wyszukaj frazę">
-          </mat-form-field>
+          
+          <div [formGroup]="modelSearch$">
+            <mat-form-field fxFill>
+              <input type="search" matInput placeholder="wyszukaj po nazwie modelu" formControlName="searchPhrase">
+            </mat-form-field>
+          </div>
 
           <mat-form-field>
-            <mat-select placeholder="wybierz atrybuty dla filtru" [formControl]="mnSrv.filterSelect$" multiple>
+            <mat-select placeholder="wybierz atrybuty dla filtru" [formControl]="filterNumberSelect$" multiple>
               <mat-optgroup *ngFor="let group of mnSrv.filterGroupsAvailable" [label]="group.groupName">
-                  <mat-option *ngFor="let filter of group.filters" [value]="filter">{{filter.label}}
-                    </mat-option>
+                <mat-option *ngFor="let filter of group.filters" [value]="filter">{{filter.label}}
+                </mat-option>
               </mat-optgroup>
-             
             </mat-select>
           </mat-form-field>
 
           <!-- <div *ngFor="let filter of mnSrv.maszynyNoweListFilter odd as isOdd; even as isEven" fxLayout="column" fxLayoutAlign="center start" [style.backgroundColor]="isEven? colorEven : colorOdd"> -->
           <div>
-            <div *ngFor="let filter of mnSrv.filterSelected$.controls even as isEven; odd as isOdd" fxLayout="column"
-            fxLayoutAlign="center center" [style.backgroundColor]="isEven ? colorEven : colorOdd">
-            <div style="padding: 10px" class="mat-body-1">{{filter.value.label}} <strong>{{filter.value.minFilter}} -
-                {{filter.value.maxFilter}}</strong></div>
-            <div fxLayout="row">
-              <mat-slider fxFlex="50" thumbLabel [min]="filter.value.min" [max]="filter.value.maxFilter"
-                [formControl]="filter.get('minFilter')"></mat-slider>
-              <mat-slider fxFlex="50" thumbLabel [min]="filter.value.minFilter" [max]="filter.value.max"
-                [formControl]="filter.get('maxFilter')"></mat-slider>
+            <div *ngFor="let filter of filterNumberArr$.controls even as isEven; odd as isOdd" fxLayout="column"
+              fxLayoutAlign="center center" [style.backgroundColor]="isEven ? colorEven : colorOdd">
+              <div style="padding: 10px" class="mat-body-1">{{filter.value.label}} <strong>{{filter.value.minFilter}} -
+                  {{filter.value.maxFilter}}</strong></div>
+              <div fxLayout="row">
+                <mat-slider fxFlex="50" thumbLabel [min]="filter.value.min" [max]="filter.value.maxFilter"
+                  [formControl]="filter.get('minFilter')"></mat-slider>
+                <mat-slider fxFlex="50" thumbLabel [min]="filter.value.minFilter" [max]="filter.value.max"
+                  [formControl]="filter.get('maxFilter')"></mat-slider>
+              </div>
             </div>
           </div>
-          </div>
-            
+
 
         </div>
 
@@ -105,10 +108,12 @@
     <div fxLayout="column">
       <div style="height: 55px;" fxLayoutAlign="space-between center">
         <div>
-          <button mat-mini-fab (click)="modelSpecCardInfoShow()" *ngIf="!mnSrv.isModelSpecCardInfo.value" matTooltip="pokaż info">
+          <button mat-mini-fab (click)="modelSpecCardInfoShow()" *ngIf="!mnSrv.isModelSpecCardInfo.value"
+            matTooltip="pokaż info">
             <mat-icon>toggle_off</mat-icon>
           </button>
-          <button mat-mini-fab (click)="modelSpecCardInfoShow()" *ngIf="mnSrv.isModelSpecCardInfo.value" matTooltip="ukryj info">
+          <button mat-mini-fab (click)="modelSpecCardInfoShow()" *ngIf="mnSrv.isModelSpecCardInfo.value"
+            matTooltip="ukryj info">
             <mat-icon>toggle_on</mat-icon>
           </button>
         </div>

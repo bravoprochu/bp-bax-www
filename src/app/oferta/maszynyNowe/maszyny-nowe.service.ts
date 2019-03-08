@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { OfertaService } from '../oferta.service';
 import { IBaxModelMaszynaNowa } from '../interfaces/i-bax-model-maszyna-nowa';
 import { FormControl, FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { BAX_MODEL_SPEC_LIST_DESCRIPTION } from '../data/bax-model-spec-description';
@@ -12,13 +11,15 @@ import { BaxMarka } from '../enums/bax-marka-enum';
 import { environment } from 'src/environments/environment';
 import { IBaxModelMaszynyNoweFilterGroup } from '../interfaces/i-bax-model-maszyny-nowe-filter-group';
 import { IBaxModelMaszynyNoweFilterLine } from '../interfaces/i-bax-model-maszyny-nowe-filter-line';
+import { IBaxModelMaszynyNoweFilterTypeEnum } from '../enums/i-bax-model-maszyny-nowe-filter-type-enum';
+import { IBaxModelFilter } from '../interfaces/i-bax-model-filter';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MaszynyNoweService {
-  filterSelect$: FormControl = new FormControl();
-  filterSelected$: FormArray;
+  filterGroup$: FormGroup;
+  filterNumberSelect$: FormControl = new FormControl();
   filterAvailable: IBaxModelMaszynyNoweFilterLine[] = [];
   filterGroupsAvailable: IBaxModelMaszynyNoweFilterGroup[] = [];
   isFilterLengthCount: boolean = true;
@@ -33,19 +34,22 @@ export class MaszynyNoweService {
   
   
   constructor(private fb: FormBuilder) {
+    this.filterGroup$ = this.getFilterForm$();
+    this.initFilterSearchGroups();
+    this.filterGroup$.markAsPristine();
+
     this.UpdateMediaImgUrl(this.getModelList());
-    this.filterSelected$ = this.fb.array([]);
-    
+        
     this.maszynyNoweListAvailable = this.getModelList();
     this.maszynyNoweListAvailable.forEach(f=>this.maszynyNoweList.push(f));
     this.filterAvailable = this.getMaszynyNoweFilters();
-    this.filterGroupsAvailable = this.getMaszynyNoweFilterGroups();
+    this.filterGroupsAvailable = this.getFilterNumberLineGroups();
     
     this.initObservables();
   }
 
 
-  private filterCheckIfFilterLineFits(dest: IBaxModelMaszynaNowa, filterLines:IBaxModelMaszynyNoweFilterLine[]):boolean {
+  private checkIfFilterLineFits(dest: IBaxModelMaszynaNowa, filterLines:IBaxModelMaszynyNoweFilterLine[]):boolean {
     let res:boolean = false;
     let counter = 1;
 
@@ -55,15 +59,24 @@ export class MaszynyNoweService {
       const prop = filter.name;
       const propValue = dest[prop];
       if(!propValue) {res = false; break}
-      res = (propValue >= filter.minFilter && propValue <= filter.maxFilter) ? true : false;
+      if(filter.filterType == IBaxModelMaszynyNoweFilterTypeEnum.numberMoreLess){
+        res = (propValue >= filter.minFilter && propValue <= filter.maxFilter) ? true : false;
+      }
+      if(filter.filterType == IBaxModelMaszynyNoweFilterTypeEnum.stringSearch){
+        res = (<string>propValue).toLowerCase().includes(filter.searchPhrase.toLowerCase())
+      }
       if(res == false) {break;}
     };
     
     return res;
   }
 
-  maszynyNoweFilterClear() {
-      this.filterSelect$.reset();
+  clearFilterGroup$() {
+      this.filterNumberSelect$.reset(null, {emitEvent: false});
+      this.filterNumberArr$.controls=[];
+      (<FormControl>this.modelSearchGroup$.get('searchPhrase')).setValue("", {emitEvent: false });
+      this.maszynyNoweList = [...this.maszynyNoweListAvailable];
+      this.filterGroup$.markAsPristine();
   }
 
 
@@ -73,7 +86,7 @@ export class MaszynyNoweService {
     srcAllModels.forEach(srcModel=>{
       const srcIdx = srcAllModels.indexOf(srcModel);
       const foundOnDest = destFiltered.indexOf(srcModel);
-      if(this.filterCheckIfFilterLineFits(srcModel, filterLines)){
+      if(this.checkIfFilterLineFits(srcModel, filterLines)){
         if(foundOnDest<0){
           destFiltered.splice(srcIdx, 0, srcModel);
         }
@@ -87,64 +100,98 @@ export class MaszynyNoweService {
   }
 
 
-  filterFilterGroupListUpdate(filterList: IBaxModelMaszynyNoweFilterLine[]) {
-    console.log('filterList:', filterList);
-
-
+  filterLineConvertToGroup(filterList: IBaxModelMaszynyNoweFilterLine[]) {
     let controlsToRemove: number[] = [];
     let controlsToAdd: number[] = [];
 
     if(filterList==null || filterList.length==0) {
-      console.log('filter emtpy or null', this.filterSelected$.value, filterList);
-      this.filterSelected$.controls = [];
+      console.log('filter emtpy or null', this.filterNumberArr$.value, filterList);
+      this.filterNumberArr$.controls = [];
 
-      console.log('filterSelected$: ', this.filterSelected$.controls);
+      console.log('filterSelected$: ', this.filterNumberArr$.controls);
       return;
     }
 
-    if(this.filterSelected$.controls.length == 0) {
-      filterList.forEach(f=>this.filterSelected$.push(this.getFilterGroup$(f)));
+    if(this.filterNumberArr$.controls.length == 0) {
+      filterList.forEach(f=>this.filterNumberArr$.push(this.getFilterLineFormGroup$(f)));
       return;
     };
 
-    const _controls = this.filterSelected$.value;
+    const _controls = this.filterNumberArr$.value;
 
     // remove filters
     for(let i = 0; i<_controls.length; i++) {
       const controlGroup: IBaxModelMaszynyNoweFilterLine = _controls[i];
      
       const filterAlreadyExists = filterList.find(f=>f.name == controlGroup['name']);
-      console.log(`group  ${i}: ${controlGroup['name']}, ${filterAlreadyExists}`);
 
       if(!filterAlreadyExists) {
         controlsToRemove.push(i);
       }
     }
 
-    controlsToRemove.forEach(f=>this.filterSelected$.removeAt(f));
+    controlsToRemove.forEach(f=>this.filterNumberArr$.removeAt(f));
 
     filterList.forEach(filter=>{
       const foundOnControls = (<IBaxModelMaszynyNoweFilterLine[]>_controls).find(f=>f.name == filter.name);
-      if(!foundOnControls) {this.filterSelected$.push(this.getFilterGroup$(filter))};
+      if(!foundOnControls) {this.filterNumberArr$.push(this.getFilterLineFormGroup$(filter))};
     });
     
     
   }
 
+
+  filterUpdateSearchArray(rForm: FormGroup, modelFieldNames:string[], value:string) {
+    const searchArr$: FormArray = <FormArray>rForm.get('search');
+    console.log(value);
+
+    
+    if(searchArr$.length>0) {
+
+      //
+      // updateSearch fields
+      //
+
+      if(!value) {
+        return;
+      }
+
+
+    } else {
+
+      if(!value) {
+        return;      
+      }
+
+      modelFieldNames.forEach(filed=>{
+        let searchFilterLine = <IBaxModelMaszynyNoweFilterLine> {
+          filterType: IBaxModelMaszynyNoweFilterTypeEnum.stringSearch,
+          name: filed,
+          searchPhrase: value
+        };
+
+        let searchFilterLineGroup = this.getFilterLineFormGroup$(searchFilterLine);
+        
+      })
+      
+    }
+  }
   
 
-
-
-
-  getFilterForm$(formBuilder: FormBuilder) {
-    let rForm = formBuilder.group({
-      stringFilter: formBuilder.array([]),
-      numberFilter: formBuilder.array([]),
-      checkboxesFilter: formBuilder.array([])
-    })
+  getFilterSearchFieldName():string {
+    return 'searchPhrase';
   }
 
-  getMaszynyNoweFilterGroups(): IBaxModelMaszynyNoweFilterGroup[] {
+  getFilterForm$() : FormGroup {
+    let rForm = this.fb.group({
+      searchArr: this.fb.array([]),
+      numberArr: this.fb.array([]),
+      checkboxArr: this.fb.array([])
+    });
+    return rForm;
+  }
+
+  getFilterNumberLineGroups(): IBaxModelMaszynyNoweFilterGroup[] {
     this.filterGroupsAvailable = [];
     let res: IBaxModelMaszynyNoweFilterGroup[] = [];
 
@@ -152,6 +199,7 @@ export class MaszynyNoweService {
 
     _filters.forEach(f=>{
       const filterLine = <IBaxModelMaszynyNoweFilterLine> {
+        filterType: f.filterType,
         label: f.label,
         max: f.max,
         maxFilter: f.maxFilter,
@@ -194,6 +242,7 @@ export class MaszynyNoweService {
           const foundInRes = res.find(f => f.name == prop);
           if (foundInRes == null) {
             const newFilterLine = <IBaxModelMaszynyNoweFilterLine>{
+              filterType: IBaxModelMaszynyNoweFilterTypeEnum.numberMoreLess,
               groupName: groups[prop],
               label: description[prop],
               max: propValue,
@@ -308,48 +357,127 @@ export class MaszynyNoweService {
     );
   }
   
-  private getFilterGroup$(filter?: IBaxModelMaszynyNoweFilterLine): FormGroup {
+  private getFilterLineFormGroup$(filter?: IBaxModelMaszynyNoweFilterLine): FormGroup {
     return this.fb.group({
+        checkboxValue: [filter.checkboxValue],
+        filterType: [filter.filterType],
         groupName: [filter.groupName],
-        name: [filter.name],
         label: [filter.label],
         min: [filter.min],
         max: [filter.max],
         minFilter: [filter.minFilter],
-        maxFilter: [filter.maxFilter]
+        maxFilter: [filter.maxFilter],
+        name: [filter.name],
+        searchPhrase: [filter.searchPhrase]
     });
   }
 
   initObservables(){
-    this.filterSelect$.valueChanges.pipe(
-      map((_filterList: IBaxModelMaszynyNoweFilterLine[])=> {
-        this.filterFilterGroupListUpdate(_filterList);
-        return _filterList;
-      }),
-      switchMap((_list: IBaxModelMaszynyNoweFilterLine[])=>{
-        console.log('sw filter lines...', this.filterSelected$.value);
-        this.filter(this.getModelList(), this.maszynyNoweList, this.filterSelected$.value);
-        console.log('then switchTo selected$ valueChange..');
+    
+    
+    // this.filterNumberSelect$.valueChanges.pipe(
+    //   map((_filterList: IBaxModelMaszynyNoweFilterLine[])=> {
+    //     this.filterLineConvertToGroup(_filterList);
+    //     return _filterList;
+    //   }),
+    //   switchMap((_list: IBaxModelMaszynyNoweFilterLine[])=>{
+    //     console.log('sw filter lines...', this.filterNumberArr$.value);
+    //     this.filter(this.getModelList(), this.maszynyNoweList, this.filterNumberArr$.value);
+    //     console.log('then switchTo selected$ valueChange..');
         
-        return this.filterSelected$.valueChanges.pipe(
-          tap(()=>this.isFilterLengthCount = false),
-        )
+    //     return this.filterNumberArr$.valueChanges.pipe(
+    //       tap(()=>this.isFilterLengthCount = false),
+    //     )
+    //   }),
+    //   debounceTime(750),
+    //   map((_filterChanged: IBaxModelMaszynyNoweFilterLine[])=>{
+    //     this.filter(this.getModelList(), this.maszynyNoweList, _filterChanged);
+    //     return _filterChanged;
+    //   }),
+    // )
+    // .subscribe(
+    //   (_data: any) => {
+    //   },
+    //   (err) => console.log('filterSelect$ error', err),
+    //   () => console.log('filterSelect$ finish..')
+    // )
+
+
+    this.filterNumberSelect$.valueChanges.pipe(
+      map((_filterLines: IBaxModelMaszynyNoweFilterLine[])=>{
+        this.filterLineConvertToGroup(_filterLines);
+        return _filterLines
       }),
-      debounceTime(750),
-      map((_filterChanged: IBaxModelMaszynyNoweFilterLine[])=>{
-        this.filter(this.getModelList(), this.maszynyNoweList, _filterChanged);
-        return _filterChanged;
-      }),
-      //tap(()=>this.isFilterLengthCount=true)
-    )
-    .subscribe(
-      (_data: any) => {
-      },
-      (err) => console.log('filterSelect$ error', err),
-      () => console.log('filterSelect$ finish..')
-    )
+    ).subscribe(
+      // (_data: any) => {
+      // console.log('filterNumberSelect', _data);
       
+      // },
+      // (err) => console.log('filterNumberSelect error', err),
+      // () => console.log('filterNumberSelect finish..')
+    )
+
+
+
+    this.filterGroup$.valueChanges.pipe(
+      map((modelfilter: IBaxModelFilter)=>{
+        return [...modelfilter.checkboxArr, ...modelfilter.numberArr, ...modelfilter.searchArr];
+      }),
+      debounceTime(750)
+    ).subscribe(
+      (_data: IBaxModelMaszynyNoweFilterLine[]) => {
+      this.filterNew(_data);
+      },
+      (err) => console.log('search$ error', err),
+      () => console.log('search$ finish..')
+    )
   }
+
+
+  filterNew(filters: IBaxModelMaszynyNoweFilterLine[]) {
+    let maszynyfiltered: IBaxModelMaszynaNowa[]=[];
+    this.maszynyNoweListAvailable.forEach(m=>{
+      if((this.checkIfFilterLineFits(m, filters)==true)){
+        maszynyfiltered.push(m);
+      }
+    });
+    this.maszynyNoweList = [...maszynyfiltered];
+  }
+
+
   
+  initFilterSearchGroups() {
+    //
+    // nazwaModelu
+    //
+    this.filterSearchArr$.push(this.getFilterLineFormGroup$(<IBaxModelMaszynyNoweFilterLine>{
+      filterType: IBaxModelMaszynyNoweFilterTypeEnum.stringSearch,
+      name: 'nazwaModelu'
+    }));
+  }
+
+  get modelSearchGroup$(): FormGroup {
+    // (<FormArray>this.filterSearchArr$).controls.forEach(search$=>{
+    //   if((<IBaxModelMaszynyNoweFilterLine>search$.value).name == 'nazwaModelu') {
+    //     return search$
+    //   }
+    //   })
+    //   return this.getFilterLineFormGroup$(<IBaxModelMaszynyNoweFilterLine>{
+    //     filterType: IBaxModelMaszynyNoweFilterTypeEnum.stringSearch,
+    //     name: 'nazwaModelu',
+    //   })
+
+    return <FormGroup>this.filterSearchArr$.controls[0];
+  }
+
+  
+
+  get filterNumberArr$(): FormArray {
+    return <FormArray>this.filterGroup$.get('numberArr');
+  }
+
+  get filterSearchArr$(): FormArray {
+    return <FormArray>this.filterGroup$.get('searchArr');
+  }
  
 }
