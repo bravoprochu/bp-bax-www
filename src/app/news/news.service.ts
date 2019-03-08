@@ -411,8 +411,30 @@ export class NewsService {
         title: 'Marzec - Filtry -20%'
       },
       youtubeUrl: null
+    },
+
+    {
+      creationDate: '2019-03-08',
+      id: 'dzienKobiet2019',
+      imgUrl: './assets/images/news/bax_dzien_kobiet_2019.png',
+      miniInfo: {
+        fill: '#FAD5E1',
+        imgUrl: './assets/images/news/bax_dzien_kobiet_2019.png',
+        pointer: '#EF5B84',
+        title: 'Dzień kobiet',
+        url: 'dzienKobiet2019',
+      },
+      text: `<p>Pozwolę sobie w imieniu męskiej 🤵 części firmy Bax-maszyny, złożyć Pani Prezes Agnieszce Bax, naszym wspaniałym firmowym Koleżankom, jak i wszystkim przedstawicielkom płci pięknej na caaaaałym świecie 🌍 najserdeczniejsze 🍷 życzenia w dniu ich święta ! 💐🥁💐<br><br>[bp]</p>`,
+      title: {
+        shortTitle: null,
+        subtitle: null,
+        subtitle2: null,
+        title: 'Dzień kobiet'
+      },
+      youtubeUrl: null
     }
 
+    
   ];
 
 }
