@@ -2,6 +2,7 @@ import { Directive, Renderer2, Host, OnInit, Input, ViewContainerRef, ElementRef
 import { BaxMarka } from 'src/app/oferta/enums/bax-marka-enum';
 import { environment } from 'src/environments/environment.prod';
 import { SvgCommonFunctionsService } from '../svg/svg-common-functions.service';
+import { CommonFunctionsService } from '../common-functions.service';
 
 
 
@@ -33,7 +34,7 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
   svgImage: SVGImageElement;
   svgImgBaxSign: SVGImageElement;
   svgPreloadBox: SVGRectElement;
-  svgPreloadImg: SVGImageElement;
+  svgPreloadPuff: SVGImageElement;
   svgTextTitle: SVGTextElement;
   svgTextSubtitle: SVGTextElement;
   width: number;
@@ -42,7 +43,8 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
   constructor(
     private renderer: Renderer2,
     private el: ElementRef,
-    public svgCf: SvgCommonFunctionsService
+    public svgCf: SvgCommonFunctionsService,
+    private cf: CommonFunctionsService
   ) { }
 
 
@@ -105,10 +107,9 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
     img.src = this.imgUrl;
     img.width = this.width;
     img.onerror = (ev) => {
-      this.svgPreloadImg.remove();
-      this.svgTextTitle.remove();
-      this.svgTextSubtitle.remove();
-
+      this.renderer.removeChild(this.svg, this.svgPreloadPuff);
+      this.renderer.removeChild(this.svg, this.svgTextTitle);
+      this.renderer.removeChild(this.svg, this.svgTextSubtitle);
 
       if (this.showInfo == true) {
         this.renderer.appendChild(this.svg, this.svgTextTitle);
@@ -121,43 +122,48 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
     }
     img.onload = (ev) => {
       setTimeout(() => {
+        this.renderer.removeChild(this.svg, this.svgImgBaxSign);
+        this.renderer.removeChild(this.svg, this.svgPreloadPuff);
+        this.renderer.removeChild(this.svg, this.svgPreloadBox);
 
-        // this.renderer.removeChild(this.svg, this.svgPreloadImg);
-        // this.renderer.removeChild(this.svg, this.svgPreloadBox);
-        // this.renderer.removeChild(this.svg, this.svgTextTitle);
-        // this.renderer.removeChild(this.svg, this.svgTextSubtitle);
-
-
-        this.renderer.destroyNode(this.svgPreloadImg);
-        this.renderer.destroyNode(this.svgPreloadBox);
-        this.renderer.destroyNode(this.svgTextTitle);
-        this.renderer.destroyNode(this.svgTextSubtitle);
-
+        this.renderer.removeChild(this.svg, this.svgTextTitle);
+        this.renderer.removeChild(this.svg, this.svgTextSubtitle);
 
         const _w = img.naturalWidth;
         const _h = img.naturalHeight;
         const _isPortrait: boolean = _w >= _h ? false : true;
 
-        if (_isPortrait) {
-          const ratio = _h / _w;
-          // this.renderer.setAttribute(this.svgImage, 'width', '1920');
-          // this.renderer.setAttribute(this.svgImage, 'height', (_w * (16 / 9)).toString());
-        } else {
-          const ratio = _w / _h;
-          this.renderer.setAttribute(this.svgImage, 'width', _w.toString());
-          this.renderer.setAttribute(this.svgImage, 'height', (_w * (16 / 9)).toString());
-        }
+        // if (_isPortrait) {
+        //   const ratio = _h / _w;
+        //   // this.renderer.setAttribute(this.svgImage, 'width', '1920');
+        //   // this.renderer.setAttribute(this.svgImage, 'height', (_w * (16 / 9)).toString());
+        // } else {
+        //   const ratio = _w / _h;
+        //   this.renderer.setAttribute(this.svgImage, 'width', _w.toString());
+        //   this.renderer.setAttribute(this.svgImage, 'height', (_w * (16 / 9)).toString());
+        // }
 
         this.renderer.setAttribute(this.svgImage, 'width', '1920');
         this.renderer.setAttribute(this.svgImage, 'height', '1080');
 
 
-        this.renderer.setAttribute(this.svgImage, 'href', this.imgUrl);
-        this.renderer.appendChild(this.svg, this.svgImage);
-        if (this.showInfo == true) {
-          this.renderer.appendChild(this.svg, this.svgTextTitle);
-          this.renderer.appendChild(this.svg, this.svgTextSubtitle);
-        }
+        // this.renderer.setAttribute(this.svgImage, 'href', this.imgUrl);
+        // this.renderer.appendChild(this.svg, this.svgImage);
+        
+        // if (this.showInfo == true) {
+        //   this.renderer.appendChild(this.svg, this.svgTextTitle);
+        //   this.renderer.appendChild(this.svg, this.svgTextSubtitle);
+        // }
+
+        let newImg = this.renderer.createElement('img');
+        this.renderer.setAttribute(newImg, 'width', '100%');
+        // this.renderer.setAttribute(newImg, 'height', _h.toString());
+        this.renderer.setAttribute(newImg, 'src', this.imgUrl);
+
+        this.renderer.removeChild(this.el.nativeElement, this.svg);
+        this.renderer.appendChild(this.el.nativeElement, newImg);
+        
+
 
         this.renderer.setStyle(this.el.nativeElement, 'height', _h.toString());
         this.renderer.setStyle(this.el.nativeElement, 'width', _w.toString());
@@ -193,11 +199,11 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
 
 
 
-    this.svgPreloadBox = this.svgCf.generateRect(this.renderer, _widthStr, _heightStr, `url(#${this.linearGradientId})`)
+    this.svgPreloadBox = this.svgCf.generateRect(this.renderer, _widthStr, _heightStr, `url(${window.location.href}#${this.linearGradientId}`)
     this.renderer.appendChild(this.svg, this.svgPreloadBox);
 
-    this.svgPreloadImg = this.svgCf.generateImage(this.renderer, './assets/svg/preloaders/puff.svg', _widthStr, _heightStr);
-    this.renderer.appendChild(this.svg, this.svgPreloadImg);
+    this.svgPreloadPuff = this.svgCf.generateImage(this.renderer, './assets/svg/preloaders/puff.svg', _widthStr, _heightStr);
+    this.renderer.appendChild(this.svg, this.svgPreloadPuff);
 
     this.svgImgBaxSign = this.svgCf.generateImage(this.renderer, './assets/svg/logotypy/logo_bax_signOnly.svg', _widthStr, _heightStr, "0.25");
     this.renderer.appendChild(this.svg, this.svgImgBaxSign);

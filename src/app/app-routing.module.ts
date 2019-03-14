@@ -20,9 +20,9 @@ const routes: Routes = [
     data: {animation: 'oferta'}
   },
   {
-    path: 'kontakt', 
+    path: 'contact', 
     loadChildren: './contact/contact.module#ContactModule',
-    data: {animation: 'kontakt'}
+    data: {animation: 'contact'}
   },
   {
     path: '',

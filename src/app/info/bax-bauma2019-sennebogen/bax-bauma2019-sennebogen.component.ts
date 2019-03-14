@@ -10,7 +10,7 @@ import { CommonFunctionsService } from 'src/app/shared/common-functions.service'
 export class BaxBauma2019SennebogenComponent implements OnInit {
   isReady: boolean;
   isBaumaImgReady: boolean;
-  baumaUrl: string = './assets/info/SENNEBOGEN_green_heart_of_bauma__1__resize.png';
+  baumaUrl: string = './assets/info/SENNEBOGEN_green_heart_of_bauma.png';
   imgSrcUrl: string = './assets/info/bax_bauma_2019_sennebogen.png';
   prelaoderUrl: string = './assets/svg/preloaders/sennebogen-preloader.svg';
 
@@ -32,19 +32,18 @@ export class BaxBauma2019SennebogenComponent implements OnInit {
   }
 
   initImg(){
-    let img = new Image();
-    img.src = this.imgSrcUrl;
-    ///img.src = './assets/info/bax_bauma_2019_sennebogen.png';
-    img.onload = (ev) => {
-      this.isReady=true;
-      console.log(this.isReady);
-    }
+    // let img = new Image();
+    // img.src = this.imgSrcUrl;
+    // ///img.src = './assets/info/bax_bauma_2019_sennebogen.png';
+    // img.onload = (ev) => {
+    //   this.isReady=true;
+    // }
 
-    let baumaImg = new Image();
-    baumaImg.src = this.baumaUrl;
-    baumaImg.onload = (ev)=>{
-      this.isBaumaImgReady = true;
-    }
+    // let baumaImg = new Image();
+    // //baumaImg.src = this.baumaUrl;
+    // baumaImg.onload = (ev)=>{
+    //   this.isBaumaImgReady = true;
+    // }
     
   }
 

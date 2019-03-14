@@ -3,6 +3,7 @@ import { PantoneToHexService } from 'src/app/pantoneToHex/pantone-to-hex.service
 import { IPantoneToHex } from 'src/app/pantoneToHex/interfaces/i-pantone-to-hex';
 import { SvgCommonFunctionsService } from 'src/app/shared/svg/svg-common-functions.service';
 import { SVGElementProp } from 'src/app/shared/svg/classes/svg-element-prop';
+import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
 
 @Component({
   selector: 'app-contact-list',
@@ -15,7 +16,9 @@ export class ContactListComponent implements OnInit {
   constructor(
     private pantoneService: PantoneToHexService,
     private renderer: Renderer2,
-    private svgService: SvgCommonFunctionsService
+    private svgService: SvgCommonFunctionsService,
+    public cf: CommonFunctionsService
+    
   ) { }
 
 
@@ -31,9 +34,6 @@ export class ContactListComponent implements OnInit {
 
   initSVG(){
     const svgImageProp = new SVGElementProp();
-    
-
-
   }
 
 }

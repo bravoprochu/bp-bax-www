@@ -1,23 +1,16 @@
-.svg-text {
-    font-size: 6em;
+.dzial-big-mobile {
+    text-anchor: middle;
+    stroke-miterlimit: 10;
+    fill: #0655a5;
+    stroke-width: 3;
+    font-size: 50px;
+    letter-spacing: 0.02em;
 }
 
-.scale{
-
+.info-text-mobile {
+    text-anchor: middle;
+    font-size: 33px;
+    fill: #0054a6;  
 }
 
-.grow { transition: all .2s cubic-bezier(0.075, 0.82, 0.165, 1) }
-.grow:hover { 
-    transform: scale(1.1);
-    transform: translate(50 50);
- }
 
-.scale-up {
-    transform: scale3d(1.2);
-    transition: all 2s
-}
-
-.scale-down {
-    transform: scale3d(1);
-
-}
