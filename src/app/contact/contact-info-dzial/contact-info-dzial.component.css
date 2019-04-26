@@ -1,0 +1,47 @@
+@media (orientation: landscape) {
+    .contact-container{
+        font-size: calc(8px + 1vw);
+    }
+}
+
+@media (orientation: portrait) {
+    .contact-container{
+        font-size: calc(8px + 1vh);
+    }
+}
+
+.contact-container {
+    --pad: 0.25em;
+    padding: 1rem;
+    background-image: linear-gradient(to top, rgba(0,84,167,1), rgba(0,84,167,1));
+    color: white;
+
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+
+
+h1 {
+    color: azure;
+    margin-bottom: calc(var(--pad)*2.5);
+    position: relative;
+    text-decoration: underline;
+    text-decoration-skip: var(--pad);
+}
+
+
+
+
+.bax-contact-tel {
+    padding-bottom: var(--pad);
+
+}
+
+.bax-contact-email {
+    padding-top: var(--pad);
+    font-size: 0.75em;
+}

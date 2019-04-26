@@ -1,0 +1,10 @@
+<div fxFill fxLayout="row" fxLayout.xs="row" class="contact-container" fxLayoutAlign="center center">
+  <img [attr.src]="dzial.iconUrl" [attr.alt]="dzial.subtitle" width="100%" fxFlex="35" fxFlex.xs="25">
+  <div fxFlex>
+      <h1>{{dzial.title | uppercase}}</h1>
+      <div *ngFor="let tel of dzial.telephones" class="bax-contact-tel">
+          <small>{{tel.prefix}}:</small>&nbsp;<a href="tel:{{tel.number}}">{{tel.number}}</a></div>
+      <div *ngFor="let email of dzial.emails" class="bax-contact-email"><small>email:</small>&nbsp;<a
+              href="mailto:{{email}}">{{email}}</a></div>
+  </div>
+</div>

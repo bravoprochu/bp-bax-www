@@ -1,3 +1,23 @@
+
+
+.main-container {
+    min-height: 100vh;
+    padding: 1em;
+    font-size: calc(8px + 1vw);
+    margin: 0;
+    line-height: 2em;
+}
+
+.main-graphic {
+    width: 100%;
+    max-width: 1280px;
+
+}
+
+.text-content {
+    
+}
+
 .article-navigation {
     position: fixed;
     display: inline-flex;
@@ -13,52 +33,37 @@
 }
 
 
-.yt {
-    position: relative;
+.yt, .yt-sm {
+    filter: drop-shadow(0 0 0.75rem black);
     padding: 25px;
+}
+
+
+.yt {
     width: 560px;
     height: 316px;
-    filter: drop-shadow(0 0 0.75rem black);
 }
 
 .yt-sm {
-    padding: 25px;
-    height: 100%;
-    filter: drop-shadow(0 0 0.75rem black);
-}
-
-.bg {
-    /* background-image: url('http://bdotp.pl/textury/mini-02.svg');
-    background-size: cover; */
-
-    /* background-repeat: repeat-y; */
-    display: block;
-    margin: 0;
-    padding: 0;
-    min-height: 98vh;
     height: 100%;
 }
 
 
-.content-text {
-    padding: 15px;
 
-    /* line-height: 1.2em;
-    font-size: 1.4em; */
-    /* font-stretch: extra-expanded; */
-}
-.content-text-big {
-    max-height: 50vh; 
-    overflow-y: auto
+h1 {
+    font-size: 2em;
+    padding: 1em;
 }
 
-.header-title-container {
-    padding: 25px;
-}
-.header-title {
- font-size: 2em;   
-}
-.header-subtitle {
+h2 {
     font-size: 1.5em;
-    color: red;
+    padding: 1em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+ul {
+    padding: 0.5em 3em;
 }

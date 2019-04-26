@@ -1,72 +1,26 @@
 import { animation, trigger, transition, animate, style, query, animateChild, group, useAnimation, sequence, stagger, state } from "@angular/animations";
-import { fadeOutStaggerAnimation } from './fade-in-stagger';
-import { BP_ANIM_OPACITY_TRANSITION_STYLE } from './bp-anim-init-style';
-import { BP_ANIM_BRICK_LIST } from './bp-anim-brick-list';
+import { BP_ANIM_ROUTE_TRANSITION } from './bp_anim_route_transition';
 //export const query = (s, a, o = {optional: true})=> q(s,a,o);
 
 
 export const routeAnimation =
   trigger('routeAnimations', [
-    transition('newsList => article', [
-      query('*', [
-        BP_ANIM_OPACITY_TRANSITION_STYLE(),
-      ]),
-      sequence([
-        animate('350ms', BP_ANIM_OPACITY_TRANSITION_STYLE(1, '0')),
-        //query('@*', animateChild())
-      ])
-      //query(':leave', animateChild())
-    ]),
-
-    // transition('article=>newsList', [
-    //     query(':leave', [
-    //       animateChild({delay: '1s'}),
-    //       //animate(1400, BP_ANIM_OPACITY_TRANSITION_STYLE(0, "100%"))
-    //     ]),
-    //     query(':enter', [
-    //       BP_ANIM_OPACITY_TRANSITION_STYLE(0.5, "-100%"),
-    //       sequence([
-    //         //animate(1000, BP_ANIM_OPACITY_TRANSITION_STYLE(1,"0")),
-    //         animateChild()
-    //       ])
-    //     ]),
-    // ])
-
-
-
-    // transition('*=>*', [
-    //   query(':enter, :leave', [
-    //     style({ position: 'fixed', opacity:0}),
-    //     //query('*', style({opacity: 0}))
-    //   ], { optional: true }),
-      
+    // transition('newsList => article', [
+    //   query('*', [
+    //     BP_ANIM_OPACITY_TRANSITION_STYLE(),
+    //   ]),
     //   sequence([
-    //     query(':leave', [
-    //       style({ opacity: 1 }),
-    //       query('section', stagger(-150, [
-    //         style({ transform: 'translate3d(0,0,0)' }),
-    //         animate('0.5s ease-in', style({ transform: 'translate3d(100%, 0, 0)', opacity: 0 }))
-    //       ]), { optional: true }
-    //       ),
-    //       animate('100ms', style({transform: 'translate3d(100%, 0, 0'}))
-    //     ], { optional: true }),
-
-
-    //     query(':enter', [
-    //       style({transform: 'translate3d(-100%, 0, 0)'}),
-    //       animate('200ms', style({opacity:1, transform: 'translate3d(0, 0, 0)'})),
-    //       // query('section', stagger(250, [
-    //       //   style({ transform: 'translate3d(-100%, 0, 0)', opacity: 0 }),
-    //       //   animate('0.25s ease-out', style({ transform: 'translate3d(0, 0, 0)', opacity: 1 }))
-    //       // ]), { optional: true })
-    //       animateChild()
-    //     ]
-    //       , { optional: true })
-
-    //     //style({transform: 'translate3d(-100%, 0, 0)'}),
-    //     // animate(200, style({transform: 'translate3d(-100%, 0, 0)', opacity:1})),
+    //     animate('350ms', BP_ANIM_OPACITY_TRANSITION_STYLE(1, '0')),
+    //     //query('@*', animateChild())
     //   ])
-    // ])
+    //   //query(':leave', animateChild())
+    // ]),
+    BP_ANIM_ROUTE_TRANSITION('* => contact'),
+    BP_ANIM_ROUTE_TRANSITION('* => maszynyNowe'),
+     
+    BP_ANIM_ROUTE_TRANSITION('* => newsList'),
+    BP_ANIM_ROUTE_TRANSITION('* => info'),
+    
   ]);
     // transition('oferta <=> *', [
     //   style({ position: 'relative' }),

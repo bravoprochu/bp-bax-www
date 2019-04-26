@@ -1,0 +1,9 @@
+<div fxLayout="row" fxLayoutAlign="space-around center" class="menu-container">
+  <img class="menu-logo" [attr.src]="baxLogo" routerLink="/news" />
+  <div fxFlex fxLayout="row" fxLayoutAlign="space-around stretch">
+    <div *ngFor="let m of menu" class="menu-item-container" [routerLink]="m.routerLink"
+      routerLinkActive="menu-item-container-active">
+      <div>{{m.name}}</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+.drawer-size {
+    /* max-height: calc(100vh - var(--navHeight)); */
+    height: 100%;
+}
+
+.main-content-height {
+    /* min-height: calc(100vh - var(--navHeight)); */
+    min-height: 100vh;
+}

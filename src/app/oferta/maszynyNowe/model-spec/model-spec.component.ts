@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { bpActiveRouteChange$ } from 'src/app/rxConst/bpActRouteChange';
 import { IBaxModelMaszynaNowa } from '../../interfaces/i-bax-model-maszyna-nowa';
-import { OfertaService } from '../../oferta.service';
-import { MaszynyNoweService } from '../maszyny-nowe.service';
+import { MaszynyNoweService } from '../maszynyNoweServices/maszyny-nowe.service';
+
 
 
 @Component({

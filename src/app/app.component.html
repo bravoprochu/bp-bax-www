@@ -1,4 +1,35 @@
-<div [@routeAnimations]="prepareRoute(outlet)">
-    <router-outlet #outlet="outlet"></router-outlet>
+<div @enterLeaveFromSide *ngIf="isScrollShown" class="scroll-to-top" (click)="scrollToTop()"></div>
+
+<div *ngIf="isInProgress" @animWidth>
+        <div class="is-in-progress">
+                <div class="lds-roller">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div @animFromTop *ngIf="isInProgress">
+                        <img class="is-in-progress-logo" src="../assets/svg/logotypy/logo_bax_signOnly_white.svg">                    
+                    </div>
+        </div>
 </div>
 
+
+
+
+<section class="app-container">
+    <nav>
+        <app-menu *ngIf="!isSmall" class="nav-vertical"></app-menu>
+        <app-menu-horizontal *ngIf="isSmall" class="nav-horizontal"></app-menu-horizontal>
+    </nav>
+    <main #mainContent cdkScrollable [@routeAnimations]="prepareRoute(outlet)"
+        [ngClass]="isSmall? 'main-vertical': 'main-horizontal'">
+        <div class="router-outlet-container">
+            <router-outlet #outlet="outlet"></router-outlet>
+        </div>
+    </main>
+</section>

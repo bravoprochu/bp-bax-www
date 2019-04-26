@@ -1,36 +1,30 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MaszynyNoweComponent } from './maszyny-nowe/maszyny-nowe.component';
-import { ModelListComponent } from './model-list/model-list.component';
-import { ModelSpecComponent } from './model-spec/model-spec.component';
-import { ModelMaszynyComponent } from './model-maszyny/model-maszyny.component';
+import { ModelMaszynyFullComponent } from './model-maszyny-full/model-maszyny-full.component';
+import { MaszynyNoweListResolve } from './guards/maszyny-nowe-list.resolve';
+import { MaszynyNoweReslove } from './guards/maszyny-nowe.resolve';
 
 const routes: Routes = [
   {
+    path: ':id',
+    component: ModelMaszynyFullComponent,
+    data: {
+      animation: 'maszynyNowe'
+    },
+    resolve: {
+      data: MaszynyNoweReslove
+    }
+  },
+  {
     path: '',
-    redirectTo: 'nowe/model',
-    pathMatch: 'full'
-  },
-  {
-    path: 'nowe',
     component: MaszynyNoweComponent,
-    children: [
-      {
-        path: 'model/:id',
-        component: ModelMaszynyComponent,
-    
-      },
-      {
-        path: 'model',
-        component: ModelListComponent,
-      },
-    ]
+    data: {animation: 'maszynyNoweList'},
+    resolve: {
+      data: MaszynyNoweListResolve
+    }
   },
-  {
-    path: '**',
-    redirectTo: 'model',
-    pathMatch: 'full'
-  }
+
 ];
 
 @NgModule({

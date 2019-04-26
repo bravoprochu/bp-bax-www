@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { initDomAdapter } from '@angular/platform-browser/src/browser';
 import { takeUntil, distinctUntilChanged, throttleTime, debounceTime } from 'rxjs/operators';
 import { IBaxModelMaszynaNowa } from '../../interfaces/i-bax-model-maszyna-nowa';
 import { IBaxModelSpecGroup } from '../../interfaces/i-bax-model-spec-group';
-import { OfertaService } from '../../oferta.service';
-import { MaszynyNoweService } from '../maszyny-nowe.service';
+import { MaszynyNoweService } from '../maszynyNoweServices/maszyny-nowe.service';
+
+
 
 @Component({
   selector: 'app-model-maszyny-spec',

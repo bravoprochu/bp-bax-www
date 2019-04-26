@@ -1,0 +1,46 @@
+<svg id="6f37edcd-5ada-42b9-9b56-18006099d908" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <title>bax_icon_ksiegowosc</title>
+  <rect x="183.27" y="142.43" width="163.3" height="240.36" rx="11.01" ry="11.01" fill="#fff" stroke="#6d6e71" stroke-miterlimit="10" stroke-width="4.33"/>
+  <line x1="207.58" y1="192.43" x2="317.67" y2="192.43" fill="none" stroke="#58595b" stroke-miterlimit="10" stroke-width="2.75"/>
+  <line x1="208.04" y1="212.62" x2="318.13" y2="212.62" fill="none" stroke="#58595b" stroke-miterlimit="10" stroke-width="2.75"/>
+  <line x1="208.04" y1="232.8" x2="318.13" y2="232.8" fill="none" stroke="#58595b" stroke-miterlimit="10" stroke-width="2.75"/>
+  <g>
+    <line x1="256.8" y1="318.96" x2="316.79" y2="318.96" fill="none" stroke="#808285" stroke-miterlimit="10" stroke-width="1.78"/>
+    <rect x="257.05" y="300" width="9" height="18.96" fill="none" stroke="#808285" stroke-miterlimit="10" stroke-width="1.78"/>
+    <rect x="270.05" y="289.92" width="9" height="28.8" fill="none" stroke="#808285" stroke-miterlimit="10" stroke-width="2.19"/>
+    <rect x="283.05" y="294.23" width="9" height="24.58" fill="none" stroke="#808285" stroke-miterlimit="10" stroke-width="2.02"/>
+    <rect x="296.04" y="284.9" width="9" height="33.71" fill="none" stroke="#808285" stroke-miterlimit="10" stroke-width="2.37"/>
+    <rect x="309.04" y="277.02" width="9" height="41.44" fill="none" stroke="#808285" stroke-miterlimit="10" stroke-width="2.63"/>
+  </g>
+  <line x1="208.04" y1="252.98" x2="318.13" y2="252.98" fill="none" stroke="#58595b" stroke-miterlimit="10" stroke-width="2.75"/>
+  <g>
+    <rect x="126.34" y="262.91" width="112.94" height="146.88" rx="8.3" ry="8.3" fill="#fff"/>
+    <path d="M231,265.62a5.6,5.6,0,0,1,5.6,5.6V401.49a5.6,5.6,0,0,1-5.6,5.6H134.64a5.6,5.6,0,0,1-5.59-5.6V271.22a5.6,5.6,0,0,1,5.59-5.6H231m0-5.41H134.64a11,11,0,0,0-11,11V401.49a11,11,0,0,0,11,11H231a11,11,0,0,0,11-11V271.22a11,11,0,0,0-11-11Z" fill="#808285"/>
+  </g>
+  <rect x="142.44" y="280.96" width="80.73" height="22.02" fill="#808285"/>
+  <g>
+    <g>
+      <ellipse cx="158.96" cy="332.68" rx="9.17" ry="9.63" fill="#808285"/>
+      <ellipse cx="182.81" cy="332.68" rx="9.17" ry="9.63" fill="#808285"/>
+      <ellipse cx="206.66" cy="332.68" rx="9.17" ry="9.63" fill="#808285"/>
+    </g>
+    <g>
+      <ellipse cx="159.42" cy="357.57" rx="9.17" ry="9.63" fill="#808285"/>
+      <ellipse cx="183.27" cy="357.57" rx="9.17" ry="9.63" fill="#808285"/>
+      <ellipse cx="207.12" cy="357.57" rx="9.17" ry="9.63" fill="#808285"/>
+    </g>
+    <g>
+      <ellipse cx="159.87" cy="382.45" rx="9.17" ry="9.63" fill="#808285"/>
+      <ellipse cx="183.73" cy="382.45" rx="9.17" ry="9.63" fill="#808285"/>
+      <ellipse cx="207.58" cy="382.45" rx="9.17" ry="9.63" fill="#808285"/>
+    </g>
+  </g>
+  <line x1="261.71" y1="336.47" x2="300.24" y2="336.47" fill="none" stroke="#6d6e71" stroke-miterlimit="10" stroke-width="2.75"/>
+  <line x1="262.17" y1="348.4" x2="300.7" y2="348.4" fill="none" stroke="#6d6e71" stroke-miterlimit="10" stroke-width="2.75"/>
+  <circle cx="347.03" cy="216.35" r="29.34" fill="#fff" stroke="#808285" stroke-miterlimit="10" stroke-width="4.33"/>
+  <text transform="translate(334.46 233.87)" font-size="48.54" fill="#939598" font-family="RobotoCondensed-Regular, Roboto Condensed">S</text>
+  <g>
+    <line x1="344.78" y1="194.33" x2="344.78" y2="238.37" fill="none" stroke="#808285" stroke-miterlimit="10" stroke-width="1.05"/>
+    <line x1="349.28" y1="194.33" x2="349.28" y2="238.37" fill="none" stroke="#808285" stroke-miterlimit="10" stroke-width="1.05"/>
+  </g>
+</svg>

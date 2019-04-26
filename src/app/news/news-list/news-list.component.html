@@ -1,6 +1,6 @@
-<app-header></app-header>
-<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" @brickList>
-    <div (detectIntersection)="detect($event, article)" [fill]="article.miniInfo.fill"  *ngFor="let article of news"  fxFlex="0 1 calc(50%-15px)" fxFlex.xs="100">
-        <app-news-article-mini  *ngIf="article.isIntersected" [miniInfo]="article.miniInfo"></app-news-article-mini>
+<div gdColumns="1fr 1fr" gdColumns.xs="1fr" gdGap="0.25em" @brickList >
+        <app-header gdColumn="1 / span 2" gdColumn.xs="1" ></app-header>
+    <div (detectIntersection)="detect($event, article)" [fill]="article.fill"  *ngFor="let article of news" >
+        <app-news-article-mini gdColumn="1" gdColumn.xs="1/ span 2"  *ngIf="article.isIntersected" [miniInfo]="article"></app-news-article-mini>
     </div>
 </div>

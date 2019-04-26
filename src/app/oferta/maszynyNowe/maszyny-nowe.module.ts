@@ -9,7 +9,9 @@ import { ModelMaszynyFirstComponent } from './model-maszyny-first/model-maszyny-
 import { ModelMaszynySpecComponent } from './model-maszyny-spec/model-maszyny-spec.component';
 import { ModelMaszynySpecLineComponent } from './model-maszyny-spec-line/model-maszyny-spec-line.component';
 import { ModelSpecComponent } from './model-spec/model-spec.component';
-import { MaszynyNoweService } from './maszyny-nowe.service';
+import { ModelMaszynyFullComponent } from './model-maszyny-full/model-maszyny-full.component';
+import { MaszynyNoweServicesModule } from './maszynyNoweServices/maszyny-nowe-services.module';
+
 
 @NgModule({
   declarations: [
@@ -20,14 +22,16 @@ import { MaszynyNoweService } from './maszyny-nowe.service';
     ModelMaszynySpecComponent,
     ModelMaszynySpecLineComponent,
     MaszynyNoweComponent,
+    ModelMaszynyFullComponent,
   ],
   imports: [
     CommonModule,
+    SharedModule,
+    MaszynyNoweServicesModule,
     MaszynyNoweRoutingModule,
-    SharedModule
   ],
-  providers:[
-    MaszynyNoweService
-  ]
+  exports: [
+    // SharedModule
+  ],
 })
 export class MaszynyNoweModule {}

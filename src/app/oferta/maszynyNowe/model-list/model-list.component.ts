@@ -3,10 +3,9 @@ import { BP_ANIM_BRICK_LIST } from 'src/app/animations/bp-anim-brick-list';
 import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
 import * as Hammer from 'hammerjs';
 import { IBaxModelMaszynaNowa } from '../../interfaces/i-bax-model-maszyna-nowa';
-import { OfertaService } from '../../oferta.service';
-import { MaszynyNoweService } from '../maszyny-nowe.service';
 import { bp_anim_filter } from 'src/app/animations/bp_anim_filter';
 import { BP_ANIM_GROUP_APPEAR_ONLY } from 'src/app/animations/bp_anim_group_appear_only';
+import { MaszynyNoweService } from '../maszynyNoweServices/maszyny-nowe.service';
 
 
 @Component({
@@ -25,23 +24,16 @@ export class ModelListComponent implements OnInit {
   isAwers: boolean = true;
   modelList: IBaxModelMaszynaNowa[] = [];
   modelOnScreenId: number;
-  arr: number[]= [];
+
   
   
   constructor(
     public mnSrv: MaszynyNoweService,
-    public cf: CommonFunctionsService
+    public cf: CommonFunctionsService,
   ) { }
 
   ngOnInit() {
-  // this.modelList = this.mnSrv.getModelList();
-    // this.initHammer();
 
-    const arrLength = 50;
-    for(let n=0; n <arrLength; n++)
-    {
-      this.arr.push(n);
-    }
   }
 
   initHammer() {

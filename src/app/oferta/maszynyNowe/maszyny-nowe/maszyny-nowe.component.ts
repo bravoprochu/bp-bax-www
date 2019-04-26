@@ -6,8 +6,10 @@ import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { Subject, of } from 'rxjs';
 import { bp_anim_pulseText } from 'src/app/animations/bp_anim_pulse-text';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MaszynyNoweService } from '../maszyny-nowe.service';
 import { takeUntil, map } from 'rxjs/operators';
+import { MediaChange, MediaObserver } from '@angular/flex-layout';
+import { ActivatedRoute } from '@angular/router';
+import { MaszynyNoweService } from '../maszynyNoweServices/maszyny-nowe.service';
 
 @Component({
   selector: 'app-maszyny-nowe',
@@ -22,12 +24,9 @@ export class MaszynyNoweComponent implements OnInit {
   colorOdd: string;
   filterData: IBaxModelMaszynyNoweFilterLine[] = [];
   filterForm$: FormGroup;
-  searchPhrase$: FormControl= new FormControl('whaaat ?');
-
-
-
-    
   isLengthCount: boolean = true;
+  isSmall:boolean;
+  mqAlias: string;
   rFiltersList$: FormArray;
   
   ngOnDestroy(): void {
@@ -45,31 +44,50 @@ export class MaszynyNoweComponent implements OnInit {
     public mnSrv: MaszynyNoweService,
     private cf: CommonFunctionsService,
     private pantoSrv: PantoneToHexService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private mediaObserver: MediaObserver,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
+
+    const _data = this.activatedRoute.snapshot.data['data'];
+    this.mnSrv.maszynyNoweListAvailable = _data;
+    this.mnSrv.initData();
+
     this.rFiltersList$ = this.fb.array([]);
     const colorPalete = this.pantoSrv.getNextPaletteColors("283", 2, 1);
     const opacity = 0.25;
     this.colorEven = this.pantoSrv.colorToRGBA(colorPalete[0], opacity);
     this.colorOdd = this.pantoSrv.colorToRGBA(colorPalete[1], opacity);
+
+    this.mediaObserver.media$.pipe(
+      takeUntil(this.isDestroyed$),
+    )
+    .subscribe(
+      (_data: MediaChange) => {
+        this.isSmall = (_data.mqAlias == 'xs' || _data.mqAlias == 'sm') ? true : false;
+        this.mqAlias = _data.mqAlias;
+      },
+      (err) => console.log(' error', err)
+    )
   }
 
   filterClear() { 
-    this.mnSrv.clearFilterGroup$();
+    this.mnSrv.clearFilterGroup();
   }
 
   drawerMode(): string {
-    return (this.cf.isViewXs() || this.cf.isViewSm()) ? 'over' : 'side';
+
+    return this.isSmall ? 'over' : 'side';
   }
   
   drawerWidth(): number {
-    if(this.cf.isViewXs()) {return 90;}
-    if(this.cf.isViewSm()) {return 70;}
-    if(this.cf.isViewMd()) {return 35;}
-    if(this.cf.isViewLg()) {return 25;}
-    if(this.cf.isViewXl()) {return 20;}
+    if(this.mqAlias == 'xs') {return 90;}
+    if(this.mqAlias == 'sm') {return 70;}
+    if(this.mqAlias == 'md') {return 35;}
+    if(this.mqAlias == 'lg') {return 25;}
+    if(this.mqAlias == 'xl') {return 20;}
   }
 
   modelSpecCardInfoShow() {
@@ -78,6 +96,14 @@ export class MaszynyNoweComponent implements OnInit {
 
   get filterGroup$(): FormGroup {
     return <FormGroup>this.mnSrv.filterGroup$;
+  }
+
+  get isSennebogen$():FormControl {
+    return <FormControl>this.mnSrv.isSennebogenFilter$;
+  }
+
+  get isYanmar$():FormControl {
+    return <FormControl>this.mnSrv.isYanmarFilter$;
   }
 
   get modelSearch$(): FormGroup {

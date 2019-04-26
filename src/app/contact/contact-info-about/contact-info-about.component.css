@@ -1,0 +1,21 @@
+.o-nas-container {
+    position: relative;
+    background-image: linear-gradient(to top, rgba(255,255,255,1), rgba(224,219,227,0.8));
+}
+
+.o-nas {
+    color: var(--baxColor);
+    line-height: 1.5em;
+    font-size: 1.2em;
+    padding: 1em;
+    margin-top: -5em;
+}
+
+
+.o-nas-container > img {
+    padding-top: 1em;
+}
+
+.o-nas > p::first-letter {
+        font-size: 150%;
+}

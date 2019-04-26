@@ -2,6 +2,7 @@ import { IBaxModelMaszynyNoweFilterTypeEnum } from '../enums/i-bax-model-maszyny
 
 export interface IBaxModelMaszynyNoweFilterLine {
     checkboxValue: boolean;
+    checkboxFieldName: string;
     filterType: IBaxModelMaszynyNoweFilterTypeEnum;
     groupName: string;
     label: string;

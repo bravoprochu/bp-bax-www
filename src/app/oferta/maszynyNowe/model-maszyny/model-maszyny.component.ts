@@ -2,14 +2,11 @@ import { Component, OnInit, Input, OnChanges, SimpleChange, SimpleChanges, OnDes
 import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
 import { BP_ANIM_GROUP_APPEAR_ONLY } from 'src/app/animations/bp_anim_group_appear_only';
 import { Subject } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { SvgCommonFunctionsService } from 'src/app/shared/svg/svg-common-functions.service';
 import { IBaxModelMaszynaNowa } from '../../interfaces/i-bax-model-maszyna-nowa';
-import { BaxMarka } from '../../enums/bax-marka-enum';
 import { takeUntil } from 'rxjs/operators';
-import { MaszynyNoweService } from '../maszyny-nowe.service';
 import { bp_anim_appearUpDown } from 'src/app/animations/bp_anim_appear-up-down';
+import { MaszynyNoweService } from '../maszynyNoweServices/maszyny-nowe.service';
 
 
 @Component({
@@ -52,7 +49,6 @@ export class ModelMaszynyComponent implements OnInit, OnChanges, OnDestroy {
   constructor(
     public cf: CommonFunctionsService,
     private svgCf: SvgCommonFunctionsService,
-    private actRoute: ActivatedRoute,
     public mnSrv: MaszynyNoweService
   ) {  }
 
@@ -105,19 +101,6 @@ export class ModelMaszynyComponent implements OnInit, OnChanges, OnDestroy {
 
   onClick() {
     this.isRevers = !this.isRevers;
-    // if(this.cf.isViewXs()){
-    //   this.isRevers = !this.isRevers;
-    // }
-  }
-
-  onOver() {
-    if (this.cf.isViewXs()) { return; }
-    this.isRevers = true;
-  }
-
-  onLeave() {
-    if (this.cf.isViewXs()) { return; }
-    this.isRevers = false;
   }
 
 }

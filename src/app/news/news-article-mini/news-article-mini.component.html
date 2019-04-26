@@ -3,14 +3,12 @@
     <circle cx="50%" cy="50%" r="1" fill="red"></circle>
     <rect x="0" y="0" width="1920" height="1080" class="rect-fill" [style.fill]="miniInfo.fill"></rect>
 
-
     <svg *ngIf="miniInfo.invert" #titleText x="480" y="340" width="960" height="400">
         <g>
             <rect class="title-box-border" x="0" y="0" width="960" height="400" [ngStyle]="miniInfo.invert? {fill: miniInfo.fill, fillOpacity: 0.45}: {}"></rect>
             <title>{{miniInfo.title}}</title>
         </g>
     </svg>
-
 
     <svg #followMouse [attr.x]="followMousePos.x" width="550" height="550" viewBox="0 0 200 200" [attr.y]="followMousePos.y">
         <g [@scaleOriginOverLeave]="{value: isMouseOver? 'over' : 'leave', params: {x: 100, y: 100}}">

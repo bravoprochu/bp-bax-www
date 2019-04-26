@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
+import { MediaObserver, MediaChange } from '@angular/flex-layout';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs/internal/Subject';
 
 @Component({
   selector: 'app-bax-bauma2019-sennebogen',
@@ -10,6 +13,7 @@ import { CommonFunctionsService } from 'src/app/shared/common-functions.service'
 export class BaxBauma2019SennebogenComponent implements OnInit {
   isReady: boolean;
   isBaumaImgReady: boolean;
+  isSmall: boolean;
   baumaUrl: string = './assets/info/SENNEBOGEN_green_heart_of_bauma.png';
   imgSrcUrl: string = './assets/info/bax_bauma_2019_sennebogen.png';
   prelaoderUrl: string = './assets/svg/preloaders/sennebogen-preloader.svg';
@@ -18,33 +22,36 @@ export class BaxBauma2019SennebogenComponent implements OnInit {
   svgEN: string = './assets/info/bax-bauma2019-sennebogen-voucher-info-EN.svg';
   svgDE: string = './assets/info/bax-bauma2019-sennebogen-voucher-info-DE.svg';
   
+  ngOnDestroy(): void {
+  this.isDestroyed$.next(true);
+  this.isDestroyed$.complete();
+  this.isDestroyed$.unsubscribe();
+  }
+  
+  
+  isDestroyed$: Subject<boolean> = new Subject();
   
   // imgSrc: any;
   
   constructor(
     private sanitizer: DomSanitizer,
+    private mediaObserver: MediaObserver,
     public cf: CommonFunctionsService
   ) { }
 
   ngOnInit() {
     // this.imgSrc = this.sanitizer.bypassSecurityTrustResourceUrl(this.imgSrcUrl);
-    this.initImg();
-  }
 
-  initImg(){
-    // let img = new Image();
-    // img.src = this.imgSrcUrl;
-    // ///img.src = './assets/info/bax_bauma_2019_sennebogen.png';
-    // img.onload = (ev) => {
-    //   this.isReady=true;
-    // }
-
-    // let baumaImg = new Image();
-    // //baumaImg.src = this.baumaUrl;
-    // baumaImg.onload = (ev)=>{
-    //   this.isBaumaImgReady = true;
-    // }
-    
+    this.mediaObserver.media$.pipe(
+      takeUntil(this.isDestroyed$),
+    )
+    .subscribe(
+      (_data: MediaChange) => {
+        this.isSmall = (_data.mqAlias == 'xs' || _data.mqAlias == 'sm') ? true : false;
+      },
+      (err) => console.log(' error', err),
+      () => console.log(' finish..')
+    )
   }
 
 }

@@ -1,0 +1,201 @@
+.app-container {
+    position: relative;
+}
+
+.nav-horizontal, .nav-vertical {
+    position: fixed;
+    background-color: white;
+}
+
+.nav-vertical {
+    width: var(--navWidth);
+    min-height: 100vh;
+    max-height: 100vh;
+}
+
+.nav-horizontal {
+    width: 100vw;
+}
+
+
+.main-horizontal, .main-vertical {
+    position: fixed;
+    overflow-y: auto;
+}
+
+.main-horizontal {
+    z-index: -1;
+    left: var(--navWidth);
+    min-height: 100vh;
+    min-width: calc(100vw - var(--navWidth));
+    height: 100%;
+}
+
+.main-vertical {
+    top: var(--navHeight);
+    min-width: 100vw;
+    height: calc(100% - var(--navHeight));
+}
+
+.router-outlet-container {
+    z-index: 1;
+    position: relative;
+}
+
+
+.scroll-to-top {
+    --boxSize: 2.5rem;
+
+    bottom: calc(var(--boxSize)/2);
+    right: calc(var(--boxSize)/2);
+    width: var(--boxSize);
+    height: var(--boxSize);
+    background-color: var(--baxColor);
+    border: 1px solid white;
+    border-radius: calc(var(--boxSize)*0.25);
+
+    position: fixed;
+    z-index: 10;
+    outline: none;
+    transition: background-color 250ms ease-out;
+}
+
+.scroll-to-top:hover {
+    background-color: red;
+}
+
+.scroll-to-top::before {
+    position: absolute;
+    content: 'v';
+    font-size: var(--boxSize);
+    color: white;
+    transform: rotate(180deg);
+    text-align: center;
+    width: 100%;
+}
+
+.is-in-progress {
+    /* background-image: url(../assets/svg/logotypy/logo_bax_signOnly.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; */
+   
+    background-color: #0054A6;
+    z-index: 1;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.is-in-progress-container {
+  position: relative;
+}
+
+.is-in-progress-logo {
+  display: inline-block;
+  position: fixed;
+  width: 1000px;
+  height: 1000px;
+  right: calc(50% - 500px);
+  top: calc(50% - 500px);
+
+  /* width: 50px;
+  height: 50px;
+  right: calc(50% - 25px);
+  top: calc(50% - 25px)
+ */
+}
+
+
+
+
+
+.lds-roller {
+    display: inline-block;
+    position: fixed;
+    width: 64px;
+    height: 64px;
+    right: calc(50% - 32px);
+    top: calc(50% - 32px)
+  }
+  .lds-roller div {
+    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: 32px 32px;
+  }
+  .lds-roller div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fff;
+    margin: -3px 0 0 -3px;
+  }
+  .lds-roller div:nth-child(1) {
+    animation-delay: -0.036s;
+  }
+  .lds-roller div:nth-child(1):after {
+    top: 50px;
+    left: 50px;
+  }
+  .lds-roller div:nth-child(2) {
+    animation-delay: -0.072s;
+  }
+  .lds-roller div:nth-child(2):after {
+    top: 54px;
+    left: 45px;
+  }
+  .lds-roller div:nth-child(3) {
+    animation-delay: -0.108s;
+  }
+  .lds-roller div:nth-child(3):after {
+    top: 57px;
+    left: 39px;
+  }
+  .lds-roller div:nth-child(4) {
+    animation-delay: -0.144s;
+  }
+  .lds-roller div:nth-child(4):after {
+    top: 58px;
+    left: 32px;
+  }
+  .lds-roller div:nth-child(5) {
+    animation-delay: -0.18s;
+  }
+  .lds-roller div:nth-child(5):after {
+    top: 57px;
+    left: 25px;
+  }
+  .lds-roller div:nth-child(6) {
+    animation-delay: -0.216s;
+  }
+  .lds-roller div:nth-child(6):after {
+    top: 54px;
+    left: 19px;
+  }
+  .lds-roller div:nth-child(7) {
+    animation-delay: -0.252s;
+  }
+  .lds-roller div:nth-child(7):after {
+    top: 50px;
+    left: 14px;
+  }
+  .lds-roller div:nth-child(8) {
+    animation-delay: -0.288s;
+  }
+  .lds-roller div:nth-child(8):after {
+    top: 45px;
+    left: 10px;
+  }
+  @keyframes lds-roller {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

@@ -2,7 +2,7 @@ import { IBaxModelMaszynaNowaSpecDescription } from '../interfaces/i-bax-model-m
 
 export const BAX_MODEL_SPEC_LIST_GROUPS: IBaxModelMaszynaNowaSpecDescription = <IBaxModelMaszynaNowaSpecDescription>
     {
-        rodzajUrzadzenia: " ",
+        rodzajUrzadzenia: null,
         marka: null,
         seria: null,
         nazwaModelu: null,
@@ -52,5 +52,14 @@ export const BAX_MODEL_SPEC_LIST_GROUPS: IBaxModelMaszynaNowaSpecDescription = <
         rodzajeLyzek: "wyposażenie dodatkowe",
         inneOsprzety: "wyposażenie dodatkowe",
         mediaCardImg: null,
+        zasięg_roboczy_m : "wydajność",
+        udzwig_na_max_zasięgu_kg : "wydajność",
+        podwozie : "podwozie",
+        rodzaj_osprzetu_roboczego : "osprzęt roboczy",
+        pojemność_chwytaka_5_palczastego_gestość_2t_m3_l : "wydajność",
+        pojemność_chwytaka_lupinowego_gestość_2t_m3_l : "wydajność",
+        pojemność_chwytaka_szczekowego_drewno_dl_2m_m3 : "wydajność",
+        zasilanie : "silnik",
+        branza : null,
     };
 

@@ -1,0 +1,29 @@
+<section class="menu-container">
+  <div fxFill fxLayout="column" fxLayoutAlign="space-between stretch">
+    <section class="menu-logo" fxLayoutAlign="center center" >
+      <img [attr.src]="baxLogo" class="menu-logo__img" routerLink="/news" />
+    </section>
+
+    <section fxFlex fxLayout="column" fxLayoutAlign="space-around center">
+      
+      
+      
+      <div *ngFor="let m of menu" class="list-container">
+        <div class="menu-list-item" routerLinkActive="menu-list-item-active" fxLayoutAlign="center center">
+          <a [routerLink]="m.routerLink">{{m.name}}</a>
+        </div>
+      </div>
+
+
+    </section>
+
+    <section class="menu-social" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+      <a href="https://facebook.com/baxMaszyny" target="_blank" fxLayoutAlign="center center">
+        <img src="../../../assets/images/icons/facebook_logo.png" alt="facebook/baxMaszyny" width="50%">
+      </a>
+      <a href="https://www.youtube.com/channel/UC4C68CB-GgJ_-RsK9wQx0kw" target="_blank" fxLayoutAlign="center center">
+        <img src="../../../assets/images/icons/youTube_logo.png" alt="facebook/baxMaszyny" width="50%">
+      </a>
+    </section>
+  </div>
+</section>

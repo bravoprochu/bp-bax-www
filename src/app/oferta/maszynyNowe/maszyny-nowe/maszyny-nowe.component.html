@@ -1,25 +1,7 @@
-<mat-drawer-container>
-  <mat-drawer #drawer fxLayout="row" opened="true" [mode]="drawerMode()" [style.width.vw]="drawerWidth()">
+<mat-drawer-container class="main-content-height">
+  <mat-drawer #drawer fxLayout="row" opened="true" [mode]="drawerMode()" class="drawer-size" [style.width.vw]="drawerWidth()">
 
     <mat-accordion>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Nawigacja, przejdź do:
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <mat-list>
-          <mat-list-item style="cursor: pointer;" routerLink="/">Start</mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item style="cursor: pointer;" routerLink="../../../oferta">Oferta</mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item style="cursor: pointer;" routerLink="/news">News</mat-list-item>
-
-        </mat-list>
-
-      </mat-expansion-panel>
-
       <mat-expansion-panel expanded="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -56,6 +38,12 @@
               </mat-option>
             </mat-select>
           </mat-form-field> -->
+
+          <div fxLayoutGap="10px">
+            <mat-checkbox [formControl]="isSennebogen$">Sennebogen</mat-checkbox>
+            <mat-checkbox [formControl]="isYanmar$">Yanmar</mat-checkbox>
+          </div>
+
           
           <div [formGroup]="modelSearch$">
             <mat-form-field fxFill>
@@ -90,16 +78,9 @@
 
         </div>
 
-      </mat-expansion-panel>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Opcje dodatkowe
-          </mat-panel-title>
-        </mat-expansion-panel-header>
+        goto=> <div routerLink="../yanmar-sv08-1-as">yanmar-sv08-1-as</div>
 
       </mat-expansion-panel>
-
     </mat-accordion>
 
   </mat-drawer>
@@ -121,9 +102,10 @@
           <mat-icon>more_vert</mat-icon>
         </button>
       </div>
-      <div style="overflow-y: auto; height: 93vh;">
-        <router-outlet></router-outlet>
-      </div>
+      <!-- <router-outlet></router-outlet> -->
+
+      <app-model-list></app-model-list>
+
     </div>
   </mat-drawer-content>
 </mat-drawer-container>

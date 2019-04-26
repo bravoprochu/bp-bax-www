@@ -1,7 +1,5 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { OfertaComponent } from "./oferta/oferta.component";
-
 
 const routes: Routes = [
   {
@@ -9,16 +7,16 @@ const routes: Routes = [
     loadChildren: './maszynyNowe/maszyny-nowe.module#MaszynyNoweModule',
     data: {animation: 'maszynyNowe'},
   },
-  {
-    path: 'yanmar',
-    loadChildren: './yanmar/yanmar.module#YanmarModule',
-    data: { animation: 'yanmar' }
-  },
-  {
-    path: 'sennebogen',
-    loadChildren: './sennebogen/sennebogen.module#SennebogenModule',
-    data: { animation: 'sennebogen' }
-  },
+  // {
+  //   path: 'yanmar',
+  //   loadChildren: './yanmar/yanmar.module#YanmarModule',
+  //   data: { animation: 'yanmar' }
+  // },
+  // {
+  //   path: 'sennebogen',
+  //   loadChildren: './sennebogen/sennebogen.module#SennebogenModule',
+  //   data: { animation: 'sennebogen' }
+  // },
   {
     path: '',
     redirectTo: 'maszynyNowe',

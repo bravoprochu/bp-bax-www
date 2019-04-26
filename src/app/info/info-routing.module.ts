@@ -8,6 +8,11 @@ const routes: Routes = [
     component: BaxBauma2019SennebogenComponent
   },
   {
+    path: '',
+    redirectTo: 'bax-bauma2019-sennebogen-voucher',
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     component: BaxBauma2019SennebogenComponent
   }

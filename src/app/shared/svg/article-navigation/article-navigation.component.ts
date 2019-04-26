@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, AfterViewInit, OnChanges, SimpleChanges, Host, HostListener, OnDestroy } from '@angular/core';
 import { BP_ANIM_SVG_INIT } from 'src/app/animations/bp_anim_svg-init';
 import { bp_anim_svg_init_fromBottom } from 'src/app/animations/bp_anim_svg-init_from_bottom';
-import { NewsService } from 'src/app/news/news.service';
+import { NewsService } from 'src/app/news/newsServices/news.service';
 import { Router } from '@angular/router';
 import { INewsArticle } from 'src/app/news/interfaces/i-news-article';
 import { ISVGIconsList } from '../../article-container/interfaces/i-svg-icons-list';
@@ -67,27 +67,6 @@ export class ArticleNavigationComponent implements OnInit, OnChanges, OnDestroy 
       { name: this.iconFingerprint, info: 'ukryj' }
     ];
 
-
-    this.cf.getWindowBasicInfo$(this.isDestroyed$)
-      .subscribe(
-        (_windowInfo: IWindowBasicInfo) => {
-          if(!this.isMenuOpen) {return;}
-          
-          if(_windowInfo.scrollY >= (_windowInfo.isPortrait? _windowInfo.height/2 : _windowInfo.width /2)) {
-            if(!this.checkIfIconOnList(this.iconGoTop)){
-              this.svgElements.unshift({name: this.iconGoTop});
-              this.getSVGViewBox();
-            }
-          } else {
-            if(this.checkIfIconOnList(this.iconGoTop)){
-              this.svgElements.splice(this.getIconIndex(this.iconGoTop), 1);
-              this.getSVGViewBox();
-            }
-          }
-        },
-        (err) => console.log('windowBasicInfo error', err),
-        () => console.log('windowBasicInfo finish..')
-      )
     
     this.checkButtonsList();
   }

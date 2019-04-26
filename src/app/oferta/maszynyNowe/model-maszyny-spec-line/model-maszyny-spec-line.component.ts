@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IBaxModelMaszynaNowa } from '../../interfaces/i-bax-model-maszyna-nowa';
-import { OfertaService } from '../../oferta.service';
 
 @Component({
   selector: 'app-model-maszyny-spec-line',
@@ -12,7 +11,7 @@ export class ModelMaszynySpecLineComponent implements OnInit {
   @Input('prop') prop: string;
 
   constructor(
-    private osrv: OfertaService,
+
   ) { }
 
   ngOnInit() {

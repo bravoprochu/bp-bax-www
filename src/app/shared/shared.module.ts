@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { ArticleContainerComponent } from './article-container/article-container.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SvgCommonModule } from './svg/svg-common.module';
-import { MatCardModule, MatSidenavModule, MatExpansionModule, MatButtonModule, MatIconModule, MatTabsModule, MatDividerModule, MatInputModule, MatSliderModule, MatCheckboxModule, MatListModule, MatSelectModule, MatTooltipModule} from '@angular/material';
+import { MatCardModule, MatSidenavModule, MatExpansionModule, MatButtonModule, MatIconModule, MatTabsModule, MatDividerModule, MatInputModule, MatSliderModule, MatCheckboxModule, MatListModule, MatSelectModule, MatTooltipModule, MatToolbarModule} from '@angular/material';
 import { FacebookButtonComponent } from './facebook-button/facebook-button.component'
 import { CommonFunctionsService } from './common-functions.service';
 import { HeaderComponent } from './header/header/header.component';
@@ -19,7 +19,10 @@ import { FillChangeDirective } from './directives/fill-change.directive';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BaxPreloaderDirective } from './directives/bax-preloader.directive';
 import { ImgGalleryComponent } from './img-gallery/img-gallery.component';
-
+import { MenuComponent } from './menu/menu.component';
+import { MenuHorizontalComponent } from './menu-horizontal/menu-horizontal.component';
+import { MenuCommonFunctionsService } from './menu-common-functions.service';
+import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 
 
 @NgModule({
@@ -29,13 +32,15 @@ import { ImgGalleryComponent } from './img-gallery/img-gallery.component';
     FacebookButtonComponent,
     HeaderComponent,
     HeaderMenuBigComponent,
+    MenuComponent,
     DeferLoadDirective,
     DetectIntersectionDirective,
     SvgButtonYoutubeComponent,
     ArticleNavigationComponent,
     FillChangeDirective,
     BaxPreloaderDirective,
-    ImgGalleryComponent
+    ImgGalleryComponent,
+    MenuHorizontalComponent
   ],
   imports: [
     CommonModule,
@@ -54,9 +59,11 @@ import { ImgGalleryComponent } from './img-gallery/img-gallery.component';
     MatSidenavModule,
     MatSliderModule,
     MatTabsModule,
+    MatToolbarModule,
     MatTooltipModule,
     PantoneToHexModule,
     ReactiveFormsModule,
+    ScrollDispatchModule,
     SvgCommonModule,
     
     
@@ -65,6 +72,7 @@ import { ImgGalleryComponent } from './img-gallery/img-gallery.component';
     CommonModule,
     ArticleContainerComponent,
     ArticleNavigationComponent,
+    BaxPreloaderDirective,
     DeferLoadDirective,
     DetectIntersectionDirective,
     FacebookButtonComponent,
@@ -85,17 +93,21 @@ import { ImgGalleryComponent } from './img-gallery/img-gallery.component';
     MatSidenavModule,
     MatSliderModule,
     MatTabsModule,
+    MatToolbarModule,
     MatTooltipModule,
+    MenuComponent,
     ReactiveFormsModule,
     RouterModule,
     RouterGoBackComponent,
-    SvgButtonYoutubeComponent,
-    BaxPreloaderDirective,
     ImgGalleryComponent,
+    MenuHorizontalComponent,
+    ScrollDispatchModule,
+    SvgButtonYoutubeComponent,
 
   ],
   providers: [
     CommonFunctionsService,
+    MenuCommonFunctionsService
   ]
 })
 export class SharedModule { }

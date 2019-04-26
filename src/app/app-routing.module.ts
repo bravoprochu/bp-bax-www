@@ -14,10 +14,20 @@ const routes: Routes = [
     loadChildren: './news/news.module#NewsModule',
     data: {animation: 'news'}
   },
+  // {
+  //   path: 'offer',
+  //   loadChildren: './oferta/maszynyNowe/maszyny-nowe.module#MaszynyNoweModule',
+  //   data: {animation: 'offer'}
+  // },
   {
-    path: 'oferta',
+    path: 'offer',
     loadChildren: './oferta/oferta.module#OfertaModule',
-    data: {animation: 'oferta'}
+    data: {animation: 'offer'}
+  },
+  {
+    path:'oferta',
+    redirectTo: 'offer',
+    pathMatch: 'full'
   },
   {
     path: 'contact', 
@@ -25,9 +35,21 @@ const routes: Routes = [
     data: {animation: 'contact'}
   },
   {
-    path: '',
+    path:'kontakt',
+    redirectTo: 'contact',
+    pathMatch: 'full'
+  },
+  {
+    path: 'home',
     component: HomeComponent,
     data: {animation: 'home'}
+  },
+  {
+    path: '',
+    // component: HomeComponent,
+    // data: {animation: 'home'}
+    redirectTo: '/news',
+    pathMatch: 'full'
   },
   {
     path: '**',
@@ -38,7 +60,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {enableTracing: false, })],
+  imports: [RouterModule.forRoot(routes, {enableTracing: false})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { 

@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   }
 
 info: string[] = [
+  'vertical/horizontal main menu..',
   'baxPreloader..',
   'modelList filter :increment/:decrement anim',
   'modelList filter select group, drawer width fix mediaquery, card image toggle, info svg fix (...)',

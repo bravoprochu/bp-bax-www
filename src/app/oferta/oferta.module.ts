@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { OfertaComponent } from './oferta/oferta.component';
 import { OfertaRoutingModule } from './oferta-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { OfertaService } from './oferta.service';
 import { MaszynyNoweModule } from './maszynyNowe/maszyny-nowe.module';
 
 @NgModule({
@@ -11,16 +10,11 @@ import { MaszynyNoweModule } from './maszynyNowe/maszyny-nowe.module';
     OfertaComponent,
   ],
   imports: [
-    SharedModule,
     CommonModule,
     OfertaRoutingModule,
-    MaszynyNoweModule
-  ], exports:[
-    SharedModule
+  ], 
+  exports:[
   ],
-  providers: [
-    OfertaService,
-  ]
 })
 export class OfertaModule {
   

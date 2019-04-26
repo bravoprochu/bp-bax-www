@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Renderer2, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { map, takeWhile, tap, timeInterval } from 'rxjs/operators';
+import { map, takeWhile, tap, timeInterval, takeUntil } from 'rxjs/operators';
 import { INewsArticle } from '../interfaces/i-news-article';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
 import { Subject, timer } from 'rxjs';
-import { NewsService } from '../news.service';
+import { NewsService } from '../newsServices/news.service';
 import { PantoneToHexService } from 'src/app/pantoneToHex/pantone-to-hex.service';
 import { IPantoneToHex } from 'src/app/pantoneToHex/interfaces/i-pantone-to-hex';
 import { SVGElementProp } from 'src/app/shared/svg/classes/svg-element-prop';
@@ -16,6 +16,8 @@ import { BP_ANIM_GROUP_APPEARING } from 'src/app/animations/bp_anim_group_appear
 import { BP_ANIM_OPACITY_INIT } from 'src/app/animations/bp-anim-opacity-init';
 import * as Hammer from 'hammerjs';
 import { bpActiveRouteChange$ } from 'src/app/rxConst/bpActRouteChange';
+import { MediaObserver, MediaChange } from '@angular/flex-layout';
+import { INewsPayload } from '../interfaces/i-news-payload';
 
 
 @Component({
@@ -27,7 +29,8 @@ import { bpActiveRouteChange$ } from 'src/app/rxConst/bpActRouteChange';
     BP_ANIM_OPACITY_OVER_LEAVE(350, 0.5, 1),
     BP_ANIM_GROUP_APPEARING(250, 100, 'svg, rect, h1, .mat-h2, .mat-h3, app-news-article-date, .content-text, iframe'),
     BP_ANIM_OPACITY_INIT(750, 250)
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None,
 })
 export class NewsArticleComponent implements OnInit, OnDestroy {
   @ViewChild('svgImage') svgImageTEST: ElementRef;
@@ -35,9 +38,19 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
   bgColor: any;
   bgImageColor: any;
   data: INewsArticle;
+  linkToShare: string;
+
+  ngOnDestroy(): void {
+  this.isDestroyed$.next(true);
+  this.isDestroyed$.complete();
+  this.isDestroyed$.unsubscribe();
+  }
+ 
+  
+  isDestroyed$: Subject<boolean> = new Subject();
   isArticleNavOver: boolean;
-  isDestroyed$: Subject<boolean>;
   isReady: boolean;
+  isSmall: boolean;
 
   rectBorders: ISVGRectBorder[] = [];
   svgImage: ISVGRectBorder = <ISVGRectBorder>{};
@@ -51,19 +64,29 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
     private sanitizer: DomSanitizer,
     private router: Router,
     private actRoute: ActivatedRoute,
-    public ns: NewsService,
+    private mediaObserver: MediaObserver,
+    //public ns: NewsService,
     private pantoneService: PantoneToHexService,
     private renderer: Renderer2,
   ) { }
 
-  ngOnDestroy(): void {
-    this.isDestroyed$.next(true);
-    this.isDestroyed$.complete();
-  }
 
   ngOnInit() {
-    this.isDestroyed$ = new Subject();
-    this.initObservable();
+    // this.initObservable();
+
+    this.initData();
+    
+
+    this.mediaObserver.media$.pipe(
+      takeUntil(this.isDestroyed$),
+    )
+    .subscribe(
+      (_data: MediaChange) => {
+        this.isSmall = _data.mqAlias == 'xs' ? true : false;
+      },
+      (err) => console.log(' error', err),
+      () => console.log(' finish..')
+    )
 
 
     const hammerManager = new Hammer(this.bg.nativeElement, {})
@@ -267,47 +290,55 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
 
 
   getNext() {
-    if(this.ns.isNext(this.data)){
-      this.router.navigateByUrl(`/news/${this.ns.getNext(this.data).id}`);
-    }
+    return 
+    // if(this.ns.isNext(this.data)){
+    //   this.router.navigateByUrl(`/news/${this.ns.getNext(this.data).id}`);
+    // }
   }
   
   getPrev() {
-    if(this.ns.isPrev(this.data)){
-      this.router.navigateByUrl(`/news/${this.ns.getPrev(this.data).id}`);
-    }
+    return 
+
+    // if(this.ns.isPrev(this.data)){
+    //   this.router.navigateByUrl(`/news/${this.ns.getPrev(this.data).id}`);
+    // }
   }
 
   initObservable() {
-    this.actRoute.params.pipe(
-      bpActiveRouteChange$(this.isDestroyed$),
-      tap(()=>this.isReady = false),
-    )
-      .subscribe(
-        (_data: any) => {
+
+    return
+
+    // this.actRoute.params.pipe(
+    //   bpActiveRouteChange$(this.isDestroyed$),
+    //   tap(()=>this.isReady = false),
+    // )
+    //   .subscribe(
+    //     (_data: any) => {
           
-          this.initData(_data);
-          this.initSVGData();
-        },
-        (err) => console.log('actRoute error', err),
-        () => console.log('actRoute finish..')
-      )
+    //       this.initData(_data);
+    //       this.initSVGData();
+    //     },
+    //     (err) => console.log('actRoute error', err),
+    //     () => console.log('actRoute finish..')
+    //   )
   }
 
-  isSmall(): boolean{
-    return this.cf.getMediaChange().mqAlias == 'xs' ? true: false;
-  }
+  
 
-
-  initData(routeId: string) {
+  initData() {
     this.data = <INewsArticle>{};
-    const d = this.ns.findById(routeId);
-    if (d) {
-      this.data = Object.assign({}, d);
+    const d = <INewsPayload>this.actRoute.snapshot.data['data'];
+    this.initLinkToShare(window.location.pathname);
+    
+      this.data = Object.assign({}, d.news);
       // this.data.youtubeEmbedUrl = this.data.youtubeEmbedUrl ? this.sanitizer.bypassSecurityTrustResourceUrl(this.data.youtubeEmbedUrl) : null;
-      this.data.text = d.text ? this.sanitizer.bypassSecurityTrustHtml(this.data.text) : null;
+      // this.data.text = d.text ? this.sanitizer.bypassSecurityTrustHtml(this.data.text) : null;
       this.isReady = true;
-    }
+    this.initSVGData();
+  }
+
+  initLinkToShare(route){
+    this.linkToShare = route;
   }
 
 
