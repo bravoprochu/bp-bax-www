@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { IBaxModelMaszynyNoweFilterLine } from '../../interfaces/i-bax-model-maszyny-nowe-filter-line';
 import { PantoneToHexService } from 'src/app/pantoneToHex/pantone-to-hex.service';
 import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
@@ -19,15 +19,18 @@ import { MaszynyNoweService } from '../maszynyNoweServices/maszyny-nowe.service'
     bp_anim_pulseText()
   ]
 })
-export class MaszynyNoweComponent implements OnInit {
+export class MaszynyNoweComponent implements OnInit, AfterViewInit {
+
   colorEven: string;
   colorOdd: string;
   filterData: IBaxModelMaszynyNoweFilterLine[] = [];
   filterForm$: FormGroup;
   isLengthCount: boolean = true;
+  isSidenavOpen: boolean = false;
   isSmall:boolean;
   mqAlias: string;
   rFiltersList$: FormArray;
+  
   
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);
@@ -72,6 +75,18 @@ export class MaszynyNoweComponent implements OnInit {
       (err) => console.log(' error', err)
     )
   }
+
+  ngAfterViewInit(): void {
+   this.isSidenavOpen=false;
+   
+   setTimeout(() => {
+     if(!this.isSidenavOpen) {
+       this.isSidenavOpen = true;
+     }
+   }, 10000);
+
+  }
+
 
   filterClear() { 
     this.mnSrv.clearFilterGroup();

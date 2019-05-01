@@ -1,8 +1,8 @@
 <div @enterLeaveFromSide *ngIf="isScrollShown" class="scroll-to-top" (click)="scrollToTop()"></div>
 
-<div *ngIf="isInProgress" @animWidth>
+<div *ngIf="isInProgress" @animWidth (@animWidth.done)="animWidthIsDone($event)">
         <div class="is-in-progress">
-                <div class="lds-roller">
+                <!-- <div class="lds-roller" *ngIf="isResolving">
                         <div></div>
                         <div></div>
                         <div></div>
@@ -11,12 +11,26 @@
                         <div></div>
                         <div></div>
                         <div></div>
-                    </div>
-                    <div @animFromTop *ngIf="isInProgress">
-                        <img class="is-in-progress-logo" src="../assets/svg/logotypy/logo_bax_signOnly_white.svg">                    
-                    </div>
+                </div> -->
+            <img class="is-in-progress-logo" src="../assets/svg/logotypy/logo_bax_signOnly_white.svg">
         </div>
 </div>
+
+<div class="indicator-container">
+        <div class="lds-roller" *ngIf="isResolving && isInProgress">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+        </div>
+</div>
+
+
+
 
 
 

@@ -36,8 +36,6 @@ export class MaszynyNoweService {
   constructor(
     private fb: FormBuilder,
   ) {
-    console.log('maszyny-nowe.service ctor init');
-    
     this.filterGroup$ = this.getFilterForm$();
     this.initFilterSearchGroups();
     this.initCheckboxGroups();

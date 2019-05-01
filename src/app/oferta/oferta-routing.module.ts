@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: 'maszynyNowe',
     loadChildren: './maszynyNowe/maszyny-nowe.module#MaszynyNoweModule',
-    data: {animation: 'maszynyNowe'},
+    // data: {animation: 'maszynyNoweList'},
   },
   // {
   //   path: 'yanmar',

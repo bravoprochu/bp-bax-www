@@ -5,7 +5,7 @@
 
     <svg *ngIf="miniInfo.invert" #titleText x="480" y="340" width="960" height="400">
         <g>
-            <rect class="title-box-border" x="0" y="0" width="960" height="400" [ngStyle]="miniInfo.invert? {fill: miniInfo.fill, fillOpacity: 0.45}: {}"></rect>
+            <rect class="title-box-border" x="0" y="0" width="960" height="400" [ngStyle]="miniInfo.invert? {fill: miniInfo.fill, fillOpacity: 0.85}: {}"></rect>
             <title>{{miniInfo.title}}</title>
         </g>
     </svg>

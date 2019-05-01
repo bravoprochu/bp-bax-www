@@ -97,10 +97,10 @@
 .is-in-progress-logo {
   display: inline-block;
   position: fixed;
-  width: 1000px;
-  height: 1000px;
-  right: calc(50% - 500px);
-  top: calc(50% - 500px);
+  width: 1300px;
+  height: 1300px;
+  right: calc(50% - 650px);
+  top: calc(50% - 650px);
 
   /* width: 50px;
   height: 50px;
@@ -111,6 +111,10 @@
 
 
 
+.indicator-container {
+  position: absolute;
+  z-index: 101;
+}
 
 
 .lds-roller {

@@ -15,10 +15,12 @@ export const routeAnimation =
     //   ])
     //   //query(':leave', animateChild())
     // ]),
+
     BP_ANIM_ROUTE_TRANSITION('* => contact'),
-    BP_ANIM_ROUTE_TRANSITION('* => maszynyNowe'),
+    BP_ANIM_ROUTE_TRANSITION('* => maszynyNoweList', 500),
+    BP_ANIM_ROUTE_TRANSITION('* => maszynyNowe', 500),
      
-    BP_ANIM_ROUTE_TRANSITION('* => newsList'),
+    BP_ANIM_ROUTE_TRANSITION('* => newsList', 500),
     BP_ANIM_ROUTE_TRANSITION('* => info'),
     
   ]);

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IBaxModelMaszynaNowa } from '../../interfaces/i-bax-model-maszyna-nowa';
 import { environment } from 'src/environments/environment';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, delay } from 'rxjs/operators';
 import { BaxMarka } from '../../enums/bax-marka-enum';
 import { MaszynyNoweServicesModule } from './maszyny-nowe-services.module';
 
@@ -28,7 +28,7 @@ export class MaszynyNoweDataFactoryService {
     return <Observable<IBaxModelMaszynaNowa[]>>this.httpClient.get(environment.maszynyNowe.apiUrlMaszynyNoweGetList, { headers: this.getHeaders() })
       .pipe(
         map(this.UpdateMediaImgUrlArr),
-        //delay(2000)
+        // delay(5000)
       )
   }
 

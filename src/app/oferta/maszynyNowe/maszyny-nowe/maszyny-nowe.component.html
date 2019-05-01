@@ -1,5 +1,5 @@
 <mat-drawer-container class="main-content-height">
-  <mat-drawer #drawer fxLayout="row" opened="true" [mode]="drawerMode()" class="drawer-size" [style.width.vw]="drawerWidth()">
+  <mat-drawer #drawer fxLayout="row" [opened]="isSidenavOpen" [mode]="drawerMode()" class="drawer-size" [style.width.vw]="drawerWidth()">
 
     <mat-accordion>
       <mat-expansion-panel expanded="true">
@@ -78,7 +78,7 @@
 
         </div>
 
-        goto=> <div routerLink="../yanmar-sv08-1-as">yanmar-sv08-1-as</div>
+        <!-- goto=> <div routerLink="../yanmar-sv08-1-as">yanmar-sv08-1-as</div> -->
 
       </mat-expansion-panel>
     </mat-accordion>

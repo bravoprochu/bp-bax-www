@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Renderer2, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Renderer2, ViewEncapsulation, AfterViewInit, NgZone } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { map, takeWhile, tap, timeInterval, takeUntil } from 'rxjs/operators';
 import { INewsArticle } from '../interfaces/i-news-article';
@@ -32,12 +32,16 @@ import { INewsPayload } from '../interfaces/i-news-payload';
   ],
   encapsulation: ViewEncapsulation.None,
 })
-export class NewsArticleComponent implements OnInit, OnDestroy {
+export class NewsArticleComponent implements OnInit, OnDestroy, AfterViewInit {
+  ngAfterViewInit(): void {
+    // console.log('viewInit...');
+  }
   @ViewChild('svgImage') svgImageTEST: ElementRef;
   @ViewChild('bg') bg: ElementRef;
   bgColor: any;
   bgImageColor: any;
   data: INewsArticle;
+  dataPayload: INewsPayload;
   linkToShare: string;
 
   ngOnDestroy(): void {
@@ -65,17 +69,14 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
     private router: Router,
     private actRoute: ActivatedRoute,
     private mediaObserver: MediaObserver,
-    //public ns: NewsService,
     private pantoneService: PantoneToHexService,
     private renderer: Renderer2,
+    private ngZone: NgZone
   ) { }
 
 
   ngOnInit() {
-    // this.initObservable();
-
-    this.initData();
-    
+    this.initObservable();
 
     this.mediaObserver.media$.pipe(
       takeUntil(this.isDestroyed$),
@@ -96,11 +97,11 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
     hammerManager.get('rotate').set({enable: false});
 
     hammerManager.on('swipe', (ev)=>{
-      if(ev.direction == 2) {
+      if(ev.direction == 2 && this.dataPayload.isNext) {
         // swipe left
         this.getNext();
       }
-      if(ev.direction == 4) {
+      if(ev.direction == 4 && this.dataPayload.isPrev) {
         // swipe right
         this.getPrev();
       }
@@ -290,14 +291,17 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
 
 
   getNext() {
-    return 
+    // console.log('swipe left...', this.dataPayload)
+    this.router.navigateByUrl(`/news/${this.dataPayload.nextId}`);
     // if(this.ns.isNext(this.data)){
     //   this.router.navigateByUrl(`/news/${this.ns.getNext(this.data).id}`);
     // }
   }
   
   getPrev() {
-    return 
+    //console.log('swipe right..');
+    this.router.navigateByUrl(`/news/${this.dataPayload.prevId}`);
+    
 
     // if(this.ns.isPrev(this.data)){
     //   this.router.navigateByUrl(`/news/${this.ns.getPrev(this.data).id}`);
@@ -305,32 +309,40 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
   }
 
   initObservable() {
-
-    return
-
-    // this.actRoute.params.pipe(
-    //   bpActiveRouteChange$(this.isDestroyed$),
-    //   tap(()=>this.isReady = false),
-    // )
-    //   .subscribe(
-    //     (_data: any) => {
+    this.actRoute.params.pipe(
+      bpActiveRouteChange$(this.isDestroyed$),
+      tap(()=>this.isReady = false),
+    )
+      .subscribe(
+        (_data: any) => {
           
-    //       this.initData(_data);
-    //       this.initSVGData();
-    //     },
-    //     (err) => console.log('actRoute error', err),
-    //     () => console.log('actRoute finish..')
-    //   )
+          this.initData();
+          this.initSVGData();
+          
+
+          // this.ngZone.runOutsideAngular(()=>{
+          //   (<HTMLElement>this.bg.nativeElement).scrollTo({top: 0, behavior: 'smooth'});
+          // })
+
+          (<HTMLElement>this.bg.nativeElement).scrollTo({top: 0, behavior: 'smooth'});
+
+          
+          
+          
+        },
+        (err) => console.log('actRoute error', err),
+        () => console.log('actRoute finish..')
+      )
   }
 
   
 
   initData() {
     this.data = <INewsArticle>{};
-    const d = <INewsPayload>this.actRoute.snapshot.data['data'];
+    this.dataPayload = <INewsPayload>this.actRoute.snapshot.data['data'];
     this.initLinkToShare(window.location.pathname);
     
-      this.data = Object.assign({}, d.news);
+      this.data = Object.assign({}, this.dataPayload.news);
       // this.data.youtubeEmbedUrl = this.data.youtubeEmbedUrl ? this.sanitizer.bypassSecurityTrustResourceUrl(this.data.youtubeEmbedUrl) : null;
       // this.data.text = d.text ? this.sanitizer.bypassSecurityTrustHtml(this.data.text) : null;
       this.isReady = true;
@@ -347,15 +359,6 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
   }
 
 
-  swipeLeft(ev: any) {
-    console.log('swipeLeft');
-    this.getNext();
-  }
-
-  swipeRight(ev: any){
-    console.log('swipeRight');
-    this.getPrev();
-  }
 
 
 

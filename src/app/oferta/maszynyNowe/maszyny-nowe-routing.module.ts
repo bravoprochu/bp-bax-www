@@ -4,25 +4,29 @@ import { MaszynyNoweComponent } from './maszyny-nowe/maszyny-nowe.component';
 import { ModelMaszynyFullComponent } from './model-maszyny-full/model-maszyny-full.component';
 import { MaszynyNoweListResolve } from './guards/maszyny-nowe-list.resolve';
 import { MaszynyNoweReslove } from './guards/maszyny-nowe.resolve';
+import { ResolveAnimationIsDoneGuard } from 'src/app/guards/resolve-animation-is-done.guard';
 
 const routes: Routes = [
   {
     path: ':id',
     component: ModelMaszynyFullComponent,
     data: {
-      animation: 'maszynyNowe'
+      animation: 'maszynyNowe',
     },
     resolve: {
       data: MaszynyNoweReslove
-    }
+    },
+  
   },
   {
     path: '',
     component: MaszynyNoweComponent,
-    data: {animation: 'maszynyNoweList'},
+    data: {
+      animation: 'maszynyNoweList',
+    },
     resolve: {
       data: MaszynyNoweListResolve
-    }
+    },
   },
 
 ];

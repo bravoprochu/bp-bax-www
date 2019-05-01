@@ -4,6 +4,7 @@ import { NewsListComponent } from './news-list/news-list.component';
 import { NewsArticleComponent } from './news-article/news-article.component';
 import { NewsListResolve } from './guards/news-list-resolve';
 import { NewsResolve } from './guards/news.resolve';
+import { ResolveAnimationIsDoneGuard } from '../guards/resolve-animation-is-done.guard';
 
 
 const routes: Routes = [
@@ -11,19 +12,21 @@ const routes: Routes = [
     path: ':id',
     component: NewsArticleComponent,
     data: {
-      animation: 'news'
+      animation: 'news',
     },
     resolve: {
       data: NewsResolve
-    }
+    },
   },
   {
     path: '',
     component: NewsListComponent,
-    data: { animation: 'newsList' },
+    data: { 
+      animation: 'newsList' 
+    },
     resolve: {
        data: NewsListResolve
-    }
+    },
   }
 ];
 

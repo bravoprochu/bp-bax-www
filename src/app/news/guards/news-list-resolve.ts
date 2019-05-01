@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { NewsDataFactoryService } from '../newsServices/news-data-factory.service';
 import { NewsServicesModule } from '../newsServices/news-services.module';
 import { INewsArticleMini } from '../interfaces/i-news-article-mini';
+import { RouteAnimationService } from 'src/app/route-animation.service';
+import { switchMap, tap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -16,7 +18,9 @@ export class NewsListResolve implements Resolve<INewsArticleMini[]> {
      *
      */
     constructor(
-           private df: NewsDataFactoryService
+           private df: NewsDataFactoryService,
+           private routeAnimationSrv: RouteAnimationService
+
         ) {
     }
 

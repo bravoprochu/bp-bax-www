@@ -1,5 +1,7 @@
 import { transition, trigger, style, animate } from '@angular/animations';
 
+
+
 export function BP_ANIM_FROM_TOP(animInDuration: number, animOutDuration: number ){
     return trigger('animFromTop', [
         transition(':enter', [
