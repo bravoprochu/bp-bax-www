@@ -6,25 +6,31 @@ export const CONTACT_LIST: IContactCard[] = [
         title: 'sekretariat',
         emails: ['bax@bax-maszyny.pl'],
         iconUrl: '/assets/svg/contact/bax_icon_sekretariat.svg',
-        telephones: [{
-            prefix: 'tel.',
-            number: '+48 61 828 33 66',
-        }, {
-            prefix: 'fax',
-            number: '+48 61 825 30 51'
-        }]
+        telephones: [
+            {
+                prefix: 'tel.',
+                number: '+48 61 828 33 66',
+            }
+        ]
     },
     {
         title: 'serwis',
         emails: ['serwis@bax-maszyny.pl'],
         iconUrl: '/assets/svg/contact/bax_icon_serwis.svg',
-        telephones: [{
-            prefix: 'tel.',
-            number: '+48 61 828 33 66',
-        }, {
-            prefix: 'tel',
-            number: '+48 501 262 060'
-        }]
+        telephones: [
+            {
+                prefix: 'tel.',
+                number: '+48 513 078 884'
+            },
+            {
+                prefix: 'tel.',
+                number: '+48 500 105 422'
+            },
+            {
+                prefix: 'tel.',
+                number: '+48 501 262 060'
+            }
+        ]
     },
     {
         title: 'części',
@@ -34,11 +40,9 @@ export const CONTACT_LIST: IContactCard[] = [
             {
                 prefix: 'tel.',
                 number: '+48 61 828 16 47',
-            }, {
-                prefix: 'tel',
-                number: '+48 502 222 240'
-            }, {
-                prefix: 'tel',
+            },
+            {
+                prefix: 'tel.',
                 number: '+48 508 368 258'
             }
         ]
@@ -51,9 +55,6 @@ export const CONTACT_LIST: IContactCard[] = [
             {
                 prefix: 'tel.',
                 number: '+48 618 283 366',
-            }, {
-                prefix: 'tel',
-                number: '+48 501 347 078'
             }
         ]
     },
