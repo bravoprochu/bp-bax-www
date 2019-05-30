@@ -6,12 +6,12 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 const routes: Routes = [
   {
     path: 'info',
-    loadChildren: './info/info.module#InfoModule',
+    loadChildren: () => import('./info/info.module').then(m => m.InfoModule),
     data: {animation: 'info'}
   },
   {
     path: 'news',
-    loadChildren: './news/news.module#NewsModule',
+    loadChildren: () => import('./news/news.module').then(m => m.NewsModule),
     data: {animation: 'news'}
   },
   // {
@@ -21,7 +21,7 @@ const routes: Routes = [
   // },
   {
     path: 'offer',
-    loadChildren: './oferta/oferta.module#OfertaModule',
+    loadChildren: () => import('./oferta/oferta.module').then(m => m.OfertaModule),
     data: {animation: 'offer'}
   },
   {
@@ -31,7 +31,7 @@ const routes: Routes = [
   },
   {
     path: 'contact', 
-    loadChildren: './contact/contact.module#ContactModule',
+    loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule),
     data: {animation: 'contact'}
   },
   {

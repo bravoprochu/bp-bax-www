@@ -4,7 +4,7 @@ import { RouterModule, Routes } from "@angular/router";
 const routes: Routes = [
   {
     path: 'maszynyNowe',
-    loadChildren: './maszynyNowe/maszyny-nowe.module#MaszynyNoweModule',
+    loadChildren: () => import('./maszynyNowe/maszyny-nowe.module').then(m => m.MaszynyNoweModule),
     // data: {animation: 'maszynyNoweList'},
   },
   // {
