@@ -1,10 +1,7 @@
-import { ISVGProp } from '../interfaces/i-svg-prop';
 import { ISVGPoint } from '../interfaces/i-svg-point';
-import { ISvgViewBox } from '../interfaces/i-svg-viewbox';
 import { ISVGSize } from '../interfaces/i-svg-size';
 import { SVGElementPropViewBox } from './svg-element-prop-view-box';
 import { ISVGVector } from '../interfaces/i-svg-vector';
-import { isoStringToDate } from '@angular/common/src/i18n/format_date';
 import { IAnimationSteps } from 'src/app/animations/interfaces.ts/i-animation-steps';
 
 export class SVGElementProp {

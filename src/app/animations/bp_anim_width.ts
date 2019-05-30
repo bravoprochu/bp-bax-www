@@ -1,5 +1,5 @@
 import { transition, query, style, animate, trigger, animateChild, group, sequence } from '@angular/animations';
-import { leave } from '@angular/core/src/profile/wtf_impl';
+
 
 export function bp_anim_width(enterDuration: number = 550, leaveDuration: number = 350) {
     return trigger('animWidth', [

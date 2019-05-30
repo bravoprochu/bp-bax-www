@@ -1,5 +1,5 @@
 import { IContactCard } from '../interfaces/i-contact-dzial';
-import { template } from '@angular/core/src/render3';
+
 
 export const CONTACT_LIST: IContactCard[] = [
     {

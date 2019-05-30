@@ -1,4 +1,3 @@
-import { text } from '@angular/core/src/render3';
 import { trigger, transition, style, animate } from '@angular/animations';
 
 export function bp_anim_pulseText() {

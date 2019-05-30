@@ -11,7 +11,7 @@ import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { ActivatedRoute } from '@angular/router';
 import { MaszynyNoweService } from '../maszynyNoweServices/maszyny-nowe.service';
 import {Title, Meta} from '@angular/platform-browser';
-import { MatDrawer } from '@angular/material';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-maszyny-nowe',

@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IBaxModelMedia } from 'src/app/oferta/interfaces/i-bax-model-media';
 import { IImageGalleryItem } from '../interfaces/i-image-gallery-item';
 import { ImageGalleryPayload } from '../interfaces/image-gallery-payload';
