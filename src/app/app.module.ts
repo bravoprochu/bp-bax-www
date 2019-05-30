@@ -28,7 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   bootstrap: [AppComponent],
   exports: [
-    // SharedModule,
+     SharedModule,
   ],
 })
 export class AppModule { }

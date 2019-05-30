@@ -1,0 +1,32 @@
+.full-img-container {
+   width: 100%;
+   max-width: 1024px;
+}
+
+.model-container {
+   margin: 10px auto;
+   position: relative;
+   width: 100%;
+   max-width: 1024px;
+}
+
+.model-info-container {
+   margin: 0 auto;
+}
+
+
+
+
+.model-title {
+   position: absolute;
+   bottom: -10px;
+   z-index: 1;
+   color: var(--baxColor);
+   right: 20px;
+}
+
+
+.title-image {
+   /* width: 100%; */
+   position: absolute;
+}

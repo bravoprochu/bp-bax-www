@@ -22,7 +22,7 @@
         title="zobacz clip {{data.title.title}} na Youtube" [url]="data.youtubeUrl"></svg:g>
     </svg>
   </section>
-  <app-facebook-button [linkToShare]="linkToShare"></app-facebook-button>    
+  <app-social-buttons [linkToShare]="linkToShare"></app-social-buttons>    
   
   
  <!-- Your like button code -->
@@ -37,12 +37,13 @@
   <section class="text-content">
     <app-news-article-date [date]="data.creationDate"></app-news-article-date>
     
-    <h1>{{data.title.title | uppercase}}</h1>
-    <div>
+    
+    <div class="title-container">
+      <h1>{{data.title.title | uppercase}}</h1>
       <h2>{{data.title.shortTitle}}</h2>
       <h3>{{data.title.subtitle}}</h3>
     </div>
-    <div [innerHtml]="data.text"></div>
+    <div class="text-container" [innerHtml]="data.text"></div>
   </section>
   
 </div>

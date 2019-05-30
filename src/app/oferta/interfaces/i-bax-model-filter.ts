@@ -3,6 +3,10 @@ import { IBaxModelMaszynyNoweFilterGroup } from './i-bax-model-maszyny-nowe-filt
 
 export interface IBaxModelFilter {
     searchArr: IBaxModelMaszynyNoweFilterLine[],
-    numberArr: IBaxModelMaszynyNoweFilterGroup[],
-    checkboxArr: IBaxModelMaszynyNoweFilterLine[]
+    numberArr: IBaxModelMaszynyNoweFilterLine[],
+    checkboxGroups: {
+        branza: IBaxModelMaszynyNoweFilterLine[],
+        marka: IBaxModelMaszynyNoweFilterLine[],
+        zasilanie: IBaxModelMaszynyNoweFilterLine[]
+    }
 }

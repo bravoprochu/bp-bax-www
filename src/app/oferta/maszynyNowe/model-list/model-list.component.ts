@@ -6,6 +6,9 @@ import { IBaxModelMaszynaNowa } from '../../interfaces/i-bax-model-maszyna-nowa'
 import { bp_anim_filter } from 'src/app/animations/bp_anim_filter';
 import { BP_ANIM_GROUP_APPEAR_ONLY } from 'src/app/animations/bp_anim_group_appear_only';
 import { MaszynyNoweService } from '../maszynyNoweServices/maszyny-nowe.service';
+import { IImageGalleryPayload } from 'src/app/shared/interfaces/i-image-gallery-payload';
+import { IImageGalleryItem } from 'src/app/shared/interfaces/i-image-gallery-item';
+import { ImageGalleryPayload } from 'src/app/shared/interfaces/image-gallery-payload';
 
 
 @Component({
@@ -19,11 +22,13 @@ import { MaszynyNoweService } from '../maszynyNoweServices/maszyny-nowe.service'
   ]
 })
 export class ModelListComponent implements OnInit {
-  @ViewChild('container') container!: ElementRef;
+  @ViewChild('container', { static: false }) container!: ElementRef;
   baseUrl: string = window.location.href;
   isAwers: boolean = true;
   modelList: IBaxModelMaszynaNowa[] = [];
   modelOnScreenId: number;
+
+  imageGallery: IImageGalleryItem[] = [];
 
   
   
@@ -33,7 +38,15 @@ export class ModelListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    const _imageGalleryItemList = this.mnSrv.maszynyNoweList.map(m=>{
+      return <IImageGalleryItem> {
+        title: m.nazwaModelu, 
+        subtitle: `${m.marka}, silnik moc:${m.silnikMoc_KW}`,
+        imgUrl: m.mediaCardImg,
+        infoBgColor: m.modelBackground
+      }
+    })
+    this.imageGallery = _imageGalleryItemList;
   }
 
   initHammer() {

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { IBaxModelMaszynyNoweFilterLine } from '../../interfaces/i-bax-model-maszyny-nowe-filter-line';
 import { PantoneToHexService } from 'src/app/pantoneToHex/pantone-to-hex.service';
 import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
@@ -10,6 +10,8 @@ import { takeUntil, map } from 'rxjs/operators';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { ActivatedRoute } from '@angular/router';
 import { MaszynyNoweService } from '../maszynyNoweServices/maszyny-nowe.service';
+import {Title, Meta} from '@angular/platform-browser';
+import { MatDrawer } from '@angular/material';
 
 @Component({
   selector: 'app-maszyny-nowe',
@@ -20,6 +22,8 @@ import { MaszynyNoweService } from '../maszynyNoweServices/maszyny-nowe.service'
   ]
 })
 export class MaszynyNoweComponent implements OnInit, AfterViewInit {
+  @ViewChild('drawer', { static: true }) drawer: MatDrawer;
+  
 
   colorEven: string;
   colorOdd: string;
@@ -49,14 +53,23 @@ export class MaszynyNoweComponent implements OnInit, AfterViewInit {
     private pantoSrv: PantoneToHexService,
     private sanitizer: DomSanitizer,
     private mediaObserver: MediaObserver,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
 
     const _data = this.activatedRoute.snapshot.data['data'];
     this.mnSrv.maszynyNoweListAvailable = _data;
-    this.mnSrv.initData();
+    if(!this.mnSrv.isDataReady){
+      this.mnSrv.initData();
+    }
+    
+
+
+
+    this.cf.metaTitleUpdate('maszyny przeładunkowe Sennebogen, maszyny budowlane Yanmar');
+
+
 
     this.rFiltersList$ = this.fb.array([]);
     const colorPalete = this.pantoSrv.getNextPaletteColors("283", 2, 1);
@@ -83,8 +96,12 @@ export class MaszynyNoweComponent implements OnInit, AfterViewInit {
      if(!this.isSidenavOpen) {
        this.isSidenavOpen = true;
      }
-   }, 10000);
+   }, 3000);
+  }
 
+
+  test(){
+    console.log(this.mnSrv.filterForm$);
   }
 
 
@@ -93,8 +110,11 @@ export class MaszynyNoweComponent implements OnInit, AfterViewInit {
   }
 
   drawerMode(): string {
-
     return this.isSmall ? 'over' : 'side';
+  }
+
+  drawerClose(){
+    this.drawer.open();
   }
   
   drawerWidth(): number {
@@ -110,15 +130,17 @@ export class MaszynyNoweComponent implements OnInit, AfterViewInit {
   }
 
   get filterGroup$(): FormGroup {
-    return <FormGroup>this.mnSrv.filterGroup$;
+    return <FormGroup>this.mnSrv.filterForm$;
   }
 
-  get isSennebogen$():FormControl {
-    return <FormControl>this.mnSrv.isSennebogenFilter$;
+
+  get branzaList$(): FormArray {
+    return <FormArray>this.mnSrv.branzaListArr$;
   }
 
-  get isYanmar$():FormControl {
-    return <FormControl>this.mnSrv.isYanmarFilter$;
+
+  get markaList$(): FormArray {
+    return <FormArray>this.mnSrv.markaListArr$;
   }
 
   get modelSearch$(): FormGroup {
@@ -133,6 +155,12 @@ export class MaszynyNoweComponent implements OnInit, AfterViewInit {
   get filterNumberArr$(): FormArray  {
     return <FormArray>this.mnSrv.filterNumberArr$;
   }
+
+  get zasilanieList$(): FormArray {
+    return <FormArray>this.mnSrv.zasilanieListArr$;
+  }
+
+
 
 
 

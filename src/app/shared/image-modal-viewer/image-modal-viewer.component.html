@@ -1,0 +1,28 @@
+<div #dialogContainer fxFill fxLayout="column"  fxLayoutAlign="center center" fxLayoutGap="10px">
+  <!-- <div fxFill>&nbsp;
+      <div fxLayout="row" fxLayoutAlign="start center">
+          <div fxFlex>&nbsp;</div>
+              <button mat-icon-button color="warn" mat-tooltip="zamknij">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+    
+     </div>
+  </div> -->
+  <svg viewBox="0 0 1920 1080" fxFill svgContainer xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="80vh" width="80vw">
+    <image [attr.href]="galleryPayload.imgUrl" width="100%" height="100%"></image>
+    
+    <text x="10%" y="80%" font-size="80" >{{galleryPayload.title}}</text>
+
+    <text x="10%" y="10%" font-size="80" > {{galleryPayload.currentIndex}} / {{galleryPayload.isNext}} {{galleryPayload.isPrev}}</text>
+    <text x="10%" y="20%" font-size="80" > {{galleryPayload.subtitle}}</text>
+
+  </svg>
+  <div mat-dialog-action>
+      <button mat-icon-button color="accent" mat-tooltip="poprzedni" [disabled]="!galleryPayload.isPrev" (click)="galleryPayload.prev()">
+          <mat-icon>navigate_beforer</mat-icon>
+        </button>
+    <button mat-icon-button color="accent" mat-tooltip="następny" [disabled]="!galleryPayload.isNext" (click)="galleryPayload.next()">
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+  </div>
+</div>

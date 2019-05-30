@@ -5,8 +5,8 @@ import { RouterModule } from '@angular/router';
 import { ArticleContainerComponent } from './article-container/article-container.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SvgCommonModule } from './svg/svg-common.module';
-import { MatCardModule, MatSidenavModule, MatExpansionModule, MatButtonModule, MatIconModule, MatTabsModule, MatDividerModule, MatInputModule, MatSliderModule, MatCheckboxModule, MatListModule, MatSelectModule, MatTooltipModule, MatToolbarModule} from '@angular/material';
-import { FacebookButtonComponent } from './facebook-button/facebook-button.component'
+import { MatCardModule, MatSidenavModule, MatExpansionModule, MatButtonModule, MatIconModule, MatTabsModule, MatDividerModule, MatInputModule, MatSliderModule, MatCheckboxModule, MatListModule, MatSelectModule, MatTooltipModule, MatToolbarModule, MatMenuModule, MatDialogModule} from '@angular/material';
+import { SocialButtonsComponent } from './social-buttons/social-buttons.component'
 import { CommonFunctionsService } from './common-functions.service';
 import { HeaderComponent } from './header/header/header.component';
 import { HeaderMenuBigComponent } from './header/header-menu-big/header-menu-big.component';
@@ -23,13 +23,19 @@ import { MenuComponent } from './menu/menu.component';
 import { MenuHorizontalComponent } from './menu-horizontal/menu-horizontal.component';
 import { MenuCommonFunctionsService } from './menu-common-functions.service';
 import { ScrollDispatchModule } from '@angular/cdk/scrolling';
+import { VerticalMaskedImageComponent } from './vertical-masked-image/vertical-masked-image.component';
+import { ImageModalViewerComponent } from './image-modal-viewer/image-modal-viewer.component';
+import { VerticalImageGalleryComponent } from '../vertical-image-gallery/vertical-image-gallery.component';
 
 
 @NgModule({
+  entryComponents: [
+    ImageModalViewerComponent,
+  ],
   declarations: [
     RouterGoBackComponent,
     ArticleContainerComponent,
-    FacebookButtonComponent,
+    SocialButtonsComponent,
     HeaderComponent,
     HeaderMenuBigComponent,
     MenuComponent,
@@ -40,7 +46,10 @@ import { ScrollDispatchModule } from '@angular/cdk/scrolling';
     FillChangeDirective,
     BaxPreloaderDirective,
     ImgGalleryComponent,
-    MenuHorizontalComponent
+    MenuHorizontalComponent,
+    VerticalMaskedImageComponent,
+    ImageModalViewerComponent,
+    VerticalImageGalleryComponent,
   ],
   imports: [
     CommonModule,
@@ -50,11 +59,13 @@ import { ScrollDispatchModule } from '@angular/cdk/scrolling';
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+    MatDialogModule,
     MatDividerModule,
     MatExpansionModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
+    MatMenuModule,
     MatSelectModule,
     MatSidenavModule,
     MatSliderModule,
@@ -75,7 +86,7 @@ import { ScrollDispatchModule } from '@angular/cdk/scrolling';
     BaxPreloaderDirective,
     DeferLoadDirective,
     DetectIntersectionDirective,
-    FacebookButtonComponent,
+    SocialButtonsComponent,
     FillChangeDirective,
     FlexLayoutModule,
     FormsModule,
@@ -84,11 +95,13 @@ import { ScrollDispatchModule } from '@angular/cdk/scrolling';
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+    MatDialogModule,
     MatDividerModule,
     MatExpansionModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
+    MatMenuModule,
     MatSelectModule,
     MatSidenavModule,
     MatSliderModule,
@@ -103,7 +116,9 @@ import { ScrollDispatchModule } from '@angular/cdk/scrolling';
     MenuHorizontalComponent,
     ScrollDispatchModule,
     SvgButtonYoutubeComponent,
-
+    VerticalMaskedImageComponent,
+    ImageModalViewerComponent,
+    VerticalImageGalleryComponent,
   ],
   providers: [
     CommonFunctionsService,

@@ -1,31 +1,24 @@
 import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { Subject, fromEvent, of, merge, Observable } from 'rxjs';
-import { MediaObserver, MediaChange, } from '@angular/flex-layout';
-import { takeUntil, map, switchMap, tap } from 'rxjs/operators';
 import { IWindowBasicInfo } from './svg/interfaces/i-window-basic-info';
-import { _getTestBedRender3 } from '@angular/core/testing/src/r3_test_bed';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CommonFunctionsService implements OnDestroy {
+export class CommonFunctionsService {
 
-  private isDestroyed$: Subject<boolean>;
-  private _mediaChange$: any;
   windowBasicInfo: IWindowBasicInfo = <IWindowBasicInfo>{};
 
 
   constructor(
     private sanitzer: DomSanitizer,
+    private metaTitle: Title,
+    private metaMeta: Meta
   ) {
-    this.isDestroyed$ = new Subject();
   }
 
-  ngOnDestroy(): void {
-    this.isDestroyed$.next();
-    this.isDestroyed$.complete();
-  }
+
 
   cloneObject(src: any) {
     return JSON.stringify(src);
@@ -53,6 +46,19 @@ export class CommonFunctionsService implements OnDestroy {
 
 
 
+  metaTitleUpdate(subtitle: string){
+    this.metaTitle.setTitle(`BAX | ${subtitle}`);
+  }
+
+  metaDescriptionUpdate(text: string){
+    let _descr = this.metaMeta.getTag('name=description');
+    this.metaMeta.updateTag({
+      name: 'description', 
+      content: text
+    })
+  }
+
+  
 
 
 

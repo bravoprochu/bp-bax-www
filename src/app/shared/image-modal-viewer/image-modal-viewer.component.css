@@ -1,0 +1,8 @@
+.mat-dialog-content {
+    overflow-y: hidden !important;
+}
+
+.image-modal-container {
+    width: 100%;
+    height: 100%;
+}

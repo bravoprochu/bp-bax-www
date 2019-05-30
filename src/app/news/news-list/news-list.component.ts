@@ -4,6 +4,7 @@ import { INewsArticle } from '../interfaces/i-news-article';
 import { BP_ANIM_BRICK_LIST } from 'src/app/animations/bp-anim-brick-list';
 import { ActivatedRoute } from '@angular/router';
 import { INewsArticleMini } from '../interfaces/i-news-article-mini';
+import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
 
 
 
@@ -23,11 +24,14 @@ export class NewsListComponent implements OnInit {
   isOrderByNameAsc: boolean = true;
   news: INewsArticleMini[]= [];
   constructor(
-    private activatedRoute: ActivatedRoute
+    private cf: CommonFunctionsService,
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
     this.news = this.activatedRoute.snapshot.data['data'];
+    this.cf.metaTitleUpdate(`NEWS`);
+    this.cf.metaDescriptionUpdate('Najnowsze informacje BAX maszyny. Aktualności dotyczące maszyn Sennebogen, Yanmar, Goudetti. Promocje na części, oferty pracy, katalog usług serwisowych')
    }
 
   

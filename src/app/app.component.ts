@@ -24,7 +24,7 @@ import { AnimationEvent } from '@angular/animations';
 })
 
 export class AppComponent implements OnInit {
-  @ViewChild('mainContent') mainContent: ElementRef;
+  @ViewChild('mainContent', { static: true }) mainContent: ElementRef;
   prepareRoute(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
    */
   constructor(
     private cf: CommonFunctionsService,
-    public scrollDispatcher: ScrollDispatcher,
+    private scrollDispatcher: ScrollDispatcher,
     private ngZone: NgZone,
     private mediaObserver: MediaObserver,
     private router: Router,
@@ -67,6 +67,7 @@ export class AppComponent implements OnInit {
       () => console.log('router ev: finish..')
     )
 
+    
     this.scrollDispatcher.scrolled()
       .pipe(
         takeUntil(this.isDestroyed$),
@@ -123,13 +124,13 @@ export class AppComponent implements OnInit {
   }
 
 
-  mainContentScrolled(data: CdkScrollable) {
-    const d = data.getElementRef().nativeElement.scrollTop;
+  // mainContentScrolled(data: CdkScrollable) {
+  //   const d = data.getElementRef().nativeElement.scrollTop;
 
-    this.ngZone.runOutsideAngular(() => {
-      this.isScrollShown = d > 100 ? true : false;
-    })
-  }
+  //   this.ngZone.runOutsideAngular(() => {
+  //     this.isScrollShown = d > 100 ? true : false;
+  //   })
+  // }
 
   scrollToTop() {
     (<HTMLElement>this.mainContent.nativeElement).scrollTo({ top: 0, behavior: 'smooth' });

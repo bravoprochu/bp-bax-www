@@ -3,11 +3,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
-  selector: 'app-facebook-button',
-  templateUrl: './facebook-button.component.html',
-  styleUrls: ['./facebook-button.component.css']
+  selector: 'app-social-buttons',
+  templateUrl: './social-buttons.component.html',
+  styleUrls: ['./social-buttons.component.css']
 })
-export class FacebookButtonComponent implements OnInit {
+export class SocialButtonsComponent implements OnInit {
   @Input("linkToShare") linkToShare: string;
   fbUrl: any;
   twitterUrl: any;

@@ -19,10 +19,23 @@
   </div>
 </div> -->
 
+<app-vertical-image-gallery [imageGalleryItemList]="imageGallery"></app-vertical-image-gallery>
+
+
+<!-- <div style="width: 1024px; overflow: auto">
+  <div fxLayout fxLayoutGap="3px" style="padding-left: 15px; padding-right: 15px">
+    <app-vertical-masked-image fxFlex="250px" [baxModelMedia]="{}"></app-vertical-masked-image>
+    <app-vertical-masked-image fxFlex="250px" *ngFor="let model of mnSrv.maszynyNoweList" [baxModelMedia]="model"></app-vertical-masked-image>
+  </div>
+</div> -->
+
+
+
+<!-- 
 <div fxLayout="row wrap" fxLayoutGap="10px" fxLayout.xs="column" @brickList
   [@filter]="mnSrv.maszynyNoweList.length">
   <div *ngFor="let model of mnSrv.maszynyNoweList index as i" fxFlex="0 0 calc(50%-10px)" fxFlex.xs="100"
     fxFlex.sm="0 0 calc(50% - 10px)" fxFlex.lg="0 0 calc(33%-10px)" fxFlex.gt-lg="0 0 calc(25%-10px)">
     <app-model-maszyny [model]="model"></app-model-maszyny>
   </div>
-</div>
+</div> -->

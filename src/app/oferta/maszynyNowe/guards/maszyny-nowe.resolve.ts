@@ -27,7 +27,6 @@ export class MaszynyNoweReslove implements Resolve<IBaxModelMaszynaNowa> {
     
     resolve(route: import("@angular/router").ActivatedRouteSnapshot, state: import("@angular/router").RouterStateSnapshot): IBaxModelMaszynaNowa | import("rxjs").Observable<IBaxModelMaszynaNowa> | Promise<IBaxModelMaszynaNowa> {
         const id = route.params["id"];
-        console.log('maszynyNoweResolve', id);
         return this.df.getById(id).pipe(
             catchError((err)=>this.errorHandler(err, this.router))
         );

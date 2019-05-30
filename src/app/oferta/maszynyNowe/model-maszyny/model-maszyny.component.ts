@@ -20,8 +20,8 @@ import { MaszynyNoweService } from '../maszynyNoweServices/maszyny-nowe.service'
 })
 export class ModelMaszynyComponent implements OnInit, OnChanges, OnDestroy {
   @Input('model') model: IBaxModelMaszynaNowa;
-  @ViewChild('container') container: ElementRef;
-  @ViewChild('bgAnim') bgAnim: ElementRef;
+  @ViewChild('container', { static: true }) container: ElementRef;
+  @ViewChild('bgAnim', { static: false }) bgAnim: ElementRef;
   bgColor: string;
   idAwers: string = this.svgCf.getUniqeId('awers');
   intersection$: IntersectionObserver;

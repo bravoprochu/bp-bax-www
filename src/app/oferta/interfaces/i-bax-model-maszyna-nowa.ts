@@ -57,5 +57,4 @@ export interface IBaxModelMaszynaNowa extends IBaxModel, IBaxModelMedia {
     pojemność_chwytaka_lupinowego_gestość_2t_m3_l?: number;
     pojemność_chwytaka_szczekowego_drewno_dl_2m_m3?: number;
     zasilanie?: string;
-    branza: string;
 }

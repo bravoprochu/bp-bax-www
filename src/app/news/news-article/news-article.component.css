@@ -48,22 +48,35 @@
     height: 100%;
 }
 
+.title-container {
+    margin: 2em;
+}
+
+.text-container {
+    margin: 1em;
+}
 
 
 h1 {
     font-size: 2em;
-    padding: 1em;
+    padding-left: 1em;
 }
 
 h2 {
     font-size: 1.5em;
-    padding: 1em;
+    padding-left: 1em;
+}
+
+h3 {
+    font-size: 1em;
+    padding-left: 1em;
 }
 
 p {
     font-size: 1.2em;
 }
 
-ul {
+ul, ol {
+    margin-left: 1em;
     padding: 0.5em 3em;
 }

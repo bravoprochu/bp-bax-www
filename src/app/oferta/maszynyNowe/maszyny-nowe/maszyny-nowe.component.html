@@ -1,111 +1,126 @@
 <mat-drawer-container class="main-content-height">
-  <mat-drawer #drawer fxLayout="row" [opened]="isSidenavOpen" [mode]="drawerMode()" class="drawer-size" [style.width.vw]="drawerWidth()">
+  <mat-drawer #drawer fxLayout="row" [opened]="isSidenavOpen" [mode]="drawerMode()" class="drawer-size"
+    [style.width.vw]="drawerWidth()">
 
-    <mat-accordion>
-      <mat-expansion-panel expanded="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <div>
-              Filtry
-              <span *ngIf="!mnSrv.isFilterLengthCount">&nbsp;(przeliczam...)</span>
-              <span *ngIf="mnSrv.maszynyNoweList.length > 0 && mnSrv.isFilterLengthCount">(znaleziono: </span>
-              <span *ngIf="mnSrv.isFilterLengthCount && mnSrv.maszynyNoweList.length > 0" class="mat-body-2"
-                @pulseText>&nbsp;{{mnSrv.maszynyNoweList.length}})</span>
-              <span *ngIf="mnSrv.isFilterLengthCount && mnSrv.maszynyNoweList.length == 0">(nie znaleziono maszyny
-                spełniającej
-                kryteria wyszukania)</span>
-            </div>
-          </mat-panel-title>
-
-        </mat-expansion-panel-header>
-
-        <div fxLayout="column" fxLayoutGap="10px">
-          <div fxLayoutAlign="space-between center">
-            <div *ngIf="filterGroup$.dirty">
-              <button mat-mini-fab (click)="filterClear()" matTooltip="wyczyść filtr">
-                <mat-icon>clear</mat-icon>
-              </button>
-            </div>
-
-            <button mat-mini-fab (click)="drawer.close()" matTooltip="zamknij sidenav">
-              <mat-icon>exit_to_app</mat-icon>
-            </button>
-          </div>
-
-          <!-- <mat-form-field>
-            <mat-select placeholder="wybierz atrybuty dla filtru" [formControl]="mnSrv.filterSelect$" multiple>
-              <mat-option *ngFor="let filter of mnSrv.filterAvailable" [value]="filter">{{filter.label}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field> -->
-
-          <div fxLayoutGap="10px">
-            <mat-checkbox [formControl]="isSennebogen$">Sennebogen</mat-checkbox>
-            <mat-checkbox [formControl]="isYanmar$">Yanmar</mat-checkbox>
-          </div>
-
-          
-          <div [formGroup]="modelSearch$">
-            <mat-form-field fxFill>
-              <input type="search" matInput placeholder="wyszukaj po nazwie modelu" formControlName="searchPhrase">
-            </mat-form-field>
-          </div>
-
-          <mat-form-field>
-            <mat-select placeholder="wybierz atrybuty dla filtru" [formControl]="filterNumberSelect$" multiple>
-              <mat-optgroup *ngFor="let group of mnSrv.filterGroupsAvailable" [label]="group.groupName">
-                <mat-option *ngFor="let filter of group.filters" [value]="filter">{{filter.label}}
-                </mat-option>
-              </mat-optgroup>
-            </mat-select>
-          </mat-form-field>
-
-          <!-- <div *ngFor="let filter of mnSrv.maszynyNoweListFilter odd as isOdd; even as isEven" fxLayout="column" fxLayoutAlign="center start" [style.backgroundColor]="isEven? colorEven : colorOdd"> -->
-          <div>
-            <div *ngFor="let filter of filterNumberArr$.controls even as isEven; odd as isOdd" fxLayout="column"
-              fxLayoutAlign="center center" [style.backgroundColor]="isEven ? colorEven : colorOdd">
-              <div style="padding: 10px" class="mat-body-1">{{filter.value.label}} <strong>{{filter.value.minFilter}} -
-                  {{filter.value.maxFilter}}</strong></div>
-              <div fxLayout="row">
-                <mat-slider fxFlex="50" thumbLabel [min]="filter.value.min" [max]="filter.value.maxFilter"
-                  [formControl]="filter.get('minFilter')"></mat-slider>
-                <mat-slider fxFlex="50" thumbLabel [min]="filter.value.minFilter" [max]="filter.value.max"
-                  [formControl]="filter.get('maxFilter')"></mat-slider>
-              </div>
-            </div>
-          </div>
-
-
+    <mat-toolbar>
+      <div fxLayout="column">
+        <div>
+          Filtry
         </div>
+      </div>
+      <div fxFlex></div>
 
-        <!-- goto=> <div routerLink="../yanmar-sv08-1-as">yanmar-sv08-1-as</div> -->
+      <button *ngIf="filterGroup$.dirty" mat-mini-fab (click)="filterClear()" matTooltip="wyczyść filtr"
+        class="icon-space-betwwen">
+        <mat-icon>clear</mat-icon>
+      </button>
+      <button mat-mini-fab (click)="drawer.close()" matTooltip="zamknij sidenav" class="icon-space-betwwen">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
 
-      </mat-expansion-panel>
-    </mat-accordion>
+    </mat-toolbar>
+
+
+
+    <mat-card fxLayout="column" fxLayoutGap="10px">
+        <div class="filtry-info-text">
+            <span *ngIf="!mnSrv.isFilterLengthCount">&nbsp;(przeliczam...)</span>
+            <span *ngIf="mnSrv.maszynyNoweList.length > 0 && mnSrv.isFilterLengthCount">(znaleziono: </span>
+            <span *ngIf="mnSrv.isFilterLengthCount && mnSrv.maszynyNoweList.length > 0" class="mat-body-2"
+              @pulseText>&nbsp;{{mnSrv.maszynyNoweList.length}})</span>
+            <span *ngIf="mnSrv.isFilterLengthCount && mnSrv.maszynyNoweList.length == 0">(nie znaleziono maszyn)</span>
+          </div>
+
+
+      <div class="mat-caption">Marka</div>
+      <div fxLayoutGap="10px">
+        <mat-checkbox [formControl]="marka.get('checkboxValue')" *ngFor="let marka of markaList$.controls">
+          {{marka.value.name}}</mat-checkbox>
+      </div>
+
+      <div class="mat-caption">Branża</div>
+      <div fxLayoutGap="10px">
+        <mat-checkbox [formControl]="branza.get('checkboxValue')" *ngFor="let branza of branzaList$.controls">
+          {{branza.value.name}}</mat-checkbox>
+      </div>
+
+      <div class="mat-caption">Zasilanie</div>
+      <div fxLayoutGap="10px">
+        <mat-checkbox [formControl]="zasilanie.get('checkboxValue')" *ngFor="let zasilanie of zasilanieList$.controls">
+          {{zasilanie.value.name}}</mat-checkbox>
+      </div>
+
+
+      <div [formGroup]="modelSearch$">
+        <mat-form-field fxFill>
+          <input type="search" matInput placeholder="wyszukaj po nazwie modelu" formControlName="searchPhrase">
+        </mat-form-field>
+      </div>
+
+      <mat-form-field>
+        <mat-select placeholder="wybierz atrybuty dla filtru" [formControl]="filterNumberSelect$" multiple>
+          <mat-optgroup *ngFor="let group of mnSrv.filterGroupsAvailable" [label]="group.groupName">
+            <mat-option *ngFor="let filter of group.filters" [value]="filter">{{filter.label}}
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- <div *ngFor="let filter of mnSrv.maszynyNoweListFilter odd as isOdd; even as isEven" fxLayout="column" fxLayoutAlign="center start" [style.backgroundColor]="isEven? colorEven : colorOdd"> -->
+      <div>
+        <div *ngFor="let filter of filterNumberArr$.controls even as isEven; odd as isOdd" fxLayout="column"
+          fxLayoutAlign="center center" [style.backgroundColor]="isEven ? colorEven : colorOdd">
+          <div style="padding: 10px" class="mat-body-1">{{filter.value.label}} <strong>{{filter.value.minFilter}} -
+              {{filter.value.maxFilter}}</strong></div>
+          <div fxLayout="row">
+            <mat-slider fxFlex="50" thumbLabel [min]="filter.value.min" [max]="filter.value.maxFilter"
+              [formControl]="filter.get('minFilter')"></mat-slider>
+            <mat-slider fxFlex="50" thumbLabel [min]="filter.value.minFilter" [max]="filter.value.max"
+              [formControl]="filter.get('maxFilter')"></mat-slider>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+
+    <!-- goto=> <div routerLink="../yanmar-sv08-1-as">yanmar-sv08-1-as</div> -->
+
+
+
+
 
   </mat-drawer>
 
   <mat-drawer-content>
-    <div fxLayout="column">
-      <div style="height: 55px;" fxLayoutAlign="space-between center">
-        <div>
-          <button mat-mini-fab (click)="modelSpecCardInfoShow()" *ngIf="!mnSrv.isModelSpecCardInfo.value"
-            matTooltip="pokaż info">
-            <mat-icon>toggle_off</mat-icon>
-          </button>
-          <button mat-mini-fab (click)="modelSpecCardInfoShow()" *ngIf="mnSrv.isModelSpecCardInfo.value"
-            matTooltip="ukryj info">
-            <mat-icon>toggle_on</mat-icon>
-          </button>
-        </div>
-        <button mat-mini-fab (click)="drawer.toggle()">
-          <mat-icon>more_vert</mat-icon>
+    <mat-toolbar>
+      <div fxFlex></div>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="modelSpecCardInfoShow()" *ngIf="!mnSrv.isModelSpecCardInfo.value"
+          matTooltip="pokaż info">
+          <mat-icon>toggle_off</mat-icon>
+          <span>Pokaż info kart</span>
         </button>
-      </div>
-      <!-- <router-outlet></router-outlet> -->
+        <button mat-menu-item (click)="modelSpecCardInfoShow()" *ngIf="mnSrv.isModelSpecCardInfo.value"
+          matTooltip="ukryj info">
+          <mat-icon>toggle_on</mat-icon>
+          <span>Ukryj info kart</span>
+        </button>
 
-      <app-model-list></app-model-list>
+        <button mat-menu-item (click)="drawerClose()">
+          <mat-icon>filter_list</mat-icon>
+          <span>Otwórz menu filtr</span>
+        </button>
+      </mat-menu>
 
-    </div>
+
+    </mat-toolbar>
+
+
+    <app-model-list></app-model-list>
+
+
   </mat-drawer-content>
 </mat-drawer-container>

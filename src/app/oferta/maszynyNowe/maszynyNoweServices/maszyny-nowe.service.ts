@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ɵNOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR } from '@angular/core';
 import { FormControl, FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { IBaxModelMaszynyNoweFilterLine } from '../../interfaces/i-bax-model-maszyny-nowe-filter-line';
 import { IBaxModelMaszynyNoweFilterGroup } from '../../interfaces/i-bax-model-maszyny-nowe-filter-group';
@@ -9,15 +9,16 @@ import { BAX_MODEL_SPEC_LIST_GROUPS } from '../../data/bax-model-spec-groups';
 import { Observable, of } from 'rxjs';
 import { IBaxModelSpecGroup } from '../../interfaces/i-bax-model-spec-group';
 import { IBaxModelSpecLine } from '../../interfaces/i-bax-model-spec-line';
-import { map, debounceTime } from 'rxjs/operators';
+import { map, debounceTime, filter, switchMap } from 'rxjs/operators';
 import { IBaxModelFilter } from '../../interfaces/i-bax-model-filter';
 import { MaszynyNoweServicesModule } from './maszyny-nowe-services.module';
+import { ok } from 'assert';
 
 @Injectable({
   providedIn: MaszynyNoweServicesModule
 })
 export class MaszynyNoweService {
-  filterGroup$: FormGroup;
+  filterForm$: FormGroup;
   filterNumberSelect$: FormControl = new FormControl();
   filterAvailable: IBaxModelMaszynyNoweFilterLine[] = [];
   filterGroupsAvailable: IBaxModelMaszynyNoweFilterGroup[] = [];
@@ -36,38 +37,24 @@ export class MaszynyNoweService {
   constructor(
     private fb: FormBuilder,
   ) {
-    this.filterGroup$ = this.getFilterForm$();
+    this.filterForm$ = this.getFilterForm$();
     this.initFilterSearchGroups();
-    this.initCheckboxGroups();
-    this.filterGroup$.markAsPristine();
+    this.filterForm$.markAsPristine();
     this.initObservables();
-
-    // this.mnDataFactory.getList().subscribe(
-    //   (_data: IBaxModelMaszynaNowa[]) => {
-    //     console.log('dataFactory', _data);
-    //     this.maszynyNoweListAvailable = _data;
-    //     this.filterAvailable = this.getMaszynyNoweFilters();
-    //     this.filterGroupsAvailable = this.getFilterNumberLineGroups();
-    //     this.clearFilterGroup();
-    //     this.isDataReady = true;
-    //   },
-    //   (err) => console.log('dataFactory error', err),
-    //   () => console.log('dataFactory finish..')
-    // )
   }
 
-  initData(){
-        this.filterAvailable = this.getMaszynyNoweFilters();
-        this.filterGroupsAvailable = this.getFilterNumberLineGroups();
-        this.clearFilterGroup();
-        this.isDataReady = true;
+  initData() {
+    this.filterAvailable = this.getMaszynyNoweFilters();
+    this.filterGroupsAvailable = this.getFilterNumberLineGroups();
+    this.prepCheckboxGroupsBranzaList();
+    this.prepCheckboxGroupsMarkaList();
+    this.prepCheckboxGroupsZasilanieList();
+    this.clearFilterGroup();
+    this.isDataReady = true;
   }
 
   private checkIfFilterLineFits(dest: IBaxModelMaszynaNowa, filterLines: IBaxModelMaszynyNoweFilterLine[]): boolean {
     let res: boolean = false;
-    let counter = 1;
-
-    // console.log('filterlines checkIf', filterLines);
 
     for (let i = 0; i < filterLines.length; i++) {
       const filter = filterLines[i];
@@ -109,22 +96,17 @@ export class MaszynyNoweService {
     this.filterNumberSelect$.reset(null, { emitEvent: false });
     this.filterNumberArr$.controls = [];
     (<FormControl>this.modelSearchGroup$.get('searchPhrase')).setValue("", { emitEvent: false });
-    this.filterCheckboxArr$.controls = [];
-    this.initCheckboxGroups();
+    this.setCheckboxGroupsToChecked();
     this.maszynyNoweList = [...this.maszynyNoweListAvailable];
-    this.filterGroup$.markAsPristine();
+    this.filterForm$.markAsPristine();
   }
 
 
   filterLineConvertToGroup(filterList: IBaxModelMaszynyNoweFilterLine[]) {
     let controlsToRemove: number[] = [];
-    let controlsToAdd: number[] = [];
 
     if (filterList == null || filterList.length == 0) {
-      console.log('filter emtpy or null', this.filterNumberArr$.value, filterList);
-      this.filterNumberArr$.controls = [];
-
-      console.log('filterSelected$: ', this.filterNumberArr$.controls);
+      this.filterNumberArr$.reset();
       return;
     }
 
@@ -138,7 +120,6 @@ export class MaszynyNoweService {
     // remove filters
     for (let i = 0; i < _controls.length; i++) {
       const controlGroup: IBaxModelMaszynyNoweFilterLine = _controls[i];
-
       const filterAlreadyExists = filterList.find(f => f.name == controlGroup['name']);
 
       if (!filterAlreadyExists) {
@@ -181,7 +162,6 @@ export class MaszynyNoweService {
           name: filed,
           searchPhrase: value
         };
-        let searchFilterLineGroup = this.getFilterLineFormGroup$(searchFilterLine);
       })
     }
   }
@@ -195,10 +175,17 @@ export class MaszynyNoweService {
     let rForm = this.fb.group({
       searchArr: this.fb.array([]),
       numberArr: this.fb.array([]),
-      checkboxArr: this.fb.array([])
+      checkboxGroups: this.fb.group({
+        branza: this.fb.array([]),
+        marka: this.fb.array([]),
+        zasilanie: this.fb.array([]),
+      })
     });
+
     return rForm;
   }
+
+
 
   getFilterNumberLineGroups(): IBaxModelMaszynyNoweFilterGroup[] {
     this.filterGroupsAvailable = [];
@@ -354,67 +341,33 @@ export class MaszynyNoweService {
 
   initObservables() {
     this.filterNumberSelect$.valueChanges.pipe(
-      map((_filterLines: IBaxModelMaszynyNoweFilterLine[]) => {
-        this.filterLineConvertToGroup(_filterLines);
-        return _filterLines
-      }),
+      // map((_filterLines: IBaxModelMaszynyNoweFilterLine[]) => {
+        
+      //   return _filterLines
+      // }),
     ).subscribe(
-      // (_data: any) => {
-      // console.log('filterNumberSelect', _data);
-
-      // },
-      // (err) => console.log('filterNumberSelect error', err),
-      // () => console.log('filterNumberSelect finish..')
+      (_data: IBaxModelMaszynyNoweFilterLine[]) => {
+      // this.filterForm$.updateValueAndValidity();
+      this.filterLineConvertToGroup(_data);
+      if(_data.length == 0) {
+        this.filterNumberArr$.controls = [];
+        this.filterNumberArr$.reset();
+      }
+      this.filterForm$.markAsDirty();
+      },
+      (err) => console.log('filterNumberSelect error', err),
+      () => console.log('filterNumberSelect finish..')
     )
 
 
 
-    this.filterGroup$.valueChanges.pipe(
-      map((modelfilter: IBaxModelFilter) => {
-        let checkboxArr: IBaxModelMaszynyNoweFilterLine[] = [];
-        let searchArr = [];
-
-        //
-        // add only true values for checkbox
-        // and searchPhrase has at least one letter
-        //
-        let tempGroupFieldNameArr = [];
-        for (let checkFilter = 0; checkFilter < modelfilter.checkboxArr.length; checkFilter++) {
-          const element = modelfilter.checkboxArr[checkFilter];
-          if (!element.checkboxValue) { continue; }
-          let foundShared = tempGroupFieldNameArr.find(f => f["id"] == element.checkboxFieldName && f["value"] == element.checkboxValue);
-          if (foundShared) {
-            foundShared["combinedFieldName"] += "|" + element.name;
-          } else {
-            const checkGroupTemp = {
-              id: element.checkboxFieldName,
-              value: element.checkboxValue,
-              combinedFieldName: (<string>element.name).toLocaleLowerCase(),
-            };
-            tempGroupFieldNameArr.push(checkGroupTemp);
-          }
-        }
-
-        tempGroupFieldNameArr.forEach(f => {
-          checkboxArr.push(<IBaxModelMaszynyNoweFilterLine>{
-            checkboxFieldName: f["id"],
-            filterType: IBaxModelMaszynyNoweFilterTypeEnum.checkboxIf,
-            checkboxValue: f["value"],
-            name: f["combinedFieldName"]
-          });
-        })
-
-        modelfilter.searchArr.forEach(s => {
-          if (s.searchPhrase && s.searchPhrase.length > 0) {
-            searchArr.push(s);
-          }
-        })
-
-        return [...checkboxArr, ...modelfilter.numberArr, ...searchArr];
+    this.filterForm$.valueChanges.pipe(
+      map((modelFilter: IBaxModelFilter) => {
+        return modelFilter;
       }),
       debounceTime(750)
     ).subscribe(
-      (_data: IBaxModelMaszynyNoweFilterLine[]) => {
+      (_data: IBaxModelFilter) => {
         this.filterNew(_data);
       },
       (err) => console.log('search$ error', err),
@@ -423,33 +376,123 @@ export class MaszynyNoweService {
   }
 
 
-  filterNew(filters: IBaxModelMaszynyNoweFilterLine[]) {
-    // console.log('filterNew | filters | maszynyNowe: ', filters.length, this.maszynyNoweList.length);
+  getValidFilters(src: IBaxModelFilter): IBaxModelFilter {
+    let res = <IBaxModelFilter>{
+      checkboxGroups: {
+        branza: [],
+        marka: [],
+        zasilanie: [],
+      },
+      numberArr: [],
+      searchArr: []
+    }
+    res.checkboxGroups.branza = src.checkboxGroups.branza.filter(f => f.checkboxValue == true);
+    res.checkboxGroups.marka = src.checkboxGroups.marka.filter(f => f.checkboxValue == true);
+    res.checkboxGroups.zasilanie = src.checkboxGroups.zasilanie.filter(f => f.checkboxValue == true);
+    res.numberArr = [...src.numberArr];
+    res.searchArr = src.searchArr.filter(f => f.searchPhrase != null && f.searchPhrase.length > 0);
 
-    // if(filters.length == 0 && this.maszynyNoweList.length==0) {
-    //   this.clearFilterGroup(); 
-    //   return;
-    // }
+    return res;
+  }
 
-    const checkBoxesFilters = filters.filter(f => f.filterType == IBaxModelMaszynyNoweFilterTypeEnum.checkboxIf);
-    const otherFilters = filters.filter(f => f.filterType != IBaxModelMaszynyNoweFilterTypeEnum.checkboxIf);
-    let maszynyfiltered: IBaxModelMaszynaNowa[] = [];
-    //
-    // first, filter checkboxes... 
-    //
-    let maszynyNoweCheckBoxFirstFilterArr: IBaxModelMaszynaNowa[] = [];
-    this.maszynyNoweListAvailable.forEach(m => {
-      if ((this.checkIfFilterLineFits(m, checkBoxesFilters) == true)) {
-        maszynyNoweCheckBoxFirstFilterArr.push(m);
+
+
+  checkIfAnyElOnStringArrFitsFiltersArr(stringArr: string[], destArr: any[], field: string): boolean {
+    let found: boolean = false;
+    if (stringArr === undefined || stringArr.length == 0) { return found; }
+    for (let i = 0; i < stringArr.length; i++) {
+      const srcEl = stringArr[i];
+      //
+      // loop throw destArr to find fitting el
+      //
+      for (let d = 0; d < destArr.length; d++) {
+        const destEl = destArr[d];
+        if (srcEl == destEl[field]) {
+          found = true;
+          break;
+        }
       }
-    });
-    maszynyNoweCheckBoxFirstFilterArr.forEach(m => {
-      if ((this.checkIfFilterLineFits(m, otherFilters) == true)) {
-        maszynyfiltered.push(m);
+      if (found === true) {
+        break;
       }
-    });
+    }
+    return found
+  }
 
-    this.maszynyNoweList = otherFilters.length > 0 ? [...maszynyfiltered] : [...maszynyNoweCheckBoxFirstFilterArr];
+
+
+  filterNew(filters: IBaxModelFilter) {
+    //
+    // prep checkboxes with true (selected) value
+    //
+    this.maszynyNoweList = [];
+    const validFilters = this.getValidFilters(filters);
+
+
+    //
+    // maszyna has to fits ALL  filters groups (checkboxes gruoups (all), selected numbers filters and search - string filters)
+    //
+    this.maszynyNoweListAvailable.forEach(maszyna => {
+
+      let isOk: boolean;
+      //
+      // check if any of checkbox filters group fits
+      //
+      let checkBranzaFits = this.checkIfAnyElOnStringArrFitsFiltersArr(maszyna.branzaList, validFilters.checkboxGroups.branza, "name");
+      let checkMarkaFits = this.checkIfAnyElOnStringArrFitsFiltersArr([maszyna.marka], validFilters.checkboxGroups.marka, "name");
+      let checkZasilanieFits = this.checkIfAnyElOnStringArrFitsFiltersArr(maszyna.zasilanieList, validFilters.checkboxGroups.zasilanie, "name");
+
+      //
+      // check search filters. Fits if all filters are valid
+      //
+      let searchFits = this.checkIfFitsSearchFiltersArr(maszyna, validFilters.searchArr);
+
+      //
+      // check number - more/less filters
+      //
+      let checkNumbersFits = this.checkIfElFitsNumberFiltersArr(maszyna, validFilters.numberArr);
+
+
+      if (checkBranzaFits && checkMarkaFits && checkZasilanieFits && searchFits && checkNumbersFits) {
+        this.maszynyNoweList.push(maszyna);
+      }
+
+
+
+    })
+
+  }
+
+
+  checkIfElFitsNumberFiltersArr(maszyna: IBaxModelMaszynaNowa, numbersFilters: IBaxModelMaszynyNoweFilterLine[]): boolean {
+
+    if(numbersFilters.length == 0) {return true;}
+    let isOk: boolean = false;
+    for (let i = 0; i < numbersFilters.length; i++) {
+      const filter = numbersFilters[i];
+      const propValue = maszyna[filter.name];
+      let res = (propValue && propValue >= filter.minFilter && propValue <= filter.maxFilter) ? true : false;
+      if (res) { isOk = true; continue; } else { isOk= false; break; }    
+    }
+    return isOk;
+  }
+
+
+  checkIfFitsSearchFiltersArr(maszyna: IBaxModelMaszynaNowa, searchFilters: IBaxModelMaszynyNoweFilterLine[]): boolean {
+    if (searchFilters.length == 0) { return true; }
+    let isOk: boolean = false;
+    for (let i = 0; i < searchFilters.length; i++) {
+      const filter = searchFilters[i];
+
+      if ((<string>maszyna[filter.name]).toLowerCase().includes(filter.searchPhrase.toLowerCase())) {
+        isOk = true;
+        continue;
+      } else {
+        isOk = false;
+        break;
+      }
+    }
+    return isOk;
   }
 
 
@@ -467,62 +510,152 @@ export class MaszynyNoweService {
 
 
 
-  initCheckboxGroups() {
+  private prepCheckboxGroupsBranzaList() {
+    let branzaGroup$ = <FormArray>this.filterCheckboxGroupArr$.get('branza');
+    this.getBranzaList().forEach(branza => {
+
+      branzaGroup$.push(this.getFilterLineFormGroup$(<IBaxModelMaszynyNoweFilterLine>{
+        filterType: IBaxModelMaszynyNoweFilterTypeEnum.checkboxIf,
+        name: branza,
+        checkboxFieldName: 'branzaList',
+        checkboxValue: true,
+      }));
+
+    });
+  }
+
+
+  private prepCheckboxGroupsMarkaList() {
+    let markaGroup$ = <FormArray>this.filterCheckboxGroupArr$.get('marka');
+    this.getMarkaList().forEach(branza => {
+
+      markaGroup$.push(this.getFilterLineFormGroup$(<IBaxModelMaszynyNoweFilterLine>{
+        filterType: IBaxModelMaszynyNoweFilterTypeEnum.checkboxIf,
+        name: branza,
+        checkboxFieldName: 'marka',
+        checkboxValue: true,
+      }));
+
+    });
+  }
+
+
+  private prepCheckboxGroupsZasilanieList() {
+    let zasilanieGroup$ = <FormArray>this.filterCheckboxGroupArr$.get('zasilanie');
+    this.getZasilanieList().forEach(zasilanie => {
+
+      zasilanieGroup$.push(this.getFilterLineFormGroup$(<IBaxModelMaszynyNoweFilterLine>{
+        filterType: IBaxModelMaszynyNoweFilterTypeEnum.checkboxIf,
+        name: zasilanie,
+        checkboxFieldName: 'zasilanieList',
+        checkboxValue: true,
+      }));
+
+    });
+  }
+
+
+
+  private getBranzaList() {
+    let res: string[] = [];
+    this.maszynyNoweListAvailable.forEach(maszyna => {
+      if (maszyna.branzaList.length > 0) {
+        maszyna.branzaList.forEach(branza => {
+          let found = res.indexOf(branza);
+          if (found < 0) {
+            res.push(branza);
+          }
+        })
+      }
+    })
+    return res.sort();
+  }
+
+  private getMarkaList() {
+    let res: string[] = [];
+    this.maszynyNoweListAvailable.forEach(maszyna => {
+      let found = res.indexOf(maszyna.marka);
+      if (found < 0) {
+        res.push(maszyna.marka);
+      }
+    })
+    return res.sort();
+  }
+
+  private getZasilanieList() {
+    let res: string[] = [];
+    this.maszynyNoweListAvailable.forEach(maszyna => {
+      if (maszyna.zasilanieList.length > 0) {
+        maszyna.zasilanieList.forEach(zasilanie => {
+          let found = res.indexOf(zasilanie);
+          if (found < 0) {
+            res.push(zasilanie);
+          }
+        })
+      }
+    })
+    return res.sort();
+  }
+
+
+
+  private setCheckboxGroupsToChecked()
+  {
     //
-    // wybierz marke 
+    // check branza
     //
-    this.filterCheckboxArr$.push(this.getFilterLineFormGroup$(<IBaxModelMaszynyNoweFilterLine>{
-      filterType: IBaxModelMaszynyNoweFilterTypeEnum.checkboxIf,
-      name: 'sennebogen',
-      checkboxFieldName: 'marka',
-      checkboxValue: true,
+    this.branzaListArr$.controls.forEach(f=>{
+      (<FormControl>f.get('checkboxValue')).setValue(true, {emitEvent: false});
+    });
 
+    //
+    // check marka
+    //
+    this.markaListArr$.controls.forEach(f=>{
+      (<FormControl>f.get('checkboxValue')).setValue(true, {emitEvent: false});
+    });
 
-    }));
-
-    this.filterCheckboxArr$.push(this.getFilterLineFormGroup$(<IBaxModelMaszynyNoweFilterLine>{
-      filterType: IBaxModelMaszynyNoweFilterTypeEnum.checkboxIf,
-      name: 'yanmar',
-      checkboxFieldName: 'marka',
-      checkboxValue: true,
-    }));
+    //
+    // check zasilanie
+    //
+    this.zasilanieListArr$.controls.forEach(f=>{
+      (<FormControl>f.get('checkboxValue')).setValue(true, {emitEvent: false});
+    });
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-  get isSennebogenFilter$(): FormControl {
-    return <FormControl>this.filterCheckboxArr$.controls[0].get('checkboxValue');
+  get branzaListArr$(): FormArray {
+    return <FormArray>this.filterCheckboxGroupArr$.get('branza');
   }
 
-  get isYanmarFilter$(): FormControl {
-    return <FormControl>this.filterCheckboxArr$.controls[1].get('checkboxValue');
+  get markaListArr$(): FormArray {
+    return <FormArray>this.filterCheckboxGroupArr$.get('marka');
   }
+
 
   get modelSearchGroup$(): FormGroup {
     return <FormGroup>this.filterSearchArr$.controls[0];
   }
 
   get filterNumberArr$(): FormArray {
-    return <FormArray>this.filterGroup$.get('numberArr');
+    return <FormArray>this.filterForm$.get('numberArr');
   }
 
-  get filterCheckboxArr$(): FormArray {
-    return <FormArray>this.filterGroup$.get('checkboxArr');
+  get filterCheckboxGroupArr$(): FormGroup {
+    return <FormGroup>this.filterForm$.get('checkboxGroups');
   }
 
   get filterSearchArr$(): FormArray {
-    return <FormArray>this.filterGroup$.get('searchArr');
+    return <FormArray>this.filterForm$.get('searchArr');
   }
 
+  get zasilanieListArr$(): FormArray {
+    return <FormArray>this.filterCheckboxGroupArr$.get('zasilanie');
+  }
+
+
+
+
 }
+
+

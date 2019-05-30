@@ -28,9 +28,9 @@ import { PantoneToHexService } from 'src/app/pantoneToHex/pantone-to-hex.service
 })
 export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input('miniInfo') miniInfo: INewsArticleMini;
-  @ViewChild('followMouse') followMouse: ElementRef;
-  @ViewChild('svg') svg: ElementRef;
-  @ViewChild('titleText') titleText:ElementRef;
+  @ViewChild('followMouse', { static: true }) followMouse: ElementRef;
+  @ViewChild('svg', { static: true }) svg: ElementRef;
+  @ViewChild('titleText', { static: false }) titleText:ElementRef;
   fill: string;
   imgUrl: string;
   invert: boolean;

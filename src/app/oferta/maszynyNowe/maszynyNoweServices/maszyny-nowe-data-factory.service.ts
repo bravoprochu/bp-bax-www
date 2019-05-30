@@ -35,7 +35,7 @@ export class MaszynyNoweDataFactoryService {
   getById(id: string): Observable<IBaxModelMaszynaNowa> {
     return <Observable<IBaxModelMaszynaNowa>>this.httpClient.get(`${environment.maszynyNowe.apiUrlMaszynyNoweGeById}/${id}`, { headers: this.getHeaders()})
       .pipe(
-        tap((t) => console.log('tap', t)),
+        // tap((t) => console.log('tap', t)),
         map(UpdateMediaImgUrl)
       )
   }

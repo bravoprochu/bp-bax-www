@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FacebookButtonComponent } from './facebook-button.component';
+import { SocialButtonsComponent } from './social-buttons.component';
 
 describe('FacebookButtonComponent', () => {
-  let component: FacebookButtonComponent;
-  let fixture: ComponentFixture<FacebookButtonComponent>;
+  let component: SocialButtonsComponent;
+  let fixture: ComponentFixture<SocialButtonsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FacebookButtonComponent ]
+      declarations: [ SocialButtonsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FacebookButtonComponent);
+    fixture = TestBed.createComponent(SocialButtonsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

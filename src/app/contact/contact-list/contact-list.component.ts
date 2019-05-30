@@ -13,7 +13,7 @@ import { ContactService } from '../contact.service';
   styleUrls: ['./contact-list.component.css']
 })
 export class ContactListComponent implements OnInit {
-  @ViewChild('container') container: ElementRef;
+  @ViewChild('container', { static: false }) container: ElementRef;
   contactList: IContactCard[] = [];
 
   constructor(
@@ -35,6 +35,9 @@ export class ContactListComponent implements OnInit {
     // console.log('next', this.pantoneService.getNextColor("600"));
     this.initSVG();
     this.contactList = this.contactSrv.getContactList();
+    
+    this.cf.metaTitleUpdate('Baumaschinen, Suchy las ul. Wierzbowa 2')
+    this.cf.metaDescriptionUpdate('Sprzedaż maszyn budowlanych, przeładunkowych, rozdrabniaczy. Autoryzowany dealer SENNEBOGEN, YANMAR, ARJES, GOUDETTI. Serwis, sprzedaż części.')
   }
 
 

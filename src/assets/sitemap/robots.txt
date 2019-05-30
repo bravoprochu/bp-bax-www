@@ -1,0 +1,9 @@
+﻿# Reguła 1
+User-agent: Googlebot
+Disallow: /nogooglebot/
+
+# Reguła 2
+User-agent: *
+Allow: /
+
+Sitemap: https://www.bax-maszyny.pl/assets/sitemap/bax-sitemap.xml

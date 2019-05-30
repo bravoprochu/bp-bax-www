@@ -1,3 +1,66 @@
-<p>
-  model-maszyny-full works!
-</p>
+<!-- <div>
+
+
+<mat-card>
+  <mat-card-content>
+
+      <div class="mat-display-4 ">{{model.nazwaModelu}}</div>
+
+        <img mat-card-image  [attr.src]="model.mediaCardImg" alt="{{model.mediaCardImg}}">
+
+
+  <div class="model-info-container">
+   <app-social-buttons [linkToShare]="linkToShare"></app-social-buttons>
+    <mat-tab-group mat-align-tabs="center">
+      <mat-tab *ngFor="let g of specGroups" [label]="g.groupName">
+  
+        <p *ngFor="let line of g.specLines"><small>{{line.label}}</small> - <strong>{{line.value}}</strong></p>
+  
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+
+  </mat-card-content>
+</mat-card>
+
+</div> -->
+
+        <!-- <mat-tab-group>
+            <mat-tab *ngFor="let g of specGroups">
+              <ng-template mat-tab-label>
+                <em>{{g.groupName}}</em>
+              </ng-template>
+          
+              <p *ngFor="let line of g.specLines"><small>{{line.label}}</small> - <strong>{{line.value}}</strong></p>
+          
+            </mat-tab>
+          </mat-tab-group> -->
+
+
+  <mat-card>
+    <mat-card-title>
+      {{model.nazwaModelu}}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{model.marka}}
+    </mat-card-subtitle>
+    <img mat-card-image [attr.src]="model.mediaCardImg" alt="{{model.mediaCardImg}}">
+    <mat-card-content>
+      
+      <div *ngFor="let g of specGroups" class="mat-h2">
+        <div *ngFor="let line of g.specLines" class="mat-h4" >{{line.label}} - <strong>{{line.value}}</strong>
+
+
+        </div>
+      </div>
+
+
+    </mat-card-content>
+  </mat-card>
+
+
+
+
+
+

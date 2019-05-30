@@ -18,6 +18,8 @@ import * as Hammer from 'hammerjs';
 import { bpActiveRouteChange$ } from 'src/app/rxConst/bpActRouteChange';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { INewsPayload } from '../interfaces/i-news-payload';
+import { isNullOrUndefined } from 'util';
+import { HtmlParser } from '@angular/compiler';
 
 
 @Component({
@@ -36,8 +38,8 @@ export class NewsArticleComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit(): void {
     // console.log('viewInit...');
   }
-  @ViewChild('svgImage') svgImageTEST: ElementRef;
-  @ViewChild('bg') bg: ElementRef;
+  @ViewChild('svgImage', { static: false }) svgImageTEST: ElementRef;
+  @ViewChild('bg', { static: true }) bg: ElementRef;
   bgColor: any;
   bgImageColor: any;
   data: INewsArticle;
@@ -319,12 +321,33 @@ export class NewsArticleComponent implements OnInit, OnDestroy, AfterViewInit {
           this.initData();
           this.initSVGData();
           
+          const _title = `${this.data.title.title} ${isNullOrUndefined(this.data.title.shortTitle)? '': this.data.title.shortTitle} ${isNullOrUndefined(this.data.title.subtitle)? '': this.data.title.subtitle} ${isNullOrUndefined(this.data.title.subtitle2)? '': this.data.title.subtitle2}`
 
-          // this.ngZone.runOutsideAngular(()=>{
-          //   (<HTMLElement>this.bg.nativeElement).scrollTo({top: 0, behavior: 'smooth'});
+          this.cf.metaTitleUpdate(`NEWS | ${_title}`);
+          this.cf.metaDescriptionUpdate(_title);
+
+          
+          
+
+          // this.ngZone.runTask(()=>{
+          //   const el = (<HTMLElement>this.bg.nativeElement);
+            
+            
+
+          //   setTimeout(() => {
+          //     console.log(el.scrollHeight );  
+          //     el.scrollTo({top: 0, behavior: 'smooth'});
+          //     window.scrollTo(0,0);
+          //   }, 1000);
+
+            
+            
           // })
 
-          (<HTMLElement>this.bg.nativeElement).scrollTo({top: 0, behavior: 'smooth'});
+
+          // console.log(window.scrollY);
+          // window.scroll(0, 0);
+          
 
           
           
