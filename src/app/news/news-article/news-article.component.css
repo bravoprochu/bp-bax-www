@@ -1,7 +1,6 @@
-
-
 .main-container {
     min-height: 100vh;
+    height: 100%;
     padding: 1em;
     font-size: calc(8px + 1vw);
     margin: 0;

@@ -1,21 +1,13 @@
-<p>
-  vertical-image-gallery works!
-</p>
-
 <!-- <div style="width: 1024px; overflow: auto">
   <div fxLayout fxLayoutGap="3px" style="padding-left: 15px; padding-right: 15px">
     <app-vertical-masked-image fxFlex="250px" *ngFor="let item of galleryPayloadList" [imageGalleryPayload]="item"></app-vertical-masked-image>
   </div>
 </div> -->
 
-
-<!-- <div style="width: 1024px; overflow: auto">
-  <div fxLayout fxLayoutGap="3px" style="padding-left: 15px; padding-right: 15px">
-    <app-vertical-masked-image fxFlex="250px" *ngFor="let item of galleryPayloadList" [imageGalleryPayload]="item"></app-vertical-masked-image>
+<div style="position: absolute; width: 100%; left: 0; margin: 0 auto;">
+<div class="gallery-container">
+  <div fxLayout="row" fxLayoutGap="3px">
+    <app-vertical-masked-image fxFlex="0 0 calc(25%-3px)" fxFlex.xs="0 0 calc(33%-3px)" *ngFor="let item of galleryPayloadList" [imageGalleryPayload]="item"></app-vertical-masked-image>
   </div>
-</div> -->
-
-
-<cdk-virtual-scroll-viewport itemSize="5" orientation="horizontal">
-  <app-vertical-masked-image *cdkVirtualFor="let item of galleryPayloadList" [imageGalleryPayload]="item">{{index}}</app-vertical-masked-image>
-</cdk-virtual-scroll-viewport>
+</div>
+</div>

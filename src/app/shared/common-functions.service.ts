@@ -2,6 +2,7 @@ import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { Subject, fromEvent, of, merge, Observable } from 'rxjs';
 import { IWindowBasicInfo } from './svg/interfaces/i-window-basic-info';
 import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
+import * as hammerjs from 'hammerjs';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,37 @@ export class CommonFunctionsService {
   getUrlPath(elName: string): any {
     return this.sanitzer.bypassSecurityTrustStyle(`url(${window.location.href}#${elName})`);
   }
+
+  initHammer(nativeElementToSwipeOn: any): HammerManager{
+    const hammerManager = new hammerjs(nativeElementToSwipeOn, {
+      recognizers:[
+        [Hammer.Swipe, {direction: Hammer.DIRECTION_HORIZONTAL}],
+        [Hammer.Tap, {enable: false}],
+        [Hammer.Pinch, {enable: false}],
+        [Hammer.Rotate, {enable: false}],
+      ]
+    })
+    return hammerManager;
+  }
+
+  // initHammerjs(nativeElementToSwipeOn: any, isNext:boolean, goNext: any, isPrev: boolean, goPrev: any){
+  //   const hammerManager = new Hammer(nativeElementToSwipeOn, {})
+
+  //   hammerManager.get('swipe').set({direction: Hammer.DIRECTION_HORIZONTAL});
+  //   hammerManager.get('pinch').set({enable: false});
+  //   hammerManager.get('rotate').set({enable: false});
+
+  //   hammerManager.on('swipe', (ev)=>{
+  //     if(ev.direction == 2 && isNext) {
+  //       // swipe left
+  //       goNext();
+  //     }
+  //     if(ev.direction == 4 && isPrev) {
+  //       // swipe right
+  //       goPrev()
+  //     }
+  //   });
+  // }
 
 
 

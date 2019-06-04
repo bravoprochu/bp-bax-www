@@ -1,7 +1,8 @@
 export interface IImageGalleryItem {
+    description: string;
+    fileName: string,
     imgUrl: string;
     infoBgColor: string;
-    title: string;
     subtitle: string;
-    description: string;
+    title: string;
 }

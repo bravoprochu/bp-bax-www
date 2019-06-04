@@ -9,7 +9,10 @@ export class ImageGalleryPayload implements IImageGalleryPayload {
         public imageGalleryItemList: IImageGalleryItem[] = [], 
         public currentIndex: number=0
         ) {
+            this._currentIndex = currentIndex;
     }
+
+    private _currentIndex: number;
 
     private get _current():IImageGalleryItem {
         return this.imageGalleryItemList[this.currentIndex];
@@ -17,6 +20,10 @@ export class ImageGalleryPayload implements IImageGalleryPayload {
 
     get description():string {
         return this._current.description;
+    }
+
+    get galleryLength():number {
+        return this.imageGalleryItemList.length;
     }
 
     get imgUrl():string {
@@ -43,6 +50,10 @@ export class ImageGalleryPayload implements IImageGalleryPayload {
         return this._current.subtitle;
     }
 
+    exit() {
+        this.currentIndex = this._currentIndex;
+    }
+
     next() {
         if(this.isNext) {
             this.currentIndex++;
@@ -53,6 +64,8 @@ export class ImageGalleryPayload implements IImageGalleryPayload {
             this.currentIndex--;
         }
     }
+
+    
 
     
 

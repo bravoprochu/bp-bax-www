@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ImageGalleryPayload } from '../shared/interfaces/image-gallery-payload';
-import { IImageGalleryItem } from '../shared/interfaces/i-image-gallery-item';
+import { IImageGallery } from '../shared/interfaces/i-image-gallery';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-vertical-image-gallery',
@@ -8,15 +9,18 @@ import { IImageGalleryItem } from '../shared/interfaces/i-image-gallery-item';
   styleUrls: ['./vertical-image-gallery.component.css']
 })
 export class VerticalImageGalleryComponent implements OnInit {
-  @Input('imageGalleryItemList') imageGalleryItemList: IImageGalleryItem[];
+  @Input('imageGallery') imageGallery: IImageGallery;
   galleryPayloadList: ImageGalleryPayload[] = [];
 
   constructor() { }
 
   ngOnInit() {
     let counter: number = 0;
-    this.imageGalleryItemList.forEach(item => {
-      this.galleryPayloadList.push(new ImageGalleryPayload(this.imageGalleryItemList, counter));
+    this.imageGallery.infoBgColor = this.imageGallery.infoBgColor ? this.imageGallery.infoBgColor : environment.colorBax;
+    this.imageGallery.imageGalleryItemList.forEach(item => {
+      item.infoBgColor = item.infoBgColor ? item.infoBgColor : this.imageGallery.infoBgColor;
+      item.title = item.title ? item.title : this.imageGallery.galleryName;
+      this.galleryPayloadList.push(new ImageGalleryPayload(this.imageGallery.imageGalleryItemList, counter));
       counter ++;
     });
   }

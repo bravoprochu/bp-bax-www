@@ -1,19 +1,17 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy, Input, Sanitizer, AfterViewInit, Renderer2 } from '@angular/core';
 import { fromEvent, Observable, Subject, interval, timer, merge } from 'rxjs';
-import { takeUntil, switchMap, map, timeInterval, timeout, mergeAll, combineAll, mergeMap, take, repeat, retry, repeatWhen, mergeMapTo, switchMapTo, sampleTime, last, takeWhile, tap, count } from 'rxjs/operators';
-import { AnimationBuilder, animate, style, AnimationPlayer } from '@angular/animations';
+import { takeUntil, switchMap, map, sampleTime } from 'rxjs/operators';
+import { AnimationPlayer } from '@angular/animations';
 import { SvgCommonFunctionsService } from 'src/app/shared/svg/svg-common-functions.service';
 import { ISVGPoint } from 'src/app/shared/svg/interfaces/i-svg-point';
-import { ISvgViewBox } from 'src/app/shared/svg/interfaces/i-svg-viewbox';
 import { BP_ANIM_SCALE_ORIGIN_OVER_LEAVE } from 'src/app/animations/scale-origin-over-leave';
-import { BP_ANIM_TRANSFORM_ORIGIN } from 'src/app/animations/transform-origin';
 import { SVGElementProp } from 'src/app/shared/svg/classes/svg-element-prop';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { BP_ANIM_ENTER_LEAVE_GROUP } from 'src/app/animations/enter-leave-group';
 import { Router } from '@angular/router';
 import { BP_ANIM_SVG_INIT } from 'src/app/animations/bp_anim_svg-init';
 import { INewsArticleMini } from '../interfaces/i-news-article-mini';
-import { PantoneToHexService } from 'src/app/pantoneToHex/pantone-to-hex.service';
+
 
 @Component({
   selector: 'app-news-article-mini',
@@ -60,12 +58,9 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
   // @ViewChild('elToMove') elToMove: ElementRef;
 
   constructor(
-    private renderer: Renderer2,
     private sanitize: DomSanitizer,
-    private _builder: AnimationBuilder,
     private svgCF: SvgCommonFunctionsService,
     private router: Router,
-    private pantoneService: PantoneToHexService,
   ) { }
 
   followFn: any;
@@ -73,7 +68,6 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
 
   ngOnInit() {
     this.miniInfo = this.miniInfo ? this.miniInfo : <INewsArticleMini>{};
-
 
     this.bgUrl = this.miniInfo.imgUrl ?  'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg': this.sanitize.bypassSecurityTrustResourceUrl('https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg');
     this.imgUrl = this.miniInfo.imgUrl ? this.imgUrl : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
@@ -90,27 +84,6 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
 
 
   ngAfterViewInit(): void {
-
-    // this.titleTextBox = (<SVGTextElement>this.titleText.nativeElement).getBoundingClientRect();
-    // const tSVG = this.titleText.nativeElement;
-    // const title: SVGTextElement = this.renderer.createElement('text', 'svg');
-    // const t = this.renderer.createText("whaaaaa ?");
-    // const rect = <SVGRectElement>this.renderer.createElement('rect', 'svg')
-    // rect.setAttributeNS('svg', 'x', '0');
-    // rect.setAttributeNS('svg', 'y', '0');
-    // rect.setAttributeNS('svg', 'height', '150');
-    // rect.setAttributeNS('svg', 'width', '200');
-    
-
-    // title.setAttribute("x", "0");
-    // title.setAttribute("y", "0");
-    // title.setAttribute("width", "200");
-    // title.setAttribute("height", "200");
-    // title.setAttribute("font-size", "64px");
-
-    // this.renderer.appendChild(t, title);
-    // this.renderer.appendChild(tSVG, title);
-    // this.renderer.appendChild(tSVG, rect);
   }
 
   goTo(){
@@ -119,13 +92,6 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
   
 
   initObservable() {
-    const fn = (()=>{
-      const counter = 0;
-      setTimeout((counter: number)=>{
-        counter ++
-      }, 250)
-    })();
-
     const over$ = fromEvent(this.svg.nativeElement, 'mouseover').pipe(
       map(is => {
         this.isMouseOver = true;
@@ -172,7 +138,6 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
     )
       .subscribe(
         (_data: any) => {
-          // console.log('interval', _data);
         },
         (err) => console.log('interval error', err),
         () => console.log('interval finish..')
@@ -186,13 +151,6 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
         return _mouseEv;
       })
     );
-    // .subscribe(
-    //   (_data: MouseEvent) => {
-    //   // console.log('moveTo', _data);
-    //   },
-    //   (err) => console.log('moveTo error', err),
-    //   () => console.log('moveTo finish..')
-    // );
   }
 
 

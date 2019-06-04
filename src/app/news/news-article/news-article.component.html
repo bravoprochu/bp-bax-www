@@ -1,4 +1,5 @@
-<div #bg @groupAppearing [style.background-image]="bgImageColor" fxLayout="column"  fxLayoutAlign="center center" class="main-container">
+<div @groupAppearing [style.background-image]="bgImageColor"  class="main-container">
+<section #bg fxLayout="column"  fxLayoutAlign="center center">
   <section class="main-graphic">
     <iframe *ngIf="data.youtubeEmbedUrl && !data.imgUrl" [ngClass]="isSmall ? 'yt-sm' : 'yt'"
       [attr.src]="data.youtubeEmbedUrl" frameborder="0"
@@ -33,17 +34,19 @@
  data-show-faces="true">
 </div>
 
-
   <section class="text-content">
     <app-news-article-date [date]="data.creationDate"></app-news-article-date>
-    
-    
     <div class="title-container">
       <h1>{{data.title.title | uppercase}}</h1>
       <h2>{{data.title.shortTitle}}</h2>
       <h3>{{data.title.subtitle}}</h3>
     </div>
     <div class="text-container" [innerHtml]="data.text"></div>
+  </section>
+</section>
+
+  <section *ngIf="data.imageGallery" >
+    <app-vertical-image-gallery [imageGallery]="data.imageGallery"></app-vertical-image-gallery>
   </section>
   
 </div>

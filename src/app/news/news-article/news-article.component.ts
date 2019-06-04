@@ -1,11 +1,10 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Renderer2, ViewEncapsulation, AfterViewInit, NgZone } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { map, takeWhile, tap, timeInterval, takeUntil } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { tap, takeUntil } from 'rxjs/operators';
 import { INewsArticle } from '../interfaces/i-news-article';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
 import { Subject, timer } from 'rxjs';
-import { NewsService } from '../newsServices/news.service';
 import { PantoneToHexService } from 'src/app/pantoneToHex/pantone-to-hex.service';
 import { IPantoneToHex } from 'src/app/pantoneToHex/interfaces/i-pantone-to-hex';
 import { SVGElementProp } from 'src/app/shared/svg/classes/svg-element-prop';
@@ -14,12 +13,11 @@ import { ISVGRectBorder } from 'src/app/shared/svg/interfaces/i-svg-rect-border'
 import { BP_ANIM_OPACITY_OVER_LEAVE } from 'src/app/animations/opacity-over-leave';
 import { BP_ANIM_GROUP_APPEARING } from 'src/app/animations/bp_anim_group_appearing';
 import { BP_ANIM_OPACITY_INIT } from 'src/app/animations/bp-anim-opacity-init';
-import * as Hammer from 'hammerjs';
 import { bpActiveRouteChange$ } from 'src/app/rxConst/bpActRouteChange';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { INewsPayload } from '../interfaces/i-news-payload';
 import { isNullOrUndefined } from 'util';
-import { HtmlParser } from '@angular/compiler';
+
 
 
 @Component({
@@ -92,18 +90,13 @@ export class NewsArticleComponent implements OnInit, OnDestroy, AfterViewInit {
     )
 
 
-    const hammerManager = new Hammer(this.bg.nativeElement, {})
-
-    hammerManager.get('swipe').set({direction: Hammer.DIRECTION_HORIZONTAL});
-    hammerManager.get('pinch').set({enable: false});
-    hammerManager.get('rotate').set({enable: false});
-
+    const hammerManager = this.cf.initHammer(this.bg.nativeElement);
     hammerManager.on('swipe', (ev)=>{
-      if(ev.direction == 2 && this.dataPayload.isNext) {
+      if(ev.direction == Hammer.DIRECTION_LEFT && this.dataPayload.isNext) {
         // swipe left
         this.getNext();
       }
-      if(ev.direction == 4 && this.dataPayload.isPrev) {
+      if(ev.direction == Hammer.DIRECTION_RIGHT && this.dataPayload.isPrev) {
         // swipe right
         this.getPrev();
       }
@@ -295,19 +288,11 @@ export class NewsArticleComponent implements OnInit, OnDestroy, AfterViewInit {
   getNext() {
     // console.log('swipe left...', this.dataPayload)
     this.router.navigateByUrl(`/news/${this.dataPayload.nextId}`);
-    // if(this.ns.isNext(this.data)){
-    //   this.router.navigateByUrl(`/news/${this.ns.getNext(this.data).id}`);
-    // }
   }
   
   getPrev() {
     //console.log('swipe right..');
     this.router.navigateByUrl(`/news/${this.dataPayload.prevId}`);
-    
-
-    // if(this.ns.isPrev(this.data)){
-    //   this.router.navigateByUrl(`/news/${this.ns.getPrev(this.data).id}`);
-    // }
   }
 
   initObservable() {
@@ -369,6 +354,9 @@ export class NewsArticleComponent implements OnInit, OnDestroy, AfterViewInit {
       // this.data.youtubeEmbedUrl = this.data.youtubeEmbedUrl ? this.sanitizer.bypassSecurityTrustResourceUrl(this.data.youtubeEmbedUrl) : null;
       // this.data.text = d.text ? this.sanitizer.bypassSecurityTrustHtml(this.data.text) : null;
       this.isReady = true;
+
+      console.log(this.data);
+
     this.initSVGData();
   }
 
@@ -382,11 +370,8 @@ export class NewsArticleComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
 
-
-
-
   swipe(ev: any) {
-    console.log(ev);
+    // console.log(ev);
     // ev.preventDefault();
     // window.scrollTo({top: ev.center.y})
     // switch (ev.direction) {

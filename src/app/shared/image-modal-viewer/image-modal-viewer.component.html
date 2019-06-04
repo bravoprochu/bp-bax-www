@@ -1,28 +1,45 @@
-<div #dialogContainer fxFill fxLayout="column"  fxLayoutAlign="center center" fxLayoutGap="10px">
-  <!-- <div fxFill>&nbsp;
-      <div fxLayout="row" fxLayoutAlign="start center">
-          <div fxFlex>&nbsp;</div>
-              <button mat-icon-button color="warn" mat-tooltip="zamknij">
-                  <mat-icon>cancel</mat-icon>
-                </button>
-    
-     </div>
-  </div> -->
-  <svg viewBox="0 0 1920 1080" fxFill svgContainer xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="80vh" width="80vw">
-    <image [attr.href]="galleryPayload.imgUrl" width="100%" height="100%"></image>
-    
-    <text x="10%" y="80%" font-size="80" >{{galleryPayload.title}}</text>
+<!-- fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="10px" -->
+<!-- [attr.width]="svgWidth + 'px'" [attr.height]="svgHeight + 'px'" -->
+<div #dialogContainer>
+  <svg  [attr.viewbox]="imgViewbox" xmlns="http://www.w3.org/2000/svg" [attr.width]="svgWidth" [attr.height]="svgHeight"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <text x="10%" y="10%" font-size="80" > {{galleryPayload.currentIndex}} / {{galleryPayload.isNext}} {{galleryPayload.isPrev}}</text>
-    <text x="10%" y="20%" font-size="80" > {{galleryPayload.subtitle}}</text>
+    <g *ngIf="!isImgReady">
+      <rect x="0" y="0" height="100%" width="100%" [attr.fill]="galleryPayload.infoBgColor" fill-opacity="0.2" ></rect>
+      <image *ngIf="isImgLoading" x="744" y="324" width="432" height="432" xlink:href="./assets/svg/preloaders/puff.svg" />
+    </g>
 
+    <g *ngIf="isImgReady">
+      <image [attr.viewbox]="imgViewbox" [attr.xlink:href]="galleryPayload.imgUrl" x="0" y="0" [attr.width]="svgWidth" [attr.height]="svgHeight" preserveAspectRatio="xMinYMin meet" ></image>
+      <rect x="0" y="0" width="10%" height="100%" stroke="none" [attr.fill]="galleryPayload.infoBgColor" fill-opacity="0.3" ></rect>
+      <rect x="10%" y="0" width="10%" height="100%" stroke="none" [attr.fill]="galleryPayload.infoBgColor" fill-opacity="0.25" ></rect>
+
+      <text x="25" y="84%" font-size="20" fill="white">{{galleryPayload.currentIndex + 1}} / {{galleryPayload.galleryLength}}</text>
+      <text x="25" y="90%" font-size="54" fill="white">{{galleryPayload.title}}</text>
+      <text x="25" y="95%" font-size="27" fill="white">{{galleryPayload.description}}</text>
+    </g>
   </svg>
-  <div mat-dialog-action>
-      <button mat-icon-button color="accent" mat-tooltip="poprzedni" [disabled]="!galleryPayload.isPrev" (click)="galleryPayload.prev()">
+  <div mat-dialog-action fxFill>
+    <div fxLayout fxLayoutAlign="center">
+      <div>&nbsp;</div>
+      
+      <div>
+        <button mat-icon-button color="accent" mat-tooltip="poprzedni" [disabled]="!galleryPayload.isPrev"
+          (click)="goPrev()">
           <mat-icon>navigate_beforer</mat-icon>
         </button>
-    <button mat-icon-button color="accent" mat-tooltip="następny" [disabled]="!galleryPayload.isNext" (click)="galleryPayload.next()">
-      <mat-icon>navigate_next</mat-icon>
-    </button>
+        <button mat-icon-button color="accent" mat-tooltip="następny" [disabled]="!galleryPayload.isNext"
+          (click)="galleryPayload.next()">
+          <mat-icon>navigate_next</mat-icon>
+        </button>
+      </div>
+
+      <!-- <div>
+          <button mat-icon-button color="accent" mat-tooltip="zamknij" (click)="galleryPayload.next()">
+              <mat-icon>exit_to_app</mat-icon>
+            </button>
+      </div> -->
+    </div>
+
   </div>
 </div>
