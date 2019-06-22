@@ -91,7 +91,7 @@ export class VerticalMaskedImageComponent implements OnInit {
       const imgIsHorizontal: boolean = _el.naturalHeight <= _el.naturalWidth;
       this.isImgLoading = false;
       this.isImgReady = true;
-      console.log(`w/h - ${_el.naturalWidth}/${_el.naturalHeight} ${imgIsHorizontal}`);
+      // console.log(`w/h - ${_el.naturalWidth}/${_el.naturalHeight} ${imgIsHorizontal}`);
 
 
       //
@@ -121,7 +121,7 @@ export class VerticalMaskedImageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(res=>{
       // this.imageGalleryPayload.exit();
-      console.log('img closed...');
+      // console.log('img closed...');
     })
   }
 

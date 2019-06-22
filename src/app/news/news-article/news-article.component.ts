@@ -86,7 +86,7 @@ export class NewsArticleComponent implements OnInit, OnDestroy, AfterViewInit {
         this.isSmall = _data.mqAlias == 'xs' ? true : false;
       },
       (err) => console.log(' error', err),
-      () => console.log(' finish..')
+      // () => console.log(' finish..')
     )
 
 
@@ -110,7 +110,6 @@ export class NewsArticleComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   initSVGData() {
-    this.rectBorders = [];
     this.isSVGImageIsReady = false;
     const rectQt = 6;
     const colors = this.pantoneService.getNextPaletteColors(this.data.miniInfo.fill, rectQt, 3);
@@ -118,15 +117,15 @@ export class NewsArticleComponent implements OnInit, OnDestroy, AfterViewInit {
     const maxOpacity = 1;
 
     const rgba1 = this.pantoneService.colorToRGBA(colors[0], 0.2);
-    const rgba2 = this.pantoneService.colorToRGBA(colors[2], 0.2);
-    const rgba3 = this.pantoneService.colorToRGBA(colors[4], 0.2);
+    const rgba2 = this.pantoneService.colorToRGBA(colors[Math.round(colors.length/2)], 0.2);
+    const rgba3 = this.pantoneService.colorToRGBA(colors[colors.length-1], 0.2);
     this.bgImageColor = this.sanitizer.bypassSecurityTrustStyle(`linear-gradient(to right, ${rgba1}, ${rgba2}, ${rgba3})`);
 
     
     const img = new Image();
     img.setAttribute('src', this.data.miniInfo.imgUrl);
     img.onload = (imgEv: Event)=>{
-      
+      this.rectBorders = [];      
       const naturalWidth = (<HTMLImageElement>imgEv.srcElement).naturalWidth;
       const naturalHeight = (<HTMLImageElement>imgEv.srcElement).naturalHeight;
       
@@ -138,7 +137,7 @@ export class NewsArticleComponent implements OnInit, OnDestroy, AfterViewInit {
       const middlePoint = this.svgImageProp.getCenterPositionByPercent(imageFillHeightPercent);
       for(let i=0; i < rectQt; i++) {
         const r = <ISVGRectBorder> {
-          color: colors[i].hex,
+          color: i < colors.length ? colors[i].hex : colors[colors.length-1].hex,
           posX: middlePoint.x.toString(),
           posY: middlePoint.y.toString(),
           height: h.toString(),
@@ -307,9 +306,9 @@ export class NewsArticleComponent implements OnInit, OnDestroy, AfterViewInit {
           this.initSVGData();
           
           const _title = `${this.data.title.title} ${isNullOrUndefined(this.data.title.shortTitle)? '': this.data.title.shortTitle} ${isNullOrUndefined(this.data.title.subtitle)? '': this.data.title.subtitle} ${isNullOrUndefined(this.data.title.subtitle2)? '': this.data.title.subtitle2}`
-
           this.cf.metaTitleUpdate(`NEWS | ${_title}`);
           this.cf.metaDescriptionUpdate(_title);
+          this.cf.metaOpenGraphProductTag(_title, window.location.href, `${window.location.origin}${(<string>this.data.imgUrl).replace('.','')}`);
 
           
           
@@ -339,7 +338,7 @@ export class NewsArticleComponent implements OnInit, OnDestroy, AfterViewInit {
           
         },
         (err) => console.log('actRoute error', err),
-        () => console.log('actRoute finish..')
+        // () => console.log('actRoute finish..')
       )
   }
 
@@ -354,9 +353,6 @@ export class NewsArticleComponent implements OnInit, OnDestroy, AfterViewInit {
       // this.data.youtubeEmbedUrl = this.data.youtubeEmbedUrl ? this.sanitizer.bypassSecurityTrustResourceUrl(this.data.youtubeEmbedUrl) : null;
       // this.data.text = d.text ? this.sanitizer.bypassSecurityTrustHtml(this.data.text) : null;
       this.isReady = true;
-
-      console.log(this.data);
-
     this.initSVGData();
   }
 

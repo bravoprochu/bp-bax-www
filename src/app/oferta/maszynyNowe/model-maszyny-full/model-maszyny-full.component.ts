@@ -32,9 +32,11 @@ export class ModelMaszynyFullComponent implements OnInit {
     this.model = d; 
     this.specGroups = this.mnSrv.getModelLineGroup(this.model, null);
     
-    this.cf.metaTitleUpdate(`${this.model.marka} - ${this.model.nazwaModelu}`);
+    const _title = `${this.model.marka} - ${this.model.nazwaModelu}`
+    this.cf.metaTitleUpdate(_title);
     
     this.cf.metaDescriptionUpdate(`Firma BAX jest autoryzowanym przedstawicielem marki ${this.model.marka}. Przedstawiamy model ${this.model.nazwaModelu} o mocy ${this.model.silnikMoc_KW} KW`);
+    this.cf.metaOpenGraphProductTag(_title, window.location.href, `${window.location.origin}${(<string>this.model.mediaCardImg).replace('.','')}`);
   }
 
 }

@@ -83,11 +83,31 @@ export class CommonFunctionsService {
   }
 
   metaDescriptionUpdate(text: string){
-    let _descr = this.metaMeta.getTag('name=description');
+    // let _descr = this.metaMeta.getTag('name=description');
     this.metaMeta.updateTag({
       name: 'description', 
       content: text
     })
+  }
+
+  metaOpenGraphProductTag(title: string, url: string, imgUrl: string ){
+    this.metaMeta.updateTag({
+      property: 'og:title',
+      content: `BAX | ${title}`
+    })
+    this.metaMeta.updateTag({
+      property: 'og:type',
+      content: 'product'
+    });
+    this.metaMeta.updateTag({
+      property: 'og:url',
+      content: url
+    });
+    this.metaMeta.updateTag({
+      property: 'og:image',
+      content: imgUrl
+    });
+
   }
 
   

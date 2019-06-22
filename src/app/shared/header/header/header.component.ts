@@ -82,7 +82,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
         },
         (err) => console.log('move error', err),
-        () => console.log('move finish..')
+        // () => console.log('move finish..')
       )
 
 

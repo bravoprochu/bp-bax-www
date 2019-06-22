@@ -42,7 +42,7 @@ export class NewsArticleDateComponent implements OnInit, OnChanges {
         this.mqAlias = _data.mqAlias;
       },
       (err) => console.log(' error', err),
-      () => console.log(' finish..')
+      // () => console.log(' finish..')
     )
     
   }

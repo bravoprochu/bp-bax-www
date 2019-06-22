@@ -10,7 +10,7 @@ export class MenuCommonFunctionsService {
 
   menu: IMenuItem[]=[
     {name: 'offer', routerLink: '/offer'},
-    {name: 'special', routerLink: '/info'},
+    // {name: 'special', routerLink: '/info'},
     {name: 'contact', routerLink: '/contact'},
 
 
