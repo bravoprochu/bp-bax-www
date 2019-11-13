@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const BP_SERVER_URL_Local = 'http://localhost:4200/';
-export const BP_BAX_LOCAL_BACKEND = 'https://localhost:44329/api';
+export const BP_BAX_LOCAL_BACKEND = 'https://localhost:17441/api';
 
 
 
