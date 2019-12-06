@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { trigger } from '@angular/animations';
-import { environment } from 'src/environments/environment';
-import { IBrickInfo } from 'src/app/shared/article-container/interfaces/i-brick-info';
-import { IBrickColors } from 'src/app/shared/article-container/interfaces/i-brick-colors';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { BP_ANIM_BRICK_LIST } from 'src/app/animations/bp-anim-brick-list';
+import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
+import {} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-oferta',
@@ -13,21 +11,53 @@ import { BP_ANIM_BRICK_LIST } from 'src/app/animations/bp-anim-brick-list';
     BP_ANIM_BRICK_LIST()
   ]
 })
-export class OfertaComponent implements OnInit {
+export class OfertaComponent implements OnInit, AfterViewInit {
+  /**
+   *
+   */
+  constructor(
+    private cf: CommonFunctionsService
+    ){}
 
   ngOnInit() {
+
+    // const tag = document.createElement('script');
+    // tag.src = "https://www.youtube.com/iframe_api";
+    // document.body.appendChild(tag);
+    
+    this.initYoutube();
     this.initData();
   }
 
+  ngAfterViewInit(): void {
+    this.minHeight = window.innerHeight - this.cf.navHeight;
+    console.log('minHeight', this.minHeight);
+    
+    
+  }
 
+
+  minHeight:number; 
   title = 'bax';
   staggerDelay: number = 200;
   isClicked: boolean = true;
+  playerVars:{} = {
+    
+  }
 
+
+  initYoutube(){
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
+  }
 
   initData() {
 
 
   }
+
+
+
 
 }

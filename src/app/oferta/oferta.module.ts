@@ -4,6 +4,7 @@ import { OfertaComponent } from './oferta/oferta.component';
 import { OfertaRoutingModule } from './oferta-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { MaszynyNoweModule } from './maszynyNowe/maszyny-nowe.module';
+import {YouTubePlayerModule} from '@angular/youtube-player';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { MaszynyNoweModule } from './maszynyNowe/maszyny-nowe.module';
   imports: [
     CommonModule,
     OfertaRoutingModule,
+    YouTubePlayerModule
   ], 
   exports:[
   ],

@@ -11,7 +11,8 @@
 
 :root {
   --navWidth: 5rem;
-  --navHeight: 2.5rem;
+  --navHeight: 2.5rem; 
+  --navHeight: 50px; 
 
   --baxColor: #0054A6;
   --sennebogenColor: #4DAA2B;

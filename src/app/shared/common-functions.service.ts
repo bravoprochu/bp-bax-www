@@ -10,6 +10,7 @@ import * as hammerjs from 'hammerjs';
 export class CommonFunctionsService {
 
   windowBasicInfo: IWindowBasicInfo = <IWindowBasicInfo>{};
+  navHeight: number = 50;
 
 
   constructor(

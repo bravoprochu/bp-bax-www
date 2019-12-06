@@ -41,6 +41,7 @@ import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import { VerticalMaskedImageComponent } from './vertical-masked-image/vertical-masked-image.component';
 import { ImageModalViewerComponent } from './image-modal-viewer/image-modal-viewer.component';
 import { VerticalImageGalleryComponent } from '../vertical-image-gallery/vertical-image-gallery.component';
+import {YouTubePlayerModule} from '@angular/youtube-player';
 
 
 @NgModule({
@@ -91,6 +92,7 @@ import { VerticalImageGalleryComponent } from '../vertical-image-gallery/vertica
     ReactiveFormsModule,
     ScrollDispatchModule,
     SvgCommonModule,
+    YouTubePlayerModule
     
     
   ],
@@ -134,6 +136,7 @@ import { VerticalImageGalleryComponent } from '../vertical-image-gallery/vertica
     VerticalMaskedImageComponent,
     ImageModalViewerComponent,
     VerticalImageGalleryComponent,
+    YouTubePlayerModule
   ],
   providers: [
     CommonFunctionsService,
