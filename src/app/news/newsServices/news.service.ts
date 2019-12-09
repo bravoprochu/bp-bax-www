@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { INewsArticle } from '../interfaces/i-news-article';
 import { NewsServicesModule } from './news-services.module';
+import { INewsArticleMini } from '../interfaces/i-news-article-mini';
 
 
 @Injectable({
@@ -11,6 +12,13 @@ export class NewsService {
   isSortByDate: boolean = true;
 
   constructor() { }
+
+
+  filterListBySearch(newsList: INewsArticleMini[], searchPhrase: string):INewsArticleMini[] {
+    
+    const phrase =  !!searchPhrase ? searchPhrase.toLowerCase(): "";
+      return newsList.filter(f=>(f.title).toLowerCase().includes(phrase));
+  }
 
 
   isNext(data: INewsArticle): boolean {

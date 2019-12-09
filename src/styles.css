@@ -1,6 +1,7 @@
- /* @import "~@angular/material/prebuilt-themes/indigo-pink.css";  */
-@import "assets/css/bax-material-theme.css";
+/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
+@import "assets/css/bax-material-theme.css"; 
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:400,400i,700');
+
 
 
 * , *::before,  *::after {
@@ -25,12 +26,6 @@ a {
 }
 
 
-html, body {
-  /* font-size: calc(0.5rem + 1vw); */
-  /* scroll-behavior: smooth;
-  overflow: hidden;
-  color: var(--baxColor); */
-}
 
 
 .img-shadow {

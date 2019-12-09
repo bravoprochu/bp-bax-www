@@ -1,6 +1,19 @@
+<app-header></app-header>
+<div fxLayout fxLayoutGap="10px" fxLayoutAlign="center">
+    <mat-form-field appearance="outline" fxFlex.xs="100" fxFlex.gt-xs="50">
+            <mat-label>Znajdź news <span *ngIf="news.length>0 && search$.value?.length>0">({{news.length}})</span></mat-label>
+            <input matInput placeholder="Wyszukaj w tytule" type="search" [formControl]="search$" >
+            <mat-icon *ngIf="news.length>0" matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-icon *ngIf="news.length==0" matSuffix>sentiment_very_dissatisfied</mat-icon>
+    </mat-form-field>
+
+    </div> 
 <div gdColumns="1fr 1fr" gdColumns.xs="1fr" gdGap="0.25em" @brickList >
-        <app-header gdColumn="1 / span 2" gdColumn.xs="1" ></app-header>
+      
     <div (detectIntersection)="detect($event, article)" [fill]="article.fill"  *ngFor="let article of news" >
         <app-news-article-mini gdColumn="1" gdColumn.xs="1/ span 2"  *ngIf="article.isIntersected" [miniInfo]="article"></app-news-article-mini>
     </div>
+    <!-- <div *ngFor="let article of news">
+        <app-news-article-mini gdColumn="1" gdColumn.xs="1/ span 2"  [miniInfo]="article"></app-news-article-mini>
+    </div> -->
 </div>

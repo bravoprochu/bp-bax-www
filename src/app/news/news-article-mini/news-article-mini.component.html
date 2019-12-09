@@ -1,5 +1,9 @@
 <svg #svg xmlns="http://www.w3.org/2000/svg" [attr.viewBox]="svgViewBox" preserveAspectRatio="none" (click)="goTo()">
-    <image [attr.xlink:href]="miniInfo.imgUrl" x="0" y="0" width="1920" height="1080"></image>
+
+    <image *ngIf="isImageReady" [attr.xlink:href]="miniInfo.imgUrl" x="0" y="0" width="1920" height="1080"></image>
+
+
+    
     <circle cx="50%" cy="50%" r="1" fill="red"></circle>
     <rect x="0" y="0" width="1920" height="1080" class="rect-fill" [style.fill]="miniInfo.fill"></rect>
 
@@ -32,5 +36,42 @@
             <line x1="10%" y1="65%" x2="90%" y2="65%" stroke="white" stroke-width="10px"></line>
         </g>
     </svg>
+    
 
+    <svg *ngIf="!isImageReady" width="1000" height="1000" x="460" y="40" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#fff">
+        <g fill="none" fill-rule="evenodd" stroke-width="2" [attr.stroke]="miniInfo.pointer">
+            <circle cx="22" cy="22" r="1">
+                <animate attributeName="r"
+                    begin="0s" dur="1.8s"
+                    values="1; 20"
+                    calcMode="spline"
+                    keyTimes="0; 1"
+                    keySplines="0.165, 0.84, 0.44, 1"
+                    repeatCount="indefinite" />
+                <animate attributeName="stroke-opacity"
+                    begin="0s" dur="1.8s"
+                    values="1; 0"
+                    calcMode="spline"
+                    keyTimes="0; 1"
+                    keySplines="0.3, 0.61, 0.355, 1"
+                    repeatCount="indefinite" />
+            </circle>
+            <circle cx="22" cy="22" r="1">
+                <animate attributeName="r"
+                    begin="-0.9s" dur="1.8s"
+                    values="1; 20"
+                    calcMode="spline"
+                    keyTimes="0; 1"
+                    keySplines="0.165, 0.84, 0.44, 1"
+                    repeatCount="indefinite" />
+                <animate attributeName="stroke-opacity"
+                    begin="-0.9s" dur="1.8s"
+                    values="1; 0"
+                    calcMode="spline"
+                    keyTimes="0; 1"
+                    keySplines="0.3, 0.61, 0.355, 1"
+                    repeatCount="indefinite" />
+            </circle>
+        </g>
+    </svg>
 </svg>

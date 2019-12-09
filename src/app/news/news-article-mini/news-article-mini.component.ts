@@ -38,6 +38,7 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
   
   bgUrl: SafeResourceUrl;
   image: SVGElementProp;
+  isImageReady: boolean;
   isReady:boolean = false;
   isDestroyed$: Subject<boolean>;
   isMouseOver: boolean;
@@ -67,11 +68,12 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
 
 
   ngOnInit() {
+    this.initImage();
     this.miniInfo = this.miniInfo ? this.miniInfo : <INewsArticleMini>{};
 
     this.bgUrl = this.miniInfo.imgUrl ?  'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg': this.sanitize.bypassSecurityTrustResourceUrl('https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg');
     this.imgUrl = this.miniInfo.imgUrl ? this.imgUrl : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
-    this.fill = this.fill ? this.fill : '#ff00ff';
+    this.fill = this.fill ? this.fill : '#fff';
     
     this.pointer = this.pointer ? this.pointer : 'brown'
     this.title = this.title ? this.title : 'uzupełnij tytuł';
@@ -84,16 +86,30 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
 
 
   ngAfterViewInit(): void {
+
   }
 
   goTo(){
     if(this.miniInfo.isExternalUrl){
 
     } else {
-    this.router.navigateByUrl(`news/${this.miniInfo.url}`, {preserveFragment: false, fragment: 'top'});
+      this.router.navigateByUrl(`news/${this.miniInfo.url}`, {preserveFragment: false, fragment: 'top'});
     }
   }
-  
+
+  initImage() {
+    const img = new Image()
+    img.src = this.miniInfo.imgUrl;
+
+    img.onload = (ev) =>{
+      this.isImageReady = true;
+    }
+
+
+
+
+  }
+
 
   initObservable() {
     const over$ = fromEvent(this.svg.nativeElement, 'mouseover').pipe(
