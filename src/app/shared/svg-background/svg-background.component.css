@@ -1,0 +1,22 @@
+.opacity-anim {
+    animation-name: animOpacity;
+    animation-duration:  60s;
+    animation-iteration-count:  infinite;
+    animation-timing-function: cubic-bezier(.2,.01,.77,1)
+
+} 
+
+@keyframes animOpacity {
+    from {
+        opacity: 0.15;
+        transform:scale(0.8);
+    }
+    50% {
+        opacity: 0.7;
+        transform:scale(1);
+    }
+    to {
+        opacity: 0.15;
+        transform:scale(0.8);
+    }
+}

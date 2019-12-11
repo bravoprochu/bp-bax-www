@@ -26,12 +26,7 @@ a {
 }
 
 
-html, body {
-  /* font-size: calc(0.5rem + 1vw); */
-  /* scroll-behavior: smooth;
-  overflow: hidden;
-  color: var(--baxColor); */
-}
+
 
 
 .img-shadow {
@@ -55,6 +50,12 @@ html, body {
 
 }
 
+
+.bg-flow {
+  position: absolute;
+  z-index: -1;
+  height: 100%;
+}
 
 
 /* 

@@ -1,4 +1,10 @@
-<div @groupAppearing [style.background-image]="bgImageColor"  class="main-container">
+<app-svg-background *ngIf="isColorReady" [colors]="colors" class="bg-flow"></app-svg-background>
+
+
+
+
+<!-- [style.background-image]="bgImageColor" -->
+<div @groupAppearing [style.background-image]="bgImageColor" class="main-container">
 <section #bg fxLayout="column"  fxLayoutAlign="center center">
   <section class="main-graphic">
     <iframe *ngIf="data.youtubeEmbedUrl && !data.imgUrl" [ngClass]="isSmall ? 'yt-sm' : 'yt'"

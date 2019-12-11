@@ -42,6 +42,7 @@ import { VerticalMaskedImageComponent } from './vertical-masked-image/vertical-m
 import { ImageModalViewerComponent } from './image-modal-viewer/image-modal-viewer.component';
 import { VerticalImageGalleryComponent } from '../vertical-image-gallery/vertical-image-gallery.component';
 import {YouTubePlayerModule} from '@angular/youtube-player';
+import { SvgBackgroundComponent } from './svg-background/svg-background.component';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import {YouTubePlayerModule} from '@angular/youtube-player';
     VerticalMaskedImageComponent,
     ImageModalViewerComponent,
     VerticalImageGalleryComponent,
+    SvgBackgroundComponent,
   ],
   imports: [
     CommonModule,
@@ -133,6 +135,7 @@ import {YouTubePlayerModule} from '@angular/youtube-player';
     MenuHorizontalComponent,
     ScrollDispatchModule,
     SvgButtonYoutubeComponent,
+    SvgBackgroundComponent,
     VerticalMaskedImageComponent,
     ImageModalViewerComponent,
     VerticalImageGalleryComponent,
