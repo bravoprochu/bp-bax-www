@@ -24,7 +24,5 @@ export class SvgBackgroundComponent implements OnInit {
       '10',
       '0'
     ]
-    console.log(this.colors);
   }
-
-}
+ }
