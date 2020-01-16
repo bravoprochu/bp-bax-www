@@ -1,0 +1,12 @@
+.o-nas-stopka {
+    font-size: 1.2em;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-top: solid lightblue;
+    text-align: center;
+}
+.o-nas-stopka > p:first-child {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    
+}

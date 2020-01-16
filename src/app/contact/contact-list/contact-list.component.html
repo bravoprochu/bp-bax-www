@@ -1,8 +1,24 @@
+<div style="position: absolute;">
 
-<app-contact-info-about></app-contact-info-about>
-<section class="contact-list-container" gdColumns="1fr" gdColumns.gt-sm="repeat(2, 1fr)" gdGap="0.5rem">
-    <div  fxFill gdGridAlign="center stretch" *ngFor="let contact of contactList">
-        <app-contact-info-dzial [contactInfo]="contact"></app-contact-info-dzial>
+
+    <app-contact-info-about></app-contact-info-about>
+    
+    <div  gdColumns="1fr" gdColumns.gt-sm="repeat(2, 1fr)" gdGap="0.5rem">
+        <div fxFill gdGridAlign="center stretch" *ngFor="let contact of contactList">
+            <app-contact-info-dzial [contactInfo]="contact"></app-contact-info-dzial>
+        </div>
     </div>
-</section>
-<app-contact-info-dealer></app-contact-info-dealer>
+
+
+
+
+    <!-- <app-contact-info-dealer></app-contact-info-dealer> -->
+        <div class="o-nas-stopka">
+            <p>
+                Bax Baumaschinen Sp. z o.o. ul. Wierzbowa 2, 62-002 Suchy Las
+            </p>
+            <p>
+                Sąd Rejonowy Poznań - Nowe Miasto i Wilda w Poznaniu VIII Wydział Gospodarczy <i>KRS: </i><strong>0000177808</strong>, <i>NIP: </i><strong>PL7811738708</strong>, <i>REGON: </i><strong>634529072</strong>, <i>GIOŚ: </i> <strong>E0012679BW</strong>, <i>Wysokość kapitału zakładowego: </i><strong>50.000 PLN</strong>
+            </p>
+        </div>
+</div>
