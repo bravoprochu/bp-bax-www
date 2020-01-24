@@ -5,10 +5,13 @@ import { OfertaRoutingModule } from './oferta-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { MaszynyNoweModule } from './maszynyNowe/maszyny-nowe.module';
 import {YouTubePlayerModule} from '@angular/youtube-player';
+import { OfertaItemComponent } from './products/oferta-item/oferta-item.component';
 
 @NgModule({
   declarations: [
     OfertaComponent,
+    OfertaItemComponent,
+    OfertaItemComponent
   ],
   imports: [
     CommonModule,

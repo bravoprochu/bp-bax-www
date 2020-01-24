@@ -1,30 +1,42 @@
-<div style="z-index: 1; height: 100%; width: 100%; background-color: antiquewhite;" [style.min-height.px]="minHeight" >
-    <svg width="100%" height="100%" style="position: absolute;z-index: 0;">
-        <defs>
-    
-        </defs>
-        <rect x="0" y="0" width="100%" height="100%" fill="aqua" ></rect>
-    
-      </svg>
-  <div style="position: absolute;z-index: 1;">
-    <p>
-      oferta works!
-    </p>
-  
-    <a routerLink="/" >home</a>
-    <ul>
-      <!-- <li [routerLink]="['/model', {outlet: 'oferta'}]" >marka</li>
-      <li routerLink="./model">zastosowanie</li>
-      <li>praca</li> -->
-      <li routerLink="maszynyNowe" >maszyny nowe</li>
-    </ul>
-  
-  
-  
-    <youtube-player videoId="jDXkS13uq38"></youtube-player>
-  
-    <div style="height: 1500px;">
-      &nbsp;
+<div class="products-container">
+
+  <app-oferta-item [productId]="'sennebogen'"></app-oferta-item>
+
+
+  <app-oferta-item [productId]="'yanmar'"></app-oferta-item>
+
+  <app-oferta-item [productId]="'arjes'"></app-oferta-item>
+
+  <app-oferta-item [productId]="'guidetti'"></app-oferta-item>
+
+  <!-- <div class="skew-container senne-gradient">
+    <div class="masked-logo-container">
+      <img src="assets/svg/logotypy/logo_sennebogen.svg" alt="sennebogen logo">
+    </div>
+  </div>
+
+    <div class="skew-container yanmar-gradient">
+      <div class="masked-logo-container">
+        <img src="assets/svg/logotypy/logo_yanmar.svg" alt="yanmar logo">
+      </div>
+    </div>
+
+
+    <div class="skew-container guidetti-gradient">
+      <div class="masked-logo-container">
+        <img src="assets/svg/logotypy/logo_guidetti.svg" alt="yanmar logo">
+      </div>
+    </div>
+
+    <div class="skew-container arjes-gradient">
+      <div class="masked-logo-container">
+        <img src="assets/svg/logotypy/logo_arjes.svg" alt="yanmar logo">
+      </div>
+    </div> -->
+
+  <div class="info-container">
+    <div class="info-content">
+      info here
     </div>
   </div>
 
@@ -32,21 +44,5 @@
 
 
 
-    
 
-</div>
-
-
-
-<!-- <button matButton (click)="isClicked=!isClicked">show/hide</button>
-
-<div fxLayout="row wrap" *ngIf="isClicked" @brickList>
-  <div fxFlex="calc(50%-10pt)" fxFlex.xs="100" fxFlex.gt-md="calc(33%-10pt)" *ngFor="let brick of bricks; index as i"
-    style="padding: 10pt">
-    <section>
-      <app-article-container [routerLink]="brick.url" [title]="brick.title" [imageUrl]="brick.imageUrl" [colorBg]="brick.colors.colorBg"
-        [colorGradientFrom]="brick.colors.colorGradientFrom" [colorGradientTo]="brick.colors.colorGradientTo"></app-article-container>
-    </section>
-  </div>
-</div> -->
 

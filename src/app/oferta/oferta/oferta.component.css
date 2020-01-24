@@ -1,0 +1,38 @@
+.products-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+
+
+
+.skew-container {
+
+    margin-left:15px;
+    vertical-align: top;
+    width: 250px;
+    transform-origin: bottom left;
+    /* transform: skew(-5deg); */
+    /* clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%); */
+    box-shadow: 5px 5px 5px darkgrey;
+}
+
+
+
+
+
+
+
+
+.info-container {
+    height: 100vh;
+    margin: auto;
+    
+}
+.info-content {
+    margin: 25px;
+    background-color: slategray;
+}
