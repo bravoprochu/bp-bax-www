@@ -1,25 +1,15 @@
-<div class="oferta-items-container">
+<div class="oferta-item-container" [ngClass]="gradientClass">
+    <div class="oferta-item-container-body">
+      <div class="oferta-item-container-body-header">
+        
+        <div class="oferta-item-container-body-header-title">{{category}}</div>
+        <img class="oferta-item-container-body-header-logo" [attr.src]="logoSrc" [attr.alt]="mark + 'logo'">
+      
+      </div>
 
-
-    <div class="oferta-item-container oferta-item-header-logo oferta-header">
-            <!-- <img [attr.src]="logoSrc" [attr.alt]="'logo_'+ productId" />  -->
-            <svg width="100%" viewport="0 0 100 200" >
-                <image preserveAspectRatio='xMaxYMin' width="250" x="-25" [attr.href]="logoSrcStr"></image>
-                <rect x="0" y="0" height="200" [ngClass]="['oferta-item-body', productId+ '-gradient']" ></rect>
-            </svg>
-
+      <div class="oferta-item-container-body-footer">
+        <div class="outerus"></div>
+        <img class="oferta-item-container-footer-img" [attr.src]="imageSrc" [attr.alt]="image">
+      </div>
     </div>
-    
-    <div class="oferta-item-container oferta-body">
-        <div [ngClass]="['oferta-item-body', productId+ '-gradient']">
-            </div>
-    </div>
-    
-        <div class="oferta-item-container oferta-item-footer oferta-footer">
-            <img [attr.src]="logoSrc" [attr.alt]="'logo_'+ productId" /> 
-        </div>
-  
-  
-
-
-</div>
+  </div>

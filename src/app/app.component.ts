@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
   isSmall: boolean;
   isTrue: boolean;
   text: string;
+  
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);
