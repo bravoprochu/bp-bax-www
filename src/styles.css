@@ -10,8 +10,7 @@
 }
 
 :root {
-  --navWidth: 5rem;
-  --navHeight: 2.5rem; 
+  --navWidth: 80px;
   --navHeight: 50px; 
 
   --arjesColor: #FF5E0E;

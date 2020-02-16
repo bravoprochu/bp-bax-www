@@ -11,16 +11,13 @@
 
 
 .oferta-item-container {
-    margin: 10px;
-    flex:1;
     box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.75);
     transition: box-shadow .3s;
-    min-width: 250px;
-    min-height: 500px;
-    max-width: 250px;
-    max-height: 500px;
-    flex-grow: 0;
-    padding: 5px;
+    
+    min-height: calc(100vh - var(--navHeight));
+    min-width: 100vw;
+
+
     display: flex;
     flex-direction: column;
 

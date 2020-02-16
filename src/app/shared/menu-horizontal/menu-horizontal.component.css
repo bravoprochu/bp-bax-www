@@ -6,7 +6,6 @@
 }
 
 .menu-item-container {
-    min-height: 1.2rem;
     outline: none;
 }
 
@@ -26,8 +25,9 @@
 }
 
 .menu-logo {
-    width: calc(var(--navHeight)*0.65);
-    padding: 0.25rem;
+    width: calc(var(--navHeight)*0.90);
+    padding: calc(var(--navHeight)*0.025);
+    object-fit: cover;
     cursor: pointer;
     outline: none;
 }
