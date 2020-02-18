@@ -1,12 +1,14 @@
 import { Component, OnInit, AfterViewInit, ChangeDetectionStrategy, ViewChild, OnDestroy, Sanitizer, ElementRef, NgZone, ViewEncapsulation } from '@angular/core';
 import { BP_ANIM_BRICK_LIST } from 'src/app/animations/bp-anim-brick-list';
 import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
-import {MediaMatcher} from '@angular/cdk/layout';
+import {MediaMatcher, BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import { CdkVirtualScrollViewport, ViewportRuler } from '@angular/cdk/scrolling';
 import { takeUntil, map, timeout, tap, delay, switchMap, startWith, take, takeWhile, repeat, mergeAll} from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Subject, fromEvent, of, merge } from 'rxjs';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
+import { IOfertaItem } from './i-oferta-item';
+import { BREAKPOINT } from '@angular/flex-layout';
 
 @Component({
   selector: 'app-oferta',
@@ -27,16 +29,25 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
     private router: Router,
     private sanitize: DomSanitizer,
     private el: ElementRef,
-    private viewportRuler: ViewportRuler
+    private viewportRuler: ViewportRuler,
+    private breakpointObs: BreakpointObserver,
+    private mediaM: MediaMatcher
     ){}
 
 
 
+  cssOfertaItemContainer: string;
+  cssOfertaItemContainerBody: string;
   productItems: string[] = ['sennebogen', 'arjes', 'guidetti', 'yanmar'];
   idx: number = 0;
   items = Array.from({length: 1000}).map((_, i) => `Item #${i}`);
   isDestroyed$: Subject<boolean> = new Subject();
+  
+  isPortrait: boolean;
+  isSmall: boolean;
+  
   itemSize: number = 500;
+  ofertaItems: IOfertaItem[];
 
   
   
@@ -48,45 +59,113 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
 
-    this.viewportRuler.change().pipe(
-      startWith(null)
+    this.ofertaItems = [
+      {
+        footerImgSrc: '../../../assets/oferta/1x1/bax_ofertaItem_katalogMaszyn.png',
+        headerImgSrc: '../../../assets/svg/logotypy/logo_bax.svg',
+        markaCss: 'bax-gradient',
+        subtitle: 'Nowe maszyny Sennebogen, Yanmar',
+        routerLink: 'maszynyNowe',
+        title: 'Katalog maszyn'
+      },
+      {
+        footerImgSrc: '../../../assets/oferta/1x1/sennebogen 835 E mobile 04.JPG',
+        headerImgSrc: '../../../assets/svg/logotypy/logo_sennebogen.svg',
+        markaCss: 'sennebogen-gradient',
+        subtitle: 'Autoryzowany dealer marki',
+        routerLink: null,
+        title: 'marka'
+      },
+      {
+        footerImgSrc: '../../../assets/oferta/1x1/SV60_C_082_8x9.JPG',
+        headerImgSrc: '../../../assets/svg/logotypy/logo_yanmar.svg',
+        markaCss: 'yanmar-gradient',
+        subtitle: 'Autoryzowany dealer marki',
+        routerLink: null,
+        title: 'marka'
+      },
+      {
+        footerImgSrc: '../../../assets/oferta/1x1/impaktor_250_evo_bauschutt_01-1024x768.JPG',
+        headerImgSrc: '../../../assets/svg/logotypy/logo_arjes.svg',
+        markaCss: 'arjes-gradient',
+        subtitle: 'Autoryzowany dealer marki',
+        routerLink: null,
+        title: 'marka'
+      },
+      {
+        footerImgSrc: '../../../assets/oferta/1x1/IMG_20190930_111008.JPG',
+        headerImgSrc: '../../../assets/svg/logotypy/logo_guidetti.svg',
+        markaCss: 'guidetti-gradient',
+        subtitle: 'Autoryzowany dealer marki',
+        routerLink: null,
+        title: 'marka'
+      },
+      {
+        footerImgSrc: '../../../assets/oferta/1x1/bax_ofertaItem_regeneracja.png',
+        headerImgSrc: '../../../assets/svg/logotypy/logo_bax.svg',
+        markaCss: 'bax-gradient',
+        subtitle: 'Zakres usług serwisowych',
+        routerLink: null,
+        title: 'serwis'
+      },
+      {
+        footerImgSrc: '../../../assets/oferta/1x1/bax_ofertaItem_czesci.png',
+        headerImgSrc: '../../../assets/svg/logotypy/logo_bax.svg',
+        markaCss: 'bax-gradient',
+        subtitle: 'Części do maszyn',
+        routerLink: null,
+        title: 'części'
+      },     
+    ];
+
+    const _LANDSCAPE = [Breakpoints.HandsetLandscape, Breakpoints.TabletLandscape, Breakpoints.WebLandscape];
+    const _PORTRAIT = [Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait, Breakpoints.WebPortrait];
+    const _SMALL = [Breakpoints.HandsetPortrait, Breakpoints.HandsetLandscape, Breakpoints.TabletPortrait, Breakpoints.TabletLandscape];
+
+
+
+    this.breakpointObs.observe([..._PORTRAIT, ..._LANDSCAPE]).pipe(
+      takeUntil(this.isDestroyed$)
     )
     .subscribe(
-         (_vpRull:any)=>{
-                this.ngZone.run(()=>{
-                this.itemSize = this.viewportRuler.getViewportSize().height;
-               });
+         (_breakpObs:any)=>{
+              console.log('_breakpObs subs:', _breakpObs);
+              this.cssOfertaItemContainer = 'oferta-item-container-small';
+              
+              this.isSmall = this.breakpointObs.isMatched(_SMALL);
+
+              if(this.breakpointObs.isMatched(_SMALL)) {
+                this.cssOfertaItemContainerBody = this.breakpointObs.isMatched(_PORTRAIT) ? 'oferta-item-container-body-portrait' : 'oferta-item-container-body-landscape'  
+              } else {
+                this.cssOfertaItemContainerBody = 'oferta-item-container-body-portrait';
+                this.cssOfertaItemContainer = 'oferta-item-container-big';
+              }
+
+              
+              
+              
+              
+              
+
+              
          },
-         (error)=>console.log('_vpRull error', error),
-         ()=>console.log('_vpRull completed..')
+         (error)=>console.log('_breakpObs error', error),
+         ()=>console.log('_breakpObs completed..')
     );
-    
-
-    const mouseWheel$ = fromEvent(this.el.nativeElement, "mousewheel").pipe(
-      take(1),
-      tap((ev:WheelEvent)=>{
-        this.ngZone.run(()=>{
-          console.log(this.productItems);
-          ev.deltaY >0 ? this.addIdx() : this.removeIdx();
-          
-        });
-        this.viewPort.scrollTo({top: this.itemSize*this.idx});
-        ev.preventDefault();
-      })
-    ).pipe(
-      repeat(100)
-    )
-      .subscribe(
-           (mouseWheel:any)=>{
-                console.log('mouseWheel subs:', mouseWheel);
-                
-           },
-           (error)=>console.log('mouseWheel error', error),
-           ()=>console.log('mouseWheel completed..')
-      );
 
 
-
+    // this.viewportRuler.change().pipe(
+    //   startWith(null)
+    // )
+    // .subscribe(
+    //      (_vpRull:any)=>{
+    //             this.ngZone.run(()=>{
+    //             this.itemSize = this.viewportRuler.getViewportSize().height;
+    //            });
+    //      },
+    //      (error)=>console.log('_vpRull error', error),
+    //      ()=>console.log('_vpRull completed..')
+    // );
 
 
 

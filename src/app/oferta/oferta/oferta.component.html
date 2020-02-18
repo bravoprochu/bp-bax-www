@@ -1,114 +1,19 @@
 <div class="oferta-container">
-
-
-  <div class="oferta-item-container bax-gradient" routerLink="maszynyNowe">
-    <div class="oferta-item-container-body">
+  <div *ngFor="let oferta of ofertaItems index as i" class="oferta-item-container" [ngClass]="[oferta.markaCss, cssOfertaItemContainer] " [routerLink]="oferta.routerLink">
+    <div class="oferta-item-container-body" [ngClass]="cssOfertaItemContainerBody">
       <div class="oferta-item-container-body-header">
-        
-        <div class="oferta-item-container-body-header-title">Katalog maszyn</div>
-        <img class="oferta-item-container-body-header-logo" src="../../../assets/svg/logotypy/logo_bax.svg" alt="bax logo">
-      
+        <div class="oferta-item-container-body-header-logo" >
+          <div class="oferta-item-container-body-header-title">{{oferta.title}}</div>
+          <div class="oferta-item-container-body-header-subtitle">{{oferta.subtitle}}</div>
+          <img [attr.src]="oferta.headerImgSrc" [attr.alt]="oferta.headerImgSrc">
+        </div>
       </div>
 
       <div class="oferta-item-container-body-footer">
-        <img class="oferta-item-container-footer-img" src="../../../assets/oferta/1x1/bax_ofertaItem_katalogMaszyn.png" alt="bax katalog nowych maszyn">
-      </div>
-    </div>
-  </div>
-
-
-
-  <div class="oferta-item-container sennebogen-gradient">
-    <div class="oferta-item-container-body">
-      <div class="oferta-item-container-body-header">
-        
-        <div class="oferta-item-container-body-header-title">marka</div>
-        <img class="oferta-item-container-body-header-logo" src="../../../assets/svg/logotypy/logo_sennebogen.svg" alt="sennebogen logo">
-      
-      </div>
-
-      <div class="oferta-item-container-body-footer">
-        <img class="oferta-item-container-footer-img" src="../../../assets/oferta/1x1/sennebogen 835 E mobile 04.JPG" alt="sennebogen 835E">
-      </div>
-    </div>
-  </div>
-
-
-  <div class="oferta-item-container yanmar-gradient">
-    <div class="oferta-item-container-body">
-      <div class="oferta-item-container-body-header">
-        
-        <div class="oferta-item-container-body-header-title">marka</div>
-        <img class="oferta-item-container-body-header-logo" src="../../../assets/svg/logotypy/logo_yanmar.svg" alt="yanmar logo">
-      
-      </div>
-
-      <div class="oferta-item-container-body-footer">
-        <img class="oferta-item-container-footer-img" src="../../../assets/oferta/1x1/SV60_C_082_8x9.JPG" alt="yanmar sv60">
-      </div>
-    </div>
-  </div>
-
-
-
-  <div class="oferta-item-container arjes-gradient">
-    <div class="oferta-item-container-body">
-      <div class="oferta-item-container-body-header">
-        
-        <div class="oferta-item-container-body-header-title">marka</div>
-        <img class="oferta-item-container-body-header-logo" src="../../../assets/svg/logotypy/logo_arjes.svg" alt="arjes logo">
-      
-      </div>
-
-      <div class="oferta-item-container-body-footer">
-        <img class="oferta-item-container-footer-img" src="../../../assets/oferta/1x1/impaktor_250_evo_bauschutt_01-1024x768.JPG" alt="arjes VZ850">
-      </div>
-    </div>
-  </div>
-
-
-  <div class="oferta-item-container guidetti-gradient">
-    <div class="oferta-item-container-body">
-      <div class="oferta-item-container-body-header">
-        
-        <div class="oferta-item-container-body-header-title">marka</div>
-        <img class="oferta-item-container-body-header-logo" src="../../../assets/svg/logotypy/logo_guidetti.svg" alt="guidetti logo">
-      
-      </div>
-
-      <div class="oferta-item-container-body-footer">
-        <img class="oferta-item-container-footer-img" src="../../../assets/oferta/1x1/IMG_20190930_111008.JPG" alt="guidetti VZ850">
-      </div>
-    </div>
-  </div>
-
-
-  <div class="oferta-item-container bax-gradient">
-    <div class="oferta-item-container-body">
-      <div class="oferta-item-container-body-header">
-        
-        <div class="oferta-item-container-body-header-title">serwis</div>
-        <img class="oferta-item-container-body-header-logo" src="../../../assets/svg/logotypy/logo_bax.svg" alt="bax logo">
-      
-      </div>
-
-      <div class="oferta-item-container-body-footer">
-        <img class="oferta-item-container-footer-img" src="../../../assets/oferta/1x1/bax_ofertaItem_regeneracja.png" alt="bax regeneracja sworzni">
-      </div>
-    </div>
-  </div>
-
-  <div class="oferta-item-container bax-gradient">
-    <div class="oferta-item-container-body">
-      <div class="oferta-item-container-body-header">
-        
-        <div class="oferta-item-container-body-header-title">części</div>
-        <img class="oferta-item-container-body-header-logo" src="../../../assets/svg/logotypy/logo_bax.svg" alt="bax logo">
-      
-      </div>
-
-      <div class="oferta-item-container-body-footer">
-        <img class="oferta-item-container-footer-img" src="../../../assets/oferta/1x1/bax_ofertaItem_czesci.png" alt="bax regeneracja sworzni">
+        <div class="oferta-item-container-body-footer-img">
+          <img [attr.src]="oferta.footerImgSrc" [attr.alt]="'asd'">
+        </div>
+       
       </div>
     </div>
   </div>
@@ -117,6 +22,38 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <div *ngFor="let oferta of ofertaItems index as i" class="oferta-item-container bax-gradient" [routerLink]="oferta.routerLink">
+    <div class="oferta-item-container-body">
+      <div class="oferta-item-container-body-header">
+        <div class="oferta-item-container-body-header-title">{{oferta.title}}</div>
+        <div class="oferta-item-container-body-header-subtitle">{{oferta.subtitle}}</div>
+        <img class="oferta-item-container-body-header-logo" [attr.src]="oferta.headerImgSrc" [attr.alt]="oferta.headerImgSrc">
+      </div>
+
+      <div class="oferta-item-container-body-footer">
+        <img class="oferta-item-container-footer-img" [attr.src]="oferta.footerImgSrc" [attr.alt]="'asd'">
+      </div>
+    </div>
+  </div> -->
 
 
 </div>

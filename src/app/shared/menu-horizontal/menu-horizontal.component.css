@@ -7,6 +7,7 @@
 
 .menu-item-container {
     outline: none;
+    font-size: calc(var(--navHeight)*0.35);;
 }
 
 .menu-item-container, .menu-item-container-active {
@@ -18,15 +19,15 @@
 .menu-item-container-active::after {
     position: absolute;
     content: '';
-    height: 0.15rem;
+    height: calc(var(--navHeight)*0.05);
     width: 100%;
-    bottom: -0.25rem;
+    bottom: calc(var(--navHeight)*0.15 *-1) ;
     background-image: linear-gradient(to left, rgba(0,84,167,0.25), rgba(0,84,167,1));
 }
 
 .menu-logo {
-    width: calc(var(--navHeight)*0.90);
-    padding: calc(var(--navHeight)*0.025);
+    width: calc(var(--navHeight)*0.80);
+    padding: calc(var(--navHeight)*0.05);
     object-fit: cover;
     cursor: pointer;
     outline: none;
