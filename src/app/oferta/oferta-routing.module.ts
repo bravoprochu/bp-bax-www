@@ -1,12 +1,8 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { OfertaComponent } from './oferta/oferta.component';
 
 const routes: Routes = [
-  {
-    path: 'maszynyNowe',
-    loadChildren: () => import('./maszynyNowe/maszyny-nowe.module').then(m => m.MaszynyNoweModule),
-    // data: {animation: 'maszynyNoweList'},
-  },
   // {
   //   path: 'yanmar',
   //   loadChildren: './yanmar/yanmar.module#YanmarModule',
@@ -16,7 +12,17 @@ const routes: Routes = [
   //   path: 'sennebogen',
   //   loadChildren: './sennebogen/sennebogen.module#SennebogenModule',
   //   data: { animation: 'sennebogen' }
-  // },
+// },
+
+  {
+    path: '',
+    component: OfertaComponent
+  },
+    {
+    path: 'maszynyNowe',
+    loadChildren: () => import('./maszynyNowe/maszyny-nowe.module').then(m => m.MaszynyNoweModule),
+    // data: {animation: 'maszynyNoweList'},
+  },
   {
     path: '',
     redirectTo: 'maszynyNowe',
@@ -24,6 +30,7 @@ const routes: Routes = [
 
     //component: OfertaComponent
   },
+  
   // {
   //   path: '',
   //   redirectTo: '',

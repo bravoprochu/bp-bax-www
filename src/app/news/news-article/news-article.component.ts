@@ -38,10 +38,12 @@ export class NewsArticleComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   @ViewChild('svgImage', { static: false }) svgImageTEST: ElementRef;
   @ViewChild('bg', { static: true }) bg: ElementRef;
+  colors: IPantoneToHex[];
   bgColor: any;
   bgImageColor: any;
   data: INewsArticle;
   dataPayload: INewsPayload;
+  isColorReady: boolean;
   linkToShare: string;
 
   ngOnDestroy(): void {
@@ -77,7 +79,6 @@ export class NewsArticleComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
     this.initObservable();
-
     this.mediaObserver.media$.pipe(
       takeUntil(this.isDestroyed$),
     )
@@ -113,6 +114,8 @@ export class NewsArticleComponent implements OnInit, OnDestroy, AfterViewInit {
     this.isSVGImageIsReady = false;
     const rectQt = 6;
     const colors = this.pantoneService.getNextPaletteColors(this.data.miniInfo.fill, rectQt, 3);
+    this.colors= colors;
+    this.isColorReady = true;
     const imageFillHeightPercent = 0.70;
     const maxOpacity = 1;
 

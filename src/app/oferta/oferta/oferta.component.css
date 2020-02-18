@@ -1,0 +1,211 @@
+.oferta-container {
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    overflow: scroll;
+
+    background: linear-gradient(90deg, rgb(235, 235, 235) 20px, transparent 1%) center, linear-gradient(rgb(235, 235, 235) 20px, transparent 1%) center, #3882E8;
+    background-size: 22px 22px;
+    position: relative;
+}
+
+
+.oferta-item-container {
+    box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.75);
+    outline: none;
+    transition: box-shadow .3s;
+   
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+
+.oferta-item-container-small {
+    min-height: calc(100vh - var(--navHeight));
+    min-width: 100vw;
+}
+
+.oferta-item-container-big {
+    margin: 10px;
+    min-height: 660px;
+    max-width: 330px;
+}
+
+
+
+
+.oferta-item-container:hover {
+    box-shadow: 10px 10px 14px 0px rgba(0,0,0,0.75);
+}
+
+.oferta-item-container:hover .oferta-item-container-body-footer::after {
+    opacity: 0;
+}
+
+.oferta-item-container:hover .oferta-item-container-body-header-logo img {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+.oferta-item-container-body {
+    margin: 10px;
+    
+    flex: 1;
+    display: flex;
+    position: relative;
+}
+
+.oferta-item-container-body-portrait {
+    flex-direction: column;
+}
+.oferta-item-container-body-landscape {
+    flex-direction: row;
+}
+
+
+.oferta-item-container-body::before {
+    position: absolute;
+    top:0;
+    height: 100%;
+    width: 100%;
+    content: '';
+    background: linear-gradient(90deg, white 20px, transparent 1%) center, linear-gradient(white 20px, transparent 1%) center,rgba(0,0,0,0.1);
+    background-size: 21px 21px;
+}
+
+
+
+
+.oferta-item-container-body-header {
+    position: relative;
+    flex-basis: 50%;
+    color: var(--baxColor);
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-content: flex-end;
+    
+
+}
+
+.oferta-item-container-body-header-logo {
+    flex-basis: 100%;
+    margin: 10px;
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.oferta-item-container-body-header-logo img {
+
+    margin: auto;
+    height: 85%;
+    width: 85%;
+    transition: all 0.3s ease-in-out 0.15s;
+}
+
+
+
+.oferta-item-container-body-header-title {
+    position: absolute;
+    font-variant-caps: all-petite-caps;
+    font-size: 24px;
+    font-weight: 600;
+    content: '';
+    right: 5px;
+    top: 10px;
+    text-align: left;
+}
+
+
+.oferta-item-container-body-header-subtitle {
+    position: absolute;
+    font-variant-caps: all-petite-caps;
+    font-size: 20px;
+    content: '';
+    bottom: 5px;
+    text-align: center;
+}
+
+
+
+.oferta-item-container-body-footer {
+    position: relative;
+    flex-basis: 50%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    margin: 10px;
+}
+
+
+.oferta-item-container-body-footer-img {
+    flex-basis: 80%;
+    margin: auto;
+}
+
+.oferta-item-container-body-footer-img img {
+    width: 100%;
+    border-radius: 50%;
+    box-shadow: 10px 10px 14px 0px rgba(0,0,0,0.75);
+}
+
+
+
+.oferta-item-container-body-footer::after {
+    position: absolute;
+    
+    content: '';
+    width: 100%;
+    height: 100%;
+    opacity: 0.35;
+
+    background-image: url(../../../assets/svg/logotypy/logo_bax_signOnly_white.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    transition: opacity 0.3s ease-in-out 0.2s;
+  
+}
+
+
+
+
+
+
+.arjes-gradient {
+    background: rgb(255,255,255);
+    background: linear-gradient(-225deg, rgba(255,255,255,1) 10%,  rgba(255,94,14,1) 100%);
+}
+
+.bax-gradient {
+    background: rgb(255,255,255);
+    background: linear-gradient(-225deg, rgba(255,255,255,1) 10%,  rgba(0,84,164,1) 100%);
+}
+
+.guidetti-gradient {
+    background: rgb(255,255,255);
+    background: linear-gradient(-225deg, rgba(255,255,255,1) 10%,  rgba(0,106,179,1) 100%);
+}
+
+.sennebogen-gradient {
+    background: rgb(255,255,255);
+    background: linear-gradient(-225deg, rgba(255,255,255,1) 10%,  rgba(77,170,43,1) 100%);
+}
+
+.yanmar-gradient {
+    background: rgb(255,255,255);
+    background: linear-gradient(-225deg, rgba(255,255,255,1) 10%,  rgba(227,0,32,1) 100%);
+}

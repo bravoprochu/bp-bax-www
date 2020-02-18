@@ -11,14 +11,16 @@
 }
 
 :root {
-  --navWidth: 5rem;
-  --navHeight: 2.5rem;
+  --navWidth: 80px;
+  --navHeight: 60px; 
 
+  --arjesColor: #FF5E0E;
   --baxColor: #0054A6;
+  --guidettiColor: #006AB3;
   --sennebogenColor: #4DAA2B;
   --yanmarColor: #E30020;
-  --arjesColor: #FF5E0E;
   --zemmlerColor: #007843;
+
 }
 
 a {
@@ -26,29 +28,47 @@ a {
 }
 
 
-
-
 .img-shadow {
   filter: drop-shadow(10px 10px 4px grey);
 }
 
-.logo-bax-color {
-  fill: var(--baxColor);
+.logo-arjes-color {
+  fill: var(--arjesColor);
+  background-color: var(--arjesColor);
 }
 
-.logo-yanmar-color {
-  fill: var(--yanmarColor);
+.logo-bax-color {
+  fill: var(--baxColor);
+  background-color: var(--baxColor);
+}
+
+.logo-guidetti-color {
+  fill: var(--guidettiColor);
+  background-color: var(--guidettiColor);
 }
 
 .logo-sennebogen-color {
   fill: var(--sennebogenColor);
+  background-color: var(--sennebogenColor);
 }
+
+.logo-yanmar-color {
+  fill: var(--yanmarColor);
+  background-color: var(--yanmarColor);
+}
+
+
 
 .main-content-height {
   height: calc(100% - var(navHeight));
-
 }
 
+
+.bg-flow {
+  position: absolute;
+  z-index: -1;
+  height: 100%;
+}
 
 
 /* 
