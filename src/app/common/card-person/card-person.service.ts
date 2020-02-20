@@ -19,7 +19,7 @@ export class CardPersonService {
       lastName: 'Tataruk',
       iconUrl: null,
       marka: BAX_BRANDS.BAX,
-      markaLogoUrl: '../../../../assets/logotypy/1x1/logo_bax_signOnly_1x1.png',
+      markaLogoUrl: 'assets/logotypy/1x1/logo_bax_signOnly_1x1.png',
       markaLogoBorderInverse: true,
       position: 'Doradca techniczny',
         telephones: [
@@ -35,7 +35,7 @@ export class CardPersonService {
       lastName: 'Bereźnicki',
       iconUrl: null,
       marka: BAX_BRANDS.BAX,
-      markaLogoUrl: '../../../../assets/logotypy/1x1/logo_bax_signOnly_1x1.png',
+      markaLogoUrl: 'assets/logotypy/1x1/logo_bax_signOnly_1x1.png',
       markaLogoBorderInverse: true,
       position: 'Koordynator Działu części zamiennych',
         telephones: [
@@ -51,7 +51,7 @@ export class CardPersonService {
       lastName: 'Radlak',
       iconUrl: null,
       marka: BAX_BRANDS.Arjes,
-      markaLogoUrl: '../../../../assets/logotypy/1x1/logo_arjes_signOnly_1x1.png',
+      markaLogoUrl: 'assets/logotypy/1x1/logo_arjes_signOnly_1x1.png',
       markaLogoBorderInverse: true,
       position: null,
         telephones: [
@@ -115,7 +115,7 @@ export class CardPersonService {
       lastName: 'Radlak',
       iconUrl: null,
       marka: BAX_BRANDS.Sennebogen,
-      markaLogoUrl: '../../../../assets/logotypy/1x1/logo_sennebogen_NN_1x1.png',
+      markaLogoUrl: 'assets/logotypy/1x1/logo_sennebogen_NN_1x1.png',
       markaLogoBorderInverse: false,
       position: null,
         telephones: [
