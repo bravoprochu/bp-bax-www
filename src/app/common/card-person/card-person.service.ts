@@ -127,7 +127,7 @@ export class CardPersonService {
     }
     ];
   
-  getDelaersByName(name:string): ICardPerson {
+  getDelaerByName(name:string): ICardPerson {
     let res: ICardPerson;
     res = [...this.baxDealers].filter(f=>(f.lastName.toLowerCase()).includes(name.toLowerCase()))[0];
     return res;
@@ -136,7 +136,7 @@ export class CardPersonService {
   getDelaersByNames(names:string[]): ICardPerson[] {
     let res: ICardPerson[] = [];
     names.forEach(name=>{
-      let found = this.getDelaersByName(name);
+      let found = this.getDelaerByName(name);
       if(found) {
         res.push(found);
       }
@@ -144,7 +144,7 @@ export class CardPersonService {
     return res;
   }
 
-  getDelaersByNameSlashMark(nameSlashMark:string): ICardPerson {
+  getDelaerByNameSlashMark(nameSlashMark:string): ICardPerson {
     if(!nameSlashMark) {return}
     let slashId =  nameSlashMark.indexOf('/');
     if(!slashId) {return;}
@@ -162,7 +162,7 @@ export class CardPersonService {
   getDelaersByNamesSlashesMarks(namesSlashesMarks:string[]): ICardPerson[] {
     let res: ICardPerson[] = [];
     namesSlashesMarks.forEach(name=>{
-      let found = this.getDelaersByNameSlashMark(name);
+      let found = this.getDelaerByNameSlashMark(name);
       if(found) {
         res.push(found);
       }
