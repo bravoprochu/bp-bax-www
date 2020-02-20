@@ -1,0 +1,60 @@
+<svg class="svg-contact" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 242 153" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
+<defs>
+ 
+    <linearGradient [attr.id]="gradientId" y1="125" [attr.x2]="contact.markaLogoBorderInverse ? 230 : 135" y2="153" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#fff" stop-opacity="1" />
+        <stop offset="0.35" stop-color="#fff" stop-opacity="1" />
+        <stop offset="1" [attr.stop-color]="gradientColor" />
+    </linearGradient>
+</defs>
+
+    <rect x="0" y="0" width="242" height="153" [style.fill]="getUrlPath(gradientId)" />
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 73.2 71.7" x="-30%" y="-30%" width="180">
+        <title>
+            bax sign only white
+        </title>
+        <path class="card-logo-bax" d="M36.6,1A34.9,34.9,0,0,0,11.9,60.5h0A34.9,34.9,0,1,0,36.6,1ZM7.2,35.9A29.4,29.4,0,0,1,36.6,6.5a30.3,30.3,0,0,1,8.6,1.3c-6.6,3.3-13.9,8.8-20.9,15.8S11.8,37.9,8.5,44.5A31.4,31.4,0,0,1,7.2,35.9Zm3.4,19.3c.8-6.8,7.4-17.6,17.6-27.7S49.3,10.6,56,9.9L38.2,34.7,62.4,17.2C61.3,24,54.8,34.4,45,44.3S24.8,60.5,18,61.7L35.8,37.1Zm26,10A27.1,27.1,0,0,1,28,63.9c6.5-3.3,13.9-8.8,20.9-15.8C59.1,37.9,63.1,33.9,65.2,29.3a28.4,28.4,0,0,1,.7,6.6A29.3,29.3,0,0,1,36.6,65.2Z" fill="#fff"/>
+    </svg>
+    
+
+    <g class="card-logo-image">
+        <rect x="180" y="91" width="54" height="54" [ngClass]="cardLogoImageBorder" />
+
+        <svg x="182" y="93" width="50" height="50" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+            <image x="0" y="0" [attr.xlink:href]="contact.markaLogoUrl" width="100" height="100"/>
+        </svg>
+    </g>
+    
+    
+
+    <text class="card-firstName" x="85" y="65">
+        {{contact.firstName}}
+    </text>
+    <text class="card-lastName" x="90" y="65">
+        {{contact.lastName}}
+    </text>
+
+    <text class="card-position" x="10" y="95">
+        {{contact.position}}
+    </text>
+
+    <line x1="10" x2="155" y1="98" y2="98" class="card-underline" stroke-width="0.75px"/>
+    <line x1="10" x2="155" y1="100" y2="100" class="card-underline" stroke-width="1.5px"/>
+    
+    <a [attr.href]="'tel: ' + contact.telephones[0].prefix + ' ' + contact.telephones[0].number">
+        <g>
+        <text class="card-contact-tel-prefix" x="25" y="120">
+            {{contact.telephones[0].prefix}}
+        </text>
+        <text class="card-contact-tel-number" x="28" y="120">
+            {{contact.telephones[0].number}}
+        </text>
+        </g>
+    </a>
+
+    <a [attr.href]="'mailto:' + contact.emails[0]">
+        <text class="card-contact-email" x="5" y="135">
+            {{contact.emails[0]}}
+        </text>
+    </a>
+</svg>

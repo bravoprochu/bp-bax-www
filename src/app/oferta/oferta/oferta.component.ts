@@ -73,7 +73,7 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
         headerImgSrc: '../../../assets/svg/logotypy/logo_sennebogen.svg',
         markaCss: 'sennebogen-gradient',
         subtitle: 'Autoryzowany dealer marki',
-        routerLink: null,
+        routerLink: 'sennebogen',
         title: 'marka'
       },
       {
@@ -81,7 +81,7 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
         headerImgSrc: '../../../assets/svg/logotypy/logo_yanmar.svg',
         markaCss: 'yanmar-gradient',
         subtitle: 'Autoryzowany dealer marki',
-        routerLink: null,
+        routerLink: 'yanmar',
         title: 'marka'
       },
       {
@@ -89,7 +89,7 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
         headerImgSrc: '../../../assets/svg/logotypy/logo_arjes.svg',
         markaCss: 'arjes-gradient',
         subtitle: 'Autoryzowany dealer marki',
-        routerLink: null,
+        routerLink: 'arjes',
         title: 'marka'
       },
       {
@@ -97,7 +97,7 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
         headerImgSrc: '../../../assets/svg/logotypy/logo_guidetti.svg',
         markaCss: 'guidetti-gradient',
         subtitle: 'Autoryzowany dealer marki',
-        routerLink: null,
+        routerLink: 'guidetti',
         title: 'marka'
       },
       {
@@ -105,7 +105,7 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
         headerImgSrc: '../../../assets/svg/logotypy/logo_bax.svg',
         markaCss: 'bax-gradient',
         subtitle: 'Zakres usług serwisowych',
-        routerLink: null,
+        routerLink: 'serwis',
         title: 'serwis'
       },
       {
@@ -113,7 +113,7 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
         headerImgSrc: '../../../assets/svg/logotypy/logo_bax.svg',
         markaCss: 'bax-gradient',
         subtitle: 'Części do maszyn',
-        routerLink: null,
+        routerLink: 'czesci',
         title: 'części'
       },     
     ];

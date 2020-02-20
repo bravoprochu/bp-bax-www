@@ -179,33 +179,3 @@
     transition: opacity 0.3s ease-in-out 0.2s;
   
 }
-
-
-
-
-
-
-.arjes-gradient {
-    background: rgb(255,255,255);
-    background: linear-gradient(-225deg, rgba(255,255,255,1) 10%,  rgba(255,94,14,1) 100%);
-}
-
-.bax-gradient {
-    background: rgb(255,255,255);
-    background: linear-gradient(-225deg, rgba(255,255,255,1) 10%,  rgba(0,84,164,1) 100%);
-}
-
-.guidetti-gradient {
-    background: rgb(255,255,255);
-    background: linear-gradient(-225deg, rgba(255,255,255,1) 10%,  rgba(0,106,179,1) 100%);
-}
-
-.sennebogen-gradient {
-    background: rgb(255,255,255);
-    background: linear-gradient(-225deg, rgba(255,255,255,1) 10%,  rgba(77,170,43,1) 100%);
-}
-
-.yanmar-gradient {
-    background: rgb(255,255,255);
-    background: linear-gradient(-225deg, rgba(255,255,255,1) 10%,  rgba(227,0,32,1) 100%);
-}

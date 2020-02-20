@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SennebogenMainComponent } from './sennebogen-main/sennebogen-main.component';
+import { CzesciMainComponent } from './czesci-main/czesci-main.component';
+
 
 const routes: Routes = [
   {
     path: 'main',
-    component: SennebogenMainComponent
+    component: CzesciMainComponent
   },
   {
     path: '',
@@ -18,4 +19,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SennebogenRoutingModule {}
+export class CzesciRoutingModule { }

@@ -1,0 +1,63 @@
+<div class="senne-container">
+    <div class="senne-body">    
+
+        <app-title-block [title]="'Marka Sennebogen w BAX'"></app-title-block>
+    
+        <div class="main-text" [ngClass]="cssMainTextCols">
+            <h3>Maszyny przeładunkowe <strong>SENNEBOGEN Green Line</strong> to specjalnie zaprojektowane niemieckie
+                urządzenia wysokiego przeładunku.<br />
+                Maszyny przygotowane są do wydajnej i niezawodnej pracy nawet do 8000 godzin rocznie. <br/>
+                Dzięki odpowiedniemu doborowi podzespołów, prawie 70-letniemu doświadczeniu oraz wysokiej jakości wykonania, urządzenia spisują
+                się świetnie w najcięższych warunkach pracy. <br />
+                W firmie Sennebogen pracuje ponad 1 500 osób do 1980 r. Firma wyprodukowała ponad 20 000 jednostek sprzętu.
+                W ciągu ostatnich 10 lat w Sennebogen opracowano oponad 50 nowych produktów w kategorii wagowej od 10 t do
+                420 t. <br />
+                Zasięg marki Sennebogen to 5 kontynetów, ponad 100 krajów i ponad 250 autoryzowanych dealerów na
+                świecie.<br />
+                Tajemnicą sukcesu Sennebogen to mnogość technologicznych innowacji, stałe udoskonalanie procesu produkcji i
+                7 etapowy system kontroli produktu.
+            </h3>
+        </div>
+        <div class="pics sennebogen-transparent-gradient">
+            <img src="../../../../assets/oferta/1x1/355_E_Einsatz_Hackschnitzel_2.JPG" />
+            <img src="../../../../assets/oferta/1x1/DSC_0126.JPG" />
+            <img src="../../../../assets/oferta/1x1/Persbericht_-_Sennebogen_860M_-2.docOE_NEU_high.JPG" />
+        </div>
+        <div class="main-text" [ngClass]="cssMainTextCols">
+            <h3>Nazwa sprzętu Sennebogen "Zielona linia" podkreśla troskę producenta o ekologię a produkcja w ostatnich
+                kilku latach na poziomie ponad 2000 maszyn rocznie stawia firmę Sennebogen jako największego producenta
+                maszyn przeładunkowych.
+            </h3>
+        </div>
+        <div class="color-divider sennebogen-gradient"></div>
+        
+        <app-title-block [title]="'Przedstawiciele handlowi'"></app-title-block>
+
+        <div class="card-container">
+            <app-card-person *ngFor="let contact of contactCards" [contactInfo]="contact" class="card-contact"></app-card-person>
+        </div>
+
+        <div class="color-divider sennebogen-gradient"></div>
+        <app-title-block [title]="'Tak działamy w terenie'"></app-title-block>
+
+        <div class="youtube-clips-list sennebogen-transparent-gradient">
+            <div class="youtube-overlay sennebogen-border">
+                <a href="https://youtu.be/wmwT5jZD2sw" target="_blank">
+                    <img src="../../../../assets/images/news/bax_takDzialamyNaSlasku_stilmar.jpg" />
+                </a>
+            </div>
+            <div class="youtube-overlay sennebogen-border">
+                <a href="https://youtu.be/OH5cJBbXaKk" target="_blank">
+                    <img src="../../../../assets/images/news/baxTakDzialamyNaSlasku_Trans_trade_expert_Czaicki_Czaicki.jpg" />
+                </a>
+            </div>
+            
+        </div>
+
+        
+
+
+
+
+    </div>
+</div>
