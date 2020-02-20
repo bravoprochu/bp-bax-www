@@ -154,7 +154,6 @@ export class CardPersonService {
 
     let res: ICardPerson;
     res = [...this.baxDealers].filter(f=>(f.lastName.toLowerCase()).includes(name.toLowerCase()) && (BAX_BRANDS[f.marka].toString().toLowerCase()).includes(mark.toLowerCase()))[0];
-    console.log(name, slashId, mark, this.baxDealers, res);
     return res;
   }
 
