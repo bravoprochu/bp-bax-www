@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CardPersonService } from 'src/app/common/card-person/card-person.service';
+import { ICardPerson } from 'src/app/common/interfaces/i-card-person';
 
 @Component({
   selector: 'app-arjes-main',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArjesMainComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private cardPersonService: CardPersonService
+  ) { }
+
+
+  contactCards: ICardPerson[] = [];
 
   ngOnInit() {
+
+    this.contactCards.push(this.cardPersonService.getDelaerByNameSlashMark('radlak/arjes'));
+
   }
 
 }
