@@ -131,8 +131,7 @@ a {
   top: -15px;
   width: 45%;
   height: 45%;
-  border-top: thick double #4DAA2B;
-  border-right: thick double #4DAA2B;
+
 }
 
 .oferta-pics-container img {
@@ -145,7 +144,6 @@ a {
   transition: all 0.2s ease-in-out;
   border-width: 5px;
   border-style: solid;
-  border-color: var(--sennebogenColor);
   
   position: relative;
 }
@@ -184,10 +182,20 @@ a {
   column-count: 2;
   column-rule-style: solid;
   column-rule-width: 1px;
-  column-rule-color: var(--sennebogenColor);
 }
 
 
+.arjes-border img, .bax-border img, .guidetti-border img, .sennebogen-border img, .yanmar-border img  {
+  border-width: 5px;
+  border-style: solid;
+  transition: border-color 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+
+.arjes-border img {
+  border-color: var(--arjesColor);
+}
 .arjes-gradient {
   background: rgb(255,255,255);
   background: linear-gradient(-225deg, rgba(255,255,255,1) 10%,  rgba(255,94,14,1) 100%);
@@ -197,6 +205,10 @@ a {
   background: linear-gradient(-235deg, rgba(255,255,255,0) 30%,  rgba(255,94,14,1) 100%);
 }
 
+
+.bax-border img {
+  border-color: var(--baxColor);
+}
 .bax-gradient {
   background: rgb(255,255,255);
   background: linear-gradient(-225deg, rgba(255,255,255,1) 10%,  rgba(0,84,164,1) 100%);
@@ -207,6 +219,10 @@ a {
   background: linear-gradient(-235deg, rgba(255,255,255,0) 30%,  rgba(0,84,164,1) 100%);
 }
 
+
+.guidetti-border img {
+  border-color: var(--guidettiColor);
+}
 .guidetti-gradient {
   background: rgb(255,255,255);
   background: linear-gradient(-225deg, rgba(255,255,255,1) 10%,  rgba(0,106,179,1) 100%);
@@ -218,13 +234,10 @@ a {
 }
 
 
-.sennebogen-border {
-  border-color: var(--sennebogenColor);
-  border-width: 5px;
-  border-style: solid;
-  transition: border-color 0.2s ease-in-out;
-}
 
+.sennebogen-border img {
+  border-color: var(--sennebogenColor);
+}
 .sennebogen-gradient {
   background: rgb(255,255,255);
   background: linear-gradient(-225deg, rgba(255,255,255,1) 10%,  rgba(77,170,43,1) 100%);
@@ -235,6 +248,9 @@ a {
 }
 
 
+.yanmar-border img {
+  border-color: var(--yanmarColor);
+}
 .yanmar-gradient {
   background: rgb(255,255,255);
   background: linear-gradient(-225deg, rgba(255,255,255,1) 10%,  rgba(227,0,32,1) 100%);
