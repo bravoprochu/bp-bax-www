@@ -99,6 +99,8 @@ a {
 }
 
 
+
+
 .oferta-body {
   flex: 1;
   margin: auto;
@@ -107,6 +109,83 @@ a {
   position: relative;
 }
 
+
+.oferta-pics-container {
+  margin: 25px;
+  padding: 35px;
+  display: flex;
+  flex-flow: row wrap;
+  
+  justify-content: center;
+  align-content: center;
+
+  position: relative;
+}
+
+.oferta-pics-container::before {
+  position: absolute;
+  content: '';
+  text-justify: right;
+  font-size: 18px;
+  right: -15px;
+  top: -15px;
+  width: 45%;
+  height: 45%;
+  border-top: thick double #4DAA2B;
+  border-right: thick double #4DAA2B;
+}
+
+.oferta-pics-container img {
+  margin: 5px;
+  flex: 0 1 350px;
+  max-width: 350px;
+  max-height: 350px;
+  width: 100%;
+  box-shadow: 10px 10px 14px 0px rgba(0,0,0,0.75);
+  transition: all 0.2s ease-in-out;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--sennebogenColor);
+  
+  position: relative;
+}
+
+.oferta-color-divider {
+  min-height: 10px;
+  min-width: 100%;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border-top: 2px solid rgba(0,84,164, 0.5)
+}
+
+.oferta-pics-container img:hover {
+  border-color: white;    
+}
+
+.oferta-card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.oferta-card-contact {
+  flex: 1 1 350px;
+  margin: 10px;
+  box-shadow: 10px 10px 14px 0px rgba(0,0,0,0.75);
+}
+
+.oferta-main-text {
+  padding: 15px;   
+  position: relative;
+}
+.oferta-main-text-col-2 {
+  column-count: 2;
+  column-rule-style: solid;
+  column-rule-width: 1px;
+  column-rule-color: var(--sennebogenColor);
+}
 
 
 .arjes-gradient {

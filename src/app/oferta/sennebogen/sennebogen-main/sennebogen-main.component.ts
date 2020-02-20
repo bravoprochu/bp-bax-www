@@ -42,21 +42,13 @@ export class SennebogenMainComponent implements OnInit {
          (_breakpObs:any)=>{
            console.log(_breakpObs);
 
-           this.cssMainTextCols = 'main-text-col-2';
+           this.cssMainTextCols = 'oferta-main-text-col-2';
 
           if(this.breakpointObs.isMatched(_SMALL)) {
             console.log('is small...');
-            this.cssMainTextCols = this.breakpointObs.isMatched(_PORTRAIT) ? '' : 'main-text-col-2'
+            this.cssMainTextCols = this.breakpointObs.isMatched(_PORTRAIT) ? '' : 'oferta-main-text-col-2'
             console.log(this.cssMainTextCols);
           }
-
-              
-              
-              
-              
-              
-
-              
          },
          (error)=>console.log('_breakpObs error', error),
          ()=>console.log('_breakpObs completed..')
