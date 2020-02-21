@@ -185,7 +185,7 @@ a {
 }
 
 
-.arjes-border img, .bax-border img, .guidetti-border img, .sennebogen-border img, .yanmar-border img  {
+.arjes-border img, .bax-border img, .guidetti-border img, .sennebogen-border img, .white-border img, .yanmar-border img  {
   border-width: 5px;
   border-style: solid;
   transition: border-color 0.2s ease-in-out;
@@ -245,6 +245,10 @@ a {
 .sennebogen-transparent-gradient {
   background: rgb(255,255,255);
   background: linear-gradient(-235deg, rgba(255,255,255,0) 30%,  rgba(77,170,43,1) 100%);
+}
+
+.white-border img {
+  border-color: white;
 }
 
 
