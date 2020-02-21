@@ -21,6 +21,7 @@ export class CardPersonComponent implements OnInit {
   filterId: string;
   logoImgSrc: string;
   cardLogoImageBorder: string;
+  mailto: string;
 
 
 
@@ -36,6 +37,8 @@ export class CardPersonComponent implements OnInit {
     this.cardLogoImageBorder = this.contact.markaLogoBorderInverse ? 'card-logo-image-border-inv': 'card-logo-image-border';
 
     this.initGradientColor();
+    const marka = BAX_BRANDS[this.contact.marka];
+    this.mailto = `mailto: ${this.contact.emails[0]}?subject=Jestem zainteresowany ofertą ${marka}&body=Dzień dobry ! Jestem zainteresowany ofertą ${marka}, proszę o szczegółowe dane dotyczące modelu....  lub kontakt telefoniczny pod numerem: `;
 
 
 

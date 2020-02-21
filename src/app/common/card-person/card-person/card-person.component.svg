@@ -52,7 +52,7 @@
         </g>
     </a>
 
-    <a [attr.href]="'mailto:' + contact.emails[0]">
+    <a [attr.href]="mailto">
         <text class="card-contact-email" x="5" y="135">
             {{contact.emails[0]}}
         </text>
