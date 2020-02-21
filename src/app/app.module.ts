@@ -7,8 +7,6 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SharedModule } from './shared/shared.module';
 import { TestComponent } from './test/test.component';
-import { ScrollDispatchModule } from '@angular/cdk/scrolling';
-import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 
