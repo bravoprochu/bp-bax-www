@@ -1,1 +1,63 @@
-<p>yanmar-main works!</p>
+<div class="dots-container">
+    <div class="oferta-body">    
+
+        <app-title-block [title]="'Marka Yanmar w BAX'"></app-title-block>
+    
+        <div class="oferta-main-text" [ngClass]="cssMainTextCols">
+            <h3>Marka założona w <strong>1912</strong> roku w Osace w Japonii zajmująca się produkcją silników. Produkcja na poziomie 13 milionów sztuk o szerokim zakresie zastosowań, szeroko pojęty przemysł morski, rekreacyjny, sprzęt budowlany, rolniczy, oraz agregaty prądotwórcze.<br/>
+                Początek pierwszej maszyny budowlanej to rok <strong>1971</strong>.<br/>
+                Yanmar od lat wyznacza kierunki rozwoju maszyn budowlanych. Koparki mini i midi zostały opracowane właśnie przez nas.<br/>                
+                Nowoczesny design i dopracowane wszelkie szczegóły uczyniły nas na rynku marką Premium.<br/>                
+                Dostarczamy maszyny do branży ogólnobudowlanej, energetycznej, wodno-kanalizacyjnej, rolniczej, komunalnej czy sektora ogrodniczego.<br/>
+                Maszyny, które Państwu oferujemy w zakresie wagowym od 0.8 do 12 ton, to serie Vio i SV.<br/>                
+                Technologia i Perfekcja to podstawa naszej obecności na rynku.
+            </h3>
+        </div>
+        <div class="oferta-pics-container yanmar-transparent-gradient yanmar-border">
+            <img src="../../../../assets/oferta/1x1/SV18_Nr20_f.JPG" />
+            <img src="../../../../assets/oferta/1x1/SV60_C_082_8x9.JPG" />
+            <img src="../../../../assets/oferta/1x1/SV60_C_084.JPG" />
+            <img src="../../../../assets/oferta/1x1/V80_Nr02.JPG" />
+        </div>
+        <div class="oferta-color-divider yanmar-gradient"></div>
+        
+        <app-title-block [title]="'Przedstawiciele handlowi'"></app-title-block>
+
+        <div class="oferta-card-container">
+            <app-card-person *ngFor="let contact of contactCards" [contactInfo]="contact" class="oferta-card-contact"></app-card-person>
+        </div>
+
+        <div class="oferta-color-divider yanmar-gradient"></div>
+        <app-title-block [title]="'Tak działamy w terenie'"></app-title-block>
+
+        <div class="youtube-clips-list yanmar-transparent-gradient white-border">
+            <div class="youtube-overlay">
+                <a href="https://youtu.be/UXs1QNItw_0" target="_blank">
+                    <img src="../../../../assets/images/news/bax_budma-intermasz_2020_relacja_thumbnail.png" />
+                </a>
+            </div>
+            <div class="youtube-overlay">
+                <a href="https://youtu.be/mfj1OvFVKug" target="_blank">
+                    <img src="../../../../assets/images/news/bax_kopanieToNaszaPasja_Oll_Bud_Jacek_Urbaniak.jpg" />
+                </a>
+            </div>
+            <div class="youtube-overlay">
+                <a href="https://youtu.be/xgsfpCqPA4g" target="_blank">
+                    <img src="../../../../assets/images/news/kopanieToNaszaPasja_jar-bud_sv18_digga_PDD-4_resize.png" />
+                </a>
+            </div>
+            <div class="youtube-overlay">
+                <a href="https://youtu.be/kxyBC86G0sk" target="_blank">
+                    <img src="../../../../assets/images/news/kopanieToNaszaPasja_Weryfikacja_WY-KOP.jpg" />
+                </a>
+            </div>
+            
+        </div>
+
+        
+
+
+
+
+    </div>
+</div>
