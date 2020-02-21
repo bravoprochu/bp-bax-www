@@ -65,7 +65,7 @@ export class CardPersonComponent implements OnInit {
         this.gradientColor = '#4DAA2B';
         break;
 
-      case BAX_BRANDS.yanmar:
+      case BAX_BRANDS.Yanmar:
         this.gradientColor = '#E30020';
         break;       
 
