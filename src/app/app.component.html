@@ -40,7 +40,7 @@
         <app-menu *ngIf="!isSmall" class="nav-vertical"></app-menu>
         <app-menu-horizontal *ngIf="isSmall" class="nav-horizontal"></app-menu-horizontal>
     </nav>
-    <main #mainContent cdkScrollable [@routeAnimations]="prepareRoute(outlet)"
+    <main #mainContent [@routeAnimations]="prepareRoute(outlet)"
         [ngClass]="isSmall? 'main-vertical': 'main-horizontal'">
         <div class="router-outlet-container">
             <router-outlet #outlet="outlet"></router-outlet>
