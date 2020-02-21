@@ -56,13 +56,17 @@ export class CardPersonComponent implements OnInit {
 
   initGradientColor() {
     switch (this.contact.marka) {
-      case BAX_BRANDS.BAX:
-        this.gradientColor = '#0054A6';
-        break;
-
       case BAX_BRANDS.Arjes:
         this.gradientColor = '#FF5E0E';
         break;     
+
+      case BAX_BRANDS.BAX:
+        this.gradientColor = '#0054A6';
+        break;        
+
+      case BAX_BRANDS.Guidetti:
+        this.gradientColor = '#006AB3';
+        break;        
 
       case BAX_BRANDS.Sennebogen:
         this.gradientColor = '#4DAA2B';

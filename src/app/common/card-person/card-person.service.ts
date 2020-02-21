@@ -14,6 +14,22 @@ export class CardPersonService {
 
   baxDealers: ICardPerson[] = [
     {
+      emails: ['t.salomon@bax-maszyny.pl'],
+      firstName: 'Tomasz',
+      lastName: 'Salomon',
+      iconUrl: null,
+      marka: BAX_BRANDS.Guidetti,
+      markaLogoUrl: 'assets/logotypy/1x1/logo_guidetti_signOnly_1x1.png',
+      markaLogoBorderInverse: true,
+      position: 'Regionalny Kierownik Sprzedaży',
+        telephones: [
+        {
+          number: '502 350 009',
+          prefix: '+48'
+       }
+      ],
+    },
+    {
       emails: ['k.bereznicki@bax-maszyny.pl'],
       firstName: 'Robert',
       lastName: 'Tataruk',
