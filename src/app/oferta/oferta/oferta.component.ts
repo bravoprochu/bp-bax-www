@@ -129,7 +129,6 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
     )
     .subscribe(
          (_breakpObs:any)=>{
-              console.log('_breakpObs subs:', _breakpObs);
               this.cssOfertaItemContainer = 'oferta-item-container-small';
               
               this.isSmall = this.breakpointObs.isMatched(_SMALL);
@@ -152,21 +151,6 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
          (error)=>console.log('_breakpObs error', error),
          ()=>console.log('_breakpObs completed..')
     );
-
-
-    // this.viewportRuler.change().pipe(
-    //   startWith(null)
-    // )
-    // .subscribe(
-    //      (_vpRull:any)=>{
-    //             this.ngZone.run(()=>{
-    //             this.itemSize = this.viewportRuler.getViewportSize().height;
-    //            });
-    //      },
-    //      (error)=>console.log('_vpRull error', error),
-    //      ()=>console.log('_vpRull completed..')
-    // );
-
 
 
 
