@@ -69,7 +69,7 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
         title: 'Katalog maszyn'
       },
       {
-        footerImgSrc: '../../../assets/oferta/1x1/sennebogen 835 E mobile 04.JPG',
+        footerImgSrc: '../../../assets/oferta/1x1/sennebogen/sennebogen 835 E mobile 04.JPG',
         headerImgSrc: '../../../assets/svg/logotypy/logo_sennebogen.svg',
         markaCss: 'sennebogen-gradient',
         subtitle: 'Autoryzowany dealer marki',
@@ -77,7 +77,7 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
         title: 'marka'
       },
       {
-        footerImgSrc: '../../../assets/oferta/1x1/SV60_C_082_8x9.JPG',
+        footerImgSrc: '../../../assets/oferta/1x1/yanmar/SV60_C_082_8x9.JPG',
         headerImgSrc: '../../../assets/svg/logotypy/logo_yanmar.svg',
         markaCss: 'yanmar-gradient',
         subtitle: 'Autoryzowany dealer marki',
@@ -85,7 +85,7 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
         title: 'marka'
       },
       {
-        footerImgSrc: '../../../assets/oferta/1x1/impaktor_250_evo_bauschutt_01-1024x768.JPG',
+        footerImgSrc: '../../../assets/oferta/1x1/arjes/impaktor_250_evo_bauschutt_01-1024x768.JPG',
         headerImgSrc: '../../../assets/svg/logotypy/logo_arjes.svg',
         markaCss: 'arjes-gradient',
         subtitle: 'Autoryzowany dealer marki',
@@ -93,7 +93,7 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
         title: 'marka'
       },
       {
-        footerImgSrc: '../../../assets/oferta/1x1/IMG_20190930_111008.JPG',
+        footerImgSrc: '../../../assets/oferta/1x1/guidetti/IMG_20190930_111008.JPG',
         headerImgSrc: '../../../assets/svg/logotypy/logo_guidetti.svg',
         markaCss: 'guidetti-gradient',
         subtitle: 'Autoryzowany dealer marki',
@@ -121,10 +121,10 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
     const _LANDSCAPE = [Breakpoints.HandsetLandscape, Breakpoints.TabletLandscape, Breakpoints.WebLandscape];
     const _PORTRAIT = [Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait, Breakpoints.WebPortrait];
     const _SMALL = [Breakpoints.HandsetPortrait, Breakpoints.HandsetLandscape, Breakpoints.TabletPortrait, Breakpoints.TabletLandscape];
+    const _REST = [Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge];
 
 
-
-    this.breakpointObs.observe([..._PORTRAIT, ..._LANDSCAPE]).pipe(
+    this.breakpointObs.observe([..._REST,..._LANDSCAPE, ..._PORTRAIT]).pipe(
       takeUntil(this.isDestroyed$)
     )
     .subscribe(

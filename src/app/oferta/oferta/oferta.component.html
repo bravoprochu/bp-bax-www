@@ -1,3 +1,6 @@
+<div class="dots-container">
+
+
 <div class="oferta-container">
   <div *ngFor="let oferta of ofertaItems index as i" class="oferta-item-container" [ngClass]="[oferta.markaCss, cssOfertaItemContainer] " [routerLink]="oferta.routerLink">
     <div class="oferta-item-container-body" [ngClass]="cssOfertaItemContainerBody">
@@ -17,7 +20,7 @@
       </div>
     </div>
   </div>
-
+</div>
 
 
 

@@ -4,10 +4,6 @@
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
-    overflow: scroll;
-
-    background: linear-gradient(90deg, rgb(235, 235, 235) 20px, transparent 1%) center, linear-gradient(rgb(235, 235, 235) 20px, transparent 1%) center, #3882E8;
-    background-size: 22px 22px;
     position: relative;
 }
 
