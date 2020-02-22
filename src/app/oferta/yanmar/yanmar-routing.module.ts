@@ -5,12 +5,12 @@ import { YanmarMainComponent } from './yanmar-main/yanmar-main.component';
 
 const routes: Routes = [
   {
-    path: 'main',
+    path: 'home',
     component: YanmarMainComponent
   },
   {
     path: '', 
-    redirectTo: 'main',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
 ];

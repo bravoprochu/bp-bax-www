@@ -4,12 +4,12 @@ import { SennebogenMainComponent } from './sennebogen-main/sennebogen-main.compo
 
 const routes: Routes = [
   {
-    path: 'main',
+    path: 'home',
     component: SennebogenMainComponent
   },
   {
     path: '',
-    redirectTo: 'main',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
 ];

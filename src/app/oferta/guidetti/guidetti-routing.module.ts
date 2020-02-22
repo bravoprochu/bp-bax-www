@@ -5,12 +5,12 @@ import { GuidettiMainComponent } from './guidetti-main/guidetti-main.component';
 
 const routes: Routes = [
   {
-    path: 'main',
+    path: 'home',
     component: GuidettiMainComponent
   },
   {
     path: '',
-    redirectTo: 'main',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
 ];
