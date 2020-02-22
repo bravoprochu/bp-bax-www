@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { CardPersonService } from 'src/app/common/card-person/card-person.service';
 import { ICardPerson } from 'src/app/common/interfaces/i-card-person';
 import { BAX_BRANDS } from 'src/app/common/enums/bax-brands.enum';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, filter } from 'rxjs/operators';
+import { Router, NavigationEnd } from '@angular/router';
+import { ScrollDispatcher } from '@angular/cdk/overlay';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-yanmar-main',
@@ -13,9 +16,13 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class YanmarMainComponent implements OnInit {
 
+
   constructor(
     private cardPersonService: CardPersonService,
-    private breakpointObs: BreakpointObserver
+    private breakpointObs: BreakpointObserver,
+    private router: Router,
+    private el: ElementRef,
+    private vpScroller: ViewportScroller
   ) { }
 
   isDestroyed$: Subject<boolean> = new Subject()
@@ -29,6 +36,33 @@ export class YanmarMainComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
+    
+
+    this.router.events.pipe(
+      filter(f=>f instanceof NavigationEnd)
+    )
+    .subscribe(
+         (_routerEvents:any)=>{
+              console.log('_routerEvents subs:', _routerEvents);
+               // const t = document.querySelector('app-yanmar-main');
+               const t = (<HTMLElement>this.el.nativeElement)
+
+              console.log('el: ', t);
+              // t.scrollIntoView();
+              // t.scrollTo(0,0);
+              
+              
+              this.vpScroller.scrollToPosition([0,0]);
+              
+         },
+         (error)=>console.log('_routerEvents error', error),
+         ()=>console.log('_routerEvents completed..')
+    );
+
+
+
     const _LANDSCAPE = [Breakpoints.HandsetLandscape, Breakpoints.TabletLandscape, Breakpoints.WebLandscape];
     const _PORTRAIT = [Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait, Breakpoints.WebPortrait];
     const _SMALL = [Breakpoints.HandsetPortrait, Breakpoints.HandsetLandscape, Breakpoints.TabletPortrait, Breakpoints.TabletLandscape];
