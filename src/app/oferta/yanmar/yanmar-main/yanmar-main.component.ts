@@ -46,15 +46,9 @@ export class YanmarMainComponent implements OnInit {
     .subscribe(
          (_routerEvents:any)=>{
               console.log('_routerEvents subs:', _routerEvents);
-               // const t = document.querySelector('app-yanmar-main');
-               const t = (<HTMLElement>this.el.nativeElement)
-
-              console.log('el: ', t);
-              // t.scrollIntoView();
-              // t.scrollTo(0,0);
-              
-              
-              this.vpScroller.scrollToPosition([0,0]);
+               const t = document.querySelector('app-yanmar-main');
+               //t.scrollIntoView();
+               //t.scrollTo(0,0);
               
          },
          (error)=>console.log('_routerEvents error', error),
