@@ -4,13 +4,8 @@ import { ArjesMainComponent } from './arjes-main/arjes-main.component';
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: ArjesMainComponent
-  },
-  {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    component: ArjesMainComponent
   },
 ];
 

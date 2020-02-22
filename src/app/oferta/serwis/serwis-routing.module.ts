@@ -4,13 +4,8 @@ import { SerwisMainComponent } from './serwis-main/serwis-main.component';
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: SerwisMainComponent
-  },
-  {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    component: SerwisMainComponent
   },
 ];
 

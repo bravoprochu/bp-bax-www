@@ -5,13 +5,8 @@ import { CzesciMainComponent } from './czesci-main/czesci-main.component';
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: CzesciMainComponent
-  },
-  {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    component: CzesciMainComponent
   },
 ];
 
