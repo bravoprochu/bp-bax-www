@@ -24,6 +24,7 @@
     "@angular/router": "^8.2.14",
     "@angular/youtube-player": "^8.2.3",
     "@types/hammerjs": "^2.0.36",
+    "classlist.js": "^1.1.20150312",
     "core-js": "^2.6.11",
     "hammerjs": "^2.0.8",
     "intersection-observer": "^0.5.1",
