@@ -30,14 +30,30 @@ export class CardPersonService {
       ],
     },
     {
-      emails: ['k.bereznicki@bax-maszyny.pl'],
+      emails: ['f.konowalik@bax-maszyny.pl'],
+      firstName: 'Filip',
+      lastName: 'Konowalik',
+      iconUrl: null,
+      marka: BAX_BRANDS.BAX,
+      markaLogoUrl: 'assets/logotypy/1x1/logo_bax_signOnly_1x1.png',
+      markaLogoBorderInverse: true,
+      position: 'Dyrektor techniczny',
+        telephones: [
+        {
+          number: '500 105 422',
+          prefix: '+48'
+       }
+      ],
+    },
+    {
+      emails: ['r.tataruk@bax-maszyny.pl'],
       firstName: 'Robert',
       lastName: 'Tataruk',
       iconUrl: null,
       marka: BAX_BRANDS.BAX,
       markaLogoUrl: 'assets/logotypy/1x1/logo_bax_signOnly_1x1.png',
       markaLogoBorderInverse: true,
-      position: 'Doradca techniczny',
+      position: 'Kierownik serwisu',
         telephones: [
         {
           number: '513 078 884',
