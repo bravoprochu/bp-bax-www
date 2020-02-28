@@ -10,7 +10,7 @@ import { CommonFunctionsService } from '../common-functions.service';
   styleUrls: ['./image-modal-viewer.component.css']
 })
 export class ImageModalViewerComponent implements OnInit {
-@ViewChild('dialogContainer', { static: true }) dialogContainer: ElementRef;
+@ViewChild('dialogContainer', {static: true }) dialogContainer: ElementRef;
 imgUrl: string;
 imgHeight: number;
 imgWidth: number;

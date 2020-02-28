@@ -13,7 +13,7 @@ import { CommonFunctionsService } from '../common-functions.service';
 })
 export class VerticalMaskedImageComponent implements OnInit {
   @Input('imageGalleryPayload') imageGalleryPayload: ImageGalleryPayload;
-  @ViewChild('svgContainer', { static: true }) svgContainer: ElementRef;
+  @ViewChild('svgContainer', {static: true }) svgContainer: ElementRef;
 
   svgHeight: number = 250;
   imgUrl: string;

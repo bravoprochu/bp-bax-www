@@ -10,8 +10,8 @@ import { IMouseMovePosition } from '../shared/article-container/interfaces/i-mou
 })
 export class TestComponent implements OnInit, AfterViewInit {
 
-  @ViewChild("mouseFollow") mouseFollow: ElementRef;
-  @ViewChild('svgContainer', { static: true }) svgContainer: ElementRef;
+  @ViewChild("mouseFollow", {static: true}) mouseFollow: ElementRef;
+  @ViewChild('svgContainer', {static: true }) svgContainer: ElementRef;
 
   constructor() { }
 

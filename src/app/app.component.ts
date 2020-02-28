@@ -24,7 +24,7 @@ import { AnimationEvent } from '@angular/animations';
 })
 
 export class AppComponent implements OnInit {
-  @ViewChild('mainContent', { static: true }) mainContent: ElementRef;
+  @ViewChild('mainContent', {static: true }) mainContent: ElementRef;
   prepareRoute(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }

@@ -13,7 +13,6 @@ import { ContactService } from '../contact.service';
   styleUrls: ['./contact-list.component.css']
 })
 export class ContactListComponent implements OnInit {
-  @ViewChild('container') container: ElementRef;
   contactList: IContactCard[] = [];
 
   constructor(

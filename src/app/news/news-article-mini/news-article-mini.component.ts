@@ -26,9 +26,9 @@ import { INewsArticleMini } from '../interfaces/i-news-article-mini';
 })
 export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input('miniInfo') miniInfo: INewsArticleMini;
-  @ViewChild('followMouse', { static: true }) followMouse: ElementRef;
-  @ViewChild('svg', { static: true }) svg: ElementRef;
-  @ViewChild('titleText') titleText:ElementRef;
+  @ViewChild('followMouse', {static: true }) followMouse: ElementRef;
+  @ViewChild('svg', {static: true }) svg: ElementRef;
+  @ViewChild('titleText', {static: true}) titleText:ElementRef;
   fill: string;
   imgUrl: string;
   invert: boolean;
@@ -55,8 +55,6 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
 
   ngOnDestroy(): void {
   }
-  // @ViewChild('box') box: ElementRef;
-  // @ViewChild('elToMove') elToMove: ElementRef;
 
   constructor(
     private sanitize: DomSanitizer,

@@ -36,8 +36,8 @@ export class NewsArticleComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit(): void {
     // console.log('viewInit...');
   }
-  @ViewChild('svgImage') svgImageTEST: ElementRef;
-  @ViewChild('bg', { static: true }) bg: ElementRef;
+  @ViewChild('svgImage', {static: true}) svgImageTEST: ElementRef;
+  @ViewChild('bg', {static: true }) bg: ElementRef;
   colors: IPantoneToHex[];
   bgColor: any;
   bgImageColor: any;

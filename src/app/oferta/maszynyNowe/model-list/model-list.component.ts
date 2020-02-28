@@ -22,7 +22,7 @@ import { ImageGalleryPayload } from 'src/app/shared/interfaces/image-gallery-pay
   ]
 })
 export class ModelListComponent implements OnInit {
-  @ViewChild('container') container!: ElementRef;
+  @ViewChild('container', {static: true}) container!: ElementRef;
   baseUrl: string = window.location.href;
   isAwers: boolean = true;
   modelList: IBaxModelMaszynaNowa[] = [];

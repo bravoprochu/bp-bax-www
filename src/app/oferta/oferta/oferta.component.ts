@@ -19,7 +19,6 @@ import { BREAKPOINT } from '@angular/flex-layout';
   ],
 })
 export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
-  @ViewChild(CdkVirtualScrollViewport) viewPort: CdkVirtualScrollViewport;
   /**
    *
    */
