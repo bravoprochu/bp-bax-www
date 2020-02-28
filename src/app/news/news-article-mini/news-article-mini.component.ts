@@ -28,7 +28,7 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
   @Input('miniInfo') miniInfo: INewsArticleMini;
   @ViewChild('followMouse', { static: true }) followMouse: ElementRef;
   @ViewChild('svg', { static: true }) svg: ElementRef;
-  @ViewChild('titleText', { static: false }) titleText:ElementRef;
+  @ViewChild('titleText') titleText:ElementRef;
   fill: string;
   imgUrl: string;
   invert: boolean;

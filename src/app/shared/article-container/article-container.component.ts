@@ -49,7 +49,7 @@ export class ArticleContainerComponent implements OnInit, AfterViewInit {
 
 
   //@ViewChild('divContainer') divContainer: ElementRef;
-  @ViewChild('svgImage', { static: false }) svgImageContainer: ElementRef;
+  @ViewChild('svgImage') svgImageContainer: ElementRef;
   @ViewChild('svgBgText', { static: true }) svgBgText: ElementRef;
   @ViewChild('svgContainer', { static: true }) svgContainer: ElementRef;
   @ViewChild('svgBaxSign', { static: true }) svgBaxSign: ElementRef;

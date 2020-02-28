@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isDestroyed$.complete();
   }
 
-  @ViewChild('bax', { static: false }) bax: ElementRef;
+  @ViewChild('bax') bax: ElementRef;
   @ViewChild('svg', { static: true }) svg: ElementRef;
   isDestroyed$: Subject<boolean>;
   svgBaxLogoProp = new SVGElementProp();
