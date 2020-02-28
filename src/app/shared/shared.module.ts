@@ -37,7 +37,7 @@ import { ImgGalleryComponent } from './img-gallery/img-gallery.component';
 import { MenuComponent } from './menu/menu.component';
 import { MenuHorizontalComponent } from './menu-horizontal/menu-horizontal.component';
 import { MenuCommonFunctionsService } from './menu-common-functions.service';
-import { ScrollDispatchModule } from '@angular/cdk/scrolling';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { VerticalMaskedImageComponent } from './vertical-masked-image/vertical-masked-image.component';
 import { ImageModalViewerComponent } from './image-modal-viewer/image-modal-viewer.component';
 import { VerticalImageGalleryComponent } from '../vertical-image-gallery/vertical-image-gallery.component';
@@ -92,7 +92,7 @@ import { SvgBackgroundComponent } from './svg-background/svg-background.componen
     MatTooltipModule,
     PantoneToHexModule,
     ReactiveFormsModule,
-    ScrollDispatchModule,
+    ScrollingModule,
     SvgCommonModule,
     YouTubePlayerModule
     
@@ -133,7 +133,7 @@ import { SvgBackgroundComponent } from './svg-background/svg-background.componen
     RouterGoBackComponent,
     ImgGalleryComponent,
     MenuHorizontalComponent,
-    ScrollDispatchModule,
+    ScrollingModule,
     SvgButtonYoutubeComponent,
     SvgBackgroundComponent,
     VerticalMaskedImageComponent,
