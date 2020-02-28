@@ -27,12 +27,16 @@
     
     
 
-    <text class="card-firstName" x="85" y="65">
-        {{contact.firstName}}
-    </text>
-    <text class="card-lastName" x="90" y="65">
-        {{contact.lastName}}
-    </text>
+    <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="200" viewBox="0 0 300 153" preserveAspectRatio="xMidYMid meet">
+        <text class="card-firstName" x="120" y="65">
+            {{contact.firstName}}
+        </text>
+        <text class="card-lastName" x="125" y="65">
+            {{contact.lastName}}
+        </text>
+    </svg>
+
+
 
     <text class="card-position" x="10" y="95">
         {{contact.position}}

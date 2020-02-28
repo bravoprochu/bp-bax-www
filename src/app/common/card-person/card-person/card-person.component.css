@@ -9,13 +9,13 @@
 
 
 .card-firstName {
-    font-size: 18px;
+    font-size: 23px;
     text-anchor: end;
     fill: rgb(0, 84, 164);    
 }
 
 .card-lastName {
-    font-size: 25px;
+    font-size: 30px;
     font-weight: 400;
     font-variant-caps: all-petite-caps;
     transition: all 0.3s ease-in-out;
@@ -27,7 +27,7 @@
 }
 
 
-.card-position {
+.card-position {    
     font-size: 6px;
     fill: rgb(0, 84, 164);
 }
