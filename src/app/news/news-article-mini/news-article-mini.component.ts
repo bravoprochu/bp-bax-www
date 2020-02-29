@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy, Input, Sanitizer, AfterViewInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy, Input, Sanitizer, AfterViewInit, Renderer2, ChangeDetectorRef } from '@angular/core';
 import { fromEvent, Observable, Subject, interval, timer, merge } from 'rxjs';
 import { takeUntil, switchMap, map, sampleTime } from 'rxjs/operators';
 import { AnimationPlayer } from '@angular/animations';
@@ -20,26 +20,33 @@ import { INewsArticleMini } from '../interfaces/i-news-article-mini';
   animations: [
     BP_ANIM_SCALE_ORIGIN_OVER_LEAVE(0, 1, 1, 0.0),
     BP_ANIM_ENTER_LEAVE_GROUP(1300, 1200),
-    BP_ANIM_SVG_INIT()
-    
+    BP_ANIM_SVG_INIT(350, 200, "text, rect, line")
   ]
 })
 export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestroy {
-  @Input('miniInfo') miniInfo: INewsArticleMini;
-  @ViewChild('followMouse', {static: true }) followMouse: ElementRef;
-  @ViewChild('svg', {static: true }) svg: ElementRef;
-  @ViewChild('titleText', {static: true}) titleText:ElementRef;
+  @Input('miniInfo') set miniInfo(value: INewsArticleMini) {
+    this._miniInfo = value;
+    console.log(`value ${value.title} changed to  ${value.isIntersected}`);
+    this.initImage();
+  } get miniInfo(): INewsArticleMini {
+    return this._miniInfo;
+  };
+
+  @ViewChild('followMouse', { static: true }) followMouse: ElementRef;
+  @ViewChild('svg', { static: true }) svg: ElementRef;
+  @ViewChild('titleText', { static: true }) titleText: ElementRef;
   fill: string;
   imgUrl: string;
   invert: boolean;
   pointer: string;
   url: string;
   title: string;
-  
+
+  _miniInfo: INewsArticleMini;
   bgUrl: SafeResourceUrl;
   image: SVGElementProp;
   isImageReady: boolean;
-  isReady:boolean = false;
+  isReady: boolean = false;
   isDestroyed$: Subject<boolean>;
   isMouseOver: boolean;
   mousePoint: ISVGPoint;
@@ -54,6 +61,8 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
 
 
   ngOnDestroy(): void {
+    this.isMouseOver = false;
+
   }
 
   constructor(
@@ -66,13 +75,11 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
 
 
   ngOnInit() {
-    this.initImage();
-    this.miniInfo = this.miniInfo ? this.miniInfo : <INewsArticleMini>{};
-
-    this.bgUrl = this.miniInfo.imgUrl ?  'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg': this.sanitize.bypassSecurityTrustResourceUrl('https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg');
-    this.imgUrl = this.miniInfo.imgUrl ? this.imgUrl : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
+    this._miniInfo = this._miniInfo ? this._miniInfo : <INewsArticleMini>{};
+    this.bgUrl = this._miniInfo.imgUrl ? 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg' : this.sanitize.bypassSecurityTrustResourceUrl('https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg');
+    this.imgUrl = this._miniInfo.imgUrl ? this.imgUrl : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
     this.fill = this.fill ? this.fill : '#fff';
-    
+
     this.pointer = this.pointer ? this.pointer : 'brown'
     this.title = this.title ? this.title : 'uzupełnij tytuł';
     this.image = new SVGElementProp();
@@ -87,19 +94,26 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
 
   }
 
-  goTo(){
-    if(this.miniInfo.isExternalUrl){
+  goTo() {
+    if (this._miniInfo.isExternalUrl) {
 
     } else {
-      this.router.navigateByUrl(`news/${this.miniInfo.url}`, {preserveFragment: false, fragment: 'top'});
+      this.router.navigateByUrl(`news/${this._miniInfo.url}`, { preserveFragment: false, fragment: 'top' });
     }
   }
 
   initImage() {
     const img = new Image()
-    img.src = this.miniInfo.imgUrl;
+    img.src = this._miniInfo.imgUrl;
+    this.isImageReady = false;
+    
+    
+    if (!this._miniInfo.isIntersected) { 
+      img.onload = function(){};
+      return; }
+    
 
-    img.onload = (ev) =>{
+    img.onload = (ev) => {
       this.isImageReady = true;
     }
 
@@ -117,7 +131,7 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
       })
     );
     const leave$ = fromEvent(this.svg.nativeElement, 'mouseleave').pipe(
-      map(leave=>{
+      map(leave => {
         //this.svgCF.updateSVGViewBoxPosition(svg, this.followMousePos, this.lastMousePos, null, this.followMouse, ease);
         this.isMouseOver = false;
         return leave;

@@ -18,7 +18,8 @@ export function BP_ANIM_SVG_INIT (opacityTime: number = 250, staggerTime: number
         transition(':leave', [
                 query(queryString, [
                     stagger(`-${staggerTime/2}ms`, [
-                        animate(`${opacityTime}ms ease-out`, style({opacity: 0, transform: 'translateX(-100%)'}) )
+                        animate(`${opacityTime}ms ease-out`, style({opacity: 0, transform: 'translate3d(200%,0,0)'}) ),
+                        animate(`${opacityTime}ms ease-in`, style({opacity: 0}))
                     ])
                 ], {optional: true})
             ]),
