@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { takeUntil } from 'rxjs/operators';
@@ -34,7 +33,6 @@ export class BaxBauma2019SennebogenComponent implements OnInit {
   // imgSrc: any;
   
   constructor(
-    private sanitizer: DomSanitizer,
     private mediaObserver: MediaObserver,
     public cf: CommonFunctionsService
   ) { }

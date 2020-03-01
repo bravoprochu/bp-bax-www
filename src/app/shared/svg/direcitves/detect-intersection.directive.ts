@@ -16,7 +16,6 @@ export class DetectIntersectionDirective implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
-
     const htmlEl = (<HTMLElement>this.el.nativeElement);
 
     let div = this.renderer.createElement('div');

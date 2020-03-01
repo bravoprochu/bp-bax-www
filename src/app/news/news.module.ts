@@ -8,11 +8,13 @@ import { SharedModule } from '../shared/shared.module';
 import { NewsArticleComponent } from './news-article/news-article.component';
 import { NewsArticleDateComponent } from './news-article-date/news-article-date.component';
 import { NewsServicesModule } from './newsServices/news-services.module';
+import { DetectIntersectionDirective } from '../shared/svg/direcitves/detect-intersection.directive';
 
 
 
 @NgModule({
   declarations: [
+    DetectIntersectionDirective,
     NewsListComponent, 
     NewsArticleMiniComponent, 
     NewsArticleTitleComponent,

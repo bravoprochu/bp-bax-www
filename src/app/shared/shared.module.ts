@@ -4,7 +4,6 @@ import { RouterGoBackComponent } from './router-go-back/router-go-back.component
 import { RouterModule } from '@angular/router';
 import { ArticleContainerComponent } from './article-container/article-container.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SvgCommonModule } from './svg/svg-common.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -26,13 +25,11 @@ import { CommonFunctionsService } from './common-functions.service';
 import { HeaderComponent } from './header/header/header.component';
 import { HeaderMenuBigComponent } from './header/header-menu-big/header-menu-big.component';
 import { DeferLoadDirective } from './defer-load.directive';
-import { DetectIntersectionDirective } from './directives/detect-intersection.directive';
 import { PantoneToHexModule } from '../pantoneToHex/pantone-to-hex.module';
 import { SvgButtonYoutubeComponent } from './svg/svg-button-youtube/svg-button-youtube.component';
 import { ArticleNavigationComponent } from './svg/article-navigation/article-navigation.component';
 import { FillChangeDirective } from './directives/fill-change.directive';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { BaxPreloaderDirective } from './directives/bax-preloader.directive';
 import { ImgGalleryComponent } from './img-gallery/img-gallery.component';
 import { MenuComponent } from './menu/menu.component';
 import { MenuHorizontalComponent } from './menu-horizontal/menu-horizontal.component';
@@ -42,6 +39,7 @@ import { VerticalMaskedImageComponent } from './vertical-masked-image/vertical-m
 import { ImageModalViewerComponent } from './image-modal-viewer/image-modal-viewer.component';
 import { VerticalImageGalleryComponent } from '../vertical-image-gallery/vertical-image-gallery.component';
 import { SvgBackgroundComponent } from './svg-background/svg-background.component';
+
 
 
 @NgModule({
@@ -56,11 +54,9 @@ import { SvgBackgroundComponent } from './svg-background/svg-background.componen
     HeaderMenuBigComponent,
     MenuComponent,
     DeferLoadDirective,
-    DetectIntersectionDirective,
     SvgButtonYoutubeComponent,
     ArticleNavigationComponent,
     FillChangeDirective,
-    BaxPreloaderDirective,
     ImgGalleryComponent,
     MenuHorizontalComponent,
     VerticalMaskedImageComponent,
@@ -92,17 +88,12 @@ import { SvgBackgroundComponent } from './svg-background/svg-background.componen
     PantoneToHexModule,
     ReactiveFormsModule,
     ScrollingModule,
-    SvgCommonModule,
-    
-    
   ],
   exports: [
     CommonModule,
     ArticleContainerComponent,
     ArticleNavigationComponent,
-    BaxPreloaderDirective,
     DeferLoadDirective,
-    DetectIntersectionDirective,
     SocialButtonsComponent,
     FillChangeDirective,
     FlexLayoutModule,
@@ -132,8 +123,6 @@ import { SvgBackgroundComponent } from './svg-background/svg-background.componen
     ImgGalleryComponent,
     MenuHorizontalComponent,
     ScrollingModule,
-    SvgButtonYoutubeComponent,
-    SvgBackgroundComponent,
     VerticalMaskedImageComponent,
     ImageModalViewerComponent,
     VerticalImageGalleryComponent,

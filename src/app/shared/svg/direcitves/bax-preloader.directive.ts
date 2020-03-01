@@ -1,8 +1,8 @@
 import { Directive, Renderer2, Host, OnInit, Input, ViewContainerRef, ElementRef, AfterViewInit } from '@angular/core';
 import { BaxMarka } from 'src/app/oferta/enums/bax-marka-enum';
 import { environment } from 'src/environments/environment.prod';
-import { SvgCommonFunctionsService } from '../svg/svg-common-functions.service';
-import { CommonFunctionsService } from '../common-functions.service';
+import { SvgCommonFunctionsService } from '../svg-common-functions.service';
+
 
 
 
@@ -44,7 +44,6 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
     private renderer: Renderer2,
     private el: ElementRef,
     public svgCf: SvgCommonFunctionsService,
-    private cf: CommonFunctionsService
   ) { }
 
 

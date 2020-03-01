@@ -26,7 +26,6 @@ import { INewsArticleMini } from '../interfaces/i-news-article-mini';
 export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input('miniInfo') set miniInfo(value: INewsArticleMini) {
     this._miniInfo = value;
-    console.log(`value ${value.title} changed to  ${value.isIntersected}`);
     this.initImage();
   } get miniInfo(): INewsArticleMini {
     return this._miniInfo;
