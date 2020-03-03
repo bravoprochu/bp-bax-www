@@ -167,6 +167,15 @@ a {
   position: relative;
 }
 
+
+.oferta-pics-img {
+  min-width: 200px;
+  min-height: 200px;
+  width: 100%;
+
+}
+
+
 .oferta-color-divider {
   min-height: 10px;
   min-width: 100%;

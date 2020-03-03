@@ -5,6 +5,7 @@ import { SerwisRoutingModule } from './serwis-routing.module';
 import { SerwisMainComponent } from './serwis-main/serwis-main.component';
 import { OfertaCommonModule } from '../oferta-common/oferta-common.module';
 import { CardPersonModule } from 'src/app/common/card-person/card-person.module';
+import { PreloadDirectivesModule } from 'src/app/shared/directives/preload-directives/preload-directives.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { CardPersonModule } from 'src/app/common/card-person/card-person.module'
   ],
   imports: [
     CommonModule,
+    PreloadDirectivesModule,
     OfertaCommonModule,
     CardPersonModule,
     SerwisRoutingModule

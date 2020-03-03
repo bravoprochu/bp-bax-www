@@ -28,7 +28,6 @@ export class DetectIntersectionDirective implements OnInit, AfterViewInit {
 
     this.renderer.appendChild(htmlEl,div); 
 
-
     const observe = new IntersectionObserver(entries => {
       entries.forEach((f: IntersectionObserverEntry)=>{
 
