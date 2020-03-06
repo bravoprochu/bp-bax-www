@@ -9,6 +9,7 @@ import { NewsArticleComponent } from './news-article/news-article.component';
 import { NewsArticleDateComponent } from './news-article-date/news-article-date.component';
 import { NewsServicesModule } from './newsServices/news-services.module';
 import { DetectIntersectionDirective } from '../shared/svg/directives/detect-intersection.directive';
+import { SvgCommonModule } from '../shared/svg/svg-common.module';
 
 
 
@@ -25,6 +26,7 @@ import { DetectIntersectionDirective } from '../shared/svg/directives/detect-int
   imports: [
     CommonModule,
     SharedModule,
+    SvgCommonModule,
     NewsServicesModule,
     NewsRoutingModule,
   ],

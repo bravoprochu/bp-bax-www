@@ -1,19 +1,41 @@
 <app-header></app-header>
-<div fxLayout fxLayoutGap="10px" fxLayoutAlign="center">
-    <mat-form-field appearance="outline" fxFlex.xs="100" fxFlex.gt-xs="50">
-            <mat-label>Znajdź news <span *ngIf="news.length>0 && search$.value?.length>0">({{news.length}})</span></mat-label>
-            <input matInput placeholder="Wyszukaj w tytule" type="search" [formControl]="search$" >
-            <mat-icon *ngIf="news.length>0" matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-icon *ngIf="news.length==0" matSuffix>sentiment_very_dissatisfied</mat-icon>
-    </mat-form-field>
+<section *ngIf="!isDataReady" class="loadingDataContainer dots-block-container">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+         viewBox="0 0 200 50" preserveAspectRatio="xMidYMid slice"
+         >
+            <image x="0" y="-75" width="100%" xlink:href="assets/svg/preloaders/balls-horizontal-preloader.svg" preserveAspectRatio="xMidYMid meet"></image>
+            <!-- <text x="50%" y="50%" width="150" font-size="10">Trwa wczytywanie danych</text> -->
 
-    </div> 
-<div gdColumns="1fr 1fr" gdColumns.xs="1fr" gdGap="0.25em" >
-      
-    <div (detectIntersection)="detect($event, article)" [fill]="article.fill"  *ngFor="let article of news" >
-        <app-news-article-mini gdColumn="1" gdColumn.xs="1/ span 2"  *ngIf="article.isIntersected" [miniInfo]="article"></app-news-article-mini>
+            <svg y="50%" height="100" viewBox="-100 0 600 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+                <path id="path">
+                       <animate attributeName="d" from="m0,110 h0" to="m0,110 h1100" dur="4.8s" begin="0s" repeatCount="indefinite"/>
+                   </path>
+                   <text font-size="28" font-family="Montserrat" fill='rgba(0,84,164, 1)'>
+                       <textPath xlink:href="#path">. . .  Trwa wczytywanie danych.   .   .</textPath>
+                   </text>
+            </svg>
+        </svg>
+</section>
+
+<section *ngIf="isDataReady">
+    <div fxLayout fxLayoutAlign="center">
+        <mat-form-field appearance="outline" fxFlex.xs="100" fxFlex.gt-xs="50">
+                <mat-label>Znajdź news <span *ngIf="news.length>0 && search$.value?.length>0">({{news.length}})</span></mat-label>
+                <input matInput placeholder="Wyszukaj w tytule" type="search" [formControl]="search$" >
+                <mat-icon *ngIf="news.length>0" matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-icon *ngIf="news.length==0" matSuffix>sentiment_very_dissatisfied</mat-icon>
+        </mat-form-field>
+    
     </div>
-    <!-- <div *ngFor="let article of news">
-        <app-news-article-mini gdColumn="1" gdColumn.xs="1/ span 2"  [miniInfo]="article"></app-news-article-mini>
-    </div> -->
-</div>
+    
+    <div gdColumns="1fr 1fr" gdColumns.xs="1fr" gdGap="0.25em" >
+          
+        <!-- <div (detectIntersection)="detect($event, article)" [fill]="article.fill"  *ngFor="let article of news" >
+            <app-news-article-mini gdColumn="1" gdColumn.xs="1/ span 2"  *ngIf="article.isIntersected" [miniInfo]="article"></app-news-article-mini>
+        </div> -->
+        <div *ngFor="let article of news">
+            <app-news-article-mini gdColumn="1" gdColumn.xs="1/ span 2"  [miniInfo]="article"></app-news-article-mini>
+        </div>
+    </div>
+</section>
+

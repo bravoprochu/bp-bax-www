@@ -32,10 +32,8 @@ import { isNullOrUndefined } from 'util';
   ],
   encapsulation: ViewEncapsulation.None,
 })
-export class NewsArticleComponent implements OnInit, OnDestroy, AfterViewInit {
-  ngAfterViewInit(): void {
-    // console.log('viewInit...');
-  }
+export class NewsArticleComponent implements OnInit, OnDestroy {
+  
   @ViewChild('svgImage', {static: true}) svgImageTEST: ElementRef;
   @ViewChild('bg', {static: true }) bg: ElementRef;
   colors: IPantoneToHex[];
@@ -46,6 +44,7 @@ export class NewsArticleComponent implements OnInit, OnDestroy, AfterViewInit {
   isColorReady: boolean;
   linkToShare: string;
 
+  
   ngOnDestroy(): void {
   this.isDestroyed$.next(true);
   this.isDestroyed$.complete();

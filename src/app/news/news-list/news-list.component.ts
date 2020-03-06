@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NewsService } from '../newsServices/news.service';
 import { INewsArticle } from '../interfaces/i-news-article';
 import { BP_ANIM_BRICK_LIST } from 'src/app/animations/bp-anim-brick-list';
-import { ActivatedRoute } from '@angular/router';
 import { INewsArticleMini } from '../interfaces/i-news-article-mini';
 import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
 import { FormControl } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, startWith } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, startWith, takeWhile, takeUntil } from 'rxjs/operators';
+import { NewsDataFactoryService } from '../newsServices/news-data-factory.service';
+import { Subject } from 'rxjs';
 
 
 
@@ -20,22 +21,47 @@ import { debounceTime, distinctUntilChanged, startWith } from 'rxjs/operators';
     BP_ANIM_BRICK_LIST(),
   ]
 })
-export class NewsListComponent implements OnInit {
+export class NewsListComponent implements OnInit, OnDestroy {
+ 
+  constructor(
+    private cf: CommonFunctionsService,
+    private ncf: NewsService,
+    private newsDataService: NewsDataFactoryService
+  ) { }
+
+
+  isDataReady: boolean;
   isListShown: boolean =true;
   isOrderByDateAsc: boolean = false;
   isOrderByNameAsc: boolean = true;
   news: INewsArticleMini[]= [];
   newsList: INewsArticleMini[]= [];
   search$: FormControl;
+  isDestroyed$: Subject<boolean> = new Subject()
   
-  constructor(
-    private cf: CommonFunctionsService,
-    private ncf: NewsService,
-    private activatedRoute: ActivatedRoute,
-  ) { }
+  
+  ngOnDestroy(): void {
+       this.isDestroyed$.next(true);
+       this.isDestroyed$.complete();
+       this.isDestroyed$.unsubscribe();
+  }
+
 
   ngOnInit() {
-    this.newsList = this.activatedRoute.snapshot.data['data'];
+    // this.newsList = this.activatedRoute.snapshot.data['data'];
+    this.newsDataService.getAll()
+    .subscribe(
+         (_newsData:any)=>{
+              this.newsList = _newsData;
+              this.isDataReady = true;
+              this.news = this.ncf.filterListBySearch(this.newsList, null);
+         },
+         (error)=>console.log('_newsData error', error),
+         ()=>console.log('_newsData completed..')
+    );
+
+
+
     this.search$ = new FormControl();
 
     this.search$
@@ -45,14 +71,14 @@ export class NewsListComponent implements OnInit {
      startWith(null)
     ).subscribe(
       (searchPhrase:string)=>{
-        this.news = this.ncf.filterListBySearch(this.newsList, searchPhrase);
+        this.news = this.ncf.filterListBySearch(this.newsList, searchPhrase);        
       }
     )
 
 
 
-    this.cf.metaTitleUpdate(`NEWS`);
-    this.cf.metaDescriptionUpdate('Najnowsze informacje BAX maszyny. Aktualności dotyczące maszyn Sennebogen, Yanmar, Goudetti. Promocje na części, oferty pracy, katalog usług serwisowych')
+    // this.cf.metaTitleUpdate(`NEWS`);
+    // this.cf.metaDescriptionUpdate('Najnowsze informacje BAX maszyny. Aktualności dotyczące maszyn Sennebogen, Yanmar, Goudetti. Promocje na części, oferty pracy, katalog usług serwisowych')
    }
 
   

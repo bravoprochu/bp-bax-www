@@ -1,0 +1,38 @@
+
+.loadingDataContainer {
+    /* display: flex;
+    align-content: stretch;
+    justify-content: center;
+    flex-flow: row; */
+    min-height: 100px;
+    position: relative;
+}
+
+.preloader-container {
+    width: 100%;
+}
+
+.info-container {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+
+}
+
+.newsList {
+    max-width: 1024px;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+
+    position: relative; */
+
+
+}
+.newsList:first-child {
+    flex: 1;
+}
+
+.newsList:last-child {
+    flex: 1;
+}

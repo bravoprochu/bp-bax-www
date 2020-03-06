@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SvgCommonFunctionsService } from './svg-common-functions.service';
 import { BaxPreloaderDirective } from './directives/bax-preloader.directive';
+import { SvgBackgroundComponent } from '../svg-background/svg-background.component';
 
 
 @NgModule({
   declarations: [
-    BaxPreloaderDirective
+    BaxPreloaderDirective,
+    SvgBackgroundComponent,
+
   ],
   imports: [
     CommonModule
@@ -15,7 +18,8 @@ import { BaxPreloaderDirective } from './directives/bax-preloader.directive';
     SvgCommonFunctionsService
   ],
   exports: [
-    BaxPreloaderDirective    
+    BaxPreloaderDirective,
+    SvgBackgroundComponent  
   ]
 })
 export class SvgCommonModule { }

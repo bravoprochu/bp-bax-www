@@ -1,4 +1,4 @@
-<app-svg-background *ngIf="isColorReady" [colors]="colors" class="bg-flow"></app-svg-background>
+<app-svg-background [colors]="colors" class="bg-flow"></app-svg-background>
 
 
 <!-- [style.background-image]="bgImageColor" -->
@@ -23,8 +23,8 @@
           [attr.height]="svgImage.height" [attr.xlink:href]="data.miniInfo.imgUrl"
           [attr.transform]="svgImage.transform"></image>
       </g>
-      <svg:g *ngIf="data.youtubeUrl && isSVGImageIsReady" svg-button-youtube x="50" y="700" height="400" width="400"
-        title="zobacz clip {{data.title.title}} na Youtube" [url]="data.youtubeUrl"></svg:g>
+      <svg *ngIf="data.youtubeUrl && isSVGImageIsReady" svg-button-youtube x="50" y="700" height="400" width="400"
+        title="zobacz clip {{data.title.title}} na Youtube" [url]="data.youtubeUrl"></svg>
     </svg>
   </section>
   <app-social-buttons [linkToShare]="linkToShare"></app-social-buttons>    

@@ -35,7 +35,7 @@ export class BaxImgPreloaderDirective implements OnInit, AfterViewInit {
 
 
     this.imgDestUrl = this.src || PUFF_URL;
-    
+
     this.imgPreload = (<HTMLImageElement>this.renderer2.createElement('img'));
     this.renderer2.setAttribute(this.imgPreload, "src", PUFF_URL);
     this.renderer2.appendChild(CONTAINER, this.imgPreload);
@@ -45,10 +45,10 @@ export class BaxImgPreloaderDirective implements OnInit, AfterViewInit {
     this.renderer2.setStyle(this.imgPreload, 'min-height', '250px');
     this.renderer2.setStyle(this.imgPreload, 'width', '100%');
 
-    
+
     this.imgDest = this.renderer2.createElement('img');
-    
-    
+
+
 
 
 
@@ -67,7 +67,7 @@ export class BaxImgPreloaderDirective implements OnInit, AfterViewInit {
         // this.renderer2.setStyle(this.imgDest, 'width', '100%');
         // this.setStyles(<HTMLImageElement>_PARENT_NODE.firstChild);
         this.renderer2.setStyle(this.imgDest, 'display', 'block');
-        }, 0);
+      }, 0);
 
     }
 
@@ -76,37 +76,22 @@ export class BaxImgPreloaderDirective implements OnInit, AfterViewInit {
       entries.forEach((f: IntersectionObserverEntry) => {
 
         if (!f.isIntersecting) {
-          let _txt = 'isnt intersecting.. ';
-          
           if (this.isImageLoading) {
             this.renderer2.setAttribute(this.imgDest, 'src', '');
             this.isImageLoading = false;
-
-            _txt += '| image is loading.. ';
           }
-          
-          if (this.isImageLoaded) {
-            _txt += '| image loadED.. finito !';
-            this.observe.unobserve(CONTAINER);
-            this.observe.disconnect();
-          }
-
-
-          }
+        }
 
         if (f.intersectionRatio > 0.35) {
           if (!this.isImageLoading) {
-
             this.imgDest.onload = this.onLoad(CONTAINER, this.imgPreload);
             this.renderer2.setAttribute(this.imgDest, 'src', this.imgDestUrl);
             this.isImageLoading = true;
             this.renderer2.appendChild(CONTAINER, this.imgDest);
             this.setStyles(this.imgDest);
             this.renderer2.setStyle(this.imgDest, 'display', 'none');
-
-            }
+          }
         }
-
       })
     }, { threshold: [0, 0.2, 0.35, 0.5, 0.75, 1] });
 

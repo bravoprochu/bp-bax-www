@@ -10,18 +10,16 @@ import { switchMap, tap } from 'rxjs/operators';
 
 
 @Injectable({
-        providedIn: NewsServicesModule
-    })
+    providedIn: NewsServicesModule
+})
 export class NewsListResolve implements Resolve<INewsArticleMini[]> {
 
     /**
      *
      */
     constructor(
-           private df: NewsDataFactoryService,
-           private routeAnimationSrv: RouteAnimationService
-
-        ) {
+        private df: NewsDataFactoryService,
+    ) {
     }
 
     resolve(route: import("@angular/router").ActivatedRouteSnapshot, state: import("@angular/router").RouterStateSnapshot): INewsArticleMini[] | Observable<INewsArticleMini[]> | Promise<INewsArticleMini[]> {

@@ -22,10 +22,11 @@ const routes: Routes = [
     path: '',
     component: NewsListComponent,
     data: { 
-      animation: 'newsList' 
+       animation: 'newsList' 
     },
     resolve: {
-       data: NewsListResolve
+       // data loaded in newsListComponent
+       // data: NewsListResolve
     },
   }
 ];

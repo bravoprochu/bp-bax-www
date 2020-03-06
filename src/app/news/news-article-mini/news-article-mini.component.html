@@ -1,7 +1,11 @@
 <svg #svg xmlns="http://www.w3.org/2000/svg" [attr.viewBox]="svgViewBox" preserveAspectRatio="none" (click)="goTo()">
 
-    <image *ngIf="isImageReady" [attr.xlink:href]="miniInfo.imgUrl" x="0" y="0" width="1920" height="1080"></image>
-    
+    <!-- <image *ngIf="isImageReady" [attr.xlink:href]="miniInfo.imgUrl" x="0" y="0" width="1920" height="1080"></image>
+    <g *ngIf="!isImageReady">
+        <rect x="0" y="0" width="1920" height="1080" [style.fill]="miniInfo.fill"></rect>
+    </g> -->
+
+
     <circle cx="50%" cy="50%" r="1" fill="red"></circle>
     <rect x="0" y="0" width="1920" height="1080" class="rect-fill" [style.fill]="miniInfo.fill"></rect>
 

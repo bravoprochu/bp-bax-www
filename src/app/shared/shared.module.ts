@@ -38,8 +38,6 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { VerticalMaskedImageComponent } from './vertical-masked-image/vertical-masked-image.component';
 import { ImageModalViewerComponent } from './image-modal-viewer/image-modal-viewer.component';
 import { VerticalImageGalleryComponent } from '../vertical-image-gallery/vertical-image-gallery.component';
-import { SvgBackgroundComponent } from './svg-background/svg-background.component';
-
 
 
 @NgModule({
@@ -62,7 +60,6 @@ import { SvgBackgroundComponent } from './svg-background/svg-background.componen
     VerticalMaskedImageComponent,
     ImageModalViewerComponent,
     VerticalImageGalleryComponent,
-    SvgBackgroundComponent,
   ],
   imports: [
     CommonModule,

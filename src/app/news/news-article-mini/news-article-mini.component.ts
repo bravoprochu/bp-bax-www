@@ -24,27 +24,44 @@ import { INewsArticleMini } from '../interfaces/i-news-article-mini';
   ]
 })
 export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestroy {
-  @Input('miniInfo') set miniInfo(value: INewsArticleMini) {
-    this._miniInfo = value;
-    this.initImage();
-  } get miniInfo(): INewsArticleMini {
-    return this._miniInfo;
-  };
+  @Input('miniInfo') miniInfo: INewsArticleMini;
 
   @ViewChild('followMouse', { static: true }) followMouse: ElementRef;
   @ViewChild('svg', { static: true }) svg: ElementRef;
   @ViewChild('titleText', { static: true }) titleText: ElementRef;
+
+  constructor(
+    private renderer: Renderer2,
+    private router: Router,
+    private sanitize: DomSanitizer,
+    private svgCF: SvgCommonFunctionsService,
+
+    
+  ) { }
+
+
+  ngOnDestroy(): void {
+    this.isDestroyed$.next(true);
+    this.isDestroyed$.complete();
+    this.isDestroyed$.unsubscribe();
+    this.isMouseOver = false;
+  }
+
+
   fill: string;
   imgUrl: string;
   invert: boolean;
   pointer: string;
   url: string;
-  title: string;
+
 
   _miniInfo: INewsArticleMini;
   bgUrl: SafeResourceUrl;
-  image: SVGElementProp;
+//  image: SVGElementProp;
+  image: SVGImageElement;
   isImageReady: boolean;
+  isImageLoading: boolean;
+  isImageLoaded: boolean;
   isReady: boolean = false;
   isDestroyed$: Subject<boolean>;
   isMouseOver: boolean;
@@ -53,27 +70,15 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
   svgViewBox = '0 0 1920 1080';
   followMousePos: ISVGPoint = <ISVGPoint>{ x: 0, y: 0 };
   lastMousePos: ISVGPoint = <ISVGPoint>{ x: -1, y: -1 };
+  observe: IntersectionObserver;
+  title: string;
   titleTextBox: ClientRect;
   routeUrl: any;
-
-
-
-
-  ngOnDestroy(): void {
-    this.isMouseOver = false;
-
-  }
-
-  constructor(
-    private sanitize: DomSanitizer,
-    private svgCF: SvgCommonFunctionsService,
-    private router: Router,
-  ) { }
-
   followFn: any;
 
 
   ngOnInit() {
+    this.isDestroyed$ = new Subject();
     this._miniInfo = this._miniInfo ? this._miniInfo : <INewsArticleMini>{};
     this.bgUrl = this._miniInfo.imgUrl ? 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg' : this.sanitize.bypassSecurityTrustResourceUrl('https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg');
     this.imgUrl = this._miniInfo.imgUrl ? this.imgUrl : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
@@ -81,11 +86,39 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
 
     this.pointer = this.pointer ? this.pointer : 'brown'
     this.title = this.title ? this.title : 'uzupełnij tytuł';
-    this.image = new SVGElementProp();
-    this.image.size.width = 960;
-    this.image.size.height = 480;
-    this.isDestroyed$ = new Subject();
+    // this.image = new SVGElementProp();
+    // this.image.size.width = 960;
+    // this.image.size.height = 480;
+
+    this.initImage()
+    this.initIntersection()
     this.initObservable();
+  }
+  
+  
+  initIntersection() {
+
+    const SVG_CONTAINER:SVGElement = this.svg.nativeElement;
+
+    this.observe = new IntersectionObserver(entries=>{
+      entries.forEach((f:IntersectionObserverEntry)=>{
+        if(!f.isIntersecting) {
+          if(this.isImageLoading) {
+            this.renderer.setAttribute(this.image, 'href', '');
+            this.isImageLoading = false;
+          }
+        }
+        if(f.intersectionRatio>0.5){
+          this.renderer.setAttribute(this.image, 'href', this.miniInfo.imgUrl);
+          this.isImageLoading = true;
+        }
+      
+      })
+    },{threshold: [0,0.2,0.5,0.75,1]});
+
+
+    this.observe.observe(this.svg.nativeElement);
+    
   }
 
 
@@ -97,28 +130,21 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
     if (this._miniInfo.isExternalUrl) {
 
     } else {
-      this.router.navigateByUrl(`news/${this._miniInfo.url}`, { preserveFragment: false, fragment: 'top' });
+      this.router.navigate(['news', this.miniInfo.url]);
     }
   }
 
   initImage() {
-    const img = new Image()
-    img.src = this._miniInfo.imgUrl;
-    this.isImageReady = false;
-    
-    
-    if (!this._miniInfo.isIntersected) { 
-      img.onload = function(){};
-      return; }
-    
+    const SVG_CONTAINER:SVGElement = this.svg.nativeElement;
 
-    img.onload = (ev) => {
+    this.image = this.renderer.createElement('image', 'svg');
+    this.image = this.svgCF.generateImage(this.renderer, null, "1920", "1080");
+    this.image.onload = (done) => {
       this.isImageReady = true;
+      this.observe.disconnect();
+      this.observe.unobserve(this.svg.nativeElement);
+      this.renderer.insertBefore(SVG_CONTAINER, this.image, SVG_CONTAINER.firstChild)
     }
-
-
-
-
   }
 
 
