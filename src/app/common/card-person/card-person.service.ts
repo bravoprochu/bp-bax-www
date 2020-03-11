@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ICardPerson } from '../interfaces/i-card-person';
 import { BAX_BRANDS } from '../enums/bax-brands.enum';
-import { BaxMarka } from 'src/app/oferta/enums/bax-marka-enum';
+
 
 
 @Injectable({
@@ -85,7 +85,7 @@ export class CardPersonService {
       marka: BAX_BRANDS.Arjes,
       markaLogoUrl: 'assets/logotypy/1x1/logo_arjes_signOnly_1x1.png',
       markaLogoBorderInverse: true,
-      position: null,
+      position: 'Opiekun marki Arjes',
         telephones: [
         {
           number: '513 132 686',
@@ -133,7 +133,7 @@ export class CardPersonService {
       marka: BAX_BRANDS.Sennebogen,
       markaLogoUrl: 'assets/logotypy/1x1/logo_sennebogen_NN_1x1.png',
       markaLogoBorderInverse: false,
-      position: 'Przedstawiciel marki, odpowiedzialny za region Śląsk',
+      position: 'Opiekun marki, odpowiedzialny za region Śląsk',
         telephones: [
         {
           number: '513 132 688',
@@ -149,7 +149,7 @@ export class CardPersonService {
       marka: BAX_BRANDS.Sennebogen,
       markaLogoUrl: 'assets/logotypy/1x1/logo_sennebogen_NN_1x1.png',
       markaLogoBorderInverse: false,
-      position: null,
+      position: 'Opiekun marki',
         telephones: [
         {
           number: '513 132 686',
