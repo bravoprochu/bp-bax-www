@@ -3,55 +3,54 @@
 
 <!-- [style.background-image]="bgImageColor" -->
 <div @groupAppearing [style.background-image]="bgImageColor" class="main-container">
-<section #bg fxLayout="column"  fxLayoutAlign="center center">
-  <section class="main-graphic">
-    <iframe *ngIf="data.youtubeEmbedUrl && !data.imgUrl" [ngClass]="isSmall ? 'yt-sm' : 'yt'"
-      [attr.src]="data.youtubeEmbedUrl" frameborder="0"
-      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-    </iframe>
-    <svg x="50%" width="100%" height="100%" [attr.viewBox]="svgImageProp.viewBox.toString()"
-      preserveAspectRation="xMidYMid meet">
-      <title>{{data.title.title}}</title>
-      <g *ngIf="isSVGImageIsReady">
-        <g @svgBorderImage>
-          <rect *ngFor="let rb of rectBorders" [attr.x]="rb.posX" [attr.y]="rb.posY" [attr.width]="rb.width"
-            [attr.height]="rb.height" fill="none" [attr.stroke]="rb.color" [attr.rx]="rb.radius" [attr.ry]="rb.radius"
-            [style.strokeWidth]="rb.strokeWidth" [style.strokeOpacity]="rb.strokeOpacity"
-            [attr.transform]="rb.transform"></rect>
+  <section #bg fxLayout="column" fxLayoutAlign="center center">
+    <section class="main-graphic">
+      <iframe *ngIf="data.youtubeEmbedUrl && !data.imgUrl" [ngClass]="isSmall ? 'yt-sm' : 'yt'"
+        [attr.src]="data.youtubeEmbedUrl" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+      </iframe>
+      <svg x="50%" width="100%" height="100%" [attr.viewBox]="svgImageProp.viewBox.toString()"
+        preserveAspectRation="xMidYMid meet">
+        <title>{{data.title.title}}</title>
+        <g *ngIf="isSVGImageIsReady">
+          <g @svgBorderImage>
+            <rect *ngFor="let rb of rectBorders" [attr.x]="rb.posX" [attr.y]="rb.posY" [attr.width]="rb.width"
+              [attr.height]="rb.height" fill="none" [attr.stroke]="rb.color" [attr.rx]="rb.radius" [attr.ry]="rb.radius"
+              [style.strokeWidth]="rb.strokeWidth" [style.strokeOpacity]="rb.strokeOpacity"
+              [attr.transform]="rb.transform"></rect>
+          </g>
+          <image [attr.x]="svgImage.posX" [attr.y]="svgImage.posY" [attr.width]="svgImage.width"
+            [attr.height]="svgImage.height" [attr.xlink:href]="data.miniInfo.imgUrl"
+            [attr.transform]="svgImage.transform"></image>
         </g>
-        <image [attr.x]="svgImage.posX" [attr.y]="svgImage.posY" [attr.width]="svgImage.width"
-          [attr.height]="svgImage.height" [attr.xlink:href]="data.miniInfo.imgUrl"
-          [attr.transform]="svgImage.transform"></image>
-      </g>
-      <svg *ngIf="data.youtubeUrl && isSVGImageIsReady" svg-button-youtube x="50" y="700" height="400" width="400"
-        title="zobacz clip {{data.title.title}} na Youtube" [url]="data.youtubeUrl"></svg>
-    </svg>
-  </section>
-  <app-social-buttons [linkToShare]="linkToShare"></app-social-buttons>    
-  
-  
- <!-- Your like button code -->
- <div class="fb-like" 
- data-href="https://www.your-domain.com/your-page.html" 
- data-layout="standard" 
- data-action="like" 
- data-show-faces="true">
-</div>
 
-  <section class="text-content">
-    <app-news-article-date [date]="data.creationDate"></app-news-article-date>
-    <div class="title-container">
-      <h1>{{data.title.title | uppercase}}</h1>
-      <h2>{{data.title.shortTitle}}</h2>
-      <h3>{{data.title.subtitle}}</h3>
+        <svg:g *ngIf="data.youtubeUrl && isSVGImageIsReady" svg-button-youtube x="50" y="700" height="400" width="400"
+        title="zobacz clip {{data.title.title}} na Youtube" [url]="data.youtubeUrl"></svg:g>
+
+
+      </svg>
+    </section>
+    <app-social-buttons [linkToShare]="linkToShare"></app-social-buttons>
+
+
+    <!-- Your like button code -->
+    <div class="fb-like" data-href="https://www.your-domain.com/your-page.html" data-layout="standard"
+      data-action="like" data-show-faces="true">
     </div>
-    <div class="text-container" [innerHtml]="data.text"></div>
-  </section>
-</section>
 
-  <section *ngIf="data.imageGallery" >
+    <section class="text-content">
+      <app-news-article-date [date]="data.creationDate"></app-news-article-date>
+      <div class="title-container">
+        <h1>{{data.title.title | uppercase}}</h1>
+        <h2>{{data.title.shortTitle}}</h2>
+        <h3>{{data.title.subtitle}}</h3>
+      </div>
+      <div class="text-container" [innerHtml]="data.text"></div>
+    </section>
+  </section>
+
+  <section *ngIf="data.imageGallery">
     <app-vertical-image-gallery [imageGallery]="data.imageGallery"></app-vertical-image-gallery>
   </section>
-  
-</div>
 
+</div>

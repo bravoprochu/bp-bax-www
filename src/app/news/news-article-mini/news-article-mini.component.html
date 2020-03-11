@@ -1,42 +1,6 @@
-<svg #svg xmlns="http://www.w3.org/2000/svg" [attr.viewBox]="svgViewBox" preserveAspectRatio="none" (click)="goTo()">
+<svg #svg xmlns:xlink="http://www.w3.org/1999/xlink" height="100%" [attr.viewBox]="svgViewBox" width="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"  (click)="goTo()">
 
-    <!-- <image *ngIf="isImageReady" [attr.xlink:href]="miniInfo.imgUrl" x="0" y="0" width="1920" height="1080"></image>
-    <g *ngIf="!isImageReady">
-        <rect x="0" y="0" width="1920" height="1080" [style.fill]="miniInfo.fill"></rect>
-    </g> -->
-
-
-    <circle cx="50%" cy="50%" r="1" fill="red"></circle>
-    <rect x="0" y="0" width="1920" height="1080" class="rect-fill" [style.fill]="miniInfo.fill"></rect>
-
-    <svg *ngIf="miniInfo.invert" #titleText x="480" y="340" width="960" height="400">
-        <g>
-            <rect class="title-box-border" x="0" y="0" width="960" height="400" [ngStyle]="miniInfo.invert? {fill: miniInfo.fill, fillOpacity: 0.85}: {}"></rect>
-            <title>{{miniInfo.title}}</title>
-        </g>
-    </svg>
-    
-    <svg #followMouse [attr.x]="followMousePos.x" width="550" height="550" viewBox="0 0 200 200" [attr.y]="followMousePos.y">
-        <g [@scaleOriginOverLeave]="{value: isMouseOver? 'over' : 'leave', params: {x: 100, y: 100}}">
-            <circle cx="50%" cy="50%" r="100" [attr.fill]="miniInfo.pointer"></circle>
-        </g>
-    </svg>
-
-    <svg @svgInit #titleText x="480" y="340" width="960" height="400">
-        <title>{{miniInfo.title}}</title>
-        <g>
-            <rect class="title-box-border" x="0" y="0" width="960" height="400"></rect>
-        </g>
-        <g>
-            <text x="50%" y="56%" width="480" height="400" font-size="60px" class="title-box-text">{{miniInfo.title |
-                uppercase}}</text>
-        </g>
-        <g>
-            <line x1="10%" y1="65%" x2="90%" y2="65%" stroke="white" stroke-width="10px"></line>
-        </g>
-    </svg>
-    
-    <svg *ngIf="!isImageReady" width="1000" height="1000" x="460" y="40" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#fff">
+    <svg width="1000" height="1000" x="460" y="40" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#fff">
         <g fill="none" fill-rule="evenodd" stroke-width="2" [attr.stroke]="miniInfo.pointer">
             <circle cx="22" cy="22" r="1">
                 <animate attributeName="r"
@@ -72,4 +36,38 @@
             </circle>
         </g>
     </svg>
+
+
+
+    <circle cx="50%" cy="50%" r="1" fill="red"></circle>
+    <rect x="0" y="0" width="1920" height="1080" class="rect-fill" opacity="0.2" [style.fill]="miniInfo.fill"></rect>
+
+    <svg *ngIf="miniInfo.invert" #titleText x="480" y="340" width="960" height="400">
+        <g>
+            <rect class="title-box-border" x="0" y="0" width="960" height="400" [ngStyle]="miniInfo.invert? {fill: miniInfo.fill, fillOpacity: 0.85}: {}"></rect>
+            <title>{{miniInfo.title}}</title>
+        </g>
+    </svg>
+    
+    <svg #followMouse [attr.x]="followMousePos.x" width="550" height="550" viewBox="0 0 200 200" [attr.y]="followMousePos.y">
+        <g [@scaleOriginOverLeave]="{value: isMouseOver? 'over' : 'leave', params: {x: 100, y: 100}}">
+            <circle cx="50%" cy="50%" r="100" [attr.fill]="miniInfo.pointer"></circle>
+        </g>
+    </svg>
+
+    <svg @svgInit #titleText x="480" y="340" width="960" height="400">
+        <title>{{miniInfo.title}}</title>
+        <g>
+            <rect class="title-box-border" x="0" y="0" width="960" height="400"></rect>
+        </g>
+        <g>
+            <text x="50%" y="56%" width="480" height="400" font-size="60px" class="title-box-text">{{miniInfo.title |
+                uppercase}}</text>
+        </g>
+        <g>
+            <line x1="10%" y1="65%" x2="90%" y2="65%" stroke="white" stroke-width="10px"></line>
+        </g>
+    </svg>
+  
+
 </svg>

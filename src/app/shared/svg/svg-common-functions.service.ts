@@ -12,6 +12,12 @@ export class SvgCommonFunctionsService {
 
   constructor() { }
 
+
+
+  getFullUrl(url: string) {
+    return `${window.location.origin}/${url}`;
+  }
+
   getUniqeId(prefix?: string) {
     return prefix + Math.random().toString().replace(',', "").replace('.', "");
   }
@@ -82,7 +88,7 @@ export class SvgCommonFunctionsService {
 
   generateImage(
     renderer: Renderer2,
-    url: string = './assets/svg/logotypy/logo_bax_signOnly.svg',
+    url: string = this.getFullUrl('./assets/svg/logotypy/logo_bax_signOnly.svg'),
     width: string = "1920",
     height: string = "1080",
     opacity: string = "1",

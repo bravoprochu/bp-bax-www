@@ -17,6 +17,7 @@ import { bpActiveRouteChange$ } from 'src/app/rxConst/bpActRouteChange';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { INewsPayload } from '../interfaces/i-news-payload';
 import { isNullOrUndefined } from 'util';
+import { BP_ANIM_SVG_INIT } from 'src/app/animations/bp_anim_svg-init';
 
 
 
@@ -28,7 +29,7 @@ import { isNullOrUndefined } from 'util';
     bp_anim_svgBorderImage(750, 350),
     BP_ANIM_OPACITY_OVER_LEAVE(350, 0.5, 1),
     BP_ANIM_GROUP_APPEARING(250, 100, 'svg, rect, h1, .mat-h2, .mat-h3, app-news-article-date, .content-text, iframe'),
-    BP_ANIM_OPACITY_INIT(750, 250)
+    BP_ANIM_OPACITY_INIT(750, 250),
   ],
   encapsulation: ViewEncapsulation.None,
 })

@@ -31,7 +31,7 @@ import { SvgCommonModule } from '../shared/svg/svg-common.module';
     NewsRoutingModule,
   ],
   exports: [
-    NewsArticleTitleComponent, 
+    
   ],
 })
 export class NewsModule {}

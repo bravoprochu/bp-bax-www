@@ -11,6 +11,7 @@ import { BP_ANIM_ENTER_LEAVE_GROUP } from 'src/app/animations/enter-leave-group'
 import { Router } from '@angular/router';
 import { BP_ANIM_SVG_INIT } from 'src/app/animations/bp_anim_svg-init';
 import { INewsArticleMini } from '../interfaces/i-news-article-mini';
+import { Platform} from '@angular/cdk/platform';
 
 
 @Component({
@@ -29,8 +30,10 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
   @ViewChild('followMouse', { static: true }) followMouse: ElementRef;
   @ViewChild('svg', { static: true }) svg: ElementRef;
   @ViewChild('titleText', { static: true }) titleText: ElementRef;
+  
 
   constructor(
+    private platform: Platform,
     private renderer: Renderer2,
     private router: Router,
     private sanitize: DomSanitizer,
@@ -59,9 +62,9 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
   bgUrl: SafeResourceUrl;
 //  image: SVGElementProp;
   image: SVGImageElement;
-  isImageReady: boolean;
-  isImageLoading: boolean;
+  img: HTMLImageElement;
   isImageLoaded: boolean;
+  isImageLoading: boolean;
   isReady: boolean = false;
   isDestroyed$: Subject<boolean>;
   isMouseOver: boolean;
@@ -84,6 +87,9 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
     this.imgUrl = this._miniInfo.imgUrl ? this.imgUrl : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
     this.fill = this.fill ? this.fill : '#fff';
 
+    
+
+
     this.pointer = this.pointer ? this.pointer : 'brown'
     this.title = this.title ? this.title : 'uzupełnij tytuł';
     // this.image = new SVGElementProp();
@@ -99,17 +105,19 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
   initIntersection() {
 
     const SVG_CONTAINER:SVGElement = this.svg.nativeElement;
+    const _HREF:string = 'href';
 
     this.observe = new IntersectionObserver(entries=>{
       entries.forEach((f:IntersectionObserverEntry)=>{
         if(!f.isIntersecting) {
           if(this.isImageLoading) {
-            this.renderer.setAttribute(this.image, 'href', '');
+            
+            this.renderer.setAttribute(this.image, _HREF, '');
             this.isImageLoading = false;
           }
         }
         if(f.intersectionRatio>0.5){
-          this.renderer.setAttribute(this.image, 'href', this.miniInfo.imgUrl);
+          this.renderer.setAttribute(this.image, _HREF, this.svgCF.getFullUrl(this.miniInfo.imgUrl));
           this.isImageLoading = true;
         }
       
@@ -135,15 +143,23 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   initImage() {
+
     const SVG_CONTAINER:SVGElement = this.svg.nativeElement;
 
     this.image = this.renderer.createElement('image', 'svg');
-    this.image = this.svgCF.generateImage(this.renderer, null, "1920", "1080");
+    this.image = this.svgCF.generateImage(this.renderer, null, "100%", "100%");
+    this.renderer.insertBefore(SVG_CONTAINER, this.image, SVG_CONTAINER.children[1]);
+
+    if(!this.platform.IOS && !this.platform.SAFARI) {
+      this.renderer.setStyle(this.image, 'display', 'none');
+
+    } 
+       
     this.image.onload = (done) => {
-      this.isImageReady = true;
+      this.isImageLoaded = true;
       this.observe.disconnect();
       this.observe.unobserve(this.svg.nativeElement);
-      this.renderer.insertBefore(SVG_CONTAINER, this.image, SVG_CONTAINER.firstChild)
+      this.renderer.setStyle(this.image, 'display', 'block');
     }
   }
 

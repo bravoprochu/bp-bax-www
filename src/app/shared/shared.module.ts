@@ -26,7 +26,6 @@ import { HeaderComponent } from './header/header/header.component';
 import { HeaderMenuBigComponent } from './header/header-menu-big/header-menu-big.component';
 import { DeferLoadDirective } from './defer-load.directive';
 import { PantoneToHexModule } from '../pantoneToHex/pantone-to-hex.module';
-import { SvgButtonYoutubeComponent } from './svg/svg-button-youtube/svg-button-youtube.component';
 import { ArticleNavigationComponent } from './svg/article-navigation/article-navigation.component';
 import { FillChangeDirective } from './directives/fill-change.directive';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -52,7 +51,6 @@ import { VerticalImageGalleryComponent } from '../vertical-image-gallery/vertica
     HeaderMenuBigComponent,
     MenuComponent,
     DeferLoadDirective,
-    SvgButtonYoutubeComponent,
     ArticleNavigationComponent,
     FillChangeDirective,
     ImgGalleryComponent,
