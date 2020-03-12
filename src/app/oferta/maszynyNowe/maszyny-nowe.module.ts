@@ -11,6 +11,18 @@ import { ModelMaszynySpecLineComponent } from './model-maszyny-spec-line/model-m
 import { ModelSpecComponent } from './model-spec/model-spec.component';
 import { ModelMaszynyFullComponent } from './model-maszyny-full/model-maszyny-full.component';
 import { MaszynyNoweServicesModule } from './maszynyNoweServices/maszyny-nowe-services.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,11 +39,31 @@ import { MaszynyNoweServicesModule } from './maszynyNoweServices/maszyny-nowe-se
   imports: [
     CommonModule,
     SharedModule,
+
+    MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatTabsModule,
+    MatIconModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatMenuModule,
+    MatSelectModule,
+    MatToolbarModule,
+    MatSidenavModule,
+
+    FormsModule,
+    ReactiveFormsModule,
+
+
+
+
     MaszynyNoweServicesModule,
     MaszynyNoweRoutingModule,
   ],
   exports: [
+    
     // SharedModule
   ],
 })
-export class MaszynyNoweModule {}
+export class MaszynyNoweModule { }

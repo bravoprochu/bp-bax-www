@@ -11,8 +11,6 @@ import { PreloadDirectivesModule } from 'src/app/shared/directives/preload-direc
 @NgModule({
   declarations: [
     SennebogenMainComponent
-    
-    
   ],
   imports: [
     CommonModule,

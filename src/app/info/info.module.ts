@@ -7,6 +7,9 @@ import { SharedModule } from '../shared/shared.module';
 import { BaxERoboczeSosnowiec2019Component } from './bax-erobocze-sosnowiec2019/bax-erobocze-sosnowiec2019.component';
 import { SvgCommonModule } from '../shared/svg/svg-common.module';
 
+import {MatCardModule} from '@angular/material/card';
+import {MatTabsModule} from '@angular/material/tabs';
+
 @NgModule({
   declarations: [
     BaxBauma2019SennebogenComponent,
@@ -15,8 +18,14 @@ import { SvgCommonModule } from '../shared/svg/svg-common.module';
   imports: [
     CommonModule,
     SharedModule,
+
+    MatCardModule,
+    MatTabsModule,
+
     SvgCommonModule,
-    InfoRoutingModule
+    InfoRoutingModule,
+
+    
   ],
   exports: [
     
