@@ -2,13 +2,17 @@ import { Component, OnInit, AfterViewInit, ChangeDetectionStrategy, ViewChild, O
 import { BP_ANIM_BRICK_LIST } from 'src/app/animations/bp-anim-brick-list';
 import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
 import {MediaMatcher, BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import { CdkVirtualScrollViewport, ViewportRuler } from '@angular/cdk/scrolling';
-import { takeUntil, map, timeout, tap, delay, switchMap, startWith, take, takeWhile, repeat, mergeAll} from 'rxjs/operators';
+import { ViewportRuler } from '@angular/cdk/scrolling';
+import { takeUntil} from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Subject, fromEvent, of, merge } from 'rxjs';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { IOfertaItem } from './i-oferta-item';
-import { BREAKPOINT } from '@angular/flex-layout';
+import { SvgCommonFunctionsService } from 'src/app/shared/svg/svg-common-functions.service';
+import { CardPersonService } from 'src/app/common/card-person/card-person.service';
+import { ThrowStmt } from '@angular/compiler';
+import { BAX_BRANDS } from 'src/app/common/enums/bax-brands.enum';
+
 
 @Component({
   selector: 'app-oferta',
@@ -23,21 +27,24 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
    *
    */
   constructor(
-    private cf: CommonFunctionsService,
-    private ngZone: NgZone,
-    private router: Router,
     private sanitize: DomSanitizer,
     private el: ElementRef,
     private viewportRuler: ViewportRuler,
     private breakpointObs: BreakpointObserver,
-    private mediaM: MediaMatcher
+    private mediaM: MediaMatcher,
+    private svgCF: SvgCommonFunctionsService,
+    private cardPersonCF: CardPersonService
     ){}
 
 
 
   cssOfertaItemContainer: string;
   cssOfertaItemContainerBody: string;
+
+
   productItems: string[] = ['sennebogen', 'arjes', 'guidetti', 'yanmar'];
+
+
   idx: number = 0;
   items = Array.from({length: 1000}).map((_, i) => `Item #${i}`);
   isDestroyed$: Subject<boolean> = new Subject();
@@ -46,6 +53,8 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
   isSmall: boolean;
   
   itemSize: number = 500;
+  logoBax: string;
+
   ofertaItems: IOfertaItem[];
 
   
@@ -57,9 +66,9 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit() {
-
     this.ofertaItems = [
       {
+        brandColor: this.cardPersonCF.getBrandHashColor(BAX_BRANDS.BAX),
         footerImgSrc: '../../../assets/oferta/1x1/bax_ofertaItem_katalogMaszyn.png',
         headerImgSrc: '../../../assets/svg/logotypy/logo_bax.svg',
         markaCss: 'bax-gradient',
@@ -68,6 +77,7 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
         title: 'Katalog maszyn'
       },
       {
+        brandColor: this.cardPersonCF.getBrandHashColor(BAX_BRANDS.Sennebogen),
         footerImgSrc: '../../../assets/oferta/1x1/sennebogen/sennebogen 835 E mobile 04.JPG',
         headerImgSrc: '../../../assets/svg/logotypy/logo_sennebogen.svg',
         markaCss: 'sennebogen-gradient',
@@ -76,6 +86,7 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
         title: 'marka'
       },
       {
+        brandColor: this.cardPersonCF.getBrandHashColor(BAX_BRANDS.Yanmar),
         footerImgSrc: '../../../assets/oferta/1x1/yanmar/SV60_C_082_8x9.JPG',
         headerImgSrc: '../../../assets/svg/logotypy/logo_yanmar.svg',
         markaCss: 'yanmar-gradient',
@@ -84,6 +95,7 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
         title: 'marka'
       },
       {
+        brandColor: this.cardPersonCF.getBrandHashColor(BAX_BRANDS.Arjes),
         footerImgSrc: '../../../assets/oferta/1x1/arjes/impaktor_250_evo_bauschutt_01-1024x768.JPG',
         headerImgSrc: '../../../assets/svg/logotypy/logo_arjes.svg',
         markaCss: 'arjes-gradient',
@@ -92,6 +104,7 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
         title: 'marka'
       },
       {
+        brandColor: this.cardPersonCF.getBrandHashColor(BAX_BRANDS.Guidetti),
         footerImgSrc: '../../../assets/oferta/1x1/guidetti/IMG_20190930_111008.JPG',
         headerImgSrc: '../../../assets/svg/logotypy/logo_guidetti.svg',
         markaCss: 'guidetti-gradient',
@@ -100,6 +113,7 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
         title: 'marka'
       },
       {
+        brandColor: this.cardPersonCF.getBrandHashColor(BAX_BRANDS.BAX),
         footerImgSrc: '../../../assets/oferta/1x1/bax_ofertaItem_regeneracja.png',
         headerImgSrc: '../../../assets/svg/logotypy/logo_bax.svg',
         markaCss: 'bax-gradient',
@@ -108,6 +122,7 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
         title: 'serwis'
       },
       {
+        brandColor: this.cardPersonCF.getBrandHashColor(BAX_BRANDS.BAX),
         footerImgSrc: '../../../assets/oferta/1x1/bax_ofertaItem_czesci.png',
         headerImgSrc: '../../../assets/svg/logotypy/logo_bax.svg',
         markaCss: 'bax-gradient',
@@ -119,7 +134,8 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
 
     const _LANDSCAPE = [Breakpoints.HandsetLandscape, Breakpoints.TabletLandscape, Breakpoints.WebLandscape];
     const _PORTRAIT = [Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait, Breakpoints.WebPortrait];
-    const _SMALL = [Breakpoints.HandsetPortrait, Breakpoints.HandsetLandscape, Breakpoints.TabletPortrait, Breakpoints.TabletLandscape];
+    // const _SMALL = [Breakpoints.HandsetPortrait, Breakpoints.HandsetLandscape, Breakpoints.TabletPortrait, Breakpoints.TabletLandscape, Breakpoints.];
+    const _SMALL = [Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Handset, Breakpoints.Tablet];
     const _REST = [Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge];
 
 
@@ -133,32 +149,21 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
               this.isSmall = this.breakpointObs.isMatched(_SMALL);
 
               if(this.breakpointObs.isMatched(_SMALL)) {
+                  console.log('isSmall...');
+
                 this.cssOfertaItemContainerBody = this.breakpointObs.isMatched(_PORTRAIT) ? 'oferta-item-container-body-portrait' : 'oferta-item-container-body-landscape'  
               } else {
+                console.log('is NOT Small...');
+
+
                 this.cssOfertaItemContainerBody = 'oferta-item-container-body-portrait';
                 this.cssOfertaItemContainer = 'oferta-item-container-big';
               }
-
-              
-              
-              
-              
-              
-
               
          },
          (error)=>console.log('_breakpObs error', error),
          ()=>console.log('_breakpObs completed..')
     );
-
-
-
-
-
-
-
-
-
 
 
 
@@ -168,68 +173,16 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // this.minHeight = window.innerHeight - this.cf.navHeight;
-    // console.log('minHeight', this.minHeight);
-
-    // this.viewPort.elementScrolled().pipe(
-    //   takeUntil(this.isDestroyed$)
-    //   )
-    //   .subscribe(
-    //     (v)=>{
-    //       let _el = (<HTMLElement>v.srcElement);
-    //       console.log('event: ', v, _el.clientHeight, this.viewPort._totalContentHeight);
-
-    //       console.log(this.viewPort.getElementRef);
-          
-    //       this.viewPort.scrollToIndex(_el.scrollHeight + _el.clientHeight, 'smooth');
-    //       this.viewPort._totalContentHeight
-    //       console.log('elScrolled', v);
-    //       console.log(this.viewPort.measureScrollOffset(), this.viewPort.getRenderedRange(), 'scrollOffset: ', this.viewPort.getOffsetToRenderedContentStart());
-    //     }
-    //   )
-
-
-    //   fromEvent(<HTMLElement>this.viewPort.getElementRef().nativeElement, "mousewheel").pipe(
-    //     takeUntil(this.isDestroyed$),
-    //     map((ev:WheelEvent) => {
-    //       this.idx = ev.deltaY>0 ? this.idx+1 : this.idx-1;
-    //       return ev;
-    //       })
-
-    // )
-    //     .subscribe(
-    //          (ev:any)=>{
-
-    //             let h = window.innerHeight;
-    //             console.log(h);
-    //             this.itemSize = h;
-    //             const _div:HTMLElement = <HTMLElement>(this.viewPort.getElementRef().nativeElement);
-
-    //             console.log('div',_div, _div);
-                
-
-                
-    //               // console.log('ev subs:', ev, this.idx);
-
-    //               const d = this.viewPort.getRenderedRange();
-
-    //               this.viewPort.scrollToIndex(10);
-
-    //               // console.log(`offset: ${d}`, d);
-                  
-    //               //  this.viewPort.scrollToIndex(this.idx);
-                  
-    //          },
-    //          (error)=>console.log('ev error', error),
-    //          ()=>console.log('ev completed..')
-    //     );
 
   }
 
   addIdx() {
     this.idx = this.idx < this.productItems.length-1 ? this.idx+1 : this.productItems.length-1;
-    console.log('addIdx', this.idx);
   }
+
+
+
+
   removeIdx() {
     this.idx = this.idx <1 ? 0 : this.idx = this.idx-1;
     console.log('removeIdx', this.idx);

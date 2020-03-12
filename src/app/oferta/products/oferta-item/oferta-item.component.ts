@@ -1,46 +1,68 @@
 import { Component, OnInit, Input, ElementRef, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl, SafeStyle } from '@angular/platform-browser';
+import { SvgCommonFunctionsService } from 'src/app/shared/svg/svg-common-functions.service';
+import { svgLogoBaxSignOnly_white_Url } from 'src/app/shared/svg/classes/svg-bax-logo-url';
+import { IOfertaItem } from '../../oferta/i-oferta-item';
 
 @Component({
   selector: 'app-oferta-item',
-  templateUrl: './oferta-item.component.html',
+  templateUrl: './oferta-item.component.svg',
   styleUrls: ['./oferta-item.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 export class OfertaItemComponent implements OnInit {
-  @Input("mark") mark: string | 'bax';
-  @Input("category") category: string | 'maszyny nowe';
-  @Input("image") image: string;
+  @Input('ofertaItem') oferta: IOfertaItem
 
 
   constructor(
     private sanitize: DomSanitizer,
-    private el: ElementRef
+    private el: ElementRef,
+    private svgCF: SvgCommonFunctionsService,
   ) { }
 
 
-  bgGradientClass: SafeStyle;
-  containerMinHeight: number;
-  gradientClass: string;
-  imageSrc: SafeStyle;
-  logoSrc:SafeResourceUrl;
+
+  circlesHor: number[] = [...Array(9).keys()];
+  circlesVert: number[] = [...Array(19).keys()];
+  dotSpace: number = 50;
+  
+
+
+  idBlurFilter: string;
+  idBlurFilterGet: string;
+  idBrandGradient: string;
+  idBrandGradientGet:string;
+  idClipPathCircle: string;
+  idClipPathCircleGet: string;
+
+  logoBax: string;
 
 
 
 
   ngOnInit() {
-    const _logoUrl = `assets/svg/logotypy/logo_${this.mark}.svg`;
 
-    this.imageSrc = `assets/oferta/1x1/${this.image}`;
-
-
-    this.gradientClass = `${this.mark}-gradient`
-
-    this.bgGradientClass = this.sanitize.bypassSecurityTrustStyle(`${this.mark}-gradient`);
-
-    this.logoSrc = this.sanitize.bypassSecurityTrustResourceUrl(_logoUrl);
+    this.initSvgIds();
+    this.logoBax = this.svgCF.getOriginUrl(svgLogoBaxSignOnly_white_Url())
+    // initImage();
+    // initIntersectionObserver();
 
   }
+
+
+  initSvgIds(){
+    this.idBlurFilter = this.svgCF.getUniqeId('blur');
+    this.idBlurFilterGet = this.svgCF.getSvgDefsUrlPath(this.idBlurFilter);
+
+    this.idBrandGradient = this.svgCF.getUniqeId('gradient');
+    this.idBrandGradientGet = this.svgCF.getSvgDefsUrlPath(this.idBrandGradient);    
+
+    this.idClipPathCircle = this.svgCF.getUniqeId('clipPath');
+    this.idClipPathCircleGet = this.svgCF.getSvgDefsUrlPath(this.idClipPathCircle);
+  }
+
+
+
 
 }
 

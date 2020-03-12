@@ -4,22 +4,29 @@ import { ISVGPoint } from './interfaces/i-svg-point';
 import { ISVGVector } from './interfaces/i-svg-vector';
 import { ISVGProp } from './interfaces/i-svg-prop';
 import { ISVGSize } from './interfaces/i-svg-size';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SvgCommonFunctionsService {
 
-  constructor() { }
+  constructor(
+    private sanitizer: DomSanitizer,
+  ) { }
 
 
 
-  getFullUrl(url: string) {
+  getOriginUrl(url: string) {
     return `${window.location.origin}/${url}`;
   }
 
   getUniqeId(prefix?: string) {
     return prefix + Math.random().toString().replace(',', "").replace('.', "");
+  }
+
+  getSvgDefsUrlPath(elName: string): any {
+    return this.sanitizer.bypassSecurityTrustStyle(`url(${window.location.href}#${elName})`);
   }
 
   getViewBoxSize(viewBox: string): ISvgViewBox {
@@ -88,7 +95,7 @@ export class SvgCommonFunctionsService {
 
   generateImage(
     renderer: Renderer2,
-    url: string = this.getFullUrl('./assets/svg/logotypy/logo_bax_signOnly.svg'),
+    url: string = this.getOriginUrl('./assets/svg/logotypy/logo_bax_signOnly.svg'),
     width: string = "1920",
     height: string = "1080",
     opacity: string = "1",

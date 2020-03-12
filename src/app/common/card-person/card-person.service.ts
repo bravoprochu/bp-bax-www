@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ICardPerson } from '../interfaces/i-card-person';
 import { BAX_BRANDS } from '../enums/bax-brands.enum';
+import { baxBaseModelType } from 'src/app/oferta/enums/bax-base-model-type-enum';
 
 
 
@@ -158,6 +159,41 @@ export class CardPersonService {
       ],
     }
     ];
+
+  getBrandHashColor(brand?: BAX_BRANDS):string {
+    const _BAX = "#0054A6";
+    let res: string = _BAX
+
+    switch (brand) {
+      case BAX_BRANDS.Arjes:
+        res = "#FF5E0E";
+        break;
+
+      case BAX_BRANDS.BAX:
+        res = _BAX
+        break;
+
+      case BAX_BRANDS.Guidetti:
+        res = "#006AB3";
+        break;
+
+      case BAX_BRANDS.Sennebogen:
+        res = "#4DAA2B";
+        break;
+
+      case BAX_BRANDS.Yanmar:
+        res = "#DD0C15";
+        break
+
+
+      default:
+        //BAX:
+        res = _BAX
+        break;
+    }
+    return res;
+
+  }
   
   getDelaerByName(name:string): ICardPerson {
     let res: ICardPerson;

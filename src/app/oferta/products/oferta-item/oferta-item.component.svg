@@ -1,14 +1,70 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 1000" height="100%">
-    
-    <rect width="100%" height="100%" fill="none" stroke="blue" />
-   
-    
-    
-    <svg x="0" y="900" height="200" preserveAspectRatio="xMidYMid meet" viewBox="0 0 160 90" preserveAspectRatio="xMidYMax meet">
-        <rect width="100%" height="100%" fill="grey" fill-opacity="0.2" stroke="blue" />
-        
-        <image width="100%"  [attr.xlink:href]="logoSrcStr"></image>
-        
-    </svg>
+      <svg class="oferta-item-container" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 500 1000" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <radialGradient [attr.id]="idBrandGradient"
+                fx="0%" fy="0%" r="95%"
+                spreadMethod="pad">
+              <stop offset="0%"   stop-color="#fff" stop-opacity="1"/>
+              <stop offset="100%" [attr.stop-color]="oferta.brandColor" stop-opacity="1" />
+          </radialGradient>
 
-</svg>
+          <filter [attr.id]="idBlurFilter" y="-30" height="40" x="-30" width="150">
+            <feOffset in="SourceAlpha" dx="3" dy="3" result="offset3" />
+            <feGaussianBlur in="offset3" stdDeviation="3"  result="blur3"/>
+      
+            <feBlend  in="SourceGraphic" in2="blur3" x="-30" width="100%"/>
+          </filter>
+
+        </defs>
+
+
+
+
+        <rect x="0" y="0" width="100%" height="100%" [style.fill]="idBrandGradientGet" ></rect>
+        <rect x="25" y="25" width="450" height="950" style="fill: #fff"></rect>
+
+
+        <g>
+          <g *ngFor="let v of circlesVert" attr.transform="translate(0, {{dotSpace * v}})" opacity="1">
+            <circle *ngFor="let h of circlesHor" [attr.cx]="50 + (dotSpace * h)" [attr.cy]="50" [attr.r]="2+ (h/5)" style="fill: #e0e0e0"></circle>
+          </g>
+        </g>
+
+
+
+
+
+        <svg x="50" y="50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="400" height="400" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet">
+          <image x="0" y="0" width="100%" height="100%" [attr.xlink:href]="oferta.headerImgSrc" preserveAspectRatio="xMidYMid meet"></image>
+        </svg>        
+
+        
+        
+        <svg class="oferta-item-title" x="0" y="50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="50" viewBox="0 0 500 100" preserveAspectRatio="xMaxYMid meet">
+             <text class="bax-font-color" x="425" y="100%" font-size="60">{{oferta.title}}</text>
+        </svg>
+
+        
+        <svg x="0" y="420" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="50" viewBox="0 0 500 100" preserveAspectRatio="xMidYMid meet">
+             <text class="bax-font-color" x="50%" y="50%" font-size="45" text-anchor="middle" >{{oferta.subtitle}}</text>
+        </svg>
+
+
+        
+
+        <svg x="25" y="500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="450" height="450" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <clipPath [attr.id]="idClipPathCircle">
+              <circle cx="50%" cy="50%" r="200"></circle>
+            </clipPath>
+          </defs>
+          
+          <circle cx="50%" cy="50%" r="200" fill:none [style.filter]="idBlurFilterGet"></circle>
+          <image x="25" y="25" width="450" height="450" [attr.xlink:href]="oferta.footerImgSrc" preserveAspectRatio="xMidYMid meet" [style.clipPath]="idClipPathCircleGet"></image>
+        </svg>
+
+        <svg class="svg-logo-bax" x="25" y="500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="450" height="450" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet">
+          <image x="25" y="25" width="450" height="450" [attr.xlink:href]="logoBax" preserveAspectRatio="xMidYMid meet"></image>
+        </svg>
+
+           
+      </svg>

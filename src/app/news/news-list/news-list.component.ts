@@ -8,6 +8,7 @@ import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, startWith, takeWhile, takeUntil } from 'rxjs/operators';
 import { NewsDataFactoryService } from '../newsServices/news-data-factory.service';
 import { Subject } from 'rxjs';
+import { SvgCommonFunctionsService } from 'src/app/shared/svg/svg-common-functions.service';
 
 
 
@@ -24,12 +25,13 @@ import { Subject } from 'rxjs';
 export class NewsListComponent implements OnInit, OnDestroy {
  
   constructor(
-    private cf: CommonFunctionsService,
     private ncf: NewsService,
-    private newsDataService: NewsDataFactoryService
+    private newsDataService: NewsDataFactoryService,
+    private svgCf: SvgCommonFunctionsService
+
   ) { }
 
-
+  ballsPreload: string;
   isDataReady: boolean;
   isListShown: boolean =true;
   isOrderByDateAsc: boolean = false;
@@ -49,6 +51,8 @@ export class NewsListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // this.newsList = this.activatedRoute.snapshot.data['data'];
+
+    this.ballsPreload = this.svgCf.getOriginUrl("/assets/svg/preloaders/balls-horizontal-preloader.svg");
     this.newsDataService.getAll()
     .subscribe(
          (_newsData:any)=>{

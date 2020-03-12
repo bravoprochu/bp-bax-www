@@ -1,62 +1,8 @@
 <div class="dots-container">
 
-
-<div class="oferta-container">
-  <div *ngFor="let oferta of ofertaItems index as i" class="oferta-item-container" [ngClass]="[oferta.markaCss, cssOfertaItemContainer] " [routerLink]="oferta.routerLink">
-    <div class="oferta-item-container-body" [ngClass]="cssOfertaItemContainerBody">
-      <div class="oferta-item-container-body-header">
-        <div class="oferta-item-container-body-header-logo" >
-          <div class="oferta-item-container-body-header-title">{{oferta.title}}</div>
-          <div class="oferta-item-container-body-header-subtitle">{{oferta.subtitle}}</div>
-          <img [attr.src]="oferta.headerImgSrc" [attr.alt]="oferta.headerImgSrc">
-        </div>
-      </div>
-
-      <div class="oferta-item-container-body-footer">
-        <div class="oferta-item-container-body-footer-img">
-          <img [attr.src]="oferta.footerImgSrc" [attr.alt]="'asd'">
-        </div>
-       
-      </div>
+  <div class="oferta-container">
+    <div *ngFor="let oferta of ofertaItems index as i" [routerLink]="oferta.routerLink">
+      <app-oferta-item [ofertaItem]="oferta" ></app-oferta-item>
     </div>
   </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- <div *ngFor="let oferta of ofertaItems index as i" class="oferta-item-container bax-gradient" [routerLink]="oferta.routerLink">
-    <div class="oferta-item-container-body">
-      <div class="oferta-item-container-body-header">
-        <div class="oferta-item-container-body-header-title">{{oferta.title}}</div>
-        <div class="oferta-item-container-body-header-subtitle">{{oferta.subtitle}}</div>
-        <img class="oferta-item-container-body-header-logo" [attr.src]="oferta.headerImgSrc" [attr.alt]="oferta.headerImgSrc">
-      </div>
-
-      <div class="oferta-item-container-body-footer">
-        <img class="oferta-item-container-footer-img" [attr.src]="oferta.footerImgSrc" [attr.alt]="'asd'">
-      </div>
-    </div>
-  </div> -->
-
-
 </div>

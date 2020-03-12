@@ -69,6 +69,7 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
   isDestroyed$: Subject<boolean>;
   isMouseOver: boolean;
   mousePoint: ISVGPoint;
+  NO_ONLOAD_BROWSERS: Boolean = !this.platform.IOS && !this.platform.SAFARI && !this.platform.EDGE;
   player: AnimationPlayer;
   svgViewBox = '0 0 1920 1080';
   followMousePos: ISVGPoint = <ISVGPoint>{ x: 0, y: 0 };
@@ -112,20 +113,30 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
         if(!f.isIntersecting) {
           if(this.isImageLoading) {
             
-            this.renderer.setAttribute(this.image, _HREF, '');
-            this.isImageLoading = false;
+            if(this.NO_ONLOAD_BROWSERS) {
+              this.renderer.setAttribute(this.image, _HREF, '');
+              this.isImageLoading = false;
+            }
           }
         }
         if(f.intersectionRatio>0.5){
-          this.renderer.setAttribute(this.image, _HREF, this.svgCF.getFullUrl(this.miniInfo.imgUrl));
+          this.renderer.setAttribute(this.image, _HREF, this.svgCF.getOriginUrl(this.miniInfo.imgUrl));
           this.isImageLoading = true;
+
+          if(this.platform.EDGE || this.platform.IOS || this.platform.SAFARI) {
+
+              this.observe.unobserve(SVG_CONTAINER);
+              this.observe.disconnect();
+              console.log(`safar/edge/ios stopped intersectionObserver for ${this.miniInfo.title} after 2s... `);
+
+          }
+          
         }
-      
       })
     },{threshold: [0,0.2,0.5,0.75,1]});
 
 
-    this.observe.observe(this.svg.nativeElement);
+    this.observe.observe(SVG_CONTAINER);
     
   }
 
@@ -145,14 +156,16 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
   initImage() {
 
     const SVG_CONTAINER:SVGElement = this.svg.nativeElement;
+    
 
     this.image = this.renderer.createElement('image', 'svg');
     this.image = this.svgCF.generateImage(this.renderer, null, "100%", "100%");
     this.renderer.insertBefore(SVG_CONTAINER, this.image, SVG_CONTAINER.children[1]);
 
-    if(!this.platform.IOS && !this.platform.SAFARI) {
-      this.renderer.setStyle(this.image, 'display', 'none');
 
+
+    if(this.NO_ONLOAD_BROWSERS) {
+      this.renderer.setStyle(this.image, 'display', 'none');
     } 
        
     this.image.onload = (done) => {
