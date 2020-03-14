@@ -57,7 +57,8 @@ export class NewsListComponent implements OnInit, OnDestroy {
     // this.newsList = this.activatedRoute.snapshot.data['data'];
     this.dialog.open(FullscreenComponent, {
       minHeight: '100vh',
-      minWidth: '100vw'
+      minWidth: '100vw',
+      hasBackdrop: false,
     }).afterClosed()
     .subscribe(
          (fullscreenClosed:any)=>{
@@ -70,7 +71,7 @@ export class NewsListComponent implements OnInit, OnDestroy {
 
 
 
-    this.ballsPreload = this.svgCf.getOriginUrl("/assets/svg/preloaders/balls-horizontal-preloader.svg");
+    this.ballsPreload = this.svgCf.getOriginUrl("assets/svg/preloaders/balls-horizontal-preloader.svg");
     this.newsDataService.getAll()
     .subscribe(
          (_newsData:any)=>{

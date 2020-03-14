@@ -22,9 +22,6 @@ import { FullscreenComponent } from './dialogs/fullscreen/fullscreen.component';
 
 
 @NgModule({
-  entryComponents: [
-    FullscreenComponent
-  ],
   declarations: [
     NewsListComponent,
     NewsArticleMiniComponent,
@@ -49,6 +46,9 @@ import { FullscreenComponent } from './dialogs/fullscreen/fullscreen.component';
     NewsRoutingModule,
   ],
   exports: [
+    ],
+  entryComponents: [
+      FullscreenComponent
     ],
 })
 export class NewsModule { }
