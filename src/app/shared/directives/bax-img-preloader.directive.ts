@@ -33,17 +33,20 @@ export class BaxImgPreloaderDirective implements OnInit, AfterViewInit {
     const PUFF_URL: string = 'assets/svg/preloaders/puff.svg';
     const CONTAINER = (<HTMLDivElement>this.el.nativeElement);
 
+    //container set padding
+    this.renderer2.setStyle(CONTAINER, 'padding', '10px');
+
 
     this.imgDestUrl = this.src || PUFF_URL;
 
     this.imgPreload = (<HTMLImageElement>this.renderer2.createElement('img'));
     this.renderer2.setAttribute(this.imgPreload, "src", PUFF_URL);
     this.renderer2.appendChild(CONTAINER, this.imgPreload);
-    this.renderer2.setStyle(this.imgPreload, 'margin', '5px');
-    this.renderer2.setStyle(this.imgPreload, 'flex', '0 0 250px');
+    this.renderer2.setStyle(this.imgPreload, 'margin', 'auto');
+    this.renderer2.setStyle(this.imgPreload, 'flex', '1 1 250px');
     this.renderer2.setStyle(this.imgPreload, 'min-width', '250px');
     this.renderer2.setStyle(this.imgPreload, 'min-height', '250px');
-    this.renderer2.setStyle(this.imgPreload, 'width', '100%');
+    this.renderer2.setStyle(this.imgPreload, 'width', '95%');
 
 
     this.imgDest = this.renderer2.createElement('img');
@@ -64,7 +67,7 @@ export class BaxImgPreloaderDirective implements OnInit, AfterViewInit {
         // this.renderer2.setStyle(this.imgDest, 'flex', '0 0 250px');
         // this.renderer2.setStyle(this.imgDest, 'min-width', '250px');
         // this.renderer2.setStyle(this.imgDest, 'min-height', '250px');
-        // this.renderer2.setStyle(this.imgDest, 'width', '100%');
+        // this.renderer2.setStyle(this.imgDest, 'width', '95%');
         // this.setStyles(<HTMLImageElement>_PARENT_NODE.firstChild);
         this.renderer2.setStyle(this.imgDest, 'display', 'block');
       }, 0);
@@ -121,11 +124,11 @@ export class BaxImgPreloaderDirective implements OnInit, AfterViewInit {
   }
 
   setStyles(_IMG: HTMLImageElement) {
-    this.renderer2.setStyle(_IMG, 'margin', '5px');
-    //this.renderer2.setStyle(_IMG, 'flex', '0 0 250px');
+    this.renderer2.setStyle(_IMG, 'margin', 'auto');
+    this.renderer2.setStyle(_IMG, 'flex', '1 1 250px');
     // this.renderer2.setStyle(_IMG, 'min-width', '250px');
     // this.renderer2.setStyle(_IMG, 'min-height', '250px');
-    this.renderer2.setStyle(_IMG, 'width', '100%');
+    this.renderer2.setStyle(_IMG, 'width', '95%');
   }
 
 
