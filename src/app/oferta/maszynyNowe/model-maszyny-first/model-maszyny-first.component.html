@@ -1,17 +1,20 @@
 <svg [ngSwitch]="model.markaId" x="0" y="0" width="100%" viewBox="0 0 720 405" preserveAspectRatio="xMinYMin meet"
   xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" >
   <defs>
-      <linearGradient [attr.id]="fillId" y1="367.5" x2="720" y2="367.5" gradientUnits="userSpaceOnUse">
+      <linearGradient [attr.id]="idFill" y1="367.5" x2="720" y2="367.5" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#fff" stop-opacity="0" />
           <stop offset="0.35" [attr.stop-color]="model.modelBackground" stop-opacity="0.3" />
           <stop offset="1" [attr.stop-color]="model.modelBackground" />
         </linearGradient>
 
+        <clipPath [attr.id]="idCardContourDownClipPath">
+          <path d="M35.1,404.9a35,35,0,0,1-35-35V.1H719.9V369.9a35,35,0,0,1-35,35Z"/>
+          <path d="M719.8.2V369.9a34.9,34.9,0,0,1-34.9,34.9H35.1A34.9,34.9,0,0,1,.2,369.9V.2H719.8M720,0H0V369.9A35.1,35.1,0,0,0,35.1,405H684.9A35.1,35.1,0,0,0,720,369.9V0Z"/>
+        </clipPath>
   </defs>
 
-  <!-- <rect x="0" y="0" width="720" height="827" [style.fill]="cf.getUrlPath('markaGradientYanmar')"  /> -->
-  <rect x="0" y="0" width="720" height="405" [style.fill]="cf.getUrlPath(fillId)"
-    [style.clipPath]="cf.getUrlPath('cardContourDown')" />
+  
+  <rect x="0" y="0" width="720" height="405" [style.fill]="idFillGet" [style.clip-path]="idCardContourDownClipPathGet"></rect>
 
 
   <svg *ngIf="model.szerokosc_mm && model.dlugosc_mm && model.wysokosc_mm" x="20" y="10" width="200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMinYMin meet">

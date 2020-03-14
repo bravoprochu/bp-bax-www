@@ -2,17 +2,16 @@
   <svg *ngIf="!isReady" [attr.viewBox]="preloaderViewBox" preserveAspectRatio="xMinYMin slice" x="0" y="0" width="100%"
     xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <clipPath id="cardContourFull">
-        <!-- <path d="M75,0H400a0,0,0,0,1,0,0V710a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V75A75,75,0,0,1,75,0Z" /> -->
+      <clipPath [attr.id]="idCardContourFullClipPath">
         <rect class="a" x="0.2" y="0.2" width="719.7" [attr.height]="preloaderHeight" rx="49.8" ry="49.8"/>
         <path d="M670,.3A49.8,49.8,0,0,1,719.7,50V1233a49.8,49.8,0,0,1-49.7,49.7H50A49.8,49.8,0,0,1,.3,1233V50A49.8,49.8,0,0,1,50,.3H670m0-.3H50A50,50,0,0,0,0,50V1233a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50V50A50,50,0,0,0,670,0Z"/>
       </clipPath>
     </defs>
     <title>bax model spec preloader</title>
-    <rect x="0" y="0" width="720" [attr.height]="preloaderHeight" [style.fill]="model.modelBackground" [style.clipPath]="cf.getUrlPath('cardContourFull')" />
+    <rect x="0" y="0" width="720" [attr.height]="preloaderHeight" [style.fill]="model.modelBackground" [style.clip-path]="idCardContourFullClipPathGet" />
     <image x="0" y="0" width="720" [attr.height]="preloaderHeight" opacity="0.1"
-      xlink:href="./assets/svg/logotypy/logo_bax_signOnly.svg" />
-    <image x="0" y="0" width="720" [attr.height]="preloaderHeight" xlink:href="./assets/svg/preloaders/puff.svg" />
+      xlink:href="/assets/svg/logotypy/logo_bax_signOnly.svg" />
+    <image x="0" y="0" width="720" [attr.height]="preloaderHeight" xlink:href="/assets/svg/preloaders/puff.svg" />
   </svg>
 
 
@@ -22,21 +21,10 @@
     viewBox="0 0 720 405" preserveAspectRatio="xMinYMin slice" xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <clipPath id="cardContourUp">
-        <!-- <path d="M75,0H400a0,0,0,0,1,0,0V710a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V75A75,75,0,0,1,75,0Z" /> -->
+      <clipPath [attr.id]="idCardContourUpClipPath">
           <path d="M.1,404.9V30A29.9,29.9,0,0,1,30,.1H690A29.9,29.9,0,0,1,719.9,30V404.9Z"/>
           <path d="M690,.3A29.8,29.8,0,0,1,719.8,30V404.8H.3V30A29.7,29.7,0,0,1,30,.3H690m0-.3H30A30,30,0,0,0,0,30V405H720V30A30,30,0,0,0,690,0Z"/>
       </clipPath>
-      <clipPath id="cardContourDown">
-        <path d="M35.1,404.9a35,35,0,0,1-35-35V.1H719.9V369.9a35,35,0,0,1-35,35Z"/>
-        <path d="M719.8.2V369.9a34.9,34.9,0,0,1-34.9,34.9H35.1A34.9,34.9,0,0,1,.2,369.9V.2H719.8M720,0H0V369.9A35.1,35.1,0,0,0,35.1,405H684.9A35.1,35.1,0,0,0,720,369.9V0Z"/>
-      </clipPath>
-      <linearGradient id="metalicGradient" y1="466.73" x2="400" y2="466.73"
-        gradientUnits="userSpaceOnUse">
-        <stop offset="0" stop-color="#c4c6c8" />
-        <stop offset="1" stop-color="#a7a9ac" />
-      </linearGradient>
-
 
       <linearGradient [attr.id]="markaGradient" y1="367.5" x2="720" y2="367.5" gradientUnits="userSpaceOnUse">
         <stop offset="0" stop-color="#fff" stop-opacity="0.6" />
@@ -46,7 +34,7 @@
 
     </defs>
 
-    <image (click)="isCardInfo = !isCardInfo"  x="0" y="0" width="720" height="405" [attr.xlink:href]="model.mediaCardImg" [style.clipPath]="cf.getUrlPath('cardContourUp')" />
+    <image (click)="isCardInfo = !isCardInfo"  x="0" y="0" width="720" height="405" [attr.xlink:href]="model.mediaCardImg" [style.clip-path]="idCardContourUpClipPathGet" />
 
     <!-- model header -->
     <g>

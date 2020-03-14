@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
 import { IBaxModelMaszynaNowa } from '../../interfaces/i-bax-model-maszyna-nowa';
+import { SvgCommonFunctionsService } from 'src/app/shared/svg/svg-common-functions.service';
 
 
 @Component({
@@ -10,15 +11,25 @@ import { IBaxModelMaszynaNowa } from '../../interfaces/i-bax-model-maszyna-nowa'
 })
 export class ModelMaszynyFirstComponent implements OnInit {
   @Input('model') model: IBaxModelMaszynaNowa;
-  fillId: string;
+  
+  idFill: string;
+  idFillGet: string;
+  idCardContourDownClipPath: string;
+  idCardContourDownClipPathGet: string;
+
 
   constructor(
-    public cf: CommonFunctionsService,
+    // public cf: CommonFunctionsService,
+    private svgCF: SvgCommonFunctionsService
     
   ) { }
 
   ngOnInit() {
-    this.fillId = this.cf.getUniqueId('fillId');
+    this.idFill = this.svgCF.getUniqeId('fill');
+    this.idFillGet = this.svgCF.getSvgStyleUrlPath(this.idFill);
+
+    this.idCardContourDownClipPath = this.svgCF.getUniqeId('clipPath');
+    this.idCardContourDownClipPathGet = this.svgCF.getSvgStyleUrlPath(this.idCardContourDownClipPath);
   }
 
 }
