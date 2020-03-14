@@ -82,7 +82,7 @@ export class BaxImgPreloaderDirective implements OnInit, AfterViewInit {
           }
         }
 
-        if (f.intersectionRatio > 0.35) {
+        if (f.intersectionRatio > 0.25) {
           if (!this.isImageLoading) {
             this.imgDest.onload = this.onLoad(CONTAINER, this.imgPreload);
             this.renderer2.setAttribute(this.imgDest, 'src', this.imgDestUrl);

@@ -31,15 +31,15 @@ export class DetectIntersectionDirective implements OnInit, AfterViewInit {
     const observe = new IntersectionObserver(entries => {
       entries.forEach((f: IntersectionObserverEntry)=>{
 
-        if(f.intersectionRatio>0){
+        if(f.intersectionRatio > 0){
           this.renderer.setStyle(div, 'opacity', '0.2');
         }
 
-        if(f.intersectionRatio>0.15){
+        if(f.intersectionRatio > 0.05){
           this.renderer.setStyle(div, 'opacity', '0.5');
         }
         
-        if(f.intersectionRatio>0.25) {
+        if(f.intersectionRatio > 0.15) {
           this.renderer.setStyle(div, 'height', '0');
           this.detectIntersection.emit(true);
           observe.unobserve(this.el.nativeElement);
