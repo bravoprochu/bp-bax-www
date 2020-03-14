@@ -9,6 +9,8 @@ import { debounceTime, distinctUntilChanged, startWith, takeWhile, takeUntil } f
 import { NewsDataFactoryService } from '../newsServices/news-data-factory.service';
 import { Subject } from 'rxjs';
 import { SvgCommonFunctionsService } from 'src/app/shared/svg/svg-common-functions.service';
+import { MatDialog } from '@angular/material/dialog';
+import { FullscreenComponent } from '../dialogs/fullscreen/fullscreen.component';
 
 
 
@@ -27,9 +29,11 @@ export class NewsListComponent implements OnInit, OnDestroy {
   constructor(
     private ncf: NewsService,
     private newsDataService: NewsDataFactoryService,
-    private svgCf: SvgCommonFunctionsService
+    private svgCf: SvgCommonFunctionsService,
+    private dialog: MatDialog
 
   ) { }
+
 
   ballsPreload: string;
   isDataReady: boolean;
@@ -51,8 +55,23 @@ export class NewsListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // this.newsList = this.activatedRoute.snapshot.data['data'];
+    this.dialog.open(FullscreenComponent, {
+      minHeight: '100vh',
+      minWidth: '100vw',
+      hasBackdrop: false,
+    }).afterClosed()
+    .subscribe(
+         (fullscreenClosed:any)=>{
+              console.log('fullscreenClosed subs:', fullscreenClosed);
+              
+         },
+         (error)=>console.log('fullscreenClosed error', error),
+         ()=>console.log('fullscreenClosed completed..')
+    );
 
-    this.ballsPreload = this.svgCf.getOriginUrl("/assets/svg/preloaders/balls-horizontal-preloader.svg");
+
+
+    this.ballsPreload = this.svgCf.getOriginUrl("assets/svg/preloaders/balls-horizontal-preloader.svg");
     this.newsDataService.getAll()
     .subscribe(
          (_newsData:any)=>{

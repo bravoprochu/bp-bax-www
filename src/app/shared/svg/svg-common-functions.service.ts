@@ -5,6 +5,7 @@ import { ISVGVector } from './interfaces/i-svg-vector';
 import { ISVGProp } from './interfaces/i-svg-prop';
 import { ISVGSize } from './interfaces/i-svg-size';
 import { DomSanitizer } from '@angular/platform-browser';
+import { filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,12 @@ export class SvgCommonFunctionsService {
     return prefix + Math.random().toString().replace(',', "").replace('.', "");
   }
 
-  getSvgDefsUrlPath(elName: string): any {
+  getSvgStyleUrlPath(elName: string): any {
     return this.sanitizer.bypassSecurityTrustStyle(`url(${window.location.href}#${elName})`);
+  }
+
+  getSvgStyleUrlPathSuffix(elName: string, filterType: string = 'filter'): any {
+    return this.sanitizer.bypassSecurityTrustStyle(`${filterType}: url(${window.location.href}#${elName})`);
   }
 
   getViewBoxSize(viewBox: string): ISvgViewBox {
@@ -95,7 +100,7 @@ export class SvgCommonFunctionsService {
 
   generateImage(
     renderer: Renderer2,
-    url: string = this.getOriginUrl('./assets/svg/logotypy/logo_bax_signOnly.svg'),
+    url: string = this.getOriginUrl('assets/svg/logotypy/logo_bax_signOnly.svg'),
     width: string = "1920",
     height: string = "1080",
     opacity: string = "1",

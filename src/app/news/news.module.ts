@@ -9,11 +9,13 @@ import { NewsArticleDateComponent } from './news-article-date/news-article-date.
 import { NewsServicesModule } from './newsServices/news-services.module';
 import { SvgCommonModule } from '../shared/svg/svg-common.module';
 
-import {ReactiveFormsModule, FormsModule} from '@angular/forms';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatIconModule} from '@angular/material/icon'
-import {MatInputModule} from '@angular/material/input';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon'
+import { MatInputModule } from '@angular/material/input';
 import { PantoneToHexModule } from '../pantoneToHex/pantone-to-hex.module';
+import { FullscreenComponent } from './dialogs/fullscreen/fullscreen.component';
 
 
 
@@ -21,8 +23,8 @@ import { PantoneToHexModule } from '../pantoneToHex/pantone-to-hex.module';
 
 @NgModule({
   declarations: [
-    NewsListComponent, 
-    NewsArticleMiniComponent, 
+    NewsListComponent,
+    NewsArticleMiniComponent,
     NewsArticleComponent,
     NewsArticleDateComponent,
   ],
@@ -34,7 +36,8 @@ import { PantoneToHexModule } from '../pantoneToHex/pantone-to-hex.module';
 
     FormsModule,
     ReactiveFormsModule,
-    
+
+    MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -43,7 +46,9 @@ import { PantoneToHexModule } from '../pantoneToHex/pantone-to-hex.module';
     NewsRoutingModule,
   ],
   exports: [
-    
-  ],
+    ],
+  entryComponents: [
+      FullscreenComponent
+    ],
 })
-export class NewsModule {}
+export class NewsModule { }

@@ -26,6 +26,12 @@ export class ModelMaszynyComponent implements OnInit, OnChanges, OnDestroy {
 
   bgColor: string;
   idAwers: string = this.svgCf.getUniqeId('awers');
+
+  idCardContourFullClipPath: string;
+  idCardContourFullClipPathGet: string;
+  idCardContourUpClipPath: string;
+  idCardContourUpClipPathGet: string;
+
   intersection$: IntersectionObserver;
   isCardInfo: boolean;
   isData: boolean
@@ -55,6 +61,14 @@ export class ModelMaszynyComponent implements OnInit, OnChanges, OnDestroy {
   ) {  }
 
   ngOnInit() {
+    this.idCardContourFullClipPath = this.svgCf.getUniqeId('clipPath');
+    this.idCardContourFullClipPathGet = this.svgCf.getSvgStyleUrlPath(this.idCardContourFullClipPath);
+
+    this.idCardContourUpClipPath = this.svgCf.getUniqeId('clipPath');
+    this.idCardContourUpClipPathGet = this.svgCf.getSvgStyleUrlPath(this.idCardContourUpClipPath);
+    
+
+
     this.markaGradient = this.cf.getUniqueId('markaGradient');
     this.mnSrv.isModelSpecCardInfo.valueChanges.pipe(
       takeUntil(this.isDestroyed$),
@@ -69,7 +83,7 @@ export class ModelMaszynyComponent implements OnInit, OnChanges, OnDestroy {
    
     this.intersection$ = new IntersectionObserver(entries => {
       entries.forEach((entry: IntersectionObserverEntry)=>{
-        if(entry.intersectionRatio>0){
+        if(entry.intersectionRatio > 0){
           this.initImage();
           // console.log('entry:', this.model.model, entry.intersectionRatio, entry);
           this.intersection$.disconnect();

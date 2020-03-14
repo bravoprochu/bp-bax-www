@@ -3,392 +3,270 @@
 xmlns:image= "http://www.google.com/schemas/sitemap-image/1.1"
 xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 <url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/kontakt</loc>
-<lastmod>2019-05-25</lastmod>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/info/bax-bauma2019-sennebogen-voucher</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/info/bax_bauma_2019_sennebogen.png</image:loc>
-</image:image>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/info/SENNEBOGEN_green_heart_of_bauma.png</image:loc>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe</loc>
-<lastmod>2019-05-25</lastmod>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-875m-e</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/SENNEBOGEN_IMAGE_875_E_mobil_Niederlande_mini.jpg</image:loc>
-<image:title>Sennebogen 875M-E</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-870m-e</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/sennebogen_870_mobile_16x9.jpg</image:loc>
-<image:title>Sennebogen 870M-E</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-860m-e-hybrid</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/860.jpg</image:loc>
-<image:title>Sennebogen 860M-E hybrid</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-855m-e-hybrid</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/sennebogen-855E-hybrid_cropped.jpg</image:loc>
-<image:title>Sennebogen 855M-E hybrid</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-850m-e</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/SENNEBOGEN-850_13.jpg</image:loc>
-<image:title>Sennebogen 850M-E</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-840m-e</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/840.jpg</image:loc>
-<image:title>Sennebogen 840M-E</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-835m-e</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/sennebogen-835-E-mobile-03.jpg</image:loc>
-<image:title>Sennebogen 835M-E</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-830m-e</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/830_E.jpg</image:loc>
-<image:title>Sennebogen 830M-E</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-825m-e</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/825_E.jpg</image:loc>
-<image:title>Sennebogen 825M-E</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-821m-e</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/821_E.jpg</image:loc>
-<image:title>Sennebogen 821M-E</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-818m-e</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/818_M.jpg</image:loc>
-<image:title>Sennebogen 818M-E</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-817m-e</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/817_E.jpg</image:loc>
-<image:title>Sennebogen 817M-E</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-735m-e</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/Image_SENNEBOGEN_735_Rostock__2__high_16x9.jpg</image:loc>
-<image:title>Sennebogen 735M-E</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-730m-e</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/sennebogen_730_mobile_wood_01_16x9.jpg</image:loc>
-<image:title>Sennebogen 730M-E</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-723m-e</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/SENNEBOGEN-723_4_16x9.jpg</image:loc>
-<image:title>Sennebogen 723M-E</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-718</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/sennebogen_718_mobile_01_16x9.jpg</image:loc>
-<image:title>Sennebogen  718</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-vio-57-6</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/ViO57-6.jpg</image:loc>
-<image:title>YANMAR ViO 57-6</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-vio-50-6</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/VIO50-6.jpg</image:loc>
-<image:title>YANMAR ViO 50-6</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-vio-38-u</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/ViO38-6.jpg</image:loc>
-<image:title>YANMAR ViO 38 U</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-vio-33u</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/ViO33-6.jpg</image:loc>
-<image:title>YANMAR ViO 33U</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-vio-26-6</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/ViO26.jpg</image:loc>
-<image:title>YANMAR ViO 26-6</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-vio-20-4</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/ViO20.jpg</image:loc>
-<image:title>YANMAR ViO 20-4</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-vio-10-2a</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/ViO10-2A.jpg</image:loc>
-<image:title>YANMAR ViO 10-2A</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-v80</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/V80.jpg</image:loc>
-<image:title>YANMAR V80</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-v8</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/v8_Nr86.jpg</image:loc>
-<image:title>YANMAR V8</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-v120</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/V120.jpg</image:loc>
-<image:title>YANMAR V120</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-v100</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/V100.jpg</image:loc>
-<image:title>YANMAR V100</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-sv85</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/SV85.jpg</image:loc>
-<image:title>YANMAR SV85</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-sv60</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/SV60_C.jpg</image:loc>
-<image:title>YANMAR SV60</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-sv26</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/SV26.jpg</image:loc>
-<image:title>YANMAR SV26</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-sv22</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/SV22.jpg</image:loc>
-<image:title>YANMAR SV22</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-sv18</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/SV18.jpg</image:loc>
-<image:title>YANMAR SV18</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-sv16</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/SV16.jpg</image:loc>
-<image:title>YANMAR SV16</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-sv120-2pb</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/SV100-2PB.jpg</image:loc>
-<image:title>YANMAR SV120-2PB</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-sv08-1-as</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/SV08-1AS.jpg</image:loc>
-<image:title>YANMAR SV08-1 AS</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-sv-100-2b</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/</image:loc>
-<image:title>YANMAR SV 100-2B</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-sv-100-2</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/SV100-2.jpg</image:loc>
-<image:title>YANMAR SV 100-2</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-b95-w</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/B95W.jpg</image:loc>
-<image:title>YANMAR B95 W</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-b75w</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/B75W.jpg</image:loc>
-<image:title>YANMAR B75W</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
-<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-b110-w</loc>
-<image:image>
-<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/B110W.jpg</image:loc>
-<image:title>YANMAR B110 W</image:title>
-</image:image>
-</url>
-
-<url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2018-08-01</lastmod>
 <loc>https://www.bax-maszyny.pl/news</loc>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2018-08-01</lastmod>
+</url>
+
+<url>
+<lastmod>2020-03-13</lastmod>
+<loc>https://www.bax-maszyny.pl/news/bax-home-office-bronimy-sie-przed-koronawirusem</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_info_koronawirus.png</image:loc>
+<image:title>Zostańmy w domach Home office Bronimy się przed COVID-19 koronawirusem</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-03-09</lastmod>
+<loc>https://www.bax-maszyny.pl/news/bax-arjes-squad-przekazanie-arjes-impaktor-250-evo-do-ZDAntczak</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax-arjes_squad_ZDAntczak_thumbnail.jpg</image:loc>
+<image:title>Impaktor 250Evo ZDAntczak Przekazanie maszyny Bax-Arjes Squad</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-03-08</lastmod>
+<loc>https://www.bax-maszyny.pl/news/bax-dzien-kobiet-2020</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_DzienKobiet2020.png</image:loc>
+<image:title>Dzień Kobiet 2020</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-03-04</lastmod>
+<loc>https://www.bax-maszyny.pl/news/bax-zlomowisko-sezon-10-wspieramy-ekipe-olmetu</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_zlomowisko_sezon10_olmet_team.jpg</image:loc>
+<image:title>Złomowisko s10 Wspieramy ekipę Olmetu International Scrap Challenge</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/news/bax-yanmar-promocja-marzec-2020-sworznie-i-tuleje</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/BAX_Yanmar_Promotion_2020_03_tuleje_sworznie.png</image:loc>
+<image:title>Promocja na sworznie i tuleje Oryginalne części Yanmar Marzec 2020</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-14</lastmod>
+<loc>https://www.bax-maszyny.pl/news/walentynki-2020</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_walentynki_2020_A-100.jpg</image:loc>
+<image:title>Wspaniałych Walentynek Wyrażamy głośno swoje uczucia 😘</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-11</lastmod>
+<loc>https://www.bax-maszyny.pl/news/BUDMA-INTERMASZ-2020-BAX-przekazanie-VIO23-MARKOP-Marcin-drzewiecki</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_budma-intermasz_2020_relacja_thumbnail.png</image:loc>
+<image:title>BUDMA INTERMASZ 2020 Relacja Przekazanie ViO23 MARKOP Marcin Drzewiecki</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-01-24</lastmod>
+<loc>https://www.bax-maszyny.pl/news/bax-yanmar-BUDMA-INTERMASZ-2020</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_budma-intermasz_yt_thumbnail.png</image:loc>
+<image:title>BUDMA INTERMASZ 2020 Zapraszamy na targi</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-01-09</lastmod>
+<loc>https://www.bax-maszyny.pl/news/bax-yanmar-promocja-styczen-2020-gasienice</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/BAX_Yanmar_Promotion_2020_01_0.75x.png</image:loc>
+<image:title>Promocja na Gąsienice Oryginalne części Yanmar Styczeń 2020</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-01-01</lastmod>
+<loc>https://www.bax-maszyny.pl/news/podsumowanie-roku-2019</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_2019_recap_thumbnail.jpg</image:loc>
+<image:title>2019 - DOBRY ROK</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2019-12-30</lastmod>
+<loc>https://www.bax-maszyny.pl/news/zyczeniaNaRok2020</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_zyczeniaNoworoczne2020.png</image:loc>
+<image:title>Wszystkiego dobrego w 2020</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2019-12-20</lastmod>
+<loc>https://www.bax-maszyny.pl/news/bax-gwiazdka-2019</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_gwiazdka_2019.png</image:loc>
+<image:title>Spokojnych Świąt Czy pamietał o Was Mikołaj ?</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2019-12-06</lastmod>
+<loc>https://www.bax-maszyny.pl/news/bax-mikolajki-2019</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_mikolajki_2019.png</image:loc>
+<image:title>Mikołajki 2019 Czy pamietał o Was Mikołaj ?</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2019-11-27</lastmod>
+<loc>https://www.bax-maszyny.pl/news/bax-black-friday-2019</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_blackFriday_2019.png</image:loc>
+<image:title>BLACK FRIDAY 2019</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2019-11-21</lastmod>
+<loc>https://www.bax-maszyny.pl/news/czasNaNowaMaszyneYanmar-Y-Finance</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_czasNaNowaMaszyneYanmar_Y_Finance_2019.png</image:loc>
+<image:title>Czas na nową maszynę Yanmar Finansowanie Yanmar 25% wkładu własnego, pierwsze 3msc bez opłaty</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2019-11-08</lastmod>
+<loc>https://www.bax-maszyny.pl/news/kontrakt-25xsv18</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_bigDeal_25x_sv18.png</image:loc>
+<image:title>Big deal 25x SV18</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2019-10-26</lastmod>
+<loc>https://www.bax-maszyny.pl/news/siedziba_bax_w_halloween</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_halloween_2019.png</image:loc>
+<image:title>Halloween 2019 Siedziba BAX</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2019-10-26</lastmod>
+<loc>https://www.bax-maszyny.pl/news/eRobocze-2019-GrodziskMazowiecki</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_eRobocze_2019_GrodziskMazowiecki.jpg</image:loc>
+<image:title>eRobocze 2019 Grodzisk Mazowiecki</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2019-10-25</lastmod>
+<loc>https://www.bax-maszyny.pl/news/somr-vs-bax-rewanz-za-sosnowiec</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax-somr_rewanz_przed_eRobocze_grodzisk_mazowiecki.png</image:loc>
+<image:title>SOMR vs BAX mecz przed eRobocze Józefina</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2019-10-04</lastmod>
+<loc>https://www.bax-maszyny.pl/news/international-scrap-challenge-inowroclaw-2019</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/InternationalScrapChallenge_16x9.png</image:loc>
+<image:title>ISC Pierwsza Edycja Inowrocław 2019 Międzynarodowe Mistrzostwa Operatorów Maszyn</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2019-08-08</lastmod>
+<loc>https://www.bax-maszyny.pl/news/bax-tak-dzialamy-na-slasku-Trade-Trans-Expert-Czaicki-Czaicki-przekazanie-sennebogen-835E</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/baxTakDzialamyNaSlasku_Trans_trade_expert_Czaicki_Czaicki.jpg</image:loc>
+<image:title>Trade Trans Expert Czaicki i Czaicki Przekazanie Sennebogen 835E TAK działamy na Śląsku</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2019-08-01</lastmod>
+<loc>https://www.bax-maszyny.pl/news/kopanieToNaszaPasja-przekazanie-Oll-Bud-Jacek-Urbaniak-ViO-33</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_kopanieToNaszaPasja_Oll_Bud_Jacek_Urbaniak.jpg</image:loc>
+<image:title>Oll Bud Przekazanie ViO 33 KopanieToNaszaPasja</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2019-07-09</lastmod>
+<loc>https://www.bax-maszyny.pl/news/bax-tak-dzialamy-na-slasku-stilmar-przekazanie-sennebogen-821E</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_takDzialamyNaSlasku_stilmar.jpg</image:loc>
+<image:title>STILMAR Przekazanie Sennebogen 821E TAK działamy na Śląsku</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2019-07-03</lastmod>
+<loc>https://www.bax-maszyny.pl/news/serwis-regeneracja-polaczen-sworzniowo-tulejowych</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_regeneracja_yt_mini.jpg</image:loc>
+<image:title>Regeneracja skrawanie/napawanie połączeń sworzniowo-tulejowych</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2019-06-21</lastmod>
+<loc>https://www.bax-maszyny.pl/news/kopanieToNaszaPasja-przekazanie-wald-bruk-sv26-hunklinger-p12-profi</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/kopanieToNaszaPasja_wald_bruk_SV26_hunklinger_p12.jpg</image:loc>
+<image:title>Wald-Bruk, chwytak Hunklinger P12 Profi KopanieToNaszaPasja przekazanie i instruktaż</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2019-06-20</lastmod>
+<loc>https://www.bax-maszyny.pl/news/bax-300-likes</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_300_likes.jpg</image:loc>
+<image:title>BAX 300 Likes Zbieramy Armię 300</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2019-06-06</lastmod>
+<loc>https://www.bax-maszyny.pl/news/bax-eRobocze-Sosnowiec-mecz-SOMR-VS-BAX</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/eRobocze_sosnowiec_mecz_somr-vs-bax.png</image:loc>
+<image:title>SOMR vs BAX nowe El Classico</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2019-06-05</lastmod>
+<loc>https://www.bax-maszyny.pl/news/bax-eRobocze-Sosnowiec-2019-zapraszamy</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/eRobocze_Sosnowiec_2019.png</image:loc>
+<image:title>eRobocze Sosnowiec Zapraszamy Mistrzowski chwyt, Yanek - The Best Operator</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2019-06-01</lastmod>
+<loc>https://www.bax-maszyny.pl/news/bax-dzien-dziecka-2019</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/images/news/BAX_dzien_dziecka_2019.png</image:loc>
+<image:title>Dzień dziecka Cudownego dnia dziecka !</image:title>
+</image:image>
 </url>
 
 <url>
@@ -401,7 +279,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2019-05-21</lastmod>
 <loc>https://www.bax-maszyny.pl/news/pierwsza-maszyna-z-napdem-hybrydowym-PICK-and-CARRY</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/sennebogen-735M-E-naped-hybrydowy.jpg</image:loc>
@@ -410,7 +288,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2019-05-19</lastmod>
 <loc>https://www.bax-maszyny.pl/news/sparing-BAX-Murcia-2019-05-17</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/orlik_trening_2019_05_17_murcia.jpg</image:loc>
@@ -419,7 +297,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2019-05-11</lastmod>
 <loc>https://www.bax-maszyny.pl/news/trening-otwarty-przed-eRobocze-Sosnowiec-2019-05-11</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_trening_2019_05_11.jpg</image:loc>
@@ -428,7 +306,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2019-05-10</lastmod>
 <loc>https://www.bax-maszyny.pl/news/sennebogen-system-modulowy</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/sennebogen-system-modulowy.png</image:loc>
@@ -437,7 +315,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2019-04-30</lastmod>
 <loc>https://www.bax-maszyny.pl/news/majowka-2019</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_majowka_2019.png</image:loc>
@@ -446,7 +324,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2019-04-19</lastmod>
 <loc>https://www.bax-maszyny.pl/news/wielkanoc-2019</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_wielkanoc_2019.png</image:loc>
@@ -455,7 +333,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2019-04-18</lastmod>
 <loc>https://www.bax-maszyny.pl/news/job-offer-robota-na-slasku-mechanik</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_job_offer_robota_na_slasku_mechanik_resize.png</image:loc>
@@ -464,7 +342,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2019-04-15</lastmod>
 <loc>https://www.bax-maszyny.pl/news/kopanieToNaszaPasja-przekazanie-centrum-ogrodzen-jar-bud-wiertnica-digga-pdd-4</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/kopanieToNaszaPasja_jar-bud_sv18_digga_PDD-4_resize.png</image:loc>
@@ -473,7 +351,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2019-04-10</lastmod>
 <loc>https://www.bax-maszyny.pl/news/bax-bauma-2019</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/bax-Bauma-2019-04-09_24_erich_sennebogen.jpg</image:loc>
@@ -482,7 +360,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2019-03-15</lastmod>
 <loc>https://www.bax-maszyny.pl/news/piatkaMajami_2019_03_18</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_piatka_majami_2019-03-18_20-mini.png</image:loc>
@@ -491,7 +369,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2019-03-08</lastmod>
 <loc>https://www.bax-maszyny.pl/news/dzienKobiet2019</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_dzien_kobiet_2019.png</image:loc>
@@ -500,7 +378,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2019-03-07</lastmod>
 <loc>https://www.bax-maszyny.pl/news/yanmarFourSeasonsPromotion-2019-03-Filtry</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/BAX_Yanmar_Four_Seasons_Promotion_2019_03.png</image:loc>
@@ -509,7 +387,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2019-02-22</lastmod>
 <loc>https://www.bax-maszyny.pl/news/bax-dlaczego-yanmar</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/bax-dlaczego_yanmar05x.png</image:loc>
@@ -518,7 +396,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2019-02-14</lastmod>
 <loc>https://www.bax-maszyny.pl/news/walentynki_2019</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/bax_walentynki_2019.png</image:loc>
@@ -527,7 +405,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2019-01-29</lastmod>
 <loc>https://www.bax-maszyny.pl/news/yanmar-four-seasons-promotion-2019-02</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/BAX_Yanmar_Four_Seasons_Promotion_2019_02.png</image:loc>
@@ -536,7 +414,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2018-12-31</lastmod>
 <loc>https://www.bax-maszyny.pl/news/szukamy-znakow-na-niebie-sylwester-2018</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/szukamy-znakow-na-niebie-sylwester-2018.png</image:loc>
@@ -545,7 +423,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2018-12-21</lastmod>
 <loc>https://www.bax-maszyny.pl/news/duzo-zdrowia-i-milosci-gwiazdka-2018</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/duzo-zdrowia-i-milosci-gwiazdka-2018.png</image:loc>
@@ -554,7 +432,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2018-12-08</lastmod>
 <loc>https://www.bax-maszyny.pl/news/wymiatamy-magazyn-czesci-case-2018</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/wymiatamy_magazyn_czesci_CASE_small.png</image:loc>
@@ -563,7 +441,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2018-11-22</lastmod>
 <loc>https://www.bax-maszyny.pl/news/black-friday-2018</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/black-friday-2018.png</image:loc>
@@ -572,7 +450,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2018-11-09</lastmod>
 <loc>https://www.bax-maszyny.pl/news/finansowanie-fabryczne-2018</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/finansowanie-fabryczne-2018.png</image:loc>
@@ -581,7 +459,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2018-10-26</lastmod>
 <loc>https://www.bax-maszyny.pl/news/pol-eco-system-2018</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/pol-eco-system_2018.png</image:loc>
@@ -590,7 +468,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2018-10-16</lastmod>
 <loc>https://www.bax-maszyny.pl/news/eRobocze-show-turek-2018</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/eRobocze-show-turek-2018.png</image:loc>
@@ -599,7 +477,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2018-10-01</lastmod>
 <loc>https://www.bax-maszyny.pl/news/kopanie-to-nasza-pasja-weryfikacja-WY_KOP</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/kopanieToNaszaPasja_Weryfikacja_WY-KOP.jpg</image:loc>
@@ -608,7 +486,7 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2018-09-22</lastmod>
 <loc>https://www.bax-maszyny.pl/news/75-rajd-polski</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/75-rajd-polski.jpg</image:loc>
@@ -617,11 +495,427 @@ xmlns:news= "http://www.google.com/schemas/sitemap-news/0.9">
 </url>
 
 <url>
-<lastmod>2019-05-25</lastmod>
+<lastmod>2018-09-16</lastmod>
 <loc>https://www.bax-maszyny.pl/news/mecz-bax-yanmar-team-2018</loc>
 <image:image>
 <image:loc>https://www.bax-maszyny.pl/assets/images/news/mecz-bax-yanmar-team-2018.png</image:loc>
 <image:title>BAX - Yanmar Team Mecz piłkarski, klienci yanmar vs pracownicy BAX</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2018-08-01</lastmod>
+<loc>https://www.bax-maszyny.pl/kontakt</loc>
+<lastmod>2018-08-01</lastmod>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/arjes</loc>
+<lastmod>2020-02-28</lastmod>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/guidetti</loc>
+<lastmod>2020-02-28</lastmod>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/sennebogen</loc>
+<lastmod>2020-02-28</lastmod>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/yanmar</loc>
+<lastmod>2020-02-28</lastmod>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/czesci</loc>
+<lastmod>2020-02-28</lastmod>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/serwis</loc>
+<lastmod>2020-02-28</lastmod>
+</url>
+
+<url>
+<lastmod>2019-08-01</lastmod>
+<loc>https://www.bax-maszyny.pl/info/bax-eRobocze-Sosnowiec-2019</loc>
+<lastmod>2019-08-01</lastmod>
+</url>
+
+<url>
+<lastmod>2019-08-01</lastmod>
+<loc>https://www.bax-maszyny.pl/info/bax-bauma2019-sennebogen-voucher</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/info/bax_bauma_2019_sennebogen.png</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/info/SENNEBOGEN_green_heart_of_bauma.png</image:loc>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe</loc>
+<lastmod>2020-02-28</lastmod>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-875m-e</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/SENNEBOGEN_IMAGE_875_E_mobil_Niederlande_mini.jpg</image:loc>
+<image:title>Sennebogen 875M-E</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-870m-e</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/sennebogen_870_mobile_16x9.jpg</image:loc>
+<image:title>Sennebogen 870M-E</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-860m-e-hybrid</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/860.jpg</image:loc>
+<image:title>Sennebogen 860M-E hybrid</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-855m-e-hybrid</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/sennebogen-855E-hybrid_cropped.jpg</image:loc>
+<image:title>Sennebogen 855M-E hybrid</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-850m-e</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/SENNEBOGEN-850_13.jpg</image:loc>
+<image:title>Sennebogen 850M-E</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-840m-e</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/840.jpg</image:loc>
+<image:title>Sennebogen 840M-E</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-835m-e</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/sennebogen-835-E-mobile-03.jpg</image:loc>
+<image:title>Sennebogen 835M-E</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-830m-e</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/830_E.jpg</image:loc>
+<image:title>Sennebogen 830M-E</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-825m-e</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/825_E.jpg</image:loc>
+<image:title>Sennebogen 825M-E</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-821m-e</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/821_E.jpg</image:loc>
+<image:title>Sennebogen 821M-E</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-818m-e</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/818_M.jpg</image:loc>
+<image:title>Sennebogen 818M-E</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-817m-e</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/817_E.jpg</image:loc>
+<image:title>Sennebogen 817M-E</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-735m-e</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/Image_SENNEBOGEN_735_Rostock__2__high_16x9.jpg</image:loc>
+<image:title>Sennebogen 735M-E</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-730m-e</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/sennebogen_730_mobile_wood_01_16x9.jpg</image:loc>
+<image:title>Sennebogen 730M-E</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-723m-e</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/SENNEBOGEN-723_4_16x9.jpg</image:loc>
+<image:title>Sennebogen 723M-E</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/sennebogen-718</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/sennebogen/sennebogen_718_mobile_01_16x9.jpg</image:loc>
+<image:title>Sennebogen  718</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-vio-57-6</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/ViO57-6.jpg</image:loc>
+<image:title>YANMAR ViO 57-6</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-vio-50-6</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/VIO50-6.jpg</image:loc>
+<image:title>YANMAR ViO 50-6</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-vio-38-u</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/ViO38-6.jpg</image:loc>
+<image:title>YANMAR ViO 38 U</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-vio-33u</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/ViO33-6.jpg</image:loc>
+<image:title>YANMAR ViO 33U</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-vio-26-6</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/ViO26.jpg</image:loc>
+<image:title>YANMAR ViO 26-6</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-vio-20-4</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/ViO20.jpg</image:loc>
+<image:title>YANMAR ViO 20-4</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-vio-10-2a</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/ViO10-2A.jpg</image:loc>
+<image:title>YANMAR ViO 10-2A</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-v80</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/V80.jpg</image:loc>
+<image:title>YANMAR V80</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-v120</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/V120.jpg</image:loc>
+<image:title>YANMAR V120</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-v100</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/V100.jpg</image:loc>
+<image:title>YANMAR V100</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-sv85</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/SV85.jpg</image:loc>
+<image:title>YANMAR SV85</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-sv60</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/SV60_C.jpg</image:loc>
+<image:title>YANMAR SV60</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-sv26</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/SV26.jpg</image:loc>
+<image:title>YANMAR SV26</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-sv22</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/SV22.jpg</image:loc>
+<image:title>YANMAR SV22</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-sv18</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/SV18.jpg</image:loc>
+<image:title>YANMAR SV18</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-sv16</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/SV16.jpg</image:loc>
+<image:title>YANMAR SV16</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-sv120-2pb</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/SV100-2PB.jpg</image:loc>
+<image:title>YANMAR SV120-2PB</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-sv08-1-as</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/SV08-1AS.jpg</image:loc>
+<image:title>YANMAR SV08-1 AS</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-sv-100-2b</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/</image:loc>
+<image:title>YANMAR SV 100-2B</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-sv-100-2</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/SV100-2.jpg</image:loc>
+<image:title>YANMAR SV 100-2</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-b95-w</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/B95W.jpg</image:loc>
+<image:title>YANMAR B95 W</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-b75w</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/B75W.jpg</image:loc>
+<image:title>YANMAR B75W</image:title>
+</image:image>
+</url>
+
+<url>
+<lastmod>2020-02-28</lastmod>
+<loc>https://www.bax-maszyny.pl/offer/maszynyNowe/yanmar-b110-w</loc>
+<image:image>
+<image:loc>https://www.bax-maszyny.pl/assets/oferta/modele/yanmar/B110W.jpg</image:loc>
+<image:title>YANMAR B110 W</image:title>
 </image:image>
 </url>
 

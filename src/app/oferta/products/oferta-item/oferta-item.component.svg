@@ -19,7 +19,7 @@
 
 
 
-        <rect x="0" y="0" width="100%" height="100%" [style.fill]="idBrandGradientGet" ></rect>
+        <rect x="0" y="0" width="100%" height="100%" [attr.style]="idBrandGradientGet" ></rect>
         <rect x="25" y="25" width="450" height="950" style="fill: #fff"></rect>
 
 
@@ -59,7 +59,7 @@
           </defs>
           
           <circle cx="50%" cy="50%" r="200" fill:none [style.filter]="idBlurFilterGet"></circle>
-          <image x="25" y="25" width="450" height="450" [attr.xlink:href]="oferta.footerImgSrc" preserveAspectRatio="xMidYMid meet" [style.clipPath]="idClipPathCircleGet"></image>
+          <image x="25" y="25" width="450" height="450" [attr.xlink:href]="oferta.footerImgSrc" preserveAspectRatio="xMidYMid meet" [attr.style]="idClipPathCircleGet"></image>
         </svg>
 
         <svg class="svg-logo-bax" x="25" y="500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="450" height="450" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet">

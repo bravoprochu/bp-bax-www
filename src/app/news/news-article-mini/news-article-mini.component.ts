@@ -119,7 +119,7 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
             }
           }
         }
-        if(f.intersectionRatio>0.5){
+        if(f.intersectionRatio > 0.15){
           this.renderer.setAttribute(this.image, _HREF, this.svgCF.getOriginUrl(this.miniInfo.imgUrl));
           this.isImageLoading = true;
 

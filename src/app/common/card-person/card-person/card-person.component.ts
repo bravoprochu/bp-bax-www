@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ICardPerson } from '../../interfaces/i-card-person';
 import { BAX_BRANDS } from '../../enums/bax-brands.enum';
+import { SvgCommonFunctionsService } from 'src/app/shared/svg/svg-common-functions.service';
 
 @Component({
   selector: 'app-card-person',
@@ -12,15 +13,18 @@ export class CardPersonComponent implements OnInit {
   @Input("contactInfo") contact: ICardPerson
 
   constructor(
+    private svgCF: SvgCommonFunctionsService,
     private sanitizer: DomSanitizer
   ) { }
 
-
-  gradientColor: string;
-  gradientId: string;
-  filterId: string;
-  logoImgSrc: string;
   cardLogoImageBorder: string;
+  filterId: string;
+  gradientColor: string;
+  
+  idGradient: string;
+  idGradientGet: string;
+  
+  logoImgSrc: string;
   mailto: string;
 
 
@@ -28,11 +32,9 @@ export class CardPersonComponent implements OnInit {
   filterUrl: string;
 
   ngOnInit() {
-    this.gradientId = ('gradient_'+(Math.round(Math.random()*1000000)).toString()).trim();
-    this.filterId = ('filter_'+(Math.round(Math.random()*1000000)).toString()).trim();
-    // this.logoImgSrc = '../../../../assets/logotypy/1x1/logo_sennebogen_NN_1x1.png';
+    this.idGradient = this.svgCF.getUniqeId('gradient');
+    this.idGradientGet = this.svgCF.getSvgStyleUrlPathSuffix(this.idGradient, 'fill');
     
-    //this.gradientColor = '#4DAA2B';
 
     this.cardLogoImageBorder = this.contact.markaLogoBorderInverse ? 'card-logo-image-border-inv': 'card-logo-image-border';
 
