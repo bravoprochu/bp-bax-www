@@ -52,13 +52,13 @@ export class OfertaItemComponent implements OnInit {
 
   initSvgIds(){
     this.idBlurFilter = this.svgCF.getUniqeId('blur');
-    this.idBlurFilterGet = this.svgCF.getSvgDefsUrlPath(this.idBlurFilter);
+    this.idBlurFilterGet = this.svgCF.getSvgStyleUrlPathSuffix(this.idBlurFilter, 'filter');
 
     this.idBrandGradient = this.svgCF.getUniqeId('gradient');
-    this.idBrandGradientGet = this.svgCF.getSvgDefsUrlPath(this.idBrandGradient);    
+    this.idBrandGradientGet = this.svgCF.getSvgStyleUrlPathSuffix(this.idBrandGradient, 'fill');    
 
     this.idClipPathCircle = this.svgCF.getUniqeId('clipPath');
-    this.idClipPathCircleGet = this.svgCF.getSvgDefsUrlPath(this.idClipPathCircle);
+    this.idClipPathCircleGet = this.svgCF.getSvgStyleUrlPathSuffix(this.idClipPathCircle, 'clip-path');
   }
 
 
