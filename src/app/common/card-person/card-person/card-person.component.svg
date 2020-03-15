@@ -27,11 +27,11 @@
     
     
 
-    <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="243" viewBox="0 0 300 153" preserveAspectRatio="xMidYMid meet">
-        <text class="card-firstName" x="110" y="65">
+    <svg class="bax-font-color" xmlns="http://www.w3.org/2000/svg" x="10" y="0" width="80%" viewBox="0 0 150 50" preserveAspectRatio="xMinYMin slice">
+        <text  x="0" y="32%" font-size="5">
             {{contact.firstName}}
         </text>
-        <text class="card-lastName" x="115" y="65">
+        <text class="card-lastName" x="0" y="50%" font-size="10">
             {{contact.lastName}}
         </text>
     </svg>
