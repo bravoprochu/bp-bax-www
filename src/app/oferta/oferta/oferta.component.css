@@ -1,11 +1,14 @@
-
-
-.oferta-container {
+.oferta-container-big {
     min-height: 100vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-content: center;
+    position: relative;
+}
+
+.oferta-container-small {
+    min-height: 100vh;
     position: relative;
 }
 

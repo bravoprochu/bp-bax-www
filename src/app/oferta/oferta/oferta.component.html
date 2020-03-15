@@ -1,8 +1,8 @@
 <div class="dots-container">
 
-  <div class="oferta-container">
+  <div [ngClass]="cssOfertaContainer">
     <div *ngFor="let oferta of ofertaItems index as i" [routerLink]="oferta.routerLink">
-      <app-oferta-item [ofertaItem]="oferta" ></app-oferta-item>
+      <app-oferta-item [isSmall]="isSmall" [ofertaItem]="oferta" ></app-oferta-item>
     </div>
   </div>
 </div>

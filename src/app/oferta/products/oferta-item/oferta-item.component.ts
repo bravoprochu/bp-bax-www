@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, ElementRef, ViewEncapsulation } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl, SafeStyle } from '@angular/platform-browser';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { SvgCommonFunctionsService } from 'src/app/shared/svg/svg-common-functions.service';
 import { svgLogoBaxSignOnly_white_Url } from 'src/app/shared/svg/classes/svg-bax-logo-url';
 import { IOfertaItem } from '../../oferta/i-oferta-item';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-oferta-item',
@@ -11,14 +11,16 @@ import { IOfertaItem } from '../../oferta/i-oferta-item';
   encapsulation: ViewEncapsulation.None
 })
 export class OfertaItemComponent implements OnInit {
-  @Input('ofertaItem') oferta: IOfertaItem
+  @Input('ofertaItem') oferta: IOfertaItem;
+  @Input('isSmall') isSmall: boolean
 
 
   constructor(
-    private sanitize: DomSanitizer,
-    private el: ElementRef,
-    private svgCF: SvgCommonFunctionsService,
+    private svgCF: SvgCommonFunctionsService
   ) { }
+
+
+  isDestroyed$: Subject<boolean> = new Subject()
 
 
 
@@ -35,19 +37,25 @@ export class OfertaItemComponent implements OnInit {
   idClipPathCircle: string;
   idClipPathCircleGet: string;
 
+  
+  isHorizontal: boolean;
+
+
+
   logoBax: string;
 
-
-
+  ngOnDestroy(): void {
+    this.isDestroyed$.next(true);
+    this.isDestroyed$.complete();
+    this.isDestroyed$.unsubscribe();
+}
 
   ngOnInit() {
-
     this.initSvgIds();
     this.logoBax = this.svgCF.getOriginUrl(svgLogoBaxSignOnly_white_Url())
-    // initImage();
-    // initIntersectionObserver();
-
   }
+
+
 
 
   initSvgIds(){
@@ -60,9 +68,6 @@ export class OfertaItemComponent implements OnInit {
     this.idClipPathCircle = this.svgCF.getUniqeId('clipPath');
     this.idClipPathCircleGet = this.svgCF.getSvgStyleUrlPathSuffix(this.idClipPathCircle, 'clip-path');
   }
-
-
-
 
 }
 

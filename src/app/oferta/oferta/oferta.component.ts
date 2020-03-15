@@ -1,16 +1,11 @@
-import { Component, OnInit, AfterViewInit, ChangeDetectionStrategy, ViewChild, OnDestroy, Sanitizer, ElementRef, NgZone, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { BP_ANIM_BRICK_LIST } from 'src/app/animations/bp-anim-brick-list';
-import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
-import {MediaMatcher, BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import { ViewportRuler } from '@angular/cdk/scrolling';
+import { BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import { takeUntil} from 'rxjs/operators';
-import { Router } from '@angular/router';
-import { Subject, fromEvent, of, merge } from 'rxjs';
+import { Subject } from 'rxjs';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { IOfertaItem } from './i-oferta-item';
-import { SvgCommonFunctionsService } from 'src/app/shared/svg/svg-common-functions.service';
 import { CardPersonService } from 'src/app/common/card-person/card-person.service';
-import { ThrowStmt } from '@angular/compiler';
 import { BAX_BRANDS } from 'src/app/common/enums/bax-brands.enum';
 
 
@@ -28,20 +23,14 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
    */
   constructor(
     private sanitize: DomSanitizer,
-    private el: ElementRef,
-    private viewportRuler: ViewportRuler,
     private breakpointObs: BreakpointObserver,
-    private mediaM: MediaMatcher,
-    private svgCF: SvgCommonFunctionsService,
     private cardPersonCF: CardPersonService
     ){}
 
 
 
-  cssOfertaItemContainer: string;
-  cssOfertaItemContainerBody: string;
-
-
+  cssOfertaContainer: string;
+  
   productItems: string[] = ['sennebogen', 'arjes', 'guidetti', 'yanmar'];
 
 
@@ -57,6 +46,7 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ofertaItems: IOfertaItem[];
 
+
   
   
   ngOnDestroy(): void {
@@ -66,6 +56,7 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit() {
+    this.initBreakPointObserver();
     this.ofertaItems = [
       {
         brandColor: this.cardPersonCF.getBrandHashColor(BAX_BRANDS.BAX),
@@ -132,49 +123,33 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
       },     
     ];
 
-    const _LANDSCAPE = [Breakpoints.HandsetLandscape, Breakpoints.TabletLandscape, Breakpoints.WebLandscape];
-    const _PORTRAIT = [Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait, Breakpoints.WebPortrait];
-    // const _SMALL = [Breakpoints.HandsetPortrait, Breakpoints.HandsetLandscape, Breakpoints.TabletPortrait, Breakpoints.TabletLandscape, Breakpoints.];
-    const _SMALL = [Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Handset, Breakpoints.Tablet];
-    const _REST = [Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge];
-
-
-    this.breakpointObs.observe([..._REST,..._LANDSCAPE, ..._PORTRAIT]).pipe(
-      takeUntil(this.isDestroyed$)
-    )
-    .subscribe(
-         (_breakpObs:any)=>{
-              this.cssOfertaItemContainer = 'oferta-item-container-small';
-              
-              this.isSmall = this.breakpointObs.isMatched(_SMALL);
-
-              if(this.breakpointObs.isMatched(_SMALL)) {
-                  console.log('isSmall...');
-
-                this.cssOfertaItemContainerBody = this.breakpointObs.isMatched(_PORTRAIT) ? 'oferta-item-container-body-portrait' : 'oferta-item-container-body-landscape'  
-              } else {
-                console.log('is NOT Small...');
-
-
-                this.cssOfertaItemContainerBody = 'oferta-item-container-body-portrait';
-                this.cssOfertaItemContainer = 'oferta-item-container-big';
-              }
-              
-         },
-         (error)=>console.log('_breakpObs error', error),
-         ()=>console.log('_breakpObs completed..')
-    );
-
-
-
-    this.initData();
 
 
   }
+
 
   ngAfterViewInit(): void {
 
   }
+
+  initBreakPointObserver() {
+    const _LAYOUT_BASIC_VIEWS = [Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge];
+    const _SMALL = [Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Handset, Breakpoints.Tablet];
+
+
+    this.breakpointObs.observe(_LAYOUT_BASIC_VIEWS).pipe(
+      takeUntil(this.isDestroyed$)
+    )
+    .subscribe(
+         (_breakpoinObserver:any)=>{
+          this.isSmall = this.breakpointObs.isMatched(_SMALL);
+          this.cssOfertaContainer = this.isSmall? 'oferta-container-small' : 'oferta-container-big';
+         },
+         (error)=>console.log('_breakpoinObserver error', error),
+         ()=>console.log('_breakpoinObserver completed..')
+    );
+  }
+
 
   addIdx() {
     this.idx = this.idx < this.productItems.length-1 ? this.idx+1 : this.productItems.length-1;
@@ -197,17 +172,6 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
     
   }
 
-
-  // initYoutube(){
-  //   const tag = document.createElement('script');
-  //   tag.src = "https://www.youtube.com/iframe_api";
-  //   document.body.appendChild(tag);
-  // }
-
-  initData() {
-  
-
-  }
 
   getGridArea(i:number):SafeStyle {
     return this.sanitize.bypassSecurityTrustStyle(`${i+1} / 1 / ${i+2} / 2`);

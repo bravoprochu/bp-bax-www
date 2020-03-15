@@ -16,6 +16,7 @@ import { OfertaItemSennebogenComponent } from './products/oferta-item-sennebogen
   imports: [
     CommonModule,
     OfertaRoutingModule,
+
     ScrollingModule
   ], 
   exports:[
