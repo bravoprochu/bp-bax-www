@@ -2,16 +2,15 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { IBaxModelMaszynyNoweFilterLine } from '../../interfaces/i-bax-model-maszyny-nowe-filter-line';
 import { PantoneToHexService } from 'src/app/pantoneToHex/pantone-to-hex.service';
 import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
-import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
-import { Subject, of } from 'rxjs';
+import { FormGroup, FormArray, FormControl } from '@angular/forms';
+import { Subject } from 'rxjs';
 import { bp_anim_pulseText } from 'src/app/animations/bp_anim_pulse-text';
-import { DomSanitizer } from '@angular/platform-browser';
-import { takeUntil, map } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { ActivatedRoute } from '@angular/router';
 import { MaszynyNoweService } from '../maszynyNoweServices/maszyny-nowe.service';
-import {Title, Meta} from '@angular/platform-browser';
 import {MatDrawer } from '@angular/material/sidenav';
+
 
 @Component({
   selector: 'app-maszyny-nowe',
@@ -33,7 +32,7 @@ export class MaszynyNoweComponent implements OnInit, AfterViewInit {
   isSidenavOpen: boolean = false;
   isSmall:boolean;
   mqAlias: string;
-  rFiltersList$: FormArray;
+
   
   
   ngOnDestroy(): void {
@@ -47,21 +46,22 @@ export class MaszynyNoweComponent implements OnInit, AfterViewInit {
 
 
   constructor(
-    private fb: FormBuilder,
     public mnSrv: MaszynyNoweService,
     private cf: CommonFunctionsService,
     private pantoSrv: PantoneToHexService,
-    private sanitizer: DomSanitizer,
     private mediaObserver: MediaObserver,
     private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
 
+    const _ROUTE_PARAMS =  this.activatedRoute.snapshot.queryParams;
+
     const _data = this.activatedRoute.snapshot.data['data'];
+
     this.mnSrv.maszynyNoweListAvailable = _data;
     if(!this.mnSrv.isDataReady){
-      this.mnSrv.initData();
+      this.mnSrv.initData(_ROUTE_PARAMS);
     }
     
 
@@ -71,7 +71,7 @@ export class MaszynyNoweComponent implements OnInit, AfterViewInit {
 
 
 
-    this.rFiltersList$ = this.fb.array([]);
+    
     const colorPalete = this.pantoSrv.getNextPaletteColors("283", 2, 1);
     const opacity = 0.25;
     this.colorEven = this.pantoSrv.colorToRGBA(colorPalete[0], opacity);

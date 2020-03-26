@@ -1,4 +1,4 @@
-import { Injectable, ɵNOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { FormControl, FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { IBaxModelMaszynyNoweFilterLine } from '../../interfaces/i-bax-model-maszyny-nowe-filter-line';
 import { IBaxModelMaszynyNoweFilterGroup } from '../../interfaces/i-bax-model-maszyny-nowe-filter-group';
@@ -9,10 +9,10 @@ import { BAX_MODEL_SPEC_LIST_GROUPS } from '../../data/bax-model-spec-groups';
 import { Observable, of } from 'rxjs';
 import { IBaxModelSpecGroup } from '../../interfaces/i-bax-model-spec-group';
 import { IBaxModelSpecLine } from '../../interfaces/i-bax-model-spec-line';
-import { map, debounceTime, filter, switchMap } from 'rxjs/operators';
+import { map, debounceTime } from 'rxjs/operators';
 import { IBaxModelFilter } from '../../interfaces/i-bax-model-filter';
 import { MaszynyNoweServicesModule } from './maszyny-nowe-services.module';
-import { ok } from 'assert';
+import { Params } from '@angular/router';
 
 @Injectable({
   providedIn: MaszynyNoweServicesModule
@@ -25,9 +25,14 @@ export class MaszynyNoweService {
   isDataReady: boolean;
   isFilterLengthCount: boolean = true;
   isModelSpecCardInfo: FormControl = new FormControl(false);
+  isQueryParams: boolean;
 
   maszynyNoweList: IBaxModelMaszynaNowa[] = [];
   maszynyNoweListAvailable: IBaxModelMaszynaNowa[] = [];
+
+  queryParamsMarka: string;
+  queryParamsBranza: string;
+  queryParmasModelSearch: string;
 
 
 
@@ -43,60 +48,31 @@ export class MaszynyNoweService {
     this.initObservables();
   }
 
-  initData() {
+  initData(queryParams: Params) {
     this.filterAvailable = this.getMaszynyNoweFilters();
     this.filterGroupsAvailable = this.getFilterNumberLineGroups();
+
+    this.queryParamsFilter(queryParams);
+
+    this.prepModelSearch()
     this.prepCheckboxGroupsBranzaList();
     this.prepCheckboxGroupsMarkaList();
     this.prepCheckboxGroupsZasilanieList();
-    this.clearFilterGroup();
+    // this.clearFilterGroup();
+    this.filterForm$.markAsPristine();
     this.isDataReady = true;
   }
 
-  private checkIfFilterLineFits(dest: IBaxModelMaszynaNowa, filterLines: IBaxModelMaszynyNoweFilterLine[]): boolean {
-    let res: boolean = false;
-
-    for (let i = 0; i < filterLines.length; i++) {
-      const filter = filterLines[i];
-      const prop = filter.name;
-
-      if (filter.filterType == IBaxModelMaszynyNoweFilterTypeEnum.checkboxIf) {
-        //
-        // if there are multiple value checkboxFieldName for one checkbox 'name',
-        // generate one filterLine with "name" combined '|' between them
-        //
-        let nameValuesArr: string[] = (<string>filter.name).split('|');
-        const checkFieldNameValue = dest[filter.checkboxFieldName];
-        res =
-          checkFieldNameValue &&
-            nameValuesArr.some(f => f == (<string>checkFieldNameValue.toLocaleLowerCase()))
-            // ((<string>checkFieldNameValue).toLocaleLowerCase() == filter.name.toLocaleLowerCase())
-            ? true : false;
-        if (res) { continue; } else { break; }
-      }
-
-
-      if (filter.filterType == IBaxModelMaszynyNoweFilterTypeEnum.numberMoreLess) {
-        const propValue = dest[prop];
-        res = (propValue && propValue >= filter.minFilter && propValue <= filter.maxFilter) ? true : false;
-        if (res) { continue; } else { break; }
-      }
-
-      if (filter.filterType == IBaxModelMaszynyNoweFilterTypeEnum.stringSearch && filter.searchPhrase) {
-        const propValue = dest[prop];
-        res = (propValue && <string>propValue).toLowerCase().includes(filter.searchPhrase.toLowerCase())
-        if (res) { continue; } else { break; }
-      }
-    };
-
-    return res;
-  }
 
   clearFilterGroup() {
     this.filterNumberSelect$.reset(null, { emitEvent: false });
     this.filterNumberArr$.controls = [];
-    (<FormControl>this.modelSearchGroup$.get('searchPhrase')).setValue("", { emitEvent: false });
+    
+    this.modelSearchFormControl$.setValue("", { emitEvent: false });
+     
+    
     this.setCheckboxGroupsToChecked();
+    
     this.maszynyNoweList = [...this.maszynyNoweListAvailable];
     this.filterForm$.markAsPristine();
   }
@@ -157,11 +133,6 @@ export class MaszynyNoweService {
         return;
       }
       modelFieldNames.forEach(filed => {
-        let searchFilterLine = <IBaxModelMaszynyNoweFilterLine>{
-          filterType: IBaxModelMaszynyNoweFilterTypeEnum.stringSearch,
-          name: filed,
-          searchPhrase: value
-        };
       })
     }
   }
@@ -434,7 +405,6 @@ export class MaszynyNoweService {
     //
     this.maszynyNoweListAvailable.forEach(maszyna => {
 
-      let isOk: boolean;
       //
       // check if any of checkbox filters group fits
       //
@@ -509,6 +479,16 @@ export class MaszynyNoweService {
 
 
 
+  private queryParamsFilter(queryParams: Params) {
+    this.queryParamsBranza = queryParams["branza"];
+    this.queryParamsMarka = queryParams["marka"];
+    this.queryParmasModelSearch = queryParams["search"];
+
+
+    this.isQueryParams = (this.queryParmasModelSearch || this.queryParamsMarka || this.queryParamsBranza) ? true : false;
+  }
+
+
 
   private prepCheckboxGroupsBranzaList() {
     let branzaGroup$ = <FormArray>this.filterCheckboxGroupArr$.get('branza');
@@ -527,13 +507,12 @@ export class MaszynyNoweService {
 
   private prepCheckboxGroupsMarkaList() {
     let markaGroup$ = <FormArray>this.filterCheckboxGroupArr$.get('marka');
-    this.getMarkaList().forEach(branza => {
-
+    this.getMarkaList().forEach(marka => {
       markaGroup$.push(this.getFilterLineFormGroup$(<IBaxModelMaszynyNoweFilterLine>{
         filterType: IBaxModelMaszynyNoweFilterTypeEnum.checkboxIf,
-        name: branza,
+        name: marka,
         checkboxFieldName: 'marka',
-        checkboxValue: true,
+        checkboxValue: this.isQueryParams ? (this.queryParamsMarka.toLowerCase() == marka.toLowerCase() ? true : false) : true
       }));
 
     });
@@ -554,6 +533,10 @@ export class MaszynyNoweService {
     });
   }
 
+
+  private prepModelSearch() {
+    this.modelSearchFormControl$.setValue(this.isQueryParams && this.queryParmasModelSearch ? this.queryParmasModelSearch : '');
+  }
 
 
   private getBranzaList() {
@@ -635,6 +618,10 @@ export class MaszynyNoweService {
 
   get modelSearchGroup$(): FormGroup {
     return <FormGroup>this.filterSearchArr$.controls[0];
+  }
+
+  get modelSearchFormControl$(): FormControl {
+    return (<FormControl>this.modelSearchGroup$.get(this.getFilterSearchFieldName()))
   }
 
   get filterNumberArr$(): FormArray {
