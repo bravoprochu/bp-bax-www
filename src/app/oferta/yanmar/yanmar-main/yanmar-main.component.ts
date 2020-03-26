@@ -40,20 +40,20 @@ export class YanmarMainComponent implements OnInit {
 
     
 
-    this.router.events.pipe(
-      filter(f=>f instanceof NavigationEnd)
-    )
-    .subscribe(
-         (_routerEvents:any)=>{
-              console.log('_routerEvents subs:', _routerEvents);
-               const t = document.querySelector('app-yanmar-main');
-               //t.scrollIntoView();
-               //t.scrollTo(0,0);
+    // this.router.events.pipe(
+    //   filter(f=>f instanceof NavigationEnd)
+    // )
+    // .subscribe(
+    //      (_routerEvents:any)=>{
+    //           console.log('_routerEvents subs:', _routerEvents);
+    //            const t = document.querySelector('app-yanmar-main');
+    //            //t.scrollIntoView();
+    //            //t.scrollTo(0,0);
               
-         },
-         (error)=>console.log('_routerEvents error', error),
-         ()=>console.log('_routerEvents completed..')
-    );
+    //      },
+    //      (error)=>console.log('_routerEvents error', error),
+    //      ()=>console.log('_routerEvents completed..')
+    // );
 
 
 

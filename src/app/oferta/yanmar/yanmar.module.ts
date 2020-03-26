@@ -7,6 +7,7 @@ import { YanmarMainComponent } from './yanmar-main/yanmar-main.component';
 import { OfertaCommonModule } from '../oferta-common/oferta-common.module';
 import { CardPersonModule } from 'src/app/common/card-person/card-person.module';
 import { PreloadDirectivesModule } from 'src/app/shared/directives/preload-directives/preload-directives.module';
+import { MaszynyNoweModule } from '../maszynyNowe/maszyny-nowe.module';
 
 @NgModule({
   declarations: [YanmarMainComponent],
@@ -16,7 +17,9 @@ import { PreloadDirectivesModule } from 'src/app/shared/directives/preload-direc
     OfertaCommonModule,
     CardPersonModule,
     SharedModule,
-    YanmarRoutingModule
+    YanmarRoutingModule,
+    MaszynyNoweModule
+
   ],
   exports: [YanmarMainComponent]
 })
