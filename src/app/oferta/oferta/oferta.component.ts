@@ -59,15 +59,6 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
     this.initBreakPointObserver();
     this.ofertaItems = [
       {
-        brandColor: this.cardPersonCF.getBrandHashColor(BAX_BRANDS.BAX),
-        footerImgSrc: '../../../assets/oferta/1x1/bax_ofertaItem_katalogMaszyn.png',
-        headerImgSrc: '../../../assets/svg/logotypy/logo_bax.svg',
-        markaCss: 'bax-gradient',
-        subtitle: 'Nowe maszyny Sennebogen, Yanmar',
-        routerLink: 'maszynyNowe',
-        title: 'Katalog maszyn'
-      },
-      {
         brandColor: this.cardPersonCF.getBrandHashColor(BAX_BRANDS.Sennebogen),
         footerImgSrc: '../../../assets/oferta/1x1/sennebogen/sennebogen 835 E mobile 04.JPG',
         headerImgSrc: '../../../assets/svg/logotypy/logo_sennebogen.svg',
@@ -102,6 +93,15 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
         subtitle: 'Autoryzowany dealer marki',
         routerLink: 'guidetti',
         title: 'marka'
+      },
+      {
+        brandColor: this.cardPersonCF.getBrandHashColor(BAX_BRANDS.BAX),
+        footerImgSrc: '../../../assets/oferta/1x1/bax_ofertaItem_katalogMaszyn.png',
+        headerImgSrc: '../../../assets/svg/logotypy/logo_bax.svg',
+        markaCss: 'bax-gradient',
+        subtitle: 'Nowe maszyny Sennebogen, Yanmar',
+        routerLink: 'maszynyNowe',
+        title: 'Katalog maszyn'
       },
       {
         brandColor: this.cardPersonCF.getBrandHashColor(BAX_BRANDS.BAX),
