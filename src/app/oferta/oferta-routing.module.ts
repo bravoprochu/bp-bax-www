@@ -18,6 +18,7 @@ const routes: Routes = [
     path: '',
     component: OfertaComponent
   },
+
   {
     path: 'czesci',
     loadChildren: () => import('./czesci/czesci.module').then(m => m.CzesciModule),
@@ -64,11 +65,7 @@ const routes: Routes = [
     //component: OfertaComponent
   },
 
-  // {
-  //   path: '',
-  //   redirectTo: '',
-  //   pathMatch: 'full'
-  // }
+
 ];
 
 @NgModule({

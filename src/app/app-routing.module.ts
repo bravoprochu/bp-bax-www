@@ -14,6 +14,16 @@ const routes: Routes = [
     loadChildren: () => import('./news/news.module').then(m => m.NewsModule),
     data: {animation: 'news'}
   },
+  {
+    path: 'aktualnosci',
+    redirectTo: 'news',
+    pathMatch: 'prefix'
+  },
+  {
+    path: 'nowosci',
+    redirectTo: 'news',
+    pathMatch: 'prefix'
+  },
   // {
   //   path: 'offer',
   //   loadChildren: './oferta/maszynyNowe/maszyny-nowe.module#MaszynyNoweModule',
@@ -27,7 +37,7 @@ const routes: Routes = [
   {
     path:'oferta',
     redirectTo: 'offer',
-    pathMatch: 'full'
+    pathMatch: 'prefix'
   },
   {
     path: 'contact', 
@@ -46,9 +56,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    // component: HomeComponent,
-    // data: {animation: 'home'}
-    redirectTo: '/news',
+    redirectTo: 'news',
     pathMatch: 'full'
   },
   {
