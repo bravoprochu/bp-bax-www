@@ -1,4 +1,4 @@
-<div #container>
+<div #container class="model-maszyny">
   <svg *ngIf="!isReady" [attr.viewBox]="preloaderViewBox" preserveAspectRatio="xMinYMin slice" x="0" y="0" width="100%"
     xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
     <defs>
@@ -16,7 +16,7 @@
 
 
 
-  <div >
+  <div>
     <svg style="margin: 0px; padding: 0px;" [ngSwitch]="model.markaId" *ngIf="isReady" x="0" y="0" width="100%"
     viewBox="0 0 720 405" preserveAspectRatio="xMinYMin slice" xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns="http://www.w3.org/2000/svg">
@@ -54,8 +54,10 @@
       <app-model-maszyny-first [model]="model"></app-model-maszyny-first>
     </mat-tab>
     <mat-tab label="Spec"> 
-      <app-model-maszyny-spec [model]="model"></app-model-maszyny-spec>
-       </mat-tab>
+        <div class="model-maszyny-spec-container">
+          <app-model-maszyny-spec [model]="model"></app-model-maszyny-spec>
+        </div>
+      </mat-tab>
     <mat-tab label="Extra"> 
       Extra info <br>
       <a [routerLink]="['../', model.id]">Link {{model.id}}</a>

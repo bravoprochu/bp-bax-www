@@ -1,15 +1,16 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, Input, ChangeDetectorRef } from '@angular/core';
 import { IBaxModelMaszynyNoweFilterLine } from '../../interfaces/i-bax-model-maszyny-nowe-filter-line';
 import { PantoneToHexService } from 'src/app/pantoneToHex/pantone-to-hex.service';
 import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
-import { Subject } from 'rxjs';
+import { Subject, of, timer } from 'rxjs';
 import { bp_anim_pulseText } from 'src/app/animations/bp_anim_pulse-text';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, timeout, delay, switchMap, tap } from 'rxjs/operators';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { MaszynyNoweService } from '../maszynyNoweServices/maszyny-nowe.service';
-import {MatDrawer } from '@angular/material/sidenav';
+import { MatDrawer } from '@angular/material/sidenav';
+import { MaszynyNoweDataFactoryService } from '../maszynyNoweServices/maszyny-nowe-data-factory.service';
 
 
 @Component({
@@ -21,17 +22,20 @@ import {MatDrawer } from '@angular/material/sidenav';
   ]
 })
 export class MaszynyNoweComponent implements OnInit, AfterViewInit {
-  @ViewChild('drawer', {static: true }) drawer: MatDrawer;
+  @ViewChild('drawer', {static: false}) drawer: MatDrawer;
+  @Input('queryParams') queryParams: Params;
   
 
   colorEven: string;
   colorOdd: string;
   filterData: IBaxModelMaszynyNoweFilterLine[] = [];
   filterForm$: FormGroup;
+  isDataLoaded: boolean;
   isLengthCount: boolean = true;
-  isSidenavOpen: boolean = false;
+  isSidenavOpen: boolean;
   isSmall:boolean;
   mqAlias: string;
+  routeParams: Params;
 
   
   
@@ -46,6 +50,7 @@ export class MaszynyNoweComponent implements OnInit, AfterViewInit {
 
 
   constructor(
+    private df: MaszynyNoweDataFactoryService,
     public mnSrv: MaszynyNoweService,
     private cf: CommonFunctionsService,
     private pantoSrv: PantoneToHexService,
@@ -55,21 +60,14 @@ export class MaszynyNoweComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-    const _ROUTE_PARAMS =  this.activatedRoute.snapshot.queryParams;
-
-    const _data = this.activatedRoute.snapshot.data['data'];
-
-    this.mnSrv.maszynyNoweListAvailable = _data;
-    if(!this.mnSrv.isDataReady){
-      this.mnSrv.initData(_ROUTE_PARAMS);
-    }
     
+    this.isDataLoaded = false;
 
+    this.initRouteParams();
+    this.initData();
 
 
     this.cf.metaTitleUpdate('maszyny przeładunkowe Sennebogen, maszyny budowlane Yanmar');
-
-
 
     
     const colorPalete = this.pantoSrv.getNextPaletteColors("283", 2, 1);
@@ -90,18 +88,65 @@ export class MaszynyNoweComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-   this.isSidenavOpen=false;
+    of(1).pipe(
+     tap(()=>{
+      this.mnSrv.isModelSpecCardInfo.setValue(true);
+      console.log('cardInfo to true');
+     },
+    ),
+    delay(3000),
+    tap(()=>{
+
+      if(!this.isSidenavOpen) {
+        this.isSidenavOpen = true;
+      }   
+    }),
+    delay(2000),
+    tap(()=>{
+      this.mnSrv.isModelSpecCardInfo.setValue(false);
+    })
+   )
+   .subscribe(
+        (sideNavOpen_timeout$:any)=>{
+             console.log('sideNavOpen_timeout$ subs:', sideNavOpen_timeout$);
+             this.mnSrv.isModelSpecCardInfo.setValue(false, {emitEvent: true});
+             console.log(this.mnSrv.isModelSpecCardInfo.value);
+             
+        },
+        (error)=>console.log('sideNavOpen_timeout$ error', error),
+        ()=>console.log('sideNavOpen_timeout$ completed..')
+   );
+
    
-   setTimeout(() => {
-     if(!this.isSidenavOpen) {
-       this.isSidenavOpen = true;
-     }
-   }, 3000);
+
+
   }
 
 
-  test(){
-    console.log(this.mnSrv.filterForm$);
+
+  initData() {
+    // const _data = this.activatedRoute.snapshot.data['data'];
+    this.df.getList()
+    .subscribe(
+          (_maszynyNoweAll:any)=>{
+              // console.log('_maszynyNoweAll subs:', _maszynyNoweAll);
+              this.mnSrv.maszynyNoweListAvailable = _maszynyNoweAll;
+              
+              //
+              // cached filter
+              //
+              
+              this.mnSrv.initData(this.routeParams);
+              this.isDataLoaded = true;
+
+          },
+          (error)=>console.log('_maszynyNoweAll error', error),
+          ()=>console.log('_maszynyNoweAll completed..')
+    );
+  }
+
+  initRouteParams() {
+    this.routeParams =  this.queryParams ? this.queryParams : this.activatedRoute.snapshot.queryParams;
   }
 
 
@@ -114,7 +159,7 @@ export class MaszynyNoweComponent implements OnInit, AfterViewInit {
   }
 
   drawerClose(){
-    this.drawer.open();
+    this.isSidenavOpen = !this.isSidenavOpen;
   }
   
   drawerWidth(): number {

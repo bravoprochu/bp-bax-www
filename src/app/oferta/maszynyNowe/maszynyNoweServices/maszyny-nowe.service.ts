@@ -22,9 +22,8 @@ export class MaszynyNoweService {
   filterNumberSelect$: FormControl = new FormControl();
   filterAvailable: IBaxModelMaszynyNoweFilterLine[] = [];
   filterGroupsAvailable: IBaxModelMaszynyNoweFilterGroup[] = [];
-  isDataReady: boolean;
   isFilterLengthCount: boolean = true;
-  isModelSpecCardInfo: FormControl = new FormControl(false);
+  isModelSpecCardInfo: FormControl = new FormControl(true);
   isQueryParams: boolean;
 
   maszynyNoweList: IBaxModelMaszynaNowa[] = [];
@@ -49,8 +48,12 @@ export class MaszynyNoweService {
   }
 
   initData(queryParams: Params) {
+
+    this.maszynyNoweList = [];  
+
     this.filterAvailable = this.getMaszynyNoweFilters();
     this.filterGroupsAvailable = this.getFilterNumberLineGroups();
+
 
     this.queryParamsFilter(queryParams);
 
@@ -60,7 +63,6 @@ export class MaszynyNoweService {
     this.prepCheckboxGroupsZasilanieList();
     // this.clearFilterGroup();
     this.filterForm$.markAsPristine();
-    this.isDataReady = true;
   }
 
 
@@ -492,6 +494,7 @@ export class MaszynyNoweService {
 
   private prepCheckboxGroupsBranzaList() {
     let branzaGroup$ = <FormArray>this.filterCheckboxGroupArr$.get('branza');
+    branzaGroup$.controls = [];
     this.getBranzaList().forEach(branza => {
 
       branzaGroup$.push(this.getFilterLineFormGroup$(<IBaxModelMaszynyNoweFilterLine>{
@@ -507,6 +510,8 @@ export class MaszynyNoweService {
 
   private prepCheckboxGroupsMarkaList() {
     let markaGroup$ = <FormArray>this.filterCheckboxGroupArr$.get('marka');
+    markaGroup$.controls = [];
+
     this.getMarkaList().forEach(marka => {
       markaGroup$.push(this.getFilterLineFormGroup$(<IBaxModelMaszynyNoweFilterLine>{
         filterType: IBaxModelMaszynyNoweFilterTypeEnum.checkboxIf,
@@ -521,6 +526,8 @@ export class MaszynyNoweService {
 
   private prepCheckboxGroupsZasilanieList() {
     let zasilanieGroup$ = <FormArray>this.filterCheckboxGroupArr$.get('zasilanie');
+    zasilanieGroup$.controls = [];
+
     this.getZasilanieList().forEach(zasilanie => {
 
       zasilanieGroup$.push(this.getFilterLineFormGroup$(<IBaxModelMaszynyNoweFilterLine>{

@@ -22,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSliderModule } from '@angular/material/slider';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
@@ -39,6 +40,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
 
     MatButtonModule,
     MatCardModule,
@@ -51,10 +54,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MatSelectModule,
     MatToolbarModule,
     MatSidenavModule,
-
-    FormsModule,
-    ReactiveFormsModule,
-
+    MatSliderModule,
 
 
 
@@ -62,8 +62,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MaszynyNoweRoutingModule,
   ],
   exports: [
-    
-    // SharedModule
+    MaszynyNoweComponent
   ],
 })
 export class MaszynyNoweModule { }

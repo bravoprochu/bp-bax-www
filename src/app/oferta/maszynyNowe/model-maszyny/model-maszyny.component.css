@@ -1,3 +1,8 @@
+.model-maszyny {
+    padding: 10px;
+}
+
+
 .path {
     stroke-dasharray: 300;
     stroke-dashoffset: 200;
@@ -68,6 +73,10 @@
 
 
 
+.model-maszyny-spec-container {
+    max-height: 625px;  
+    overflow-y: auto;
 
+}
 
 
