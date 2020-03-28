@@ -1,15 +1,12 @@
-import { Component, OnInit, HostListener, AfterViewInit, ElementRef, NgZone, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { ScrollDispatcher, CdkScrollable } from '@angular/cdk/scrolling';
-import { RouterOutlet, Router, Event, NavigationStart, NavigationEnd, NavigationCancel, NavigationError, ResolveStart, ResolveEnd, ActivatedRoute } from '@angular/router';
+import { Router, Event, NavigationStart, NavigationEnd, NavigationCancel, NavigationError, ResolveStart, ResolveEnd, ActivatedRoute, RouterOutlet } from '@angular/router';
 import { routeAnimation } from './animations/routeAnimations';
-import { CommonFunctionsService } from './shared/common-functions.service';
-import { Subject } from 'rxjs';
-import { takeUntil, map, merge } from 'rxjs/operators';
-import { BP_ANIM_ENTER_LEAVE_FROM_SIDE } from './animations/bp_anim_apear_from_side';
+import { Subject, fromEvent } from 'rxjs';
+import { takeUntil, debounceTime, map } from 'rxjs/operators';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { bp_anim_width } from './animations/bp_anim_width';
-import { RouteAnimationService } from './route-animation.service';
-import { AnimationEvent } from '@angular/animations';
+import { BP_ANIM_ENTER_LEAVE_FROM_SIDE } from './animations/bp_anim_enter_leave_from_side';
 
 
 @Component({
@@ -26,7 +23,7 @@ import { AnimationEvent } from '@angular/animations';
 export class AppComponent implements OnInit {
   @ViewChild('mainContent', {static: true }) mainContent: ElementRef;
   prepareRoute(outlet: RouterOutlet) {
-    // return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
   isInProgress: boolean;
   isResolving: boolean;
@@ -34,7 +31,7 @@ export class AppComponent implements OnInit {
   isSmall: boolean;
   isTrue: boolean;
   text: string;
-  
+
 
   ngOnDestroy(): void {
     this.isDestroyed$.next(true);
@@ -48,18 +45,30 @@ export class AppComponent implements OnInit {
    *
    */
   constructor(
-    private cf: CommonFunctionsService,
     private scrollDispatcher: ScrollDispatcher,
     private ngZone: NgZone,
     private mediaObserver: MediaObserver,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private routeAnimationSrv: RouteAnimationService
-  ) {
+    private elRef: ElementRef  ) {
 
   }
 
   ngOnInit() {
+
+    // fromEvent(this.elRef.nativeElement, 'mousemove')
+    // .pipe(
+    //   debounceTime(250),
+    // )
+    // .subscribe(
+    //      (_mouseMove: any)=>{
+    //           console.log('_mouseMove subs:', _mouseMove.clientY);
+              
+    //      },
+    //      (error)=>console.log('_mouseMove error', error),
+    //      ()=>console.log('_mouseMove completed..')
+    // );
+
+
     this.router.events.subscribe(
       (_data: Event) => {
         this.checkRouterEvent(_data);
@@ -95,8 +104,7 @@ export class AppComponent implements OnInit {
       )
   }
 
-  animWidthIsDone(ev: AnimationEvent) {
-    let _data = this.activatedRoute.snapshot.data;
+  animWidthIsDone() {
     this.isResolving = true;
     //anim :leave
     // if(!ev.fromState) {

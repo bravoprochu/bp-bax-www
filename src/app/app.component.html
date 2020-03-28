@@ -1,4 +1,4 @@
-<div @enterLeaveFromSide *ngIf="isScrollShown" class="scroll-to-top" (click)="scrollToTop()"></div>
+<div @bpAnimEnterLeaveFromSide *ngIf="isScrollShown" class="scroll-to-top" (click)="scrollToTop()"></div>
 
 <!-- <div *ngIf="isInProgress" @animWidth (@animWidth.done)="animWidthIsDone($event)">
         <div class="is-in-progress">
@@ -10,11 +10,6 @@
         <div class="lds-roller" *ngIf="isResolving && isInProgress">
         </div>
 </div> -->
-
-
-
-
-
 
 
 <section class="app-container">
