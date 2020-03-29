@@ -1,9 +1,16 @@
-.icon-space-betwwen {
-    margin-right: 5px;
+.maszyny-nowe-container {
+    position: relative;
+    overflow: hidden;
+    overflow-y: hidden;
+    min-height: 150px;
 }
 
-.filtry-info-text {
-    font-size: 0.6em;
-    margin-left: 10px;
 
+
+.option-floating-button {
+    position: fixed;
+    right: 25px;
+    z-index: 10;
 }
+
+

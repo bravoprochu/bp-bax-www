@@ -24,9 +24,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSliderModule } from '@angular/material/slider';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MaszynyNoweFilterComponent } from './maszyny-nowe-filter/maszyny-nowe-filter.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
+  entryComponents: [
+  ],
   declarations: [
     ModelSpecComponent,
     ModelListComponent,
@@ -36,16 +42,20 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ModelMaszynySpecLineComponent,
     MaszynyNoweComponent,
     ModelMaszynyFullComponent,
+    MaszynyNoweFilterComponent
+    
   ],
   imports: [
     CommonModule,
     SharedModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
 
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+    MatDialogModule,
     MatTabsModule,
     MatIconModule,
     MatInputModule,
@@ -62,7 +72,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MaszynyNoweRoutingModule,
   ],
   exports: [
-    MaszynyNoweComponent
+    MaszynyNoweComponent,
   ],
 })
 export class MaszynyNoweModule { }

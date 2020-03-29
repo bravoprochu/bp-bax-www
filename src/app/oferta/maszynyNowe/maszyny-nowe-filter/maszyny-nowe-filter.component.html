@@ -1,0 +1,70 @@
+<div class="filter-dialog-container">
+  <div mat-dialog-actions fxLayout fxLayoutAlign="space-between center" class="filter-content">
+    <div class="filtry-info-text">
+      <span *ngIf="!mnSrv.isFilterLengthCount">&nbsp;(przeliczam...)</span>
+      <span *ngIf="mnSrv.maszynyNoweList.length > 0 && mnSrv.isFilterLengthCount">(znaleziono: </span>
+      <span *ngIf="mnSrv.isFilterLengthCount && mnSrv.maszynyNoweList.length > 0" class="mat-body-2"
+        @pulseText>&nbsp;{{mnSrv.maszynyNoweList.length}})</span>
+      <span *ngIf="mnSrv.isFilterLengthCount && mnSrv.maszynyNoweList.length == 0">(nie znaleziono
+        maszyn)</span>
+    </div>
+    <button [disabled]="mnSrv.maszynyNoweList.length==0" mat-mini-fab [mat-dialog-close]="'bye !'"><mat-icon>close</mat-icon></button>
+    <!-- <button mat-button  cdkFocusInitial>Ok</button> -->
+  </div>
+
+  <div mat-dialog-content>
+    <div class="mat-caption">Marka</div>
+    <div fxLayoutGap="10px">
+      <mat-checkbox [formControl]="marka.get('checkboxValue')" *ngFor="let marka of markaList$.controls">
+        {{marka.value.name}}</mat-checkbox>
+    </div>
+
+    <div class="mat-caption">Branża</div>
+    <div fxLayoutGap="10px">
+      <mat-checkbox [formControl]="branza.get('checkboxValue')" *ngFor="let branza of branzaList$.controls">
+        {{branza.value.name}}</mat-checkbox>
+    </div>
+
+    <div class="mat-caption">Zasilanie</div>
+    <div fxLayoutGap="10px">
+      <mat-checkbox [formControl]="zasilanie.get('checkboxValue')"
+        *ngFor="let zasilanie of zasilanieList$.controls">
+        {{zasilanie.value.name}}</mat-checkbox>
+    </div>
+
+
+    <div [formGroup]="modelSearch$">
+      <mat-form-field fxFill>
+        <input type="search" matInput placeholder="wyszukaj po nazwie modelu" formControlName="searchPhrase">
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <mat-select placeholder="wybierz atrybuty dla filtru" [formControl]="filterNumberSelect$" multiple>
+        <mat-optgroup *ngFor="let group of mnSrv.filterGroupsAvailable" [label]="group.groupName">
+          <mat-option *ngFor="let filter of group.filters" [value]="filter">{{filter.label}}
+          </mat-option>
+        </mat-optgroup>
+      </mat-select>
+    </mat-form-field>
+
+    <div>
+      <div *ngFor="let filter of filterNumberArr$.controls even as isEven; odd as isOdd" fxLayout="column"
+        fxLayoutAlign="center center" [style.backgroundColor]="isEven ? colorEven : colorOdd">
+        <div style="padding: 10px" class="mat-body-1">{{filter.value.label}} <strong>{{filter.value.minFilter}}
+            -
+            {{filter.value.maxFilter}}</strong></div>
+        <div fxLayout="row">
+          <mat-slider fxFlex="50" thumbLabel [min]="filter.value.min" [max]="filter.value.maxFilter"
+            [formControl]="filter.get('minFilter')"></mat-slider>
+          <mat-slider fxFlex="50" thumbLabel [min]="filter.value.minFilter" [max]="filter.value.max"
+            [formControl]="filter.get('maxFilter')"></mat-slider>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+ 
+  </div>

@@ -1,0 +1,19 @@
+.filter-dialog-container {
+    margin: 15px;
+}
+
+.filtry-info-text {
+    font-size: 0.6em;
+    margin-left: 10px;
+}
+
+.maszyny-nowe-filter-container {
+    padding: 15px;
+    overflow-y: auto;
+}
+
+
+.filter-content {
+    margin-bottom: 5px;
+}
+
