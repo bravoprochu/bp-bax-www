@@ -1,9 +1,9 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
-import { PantoneToHexService } from 'src/app/pantoneToHex/pantone-to-hex.service';
-import { IPantoneToHex } from 'src/app/pantoneToHex/interfaces/i-pantone-to-hex';
-import { SvgCommonFunctionsService } from 'src/app/shared/svg/svg-common-functions.service';
-import { SVGElementProp } from 'src/app/shared/svg/classes/svg-element-prop';
-import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
+import { PantoneToHexService } from './node_modules/src/app/otherModules/pantoneToHex/pantone-to-hex.service';
+import { IPantoneToHex } from './node_modules/src/app/otherModules/pantoneToHex/interfaces/i-pantone-to-hex';
+import { SvgCommonFunctionsService } from './node_modules/src/app/otherModules/svg/svg-common-functions.service';
+import { SVGElementProp } from './node_modules/src/app/otherModules/svg/classes/svg-element-prop';
+import { CommonFunctionsService } from './node_modules/src/app/shared/common-functions.service';
 import { IContactCard } from '../interfaces/i-contact-dzial';
 import { ContactService } from '../contact.service';
 

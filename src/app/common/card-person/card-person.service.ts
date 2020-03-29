@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ICardPerson } from '../interfaces/i-card-person';
 import { BAX_BRANDS } from '../enums/bax-brands.enum';
-import { baxBaseModelType } from 'src/app/oferta/enums/bax-base-model-type-enum';
+import { baxBaseModelType } from 'src/app/sites/oferta/enums/bax-base-model-type-enum';
 
 
 

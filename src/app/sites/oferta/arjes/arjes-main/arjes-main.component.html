@@ -1,0 +1,38 @@
+<div class="dots-container">
+    <div class="oferta-body">
+
+        <app-oferta-title-block [title]="'Marka Arjes w BAX'"></app-oferta-title-block>
+    
+        <div class="oferta-main-text" [ngClass]="cssMainTextCols">
+            <h3>Rozdrabniacze niemieckiej firmy <strong>ARJES</strong> to specjalnie zaprojektowane urzadzenia do rozdrobnienia każdego
+                rodzaju materiału. Dzięki opatentowanej technologii z powodzeniem radzą sobie min. z: podkładami kolejowymi, stalą, karoseriami samochodowymi, silnikami, chłodnicami, zmieszanymi odpadami komunalnymi, drewnem, korzeniami, gruzem, asfaltem, materacami, meblami, dywanami, odpadami zielonymi, oponami i wielu innymi odpadami.
+            </h3>
+        </div>
+        <div class="oferta-pics-container arjes-transparent-gradient arjes-border">
+            <div baxImgPreloader [src]="'../../../../assets/oferta/1x1/arjes/impaktor_250_evo_bauschutt_01-1024x768.JPG'"></div>
+            <div baxImgPreloader [src]="'../../../../assets/oferta/1x1/arjes/arjes VZ_850_D_02-1024x768.JPG'"></div>
+        </div>
+
+        <div class="oferta-color-divider arjes-gradient"></div>
+        
+        <app-oferta-title-block [title]="'Przedstawiciel handlowy'"></app-oferta-title-block>
+
+        <div class="oferta-card-container">
+            <app-card-person *ngFor="let contact of contactCards" [contactInfo]="contact" class="oferta-card-contact"></app-card-person>
+        </div>
+
+
+        <div class="oferta-color-divider arjes-gradient"></div>
+
+        <div class="youtube-clips-list arjes-transparent-gradient white-border">
+            <a href="https://youtu.be/z_b1NVAdrXY" target="_blank">
+                <div class="youtube-overlay">
+                    <div baxImgPreloader [src]="'../../../../assets/images/news/bax-arjes_squad_ZDAntczak_thumbnail.jpg'"></div>
+                </div>
+            </a>
+        </div>
+
+
+
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="dots-container">
+    <div class="oferta-body">    
+
+        <app-oferta-title-block [title]="'Dział części'"></app-oferta-title-block>
+    
+        <div class="oferta-main-text" [ngClass]="cssMainTextCols">
+            <h3>Zapewniamy części do maszyn między innymi takich producentów jak Sennebogen, Yanmar, Case czy Merlo. Gwarantujemy fachowe doradctwo jak i niezwłoczną wysyłkę sprawdzonymi firmami spedycyjnymi. <br/>
+                Systematycznie oferujemy promocje cenowe na oryginalne części marki Yanmar. Indywidualne, profesjonalne podejście do każdego klienta jest naszą domeną. <br/>
+                Zapraszamy do kontaktu.
+
+            </h3>
+        </div>
+        <!-- <div class="oferta-pics-container bax-transparent-gradient bax-border">
+            <img src="../../../../assets/oferta/1x1/serwis/logo_bax_czesci_1x1.png" />
+        </div> -->
+        <div class="oferta-color-divider bax-gradient"></div>
+        
+        <app-oferta-title-block [title]="'Kontakt'"></app-oferta-title-block>
+
+        <div class="oferta-card-container">
+            <app-card-person *ngFor="let contact of contactCards" [contactInfo]="contact" class="oferta-card-contact"></app-card-person>
+        </div>
+
+        <div class="oferta-color-divider bax-gradient"></div>
+        <app-oferta-title-block [title]="'Piątka Majami'"></app-oferta-title-block>
+
+        <div class="youtube-clips-list bax-transparent-gradient white-border">
+            <a href="https://youtu.be/lNDjKXw274Y" target="_blank">
+                <div class="youtube-overlay">
+                    <div baxImgPreloader [src]="'../../../../assets/images/news/bax_piatka_majami_2019-03-18_20-mini.png'"></div>
+                </div>
+            </a>
+        </div>
+
+        
+
+
+
+
+    </div>
+</div>

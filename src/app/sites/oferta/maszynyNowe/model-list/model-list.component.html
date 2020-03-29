@@ -1,0 +1,7 @@
+<div fxLayout="row wrap" fxLayoutGap="0px" fxLayout.xs="column" @brickList
+  [@filter]="mnSrv.maszynyNoweList.length">
+  <div class="model-list" *ngFor="let model of mnSrv.maszynyNoweList index as i" fxFlex="0 0 calc(50%-0px)" fxFlex.xs="100"
+    fxFlex.sm="0 0 calc(50% - 0px)" fxFlex.lg="0 0 calc(33%-0px)" fxFlex.gt-lg="0 0 calc(25%-0px)">
+    <app-model-maszyny [model]="model"></app-model-maszyny>
+  </div>
+</div>

@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './core/home/home.component';
+import { HomeComponent } from './sites/core-features/home/home.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
     path: 'info',
-    loadChildren: () => import('./info/info.module').then(m => m.InfoModule),
+    loadChildren: () => import('./sites/info/info.module').then(m => m.InfoModule),
     data: {animation: 'info'}
   },
   {
     path: 'news',
-    loadChildren: () => import('./news/news.module').then(m => m.NewsModule),
+    loadChildren: () => import('./sites/news/news.module').then(m => m.NewsModule),
     data: {animation: 'news'}
   },
   {
@@ -31,7 +31,7 @@ const routes: Routes = [
   // },
   {
     path: 'offer',
-    loadChildren: () => import('./oferta/oferta.module').then(m => m.OfertaModule),
+    loadChildren: () => import('./sites/oferta/oferta.module').then(m => m.OfertaModule),
     data: {animation: 'offer'}
   },
   {
@@ -41,7 +41,7 @@ const routes: Routes = [
   },
   {
     path: 'contact', 
-    loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule),
+    loadChildren: () => import('./sites/contact/contact.module').then(m => m.ContactModule),
     data: {animation: 'contact'}
   },
   {

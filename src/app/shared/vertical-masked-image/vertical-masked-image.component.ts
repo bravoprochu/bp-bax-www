@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog, DialogPosition } from '@angular/material/dialog';
-import { ImageModalViewerComponent } from '../image-modal-viewer/image-modal-viewer.component';
-import { SvgCommonFunctionsService } from '../svg/svg-common-functions.service';
+import { ImageModalViewerComponent } from '../../otherModules/imageGallery/image-modal-viewer/image-modal-viewer.component';
+import { SvgCommonFunctionsService } from '../../otherModules/svg/svg-common-functions.service';
 import { ImageGalleryPayload } from '../interfaces/image-gallery-payload';
 import { CommonFunctionsService } from '../common-functions.service';
 

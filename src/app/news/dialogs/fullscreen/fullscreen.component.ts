@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { SvgCommonFunctionsService } from 'src/app/shared/svg/svg-common-functions.service';
-import { svgLogoBaxSignOnly_white_Url } from 'src/app/shared/svg/classes/svg-bax-logo-url';
+import { SvgCommonFunctionsService } from './node_modules/src/app/otherModules/svg/svg-common-functions.service';
+import { svgLogoBaxSignOnly_white_Url } from './node_modules/src/app/otherModules/svg/classes/svg-bax-logo-url';
 import { Subject, of, interval } from 'rxjs';
 import { take, takeUntil, takeWhile, tap, startWith } from 'rxjs/operators';
 

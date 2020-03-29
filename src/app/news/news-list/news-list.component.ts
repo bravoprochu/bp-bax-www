@@ -1,14 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NewsService } from '../newsServices/news.service';
 import { INewsArticle } from '../interfaces/i-news-article';
-import { BP_ANIM_BRICK_LIST } from 'src/app/animations/bp-anim-brick-list';
+import { BP_ANIM_BRICK_LIST } from './node_modules/src/app/animations/bp-anim-brick-list';
 import { INewsArticleMini } from '../interfaces/i-news-article-mini';
-import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
 import { FormControl } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, startWith, takeWhile, takeUntil } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, startWith } from 'rxjs/operators';
 import { NewsDataFactoryService } from '../newsServices/news-data-factory.service';
 import { Subject } from 'rxjs';
-import { SvgCommonFunctionsService } from 'src/app/shared/svg/svg-common-functions.service';
+import { SvgCommonFunctionsService } from './node_modules/src/app/otherModules/svg/svg-common-functions.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FullscreenComponent } from '../dialogs/fullscreen/fullscreen.component';
 

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ICardPerson } from '../../interfaces/i-card-person';
 import { BAX_BRANDS } from '../../enums/bax-brands.enum';
-import { SvgCommonFunctionsService } from 'src/app/shared/svg/svg-common-functions.service';
+import { SvgCommonFunctionsService } from 'src/app/otherModules/svg/svg-common-functions.service';
 
 @Component({
   selector: 'app-card-person',

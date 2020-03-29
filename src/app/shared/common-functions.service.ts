@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { Subject, fromEvent, of, merge, Observable } from 'rxjs';
-import { IWindowBasicInfo } from './svg/interfaces/i-window-basic-info';
+import { IWindowBasicInfo } from '../otherModules/svg/interfaces/i-window-basic-info';
 import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
 import * as hammerjs from 'hammerjs';
 
