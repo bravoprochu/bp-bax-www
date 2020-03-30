@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ICardPerson } from 'src/app/otherModules/card-person/interfaces/i-card-person';
 import { CardPersonService } from 'src/app/otherModules/card-person/card-person.service';
 import { BAX_BRANDS } from 'src/app/shared/enums/bax-brands.enum';
+import { bp_braakpointsAll, bp_braakpointsSmall, bp_braakpointsPortrait } from '@sharedConst/bp_breakpoints';
 
 @Component({
   selector: 'app-sennebogen-main',
@@ -30,25 +31,19 @@ export class SennebogenMainComponent implements OnInit {
   }
 
   ngOnInit() {
-    const _LANDSCAPE = [Breakpoints.HandsetLandscape, Breakpoints.TabletLandscape, Breakpoints.WebLandscape];
-    const _PORTRAIT = [Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait, Breakpoints.WebPortrait];
-    const _SMALL = [Breakpoints.HandsetPortrait, Breakpoints.HandsetLandscape, Breakpoints.TabletPortrait, Breakpoints.TabletLandscape];
-    const _REST = [Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge];
-
-    this.breakpointObs.observe([..._REST]).pipe(
+    this.breakpointObs.observe(bp_braakpointsAll()).pipe(
       takeUntil(this.isDestroyed$)
     )
-    .subscribe(
-         (_breakpObs:any)=>{
-           this.cssMainTextCols = 'oferta-main-text-col-2';
-
-          if(this.breakpointObs.isMatched(_SMALL)) {
-            this.cssMainTextCols = this.breakpointObs.isMatched(_PORTRAIT) ? '' : 'oferta-main-text-col-2'
+      .subscribe(
+        (_breakpObs: any) => {
+          this.cssMainTextCols = 'oferta-main-text-col-2';
+          if (this.breakpointObs.isMatched(bp_braakpointsSmall())) {
+            this.cssMainTextCols = this.breakpointObs.isMatched(bp_braakpointsPortrait()) ? '' : 'oferta-main-text-col-2'
           }
-         },
-         (error)=>console.log('_breakpObs error', error),
-         ()=>console.log('_breakpObs completed..')
-    );
+        },
+        (error) => console.log('_breakpObs error', error),
+        () => console.log('_breakpObs completed..')
+      );
 
     this.initData();
 

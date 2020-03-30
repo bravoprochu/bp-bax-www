@@ -21,9 +21,9 @@
         <rect x="25" y="25" width="1870" height="1030" style="fill: #fff"></rect>
 
 
-        <g transform="translate(1350,0)">
+        <g transform="translate(500,0)">
           <g *ngFor="let v of circlesVert" attr.transform="translate(0, {{dotSpace * v}})" opacity="1">
-            <circle *ngFor="let h of circlesHor" [attr.cx]="50 + (dotSpace * h)" [attr.cy]="50" [attr.r]="2+ (h/5)" style="fill: #e0e0e0"></circle>
+            <circle *ngFor="let h of circlesHor index as i" [attr.cx]="dotSpace + (dotSpace * h)" [attr.opacity]="0.6" [attr.cy]="50" [attr.r]="2+ (h/5)" style="fill: #e0e0e0"></circle>
           </g>
         </g>
 
@@ -33,7 +33,7 @@
         </svg>        
 
             <g class="oferta-item-title bax-font-color">
-              <text class="bax-font-color" x="50" y="900"  font-size="100">{{oferta.title}}</text>
+              <text class="bax-font-color" x="50" y="900"  font-size="80">{{oferta.title}}</text>
               <text class="bax-font-color" x="50" y="1000" font-size="60" text-anchor="start" >{{oferta.subtitle}}</text>
             </g>
 

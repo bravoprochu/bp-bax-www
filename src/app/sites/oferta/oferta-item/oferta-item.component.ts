@@ -4,6 +4,7 @@ import { svgLogoBaxSignOnly_white_Url } from 'src/app/otherModules/svg/classes/s
 import { IOfertaItem } from '../oferta/i-oferta-item';
 import { Subject } from 'rxjs';
 
+
 @Component({
   selector: 'app-oferta-item',
   templateUrl: './oferta-item.component.svg',
@@ -16,16 +17,13 @@ export class OfertaItemComponent implements OnInit {
 
 
   constructor(
-    private svgCF: SvgCommonFunctionsService
-  ) { }
+    private svgCF: SvgCommonFunctionsService  ) { }
 
 
   isDestroyed$: Subject<boolean> = new Subject()
 
-
-
-  circlesHor: number[] = [...Array(9).keys()];
-  circlesVert: number[] = [...Array(19).keys()];
+  circlesHor: number[];
+  circlesVert: number[];
   dotSpace: number = 50;
   
 
@@ -51,10 +49,14 @@ export class OfertaItemComponent implements OnInit {
 }
 
   ngOnInit() {
+    this.circlesHor = this.isSmall ? [...Array(27).keys()] : [...Array(9).keys()];
+    this.circlesVert = this.isSmall ? [...Array(20).keys()] :  [...Array(19).keys()];
+    
+    
     this.initSvgIds();
     this.logoBax = this.svgCF.getOriginUrl(svgLogoBaxSignOnly_white_Url())
   }
-
+  
 
 
 

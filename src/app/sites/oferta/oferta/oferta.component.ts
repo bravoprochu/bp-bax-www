@@ -7,6 +7,7 @@ import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { IOfertaItem } from './i-oferta-item';
 import { CardPersonService } from 'src/app/otherModules/card-person/card-person.service';
 import { BAX_BRANDS } from 'src/app/shared/enums/bax-brands.enum';
+import { bp_braakpointsAll, bp_braakpointsSmall } from '@sharedConst/bp_breakpoints';
 
 
 @Component({
@@ -133,16 +134,13 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   initBreakPointObserver() {
-    const _LAYOUT_BASIC_VIEWS = [Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge];
-    const _SMALL = [Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Handset, Breakpoints.Tablet];
 
-
-    this.breakpointObs.observe(_LAYOUT_BASIC_VIEWS).pipe(
+    this.breakpointObs.observe(bp_braakpointsAll()).pipe(
       takeUntil(this.isDestroyed$)
     )
     .subscribe(
          (_breakpoinObserver:any)=>{
-          this.isSmall = this.breakpointObs.isMatched(_SMALL);
+          this.isSmall = this.breakpointObs.isMatched(bp_braakpointsSmall());
           this.cssOfertaContainer = this.isSmall? 'oferta-container-small' : 'oferta-container-big';
          },
          (error)=>console.log('_breakpoinObserver error', error),
@@ -154,9 +152,6 @@ export class OfertaComponent implements OnInit, OnDestroy, AfterViewInit {
   addIdx() {
     this.idx = this.idx < this.productItems.length-1 ? this.idx+1 : this.productItems.length-1;
   }
-
-
-
 
   removeIdx() {
     this.idx = this.idx <1 ? 0 : this.idx = this.idx-1;
