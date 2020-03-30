@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IMenuItem } from './interfaces/i-menu-item';
+import { IMenuItem } from '../interfaces/i-menu-item';
 
 @Injectable({
   providedIn: 'root'

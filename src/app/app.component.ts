@@ -1,12 +1,12 @@
 import { Component, OnInit, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { ScrollDispatcher, CdkScrollable } from '@angular/cdk/scrolling';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationCancel, NavigationError, ResolveStart, ResolveEnd, ActivatedRoute, RouterOutlet } from '@angular/router';
-import { routeAnimation } from './animations/routeAnimations';
+import { routeAnimation } from './shared/animations/routeAnimations';
 import { Subject, fromEvent } from 'rxjs';
 import { takeUntil, debounceTime, map } from 'rxjs/operators';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
-import { bp_anim_width } from './animations/bp_anim_width';
-import { BP_ANIM_ENTER_LEAVE_FROM_SIDE } from './animations/bp_anim_enter_leave_from_side';
+import { bp_anim_width } from './shared/animations/bp_anim_width';
+import { BP_ANIM_ENTER_LEAVE_FROM_SIDE } from './shared/animations/bp_anim_enter_leave_from_side';
 
 
 @Component({

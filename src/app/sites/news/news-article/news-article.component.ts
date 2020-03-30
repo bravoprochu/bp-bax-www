@@ -3,21 +3,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { tap, takeUntil } from 'rxjs/operators';
 import { INewsArticle } from '../interfaces/i-news-article';
 import { DomSanitizer } from '@angular/platform-browser';
-import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
+import { CommonFunctionsService } from 'src/app/shared/services/common-functions.service';
 import { Subject, timer } from 'rxjs';
 import { PantoneToHexService } from 'src/app/otherModules/pantoneToHex/pantone-to-hex.service';
 import { IPantoneToHex } from 'src/app/otherModules/pantoneToHex/interfaces/i-pantone-to-hex';
 import { SVGElementProp } from 'src/app/otherModules/svg/classes/svg-element-prop';
-import { bp_anim_SVGBorderImage as bp_anim_svgBorderImage } from 'src/app/animations/bp_anim_svg-border-image';
+import { bp_anim_SVGBorderImage as bp_anim_svgBorderImage } from 'src/app/shared/animations/bp_anim_svg-border-image';
 import { ISVGRectBorder } from 'src/app/otherModules/svg/interfaces/i-svg-rect-border';
-import { BP_ANIM_OPACITY_OVER_LEAVE } from 'src/app/animations/opacity-over-leave';
-import { BP_ANIM_GROUP_APPEARING } from 'src/app/animations/bp_anim_group_appearing';
-import { BP_ANIM_OPACITY_INIT } from 'src/app/animations/bp-anim-opacity-init';
-import { bpActiveRouteChange$ } from 'src/app/common/rxConst/bpActRouteChange';
+import { BP_ANIM_OPACITY_OVER_LEAVE } from 'src/app/shared/animations/opacity-over-leave';
+import { BP_ANIM_GROUP_APPEARING } from 'src/app/shared/animations/bp_anim_group_appearing';
+import { BP_ANIM_OPACITY_INIT } from 'src/app/shared/animations/bp-anim-opacity-init';
+import { bpActiveRouteChange$ } from 'src/app/shared/rxConst/bpActRouteChange';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { INewsPayload } from '../interfaces/i-news-payload';
 import { isNullOrUndefined } from 'util';
-import { BP_ANIM_SVG_INIT } from 'src/app/animations/bp_anim_svg-init';
+import { BP_ANIM_SVG_INIT } from 'src/app/shared/animations/bp_anim_svg-init';
 
 
 

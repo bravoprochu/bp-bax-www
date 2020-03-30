@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { takeUntil, switchMap, tap, map } from 'rxjs/operators';
-import { IMouseMovePosition } from '../article-container/interfaces/i-mouse-move-position';
+
 
 @Component({
   selector: 'app-test',
@@ -29,8 +29,7 @@ export class TestComponent implements OnInit, AfterViewInit {
     let mouseMove$ = fromEvent(svg, "mousemove").pipe(
       takeUntil(mouseLeave$),
       map((_mouseMove: MouseEvent) => {
-        this.mousePos.x = _mouseMove.clientX;
-        this.mousePos.y = _mouseMove.clientY;
+
 
         let pt = <SVGPoint>svg.createSVGPoint();
         pt.x = _mouseMove.offsetX;
@@ -63,7 +62,7 @@ export class TestComponent implements OnInit, AfterViewInit {
   }
 
 
-  mousePos: IMouseMovePosition = <IMouseMovePosition>{};
+
   rectInfo: string;
   circleInfo: string;
 

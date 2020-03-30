@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MaszynyNoweService } from '../maszynyNoweServices/maszyny-nowe.service';
 import { FormArray, FormGroup, FormControl } from '@angular/forms';
-import { bp_anim_pulseText } from 'src/app/animations/bp_anim_pulse-text';
+import { bp_anim_pulseText } from 'src/app/shared/animations/bp_anim_pulse-text';
 
 @Component({
   selector: 'app-maszyny-nowe-filter',

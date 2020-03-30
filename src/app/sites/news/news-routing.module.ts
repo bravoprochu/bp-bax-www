@@ -4,7 +4,7 @@ import { NewsListComponent } from './news-list/news-list.component';
 import { NewsArticleComponent } from './news-article/news-article.component';
 import { NewsListResolve } from './guards/news-list-resolve';
 import { NewsResolve } from './guards/news.resolve';
-import { ResolveAnimationIsDoneGuard } from '../../guards/resolve-animation-is-done.guard';
+import { ResolveAnimationIsDoneGuard } from '../../shared/guards/resolve-animation-is-done.guard';
 
 
 const routes: Routes = [

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ArjesRoutingModule } from './arjes-routing.module';
 import { ArjesMainComponent } from './arjes-main/arjes-main.component';
-import { CardPersonModule } from 'src/app/common/card-person/card-person.module';
+import { CardPersonModule } from 'src/app/otherModules/card-person/card-person.module';
 import { PreloadDirectivesModule } from 'src/app/shared/directives/preload-directives/preload-directives.module';
 import { OfertaCommonModule } from '../oferta-common/oferta-common.module';
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import { RouteAnimationService } from '../route-animation.service';
+import { RouteAnimationService } from '../../route-animation.service';
 
 
 @Injectable({

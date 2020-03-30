@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { ICardPerson } from 'src/app/common/interfaces/i-card-person';
-import { CardPersonService } from 'src/app/common/card-person/card-person.service';
-import { BAX_BRANDS } from 'src/app/common/enums/bax-brands.enum';
+import { ICardPerson } from 'src/app/otherModules/card-person/interfaces/i-card-person';
+import { CardPersonService } from 'src/app/otherModules/card-person/card-person.service';
+import { BAX_BRANDS } from 'src/app/shared/enums/bax-brands.enum';
 
 @Component({
   selector: 'app-sennebogen-main',

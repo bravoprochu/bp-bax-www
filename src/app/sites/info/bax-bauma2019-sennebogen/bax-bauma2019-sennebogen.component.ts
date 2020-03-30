@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
+import { CommonFunctionsService } from 'src/app/shared/services/common-functions.service';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs/internal/Subject';

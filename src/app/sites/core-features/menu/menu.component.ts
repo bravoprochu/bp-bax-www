@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuCommonFunctionsService } from '../../../shared/menu-common-functions.service';
+import { MenuCommonFunctionsService } from '../../../shared/services/menu-common-functions.service';
 import { IMenuItem } from '../../../shared/interfaces/i-menu-item';
 
 @Component({

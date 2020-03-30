@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { BP_ANIM_BRICK_LIST } from 'src/app/animations/bp-anim-brick-list';
-import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
+import { BP_ANIM_BRICK_LIST } from 'src/app/shared/animations/bp-anim-brick-list';
+import { CommonFunctionsService } from 'src/app/shared/services/common-functions.service';
 import * as Hammer from 'hammerjs';
 import { IBaxModelMaszynaNowa } from '../../interfaces/i-bax-model-maszyna-nowa';
-import { bp_anim_filter } from 'src/app/animations/bp_anim_filter';
-import { BP_ANIM_GROUP_APPEAR_ONLY } from 'src/app/animations/bp_anim_group_appear_only';
+import { bp_anim_filter } from 'src/app/shared/animations/bp_anim_filter';
+import { BP_ANIM_GROUP_APPEAR_ONLY } from 'src/app/shared/animations/bp_anim_group_appear_only';
 import { MaszynyNoweService } from '../maszynyNoweServices/maszyny-nowe.service';
 import { IImageGalleryPayload } from 'src/app/shared/interfaces/i-image-gallery-payload';
 import { IImageGalleryItem } from 'src/app/shared/interfaces/i-image-gallery-item';

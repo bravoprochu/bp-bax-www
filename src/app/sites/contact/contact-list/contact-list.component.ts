@@ -3,7 +3,7 @@ import { PantoneToHexService } from 'src/app/otherModules/pantoneToHex/pantone-t
 import { IPantoneToHex } from 'src/app/otherModules/pantoneToHex/interfaces/i-pantone-to-hex';
 import { SvgCommonFunctionsService } from 'src/app/otherModules/svg/svg-common-functions.service';
 import { SVGElementProp } from 'src/app/otherModules/svg/classes/svg-element-prop';
-import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
+import { CommonFunctionsService } from 'src/app/shared/services/common-functions.service';
 import { IContactCard } from '../interfaces/i-contact-dzial';
 import { ContactService } from '../contact.service';
 

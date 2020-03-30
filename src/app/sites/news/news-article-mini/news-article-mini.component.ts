@@ -4,12 +4,12 @@ import { takeUntil, switchMap, map, sampleTime } from 'rxjs/operators';
 import { AnimationPlayer } from '@angular/animations';
 import { SvgCommonFunctionsService } from 'src/app/otherModules/svg/svg-common-functions.service';
 import { ISVGPoint } from 'src/app/otherModules/svg/interfaces/i-svg-point';
-import { BP_ANIM_SCALE_ORIGIN_OVER_LEAVE } from 'src/app/animations/scale-origin-over-leave';
+import { BP_ANIM_SCALE_ORIGIN_OVER_LEAVE } from 'src/app/shared/animations/scale-origin-over-leave';
 import { SVGElementProp } from 'src/app/otherModules/svg/classes/svg-element-prop';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { BP_ANIM_ENTER_LEAVE_GROUP } from 'src/app/animations/enter-leave-group';
+import { BP_ANIM_ENTER_LEAVE_GROUP } from 'src/app/shared/animations/enter-leave-group';
 import { Router } from '@angular/router';
-import { BP_ANIM_SVG_INIT } from 'src/app/animations/bp_anim_svg-init';
+import { BP_ANIM_SVG_INIT } from 'src/app/shared/animations/bp_anim_svg-init';
 import { INewsArticleMini } from '../interfaces/i-news-article-mini';
 import { Platform} from '@angular/cdk/platform';
 

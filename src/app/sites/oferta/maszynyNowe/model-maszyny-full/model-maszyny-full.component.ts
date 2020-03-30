@@ -4,7 +4,7 @@ import { MaszynyNoweService } from '../maszynyNoweServices/maszyny-nowe.service'
 import { IBaxModel } from '../../interfaces/i-bax-model';
 import { IBaxModelMaszynaNowa } from '../../interfaces/i-bax-model-maszyna-nowa';
 import { IBaxModelSpecGroup } from '../../interfaces/i-bax-model-spec-group';
-import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
+import { CommonFunctionsService } from 'src/app/shared/services/common-functions.service';
 
 @Component({
   selector: 'app-model-maszyny-full',

@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild, Input, ElementRef, NgZone, ChangeDetectorRef } from '@angular/core';
 import { IBaxModelMaszynyNoweFilterLine } from '../../interfaces/i-bax-model-maszyny-nowe-filter-line';
 import { PantoneToHexService } from 'src/app/otherModules/pantoneToHex/pantone-to-hex.service';
-import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
+import { CommonFunctionsService } from 'src/app/shared/services/common-functions.service';
 import { FormGroup } from '@angular/forms';
 import { Subject, of } from 'rxjs';
 import { takeUntil, delay, tap, debounceTime } from 'rxjs/operators';
@@ -13,7 +13,7 @@ import { MaszynyNoweDataFactoryService } from '../maszynyNoweServices/maszyny-no
 import { MatDialog } from '@angular/material/dialog';
 import { MaszynyNoweFilterComponent } from '../maszyny-nowe-filter/maszyny-nowe-filter.component';
 import { ScrollDispatcher, CdkScrollable } from '@angular/cdk/overlay';
-import { BP_ANIM_ENTER_LEAVE_FROM_SIDE } from 'src/app/animations/bp_anim_enter_leave_from_side';
+import { BP_ANIM_ENTER_LEAVE_FROM_SIDE } from 'src/app/shared/animations/bp_anim_enter_leave_from_side';
 
 
 

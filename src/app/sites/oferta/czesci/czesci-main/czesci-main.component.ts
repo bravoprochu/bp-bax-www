@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CardPersonService } from 'src/app/common/card-person/card-person.service';
+import { CardPersonService } from 'src/app/otherModules/card-person/card-person.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Subject } from 'rxjs';
-import { ICardPerson } from 'src/app/common/interfaces/i-card-person';
+import { ICardPerson } from 'src/app/otherModules/card-person/interfaces/i-card-person';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({

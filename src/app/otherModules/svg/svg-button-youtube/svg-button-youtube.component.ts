@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BP_ANIM_SVG_INIT } from 'src/app/animations/bp_anim_svg-init';
+import { BP_ANIM_SVG_INIT } from 'src/app/shared/animations/bp_anim_svg-init';
 import { DomSanitizer } from '@angular/platform-browser';
-import { CommonFunctionsService } from '../../../shared/common-functions.service';
+import { CommonFunctionsService } from '../../../shared/services/common-functions.service';
 
 @Component({
   selector: '[svg-button-youtube]',

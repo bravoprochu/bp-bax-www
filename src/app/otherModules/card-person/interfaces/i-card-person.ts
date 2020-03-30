@@ -1,5 +1,5 @@
 import { ICardPersonContactTel } from './i-card-person-contact-tel';
-import { BAX_BRANDS } from '../enums/bax-brands.enum';
+import { BAX_BRANDS } from '../../../shared/enums/bax-brands.enum';
 
 export interface ICardPerson {
     emails: string[];
@@ -11,5 +11,4 @@ export interface ICardPerson {
     markaLogoBorderInverse?: boolean;
     position?: string;
     telephones: ICardPersonContactTel[];
-
 }

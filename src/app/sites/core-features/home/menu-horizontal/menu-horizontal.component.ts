@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IMenuItem } from '../../../../shared/interfaces/i-menu-item';
-import { MenuCommonFunctionsService } from '../../../../shared/menu-common-functions.service';
+import { MenuCommonFunctionsService } from '../../../../shared/services/menu-common-functions.service';
 
 @Component({
   selector: 'app-menu-horizontal',

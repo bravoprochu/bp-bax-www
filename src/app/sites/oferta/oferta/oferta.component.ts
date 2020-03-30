@@ -1,12 +1,12 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
-import { BP_ANIM_BRICK_LIST } from 'src/app/animations/bp-anim-brick-list';
+import { BP_ANIM_BRICK_LIST } from 'src/app/shared/animations/bp-anim-brick-list';
 import { BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import { takeUntil} from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { IOfertaItem } from './i-oferta-item';
-import { CardPersonService } from 'src/app/common/card-person/card-person.service';
-import { BAX_BRANDS } from 'src/app/common/enums/bax-brands.enum';
+import { CardPersonService } from 'src/app/otherModules/card-person/card-person.service';
+import { BAX_BRANDS } from 'src/app/shared/enums/bax-brands.enum';
 
 
 @Component({

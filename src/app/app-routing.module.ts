@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './sites/core-features/home/home.component';
-import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -24,11 +23,6 @@ const routes: Routes = [
     redirectTo: 'news',
     pathMatch: 'prefix'
   },
-  // {
-  //   path: 'offer',
-  //   loadChildren: './oferta/maszynyNowe/maszyny-nowe.module#MaszynyNoweModule',
-  //   data: {animation: 'offer'}
-  // },
   {
     path: 'offer',
     loadChildren: () => import('./sites/oferta/oferta.module').then(m => m.OfertaModule),
@@ -50,11 +44,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'home',
-    component: HomeComponent,
-    data: {animation: 'home'}
-  },
-  {
     path: '',
     redirectTo: 'news',
     pathMatch: 'full'
@@ -71,7 +60,8 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, {
     enableTracing: false,
     //scrollPositionRestoration: 'disabled',
-    anchorScrolling: 'enabled',
+    //anchorScrolling: 'enabled',
+    
     
 
 

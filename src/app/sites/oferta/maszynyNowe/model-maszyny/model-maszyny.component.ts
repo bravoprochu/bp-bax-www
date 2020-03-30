@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, OnChanges, SimpleChange, SimpleChanges, OnDestroy, ViewChild, ElementRef } from '@angular/core';
-import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
-import { BP_ANIM_GROUP_APPEAR_ONLY } from 'src/app/animations/bp_anim_group_appear_only';
+import { CommonFunctionsService } from 'src/app/shared/services/common-functions.service';
+import { BP_ANIM_GROUP_APPEAR_ONLY } from 'src/app/shared/animations/bp_anim_group_appear_only';
 import { Subject } from 'rxjs';
 import { SvgCommonFunctionsService } from 'src/app/otherModules/svg/svg-common-functions.service';
 import { IBaxModelMaszynaNowa } from '../../interfaces/i-bax-model-maszyna-nowa';
 import { takeUntil } from 'rxjs/operators';
-import { bp_anim_appearUpDown } from 'src/app/animations/bp_anim_appear-up-down';
+import { bp_anim_appearUpDown } from 'src/app/shared/animations/bp_anim_appear-up-down';
 import { MaszynyNoweService } from '../maszynyNoweServices/maszyny-nowe.service';
 
 

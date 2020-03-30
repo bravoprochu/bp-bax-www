@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CommonFunctionsService } from 'src/app/shared/common-functions.service';
+import { CommonFunctionsService } from 'src/app/shared/services/common-functions.service';
 import { IBaxModelMaszynaNowa } from '../../interfaces/i-bax-model-maszyna-nowa';
 import { SvgCommonFunctionsService } from 'src/app/otherModules/svg/svg-common-functions.service';
 

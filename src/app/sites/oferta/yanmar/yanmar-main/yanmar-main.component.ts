@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
-import { CardPersonService } from 'src/app/common/card-person/card-person.service';
-import { ICardPerson } from 'src/app/common/interfaces/i-card-person';
-import { BAX_BRANDS } from 'src/app/common/enums/bax-brands.enum';
+import { CardPersonService } from 'src/app/otherModules/card-person/card-person.service';
+import { ICardPerson } from 'src/app/otherModules/card-person/interfaces/i-card-person';
+import { BAX_BRANDS } from 'src/app/shared/enums/bax-brands.enum';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Subject } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';

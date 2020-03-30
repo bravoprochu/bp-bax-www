@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
-import { bpActiveRouteChange$ } from 'src/app/common/rxConst/bpActRouteChange';
+import { bpActiveRouteChange$ } from 'src/app/shared/rxConst/bpActRouteChange';
 import { IBaxModelMaszynaNowa } from '../../interfaces/i-bax-model-maszyna-nowa';
 import { MaszynyNoweService } from '../maszynyNoweServices/maszyny-nowe.service';
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NewsService } from '../newsServices/news.service';
 import { INewsArticle } from '../interfaces/i-news-article';
-import { BP_ANIM_BRICK_LIST } from 'src/app/animations/bp-anim-brick-list';
+import { BP_ANIM_BRICK_LIST } from 'src/app/shared/animations/bp-anim-brick-list';
 import { INewsArticleMini } from '../interfaces/i-news-article-mini';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, startWith } from 'rxjs/operators';

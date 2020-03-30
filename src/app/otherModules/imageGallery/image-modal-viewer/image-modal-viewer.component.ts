@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core'
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ImageGalleryPayload } from '../../../shared/interfaces/image-gallery-payload';
 import { ISVGSize } from '../../svg/interfaces/i-svg-size';
-import { CommonFunctionsService } from '../../../shared/common-functions.service';
+import { CommonFunctionsService } from '../../../shared/services/common-functions.service';
 
 @Component({
   selector: 'app-image-modal-viewer',

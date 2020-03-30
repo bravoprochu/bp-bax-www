@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SocialButtonsComponent } from './social-buttons/social-buttons.component'
-import { CommonFunctionsService } from './common-functions.service';
+import { SocialButtonsComponent } from './components/social-buttons/social-buttons.component'
+import { CommonFunctionsService } from './services/common-functions.service';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { TestComponent } from './test/test.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { TestComponent } from './components/test/test.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 
