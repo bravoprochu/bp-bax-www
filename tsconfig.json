@@ -17,6 +17,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@sharedAnimations/*": ["./src/app/shared/animations/*"],
+      "@sharedComponents/*": ["./src/app/shared/components/*"],
+      "@sharedConst/*": ["./src/app/shared/const/*"],
+      "@sharedDirectives/*": ["./src/app/shared/directives/*"],
+      "@sharedEnums/*": ["./src/app/shared/enums/*"],
+      "@sharedInterfaces/*": ["./src/app/shared/interfaces/*"],
+      "@sharedServices/*": ["./src/app/shared/services/*"],
+    }
   }
 }
