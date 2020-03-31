@@ -1,12 +1,17 @@
 <div class="filter-dialog-container">
   <div mat-dialog-actions fxLayout fxLayoutAlign="space-between center" class="filter-content">
-    <div class="filtry-info-text">
-      <span *ngIf="!mnSrv.isFilterLengthCount">&nbsp;(przeliczam...)</span>
-      <span *ngIf="mnSrv.maszynyNoweList.length > 0 && mnSrv.isFilterLengthCount">(znaleziono: </span>
-      <span *ngIf="mnSrv.isFilterLengthCount && mnSrv.maszynyNoweList.length > 0" class="mat-body-2"
-        @pulseText>&nbsp;{{mnSrv.maszynyNoweList.length}})</span>
-      <span *ngIf="mnSrv.isFilterLengthCount && mnSrv.maszynyNoweList.length == 0">(nie znaleziono
-        maszyn)</span>
+    <div>
+      <div>
+        Zastosowano filtr
+      </div>
+      <div class="filtry-info-text">
+        <span *ngIf="!mnSrv.isFilterLengthCount">&nbsp;(przeliczam...)</span>
+        <span *ngIf="mnSrv.maszynyNoweList.length > 0 && mnSrv.isFilterLengthCount">(znaleziono: </span>
+        <span *ngIf="mnSrv.isFilterLengthCount && mnSrv.maszynyNoweList.length > 0" class="mat-body-2"
+          @pulseText>&nbsp;{{mnSrv.maszynyNoweList.length}})</span>
+        <span *ngIf="mnSrv.isFilterLengthCount && mnSrv.maszynyNoweList.length == 0">(nie znaleziono
+          maszyn)</span>
+      </div>
     </div>
     <button [disabled]="mnSrv.maszynyNoweList.length==0" mat-mini-fab [mat-dialog-close]="'bye !'"><mat-icon>close</mat-icon></button>
     <!-- <button mat-button  cdkFocusInitial>Ok</button> -->
