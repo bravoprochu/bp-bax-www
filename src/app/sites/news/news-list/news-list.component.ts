@@ -53,7 +53,6 @@ export class NewsListComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    // this.newsList = this.activatedRoute.snapshot.data['data'];
     this.dialog.open(FullscreenComponent, {
       minHeight: '100vh',
       minWidth: '100vw',
@@ -96,11 +95,6 @@ export class NewsListComponent implements OnInit, OnDestroy {
         this.news = this.ncf.filterListBySearch(this.newsList, searchPhrase);        
       }
     )
-
-
-
-    // this.cf.metaTitleUpdate(`NEWS`);
-    // this.cf.metaDescriptionUpdate('Najnowsze informacje BAX maszyny. Aktualności dotyczące maszyn Sennebogen, Yanmar, Goudetti. Promocje na części, oferty pracy, katalog usług serwisowych')
    }
 
   

@@ -1,10 +1,10 @@
-export const BP_SERVER_URL = 'https://www.bdotp.pl/';
-export const BP_BAX_AZURE_API = 'https://bax-api.azurewebsites.net/api';
+export const WWW_SERVER = 'https://www.bdotp.pl/';
+export const API_SERVER = 'https://bax-api.azurewebsites.net/api';
 
 export const environment = {
   production: true,
 
-  imageFolder: `${BP_SERVER_URL}/assets/images`,
+  imageFolder: `${WWW_SERVER}/assets/images`,
 
   colorArjes: '#FF5E0E',
   colorBax: '#0054A6',
@@ -13,14 +13,14 @@ export const environment = {
   colorYanmar: '#E30020',
 
   maszynyNowe: {
-    apiUrlMaszynyNoweGetList: `${BP_BAX_AZURE_API}/maszynyNowe`,
-    apiUrlMaszynyNoweGeById: `${BP_BAX_AZURE_API}/maszynyNowe/`,
+    apiUrlMaszynyNoweGetList: `${API_SERVER}/maszynyNowe`,
+    apiUrlMaszynyNoweGeById: `${API_SERVER}/maszynyNowe/`,
   },
   news: {
-    apiUrlNewsList:  `${BP_BAX_AZURE_API}/news`,
-    apiUrlNewsGetById:  `${BP_BAX_AZURE_API}/news`,
+    apiUrlNewsList:  `${API_SERVER}/news`,
+    apiUrlNewsGetById:  `${API_SERVER}/news`,
   },
-  serverUrl: BP_SERVER_URL,
+  serverUrl: WWW_SERVER,
   dns: 'https://bax-maszyny.pl'
 
 };

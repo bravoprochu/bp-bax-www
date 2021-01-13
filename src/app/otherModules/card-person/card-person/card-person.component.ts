@@ -79,7 +79,6 @@ export class CardPersonComponent implements OnInit {
         break;       
 
       default:
-        // this.gradientColor = '#E30020';
         this.gradientColor = '#fff';
         break;
     }

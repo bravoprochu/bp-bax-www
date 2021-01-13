@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ICardPerson } from './interfaces/i-card-person';
 import { BAX_BRANDS } from '../../shared/enums/bax-brands.enum';
-import { baxBaseModelType } from 'src/app/sites/oferta/enums/bax-base-model-type-enum';
 
 
 
@@ -187,7 +186,6 @@ export class CardPersonService {
 
 
       default:
-        //BAX:
         res = _BAX
         break;
     }

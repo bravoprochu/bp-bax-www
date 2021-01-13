@@ -18,8 +18,8 @@ export class SvgCommonFunctionsService {
 
 
 
-  getOriginUrl(url: string) {
-    return `${window.location.origin}/${url}`;
+  getOriginUrl(url?: string) {
+    return `${window.location.origin}/${url ? url : ''}`;
   }
 
   getUniqeId(prefix?: string) {

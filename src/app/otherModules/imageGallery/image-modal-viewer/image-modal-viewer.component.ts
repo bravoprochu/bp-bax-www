@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ImageGalleryPayload } from '../../../shared/interfaces/image-gallery-payload';
-import { ISVGSize } from '../../svg/interfaces/i-svg-size';
 import { CommonFunctionsService } from '../../../shared/services/common-functions.service';
 
 @Component({
@@ -64,30 +63,6 @@ windowIsHorizontal: boolean;
   
 
   windowSizeChanged(ratio: number = 1){
-    // const _modalMargin: number = 2*50;
-    // const _navigationButtonsHeight = _modalMargin + 40;
-    
-    // this.windowWidth = window.innerWidth;
-    // this.windowHeight = window.innerHeight;
-    // this.windowIsHorizontal = this.windowWidth >= this.windowHeight;
-
-
-
-
-    // const _marginPercent: number = 1.05;
-
-    // this.modalWidth = this.windowWidth /_marginPercent;
-    // this.modalHeight = this.windowHeight /_marginPercent;
-
-    // this.dialogRef.updateSize(`${this.modalWidth}px`, `${this.modalHeight}px`); 
-    
-    // this.svgWidth = this.modalWidth - _modalMargin;
-    // this.svgWidth = "100%"
-    // this.svgHeight = this.modalHeight-_navigationButtonsHeight;
-
-    // console.log('window resize:', this.modalWidth, this.modalHeight);
-    // const _contBound = (<HTMLDivElement>this.dialogContainer.nativeElement).getBoundingClientRect();
-    // console.log('dialogContainer bound; ',_contBound.width, _contBound.height);
 
   }
 
@@ -108,8 +83,6 @@ windowIsHorizontal: boolean;
       console.log('svgInitImg onLoad..', ev);
       console.log('isHorizontal',_isHorizontal, `w/h ${_el.naturalWidth}/${_el.naturalHeight} ratio: ${_ratio} || ${this.galleryPayload.imgUrl}` );
 
-
-      // this.imgViewbox = `0 0 ${_bound.width} ${_bound.height}`;
       this.windowSizeChanged(1);      
 
       
@@ -120,15 +93,11 @@ windowIsHorizontal: boolean;
         this.svgViewbox = `0 0 1920 ${this.imgHeight}`;
         console.log(this.svgViewbox);
       } else {
-        // this.imgHeight = 
         this.imgWidth = this.imgHeight/ _ratio;
-        //this.svgViewbox = `0 0 ${this.imgWidth} 1080`;
-
         this.svgViewbox = `0 0 ${this.imgWidth} ${this.imgHeight}`;
 
       }
 
-      /// this.imgUrl = this.galleryPayload.imgUrl;
       this.isImgLoading = false;
       this.isImgReady = true;
     }

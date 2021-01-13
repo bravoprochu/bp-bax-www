@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { CardPersonService } from 'src/app/otherModules/card-person/card-person.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Subject } from 'rxjs';
@@ -58,20 +58,6 @@ export class GuidettiMainComponent implements OnInit, AfterViewInit {
     }
     
   ngAfterViewInit(): void {
-    // const imagesUrls:string[] = [
-    //   '../../../../assets/oferta/1x1/guidetti/IMG-20191105-WA0022.JPG',
-    //   '../../../../assets/oferta/1x1/guidetti/IMG_20191105_135916.JPG'
-    // ]
-    // const g1 = (<HTMLElement>this.gallery01.nativeElement);
-
-    // console.log(g1.getBoundingClientRect().width);
-
-    // const svg1 = this.svgSrv.generateSVG(this.renderer2);
-
-
-    // this.renderer2.appendChild(svg1, this.svgSrv.generateImage(this.renderer2, imagesUrls[0]));
-
-    // this.renderer2.appendChild(g1, svg1);
   }
 
 

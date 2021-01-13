@@ -1,11 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy, Input, Sanitizer, AfterViewInit, Renderer2, ChangeDetectorRef } from '@angular/core';
-import { fromEvent, Observable, Subject, interval, timer, merge } from 'rxjs';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy, Input, AfterViewInit, Renderer2 } from '@angular/core';
+import { fromEvent, Subject, interval,  merge } from 'rxjs';
 import { takeUntil, switchMap, map, sampleTime } from 'rxjs/operators';
 import { AnimationPlayer } from '@angular/animations';
 import { SvgCommonFunctionsService } from 'src/app/otherModules/svg/svg-common-functions.service';
 import { ISVGPoint } from 'src/app/otherModules/svg/interfaces/i-svg-point';
 import { BP_ANIM_SCALE_ORIGIN_OVER_LEAVE } from 'src/app/shared/animations/scale-origin-over-leave';
-import { SVGElementProp } from 'src/app/otherModules/svg/classes/svg-element-prop';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { BP_ANIM_ENTER_LEAVE_GROUP } from 'src/app/shared/animations/enter-leave-group';
 import { Router } from '@angular/router';
@@ -93,9 +92,6 @@ export class NewsArticleMiniComponent implements OnInit, AfterViewInit, OnDestro
 
     this.pointer = this.pointer ? this.pointer : 'brown'
     this.title = this.title ? this.title : 'uzupełnij tytuł';
-    // this.image = new SVGElementProp();
-    // this.image.size.width = 960;
-    // this.image.size.height = 480;
 
     this.initImage()
     this.initIntersection()

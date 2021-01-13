@@ -67,14 +67,11 @@ export class ModelListComponent implements OnInit {
 
       if ((ev.direction == 8) && (this.modelOnScreenId<childs.length-1)) {
         const next = (<HTMLElement>childs[this.modelOnScreenId+1]);
-
-      //  console.log(`up.. | id: ${this.modelOnScreenId}, childs.length: ${childs.length} | next child Y: ${next.offsetTop}` );
         y = next.offsetTop;
         
       }
       if (ev.direction == 16 && this.modelOnScreenId>1) {
         const prev = (<HTMLElement>childs[this.modelOnScreenId-1]);
-      //  console.log(`down.. | id: ${this.modelOnScreenId}, childs.length: ${childs.length} | next child Y: ${prev.offsetTop}` );
         y=prev.offsetTop;
       }
 

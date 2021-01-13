@@ -85,7 +85,6 @@ export class ModelMaszynyComponent implements OnInit, OnChanges, OnDestroy {
       entries.forEach((entry: IntersectionObserverEntry)=>{
         if(entry.intersectionRatio > 0){
           this.initImage();
-          // console.log('entry:', this.model.model, entry.intersectionRatio, entry);
           this.intersection$.disconnect();
         }
       })
@@ -108,7 +107,6 @@ export class ModelMaszynyComponent implements OnInit, OnChanges, OnDestroy {
       img.setAttribute("src", this.model.mediaCardImg);
       img.onload= (ev)=>{
         const i = (<HTMLImageElement>ev.target);
-        // console.log(`fotka wczytana, ${i.naturalWidth}x${i.naturalHeight}`);
         this.isImgLoaded = true;
         this.isReady= true;
       }

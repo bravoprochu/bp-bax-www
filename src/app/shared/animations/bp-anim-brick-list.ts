@@ -1,4 +1,4 @@
-import { trigger, transition, query, style, stagger, animate, group, animateChild, sequence } from '@angular/animations';
+import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
 import { BP_ANIM_OPACITY_TRANSITION_STYLE } from './bp-anim-init-style';
 
 export function BP_ANIM_BRICK_LIST_enter(animationTime: number = 350, staggerTime: number = 250) {
@@ -27,6 +27,5 @@ export function BP_ANIM_BRICK_LIST_leave(animationTime: number = 350, staggerTim
 export function BP_ANIM_BRICK_LIST(animationTime: number = 350, staggerTime: number = 250) {
   return trigger('brickList', [
     BP_ANIM_BRICK_LIST_enter(animationTime, staggerTime),
-    // BP_ANIM_BRICK_LIST_leave(animationTime, staggerTime)
   ])
 };

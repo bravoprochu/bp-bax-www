@@ -1,4 +1,4 @@
-import { Directive, Renderer2, Host, OnInit, Input, ViewContainerRef, ElementRef, AfterViewInit } from '@angular/core';
+import { Directive, Renderer2, OnInit, Input, ElementRef, AfterViewInit } from '@angular/core';
 import { BaxMarka } from 'src/app/sites/oferta/enums/bax-marka-enum';
 import { environment } from 'src/environments/environment.prod';
 import { SvgCommonFunctionsService } from '../svg-common-functions.service';
@@ -52,18 +52,13 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit(): void {
-    // this.initBoxSize();
     this.initSVG();
     this.initIntersection();
-
-    let brand = '';
-    // console.log(`isDimmens: ${this.isDimmensionSet}, ${this.width}/${this.height}, isPortrait: ', ${this.isPortrait}, ratio: ${16/9}, marka: ${<BaxMarka>this.marka}`);
   }
 
   finishStyling() {
     const box = (<HTMLElement>this.el.nativeElement).getBoundingClientRect();
-    const h = box.width / (16 / 9);
-    // this.renderer.setStyle(this.el.nativeElement, 'height', h.toString()+'px');
+
     this.renderer.setStyle(this.el.nativeElement, 'height', '100%');
     this.renderer.setStyle(this.el.nativeElement, 'width', '100%');
   }
@@ -73,7 +68,6 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
     const box = (<HTMLElement>this.el.nativeElement).getBoundingClientRect();
     const widthProp = (<HTMLElement>this.el.nativeElement).getAttribute('width');
     const heightProp = (<HTMLElement>this.el.nativeElement).getAttribute('height');
-    const fitRatio = 16 / 9;
     let _width = 0;
     let _height = 0;
 
@@ -87,8 +81,6 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
       _width = box.width;
       _height = box.height;
     }
-
-    // console.log(`initBox: ${_width}/${_height}`)
 
     this.isPortrait = _width <= _height ? true : false;
 
@@ -105,7 +97,7 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
     let img = new Image();
     img.src = this.imgUrl;
     img.width = this.width;
-    img.onerror = (ev) => {
+    img.onerror = () => {
       this.renderer.removeChild(this.svg, this.svgPreloadPuff);
       this.renderer.removeChild(this.svg, this.svgTextTitle);
       this.renderer.removeChild(this.svg, this.svgTextSubtitle);
@@ -119,7 +111,7 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
       }
       this.intersectionKill();
     }
-    img.onload = (ev) => {
+    img.onload = () => {
       setTimeout(() => {
         this.renderer.removeChild(this.svg, this.svgImgBaxSign);
         this.renderer.removeChild(this.svg, this.svgPreloadPuff);
@@ -130,33 +122,13 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
 
         const _w = img.naturalWidth;
         const _h = img.naturalHeight;
-        const _isPortrait: boolean = _w >= _h ? false : true;
 
-        // if (_isPortrait) {
-        //   const ratio = _h / _w;
-        //   // this.renderer.setAttribute(this.svgImage, 'width', '1920');
-        //   // this.renderer.setAttribute(this.svgImage, 'height', (_w * (16 / 9)).toString());
-        // } else {
-        //   const ratio = _w / _h;
-        //   this.renderer.setAttribute(this.svgImage, 'width', _w.toString());
-        //   this.renderer.setAttribute(this.svgImage, 'height', (_w * (16 / 9)).toString());
-        // }
 
         this.renderer.setAttribute(this.svgImage, 'width', '1920');
         this.renderer.setAttribute(this.svgImage, 'height', '1080');
 
-
-        // this.renderer.setAttribute(this.svgImage, 'href', this.imgUrl);
-        // this.renderer.appendChild(this.svg, this.svgImage);
-        
-        // if (this.showInfo == true) {
-        //   this.renderer.appendChild(this.svg, this.svgTextTitle);
-        //   this.renderer.appendChild(this.svg, this.svgTextSubtitle);
-        // }
-
         let newImg = this.renderer.createElement('img');
         this.renderer.setAttribute(newImg, 'width', '100%');
-        // this.renderer.setAttribute(newImg, 'height', _h.toString());
         this.renderer.setAttribute(newImg, 'src', this.imgUrl);
 
         this.renderer.removeChild(this.el.nativeElement, this.svg);
@@ -215,9 +187,6 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
     this.svgTextSubtitle = this.svgCf.generateText(this.renderer, this.subtitle, "50", this.subtitleColor, "25", "1000", _widthStr, _heightStr);
     this.renderer.appendChild(this.svg, this.svgTextSubtitle);
 
-
-    // const d:HTMLCollectionOf<SVGDefsElement> = this.svg.getElementsByTagName('defs');
-    // console.log('getByTag', d, d.length);
   }
 
 
@@ -230,22 +199,17 @@ export class BaxPreloaderDirective implements AfterViewInit, OnInit {
         if (ratio > 0) {
           if (!this.isSvgAppended) {
             this.renderer.appendChild(this.el.nativeElement, this.svg);
-            // this.renderer.setStyle(this.el.nativeElement, 'height', 'auto');
             this.initImgLoad();
             this.isSvgAppended = true;
           }
         }
         if (ratio >= 0.25 && ratio <= 0.5) {
-          //  this.svgPreloadBox.setAttribute('opacity', '0.8');
         }
         if (ratio > 0.5 && ratio <= 0.75) {
-          // this.svgPreloadBox.setAttribute('opacity', '0.4');
         }
         if (ratio > 0.75 && ratio < 1) {
-          // this.svgPreloadBox.setAttribute('opacity', '0.2');
         }
         if (ratio == 1) {
-          // this.svgPreloadBox.setAttribute('opacity', '0.1');
         }
       })
     }, { threshold: [0, .25, .50, .75, 1] })

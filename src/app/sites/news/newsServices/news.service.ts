@@ -23,8 +23,6 @@ export class NewsService {
 
   isNext(data: INewsArticle): boolean {
     return;
-    // const nextIdx = this.getArticleIdx(data) + 1;
-    // return this.dataJson.length - 1 >= nextIdx;
   }
   isPrev(data: INewsArticle): boolean {
     const idx = this.getArticleIdx(data);
@@ -33,20 +31,14 @@ export class NewsService {
 
   findById(id: string): INewsArticle {
     return;
-    // return this.dataJson.find(f => f.id == id);
   }
 
   getArticleIdx(data: INewsArticle): number {
     return;
-    // return this.getNews().indexOf(this.dataJson.find(f => f.id == data.id));
   }
 
   getNext(data: INewsArticle): INewsArticle {
     return;
-    // const act = this.getArticleIdx(data);
-    // if (this.isNext(data)) {
-    //   return this.dataJson[act + 1];
-    // }
   }
 
   getNews(): INewsArticle[] {
@@ -55,20 +47,14 @@ export class NewsService {
 
   private getNewsByDate(): INewsArticle[] {
     return [];
-    // this.dataJson.sort(this.sortBy('creationDate', this.isAscendindSortOrder));
   }
 
   private getNewsByName(): INewsArticle[] {
     return [];
-    // this.dataJson.sort(this.sortBy('name', this.isAscendindSortOrder));
   }
 
   getPrev(data: INewsArticle): INewsArticle {
     return;
-    // const act = this.getArticleIdx(data);
-    // if (this.isPrev(data)) {
-    //   return this.dataJson[act - 1];
-    // }
   }
 
   sortBy(propName: string, isAsc: boolean) {

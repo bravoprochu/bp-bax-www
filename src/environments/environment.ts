@@ -2,35 +2,31 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const BP_SERVER_URL_Local = 'http://localhost:4200/';
-export const BP_BAX_LOCAL_BACKEND = 'https://localhost:17441/api';
-
+export const WWW_SERVER = 'https://www.bdotp.pl/';
+export const API_SERVER = 'https://localhost:17441/api';
 
 
 export const environment = {
   production: false,
 
-  imageFolder: '/assets/images',
-  
-  
+  imageFolder: `${WWW_SERVER}/assets/images`,
+
   colorArjes: '#FF5E0E',
   colorBax: '#0054A6',
   colorSennebogen: '#4DAA2B',
   colorZemler: '#007843',
   colorYanmar: '#E30020',
 
-
   maszynyNowe: {
-    apiUrlMaszynyNoweGetList: `${BP_BAX_LOCAL_BACKEND}/maszynyNowe`,
-    apiUrlMaszynyNoweGeById: `${BP_BAX_LOCAL_BACKEND}/maszynyNowe`,
+    apiUrlMaszynyNoweGetList: `${API_SERVER}/maszynyNowe`,
+    apiUrlMaszynyNoweGeById: `${API_SERVER}/maszynyNowe/`,
   },
   news: {
-    apiUrlNewsList:  `${BP_BAX_LOCAL_BACKEND}/news`,
-    apiUrlNewsGetById:  `${BP_BAX_LOCAL_BACKEND}/news`,
+    apiUrlNewsList:  `${API_SERVER}/news`,
+    apiUrlNewsGetById:  `${API_SERVER}/news`,
   },
-  serverUrl: BP_SERVER_URL_Local,
-  dns: 'https://localhost:4200'
-
+  serverUrl: WWW_SERVER,
+  dns: 'https://bax-maszyny.pl'
 
 };
 

@@ -18,6 +18,8 @@ import { PantoneToHexModule } from '../../otherModules/pantoneToHex/pantone-to-h
 import { FullscreenComponent } from './dialogs/fullscreen/fullscreen.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header/header.component';
+import { MetaUpdaterModule } from 'src/app/otherModules/meta/meta-updater/meta-updater.module';
+import { MetaUpdaterService } from 'src/app/otherModules/meta/meta-updater.service';
 
 
 
@@ -48,6 +50,7 @@ import { HeaderComponent } from './header/header/header.component';
 
     NewsServicesModule,
     NewsRoutingModule,
+
   ],
   exports: [
     ],

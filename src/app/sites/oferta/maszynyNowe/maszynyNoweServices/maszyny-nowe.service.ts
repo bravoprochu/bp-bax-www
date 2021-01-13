@@ -61,7 +61,6 @@ export class MaszynyNoweService {
     this.prepCheckboxGroupsBranzaList();
     this.prepCheckboxGroupsMarkaList();
     this.prepCheckboxGroupsZasilanieList();
-    // this.clearFilterGroup();
     this.filterForm$.markAsPristine();
   }
 
@@ -242,7 +241,6 @@ export class MaszynyNoweService {
   }
 
   getModelList(): IBaxModelMaszynaNowa[] {
-    // const data = BAX_MASZYNY_NOWE;
     return this.maszynyNoweListAvailable;
   }
 
@@ -314,13 +312,8 @@ export class MaszynyNoweService {
 
   initObservables() {
     this.filterNumberSelect$.valueChanges.pipe(
-      // map((_filterLines: IBaxModelMaszynyNoweFilterLine[]) => {
-        
-      //   return _filterLines
-      // }),
     ).subscribe(
       (_data: IBaxModelMaszynyNoweFilterLine[]) => {
-      // this.filterForm$.updateValueAndValidity();
       this.filterLineConvertToGroup(_data);
       if(_data.length == 0) {
         this.filterNumberArr$.controls = [];

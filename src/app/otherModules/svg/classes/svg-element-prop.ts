@@ -172,7 +172,6 @@ export class SVGElementProp {
         const pt = svg.createSVGPoint();
         pt.x = point.x;
         pt.y = point.y;
-        //pt.z = point.z;
         const res = pt.matrixTransform(svg.getScreenCTM().inverse());
         return res;
     }

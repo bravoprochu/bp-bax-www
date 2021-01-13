@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SvgCommonFunctionsService } from 'src/app/otherModules/svg/svg-common-functions.service';
 import { svgLogoBaxSignOnly_white_Url } from 'src/app/otherModules/svg/classes/svg-bax-logo-url';
-import { Subject, of, interval } from 'rxjs';
-import { take, takeUntil, takeWhile, tap, startWith } from 'rxjs/operators';
+import { Subject, interval } from 'rxjs';
+import { takeUntil, takeWhile, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-fullscreen',
@@ -30,7 +30,7 @@ export class FullscreenComponent implements OnInit, OnDestroy {
   circlesVert: number[] = [...Array(19).keys()];
   dotSpace: number = 50;
   
-  counterMax: number = 10;
+  counterMax: number = 3;
   counter: number;
   
   
@@ -63,7 +63,6 @@ export class FullscreenComponent implements OnInit, OnDestroy {
          (error)=>console.log('_interval error', error),
          ()=> {
            this.close();
-           console.log('_interval completed..');
          }
     );
 

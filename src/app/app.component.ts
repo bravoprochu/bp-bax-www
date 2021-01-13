@@ -1,9 +1,9 @@
 import { Component, OnInit, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { ScrollDispatcher, CdkScrollable } from '@angular/cdk/scrolling';
-import { Router, Event, NavigationStart, NavigationEnd, NavigationCancel, NavigationError, ResolveStart, ResolveEnd, ActivatedRoute, RouterOutlet } from '@angular/router';
+import { Router, Event, NavigationStart, NavigationEnd, NavigationCancel, NavigationError, ResolveStart, ResolveEnd, RouterOutlet } from '@angular/router';
 import { routeAnimation } from './shared/animations/routeAnimations';
-import { Subject, fromEvent } from 'rxjs';
-import { takeUntil, debounceTime, map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { bp_anim_width } from './shared/animations/bp_anim_width';
 import { BP_ANIM_ENTER_LEAVE_FROM_SIDE } from './shared/animations/bp_anim_enter_leave_from_side';
@@ -48,27 +48,11 @@ export class AppComponent implements OnInit {
     private scrollDispatcher: ScrollDispatcher,
     private ngZone: NgZone,
     private mediaObserver: MediaObserver,
-    private router: Router,
-    private elRef: ElementRef  ) {
+    private router: Router  ) {
 
   }
 
   ngOnInit() {
-
-    // fromEvent(this.elRef.nativeElement, 'mousemove')
-    // .pipe(
-    //   debounceTime(250),
-    // )
-    // .subscribe(
-    //      (_mouseMove: any)=>{
-    //           console.log('_mouseMove subs:', _mouseMove.clientY);
-              
-    //      },
-    //      (error)=>console.log('_mouseMove error', error),
-    //      ()=>console.log('_mouseMove completed..')
-    // );
-
-
     this.router.events.subscribe(
       (_data: Event) => {
         this.checkRouterEvent(_data);
@@ -106,11 +90,6 @@ export class AppComponent implements OnInit {
 
   animWidthIsDone() {
     this.isResolving = true;
-    //anim :leave
-    // if(!ev.fromState) {
-    //   this.routeAnimationSrv.isResolvingAnimationDone$.next(false);
-    //   console.log('anim is done...', ev);
-    // }
   }
 
   
@@ -131,15 +110,6 @@ export class AppComponent implements OnInit {
       this.isInProgress = false;
     }
   }
-
-
-  // mainContentScrolled(data: CdkScrollable) {
-  //   const d = data.getElementRef().nativeElement.scrollTop;
-
-  //   this.ngZone.runOutsideAngular(() => {
-  //     this.isScrollShown = d > 100 ? true : false;
-  //   })
-  // }
 
   scrollToTop() {
     (<HTMLElement>this.mainContent.nativeElement).scrollTo({ top: 0, behavior: 'smooth' });

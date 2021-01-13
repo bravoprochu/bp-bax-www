@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { MatDialog, DialogPosition } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ImageModalViewerComponent } from '../../../otherModules/imageGallery/image-modal-viewer/image-modal-viewer.component';
-import { SvgCommonFunctionsService } from '../../../otherModules/svg/svg-common-functions.service';
 import { ImageGalleryPayload } from '../../interfaces/image-gallery-payload';
 import { CommonFunctionsService } from '../../services/common-functions.service';
 
@@ -30,7 +29,6 @@ export class VerticalMaskedImageComponent implements OnInit {
   
 
   constructor(
-    private cf: CommonFunctionsService,
     private matDialog: MatDialog,
     
   ) { }
@@ -51,16 +49,12 @@ export class VerticalMaskedImageComponent implements OnInit {
           }
         }
         if (ratio >= 0.25 && ratio <= 0.5) {
-          //  this.svgPreloadBox.setAttribute('opacity', '0.8');
         }
         if (ratio > 0.5 && ratio <= 0.75) {
-          // this.svgPreloadBox.setAttribute('opacity', '0.4');
         }
         if (ratio > 0.75 && ratio < 1) {
-          // this.svgPreloadBox.setAttribute('opacity', '0.2');
         }
         if (ratio == 1) {
-          // this.svgPreloadBox.setAttribute('opacity', '0.1');
         }
       })
     }, { threshold: [0, .25, .50, .75, 1] })
@@ -80,27 +74,15 @@ export class VerticalMaskedImageComponent implements OnInit {
     let img = new Image()
     img.src = this.imgUrl;
     this.isImgLoading = true;
-    img.onerror = (err)=>{
+    img.onerror = ()=>{
       this.isImgLoading = false;
       this.isImgReady = false;
     }
     img.onload = (ev)=> {
       const _el = (<HTMLImageElement>ev.srcElement);
       const orginalImgRatio = _el.naturalWidth/_el.naturalHeight;
-      const _width = this.svgHeight * orginalImgRatio;
-      const imgIsHorizontal: boolean = _el.naturalHeight <= _el.naturalWidth;
       this.isImgLoading = false;
       this.isImgReady = true;
-      // console.log(`w/h - ${_el.naturalWidth}/${_el.naturalHeight} ${imgIsHorizontal}`);
-
-
-      //
-      //  
-      //
-      // this.imgWidth = 1080 * orginalImgRatio;
-      
-      // this.imgHeight = _width * ratio;
-      // this.imgWidth = this.imgHeight / orginalImgRatio;
 
       this.imgHeight = _el.naturalHeight;
       this.imgWidth = _el.naturalWidth;
@@ -119,9 +101,7 @@ export class VerticalMaskedImageComponent implements OnInit {
       data: new ImageGalleryPayload(this.imageGalleryPayload.imageGalleryItemList, this.imageGalleryPayload.currentIndex)
       })
 
-    dialogRef.afterClosed().subscribe(res=>{
-      // this.imageGalleryPayload.exit();
-      // console.log('img closed...');
+    dialogRef.afterClosed().subscribe(()=>{
     })
   }
 

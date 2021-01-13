@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MaszynyNoweComponent } from './maszyny-nowe/maszyny-nowe.component';
 import { ModelMaszynyFullComponent } from './model-maszyny-full/model-maszyny-full.component';
-import { MaszynyNoweListResolve } from './guards/maszyny-nowe-list.resolve';
 import { MaszynyNoweReslove } from './guards/maszyny-nowe.resolve';
 
 
@@ -25,7 +24,6 @@ const routes: Routes = [
       animation: 'maszynyNoweList',
     },
     resolve: {
-       // data: MaszynyNoweListResolve
     },
   },
 

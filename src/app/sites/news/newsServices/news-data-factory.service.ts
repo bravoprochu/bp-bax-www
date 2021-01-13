@@ -16,7 +16,6 @@ import { INewsPayload } from '../interfaces/i-news-payload';
 export class NewsDataFactoryService {
   constructor(
      private httpClient: HttpClient
-    // private nserv: NewsService
   ) { 
   }
 
@@ -27,7 +26,6 @@ export class NewsDataFactoryService {
   }
 
   getAll(): Observable<INewsArticleMini[]>{
-    // return;
     return <Observable<INewsArticleMini[]>>this.httpClient.get(environment.news.apiUrlNewsList, {headers: this.getHeaders()})
     .pipe(
     );

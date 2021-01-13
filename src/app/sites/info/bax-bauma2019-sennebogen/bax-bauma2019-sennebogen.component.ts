@@ -38,8 +38,6 @@ export class BaxBauma2019SennebogenComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.imgSrc = this.sanitizer.bypassSecurityTrustResourceUrl(this.imgSrcUrl);
-
     this.cf.metaTitleUpdate('Bauma 2019, Sennebogen voucher info')
     this.mediaObserver.media$.pipe(
       takeUntil(this.isDestroyed$),

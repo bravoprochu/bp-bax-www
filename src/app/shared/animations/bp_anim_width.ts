@@ -45,16 +45,6 @@ export function bp_anim_width(enterDuration: number = 550, leaveDuration: number
 
         transition(":leave", [
             query(':self', [
-                // style({
-                //     zIndex: 100,
-                //     position: 'fixed',
-                //     left: 0,
-                //     top: 0,
-                //     bottom: 0,
-                //     width: '100%',
-                //     backgroundColor: 'yellow',
-                //     opacity: '*'
-                // }),
                 style({
                     position: 'absolute',
                     zIndex: 100,
@@ -74,18 +64,6 @@ export function bp_anim_width(enterDuration: number = 550, leaveDuration: number
                     animate(`${leaveDuration * (2/3)}ms ease-in`, style({
                         top: '100%'
                     }))
-                    
-                    // animate(`${leaveDuration}ms ease-in`, style({
-                    //     zIndex: 100,
-                    //     position: 'fixed',
-                    //     left: 0,
-                    //     top: 0,
-                    //     bottom: 0,
-                    //     width: 0,
-                    //     backgroundColor: 'yellow',
-                    //     opacity: 0.2
-                    // }))
-
                 ])
 
             ])

@@ -61,14 +61,7 @@ export class BaxImgPreloaderDirective implements OnInit, AfterViewInit {
       this.observe.disconnect();
       this.isImageLoaded = true;
       setTimeout(() => {
-        // this.renderer2.removeChild(parentNode, _PARENT_NODE.firstChild);
         this.renderer2.removeChild(parentNode, imgPreload);
-        // this.renderer2.setStyle(this.imgDest, 'margin', '5px');
-        // this.renderer2.setStyle(this.imgDest, 'flex', '0 0 250px');
-        // this.renderer2.setStyle(this.imgDest, 'min-width', '250px');
-        // this.renderer2.setStyle(this.imgDest, 'min-height', '250px');
-        // this.renderer2.setStyle(this.imgDest, 'width', '95%');
-        // this.setStyles(<HTMLImageElement>_PARENT_NODE.firstChild);
         this.renderer2.setStyle(this.imgDest, 'display', 'block');
       }, 0);
 
@@ -106,7 +99,6 @@ export class BaxImgPreloaderDirective implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     const el = (<HTMLImageElement>this.el.nativeElement);
-    // this.renderer2.appendChild((<HTMLDivElement>this.renderer2.parentNode(el.parentNode)) , this.imgDest);
   }
 
 
@@ -118,16 +110,11 @@ export class BaxImgPreloaderDirective implements OnInit, AfterViewInit {
     this.renderer2.appendChild(CONTAINER, _IMG);
 
     return _IMG;
-    // if(setStyle) {
-    //   this.setStyles(_IMG);
-    // }
   }
 
   setStyles(_IMG: HTMLImageElement) {
     this.renderer2.setStyle(_IMG, 'margin', 'auto');
     this.renderer2.setStyle(_IMG, 'flex', '1 1 250px');
-    // this.renderer2.setStyle(_IMG, 'min-width', '250px');
-    // this.renderer2.setStyle(_IMG, 'min-height', '250px');
     this.renderer2.setStyle(_IMG, 'width', '95%');
   }
 

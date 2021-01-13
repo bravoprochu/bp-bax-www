@@ -1,5 +1,4 @@
-import { Injectable, OnDestroy, OnInit } from '@angular/core';
-import { Subject, fromEvent, of, merge, Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 import { IWindowBasicInfo } from '../../otherModules/svg/interfaces/i-window-basic-info';
 import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
 import * as hammerjs from 'hammerjs';
@@ -58,33 +57,11 @@ export class CommonFunctionsService {
     return hammerManager;
   }
 
-  // initHammerjs(nativeElementToSwipeOn: any, isNext:boolean, goNext: any, isPrev: boolean, goPrev: any){
-  //   const hammerManager = new Hammer(nativeElementToSwipeOn, {})
-
-  //   hammerManager.get('swipe').set({direction: Hammer.DIRECTION_HORIZONTAL});
-  //   hammerManager.get('pinch').set({enable: false});
-  //   hammerManager.get('rotate').set({enable: false});
-
-  //   hammerManager.on('swipe', (ev)=>{
-  //     if(ev.direction == 2 && isNext) {
-  //       // swipe left
-  //       goNext();
-  //     }
-  //     if(ev.direction == 4 && isPrev) {
-  //       // swipe right
-  //       goPrev()
-  //     }
-  //   });
-  // }
-
-
-
   metaTitleUpdate(subtitle: string){
     this.metaTitle.setTitle(`BAX | ${subtitle}`);
   }
 
   metaDescriptionUpdate(text: string){
-    // let _descr = this.metaMeta.getTag('name=description');
     this.metaMeta.updateTag({
       name: 'description', 
       content: text

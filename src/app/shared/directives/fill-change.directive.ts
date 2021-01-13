@@ -70,12 +70,10 @@ export class FillChangeDirective implements OnInit {
   ngOnInit(): void {
      this.makeItSmall(this.el.nativeElement);
      this.makeItBig(this.el.nativeElement);
-    // this.animIt();
   }
 
   @HostListener('mouseover') onMouseEnter() {
      console.log('onOver... playBig');
-    // console.log('totalTime small', this.player.totalTime); 
     this.player.onDone(()=>{
       console.log('dooone');
     })
@@ -84,9 +82,6 @@ export class FillChangeDirective implements OnInit {
   }
   @HostListener('mouseleave') onMouseLeave() {
      console.log('onLeave... playSmall');
-    // this.playerBig.reset();
-    // console.log('totalTime big', this.playerBig.totalTime); 
-    //this.playerBig.reset();
     this.player.play();
   }
 

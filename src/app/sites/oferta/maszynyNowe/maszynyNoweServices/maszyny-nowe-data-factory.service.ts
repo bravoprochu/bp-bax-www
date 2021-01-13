@@ -28,14 +28,12 @@ export class MaszynyNoweDataFactoryService {
     return <Observable<IBaxModelMaszynaNowa[]>>this.httpClient.get(environment.maszynyNowe.apiUrlMaszynyNoweGetList, { headers: this.getHeaders() })
       .pipe(
         map(this.UpdateMediaImgUrlArr),
-        // delay(5000)
       )
   }
 
   getById(id: string): Observable<IBaxModelMaszynaNowa> {
     return <Observable<IBaxModelMaszynaNowa>>this.httpClient.get(`${environment.maszynyNowe.apiUrlMaszynyNoweGeById}/${id}`, { headers: this.getHeaders()})
       .pipe(
-        // tap((t) => console.log('tap', t)),
         map(UpdateMediaImgUrl)
       )
   }
@@ -61,7 +59,6 @@ export function UpdateMediaImgUrl(model: IBaxModelMaszynaNowa) {
 
   const logotypUrl = "./assets/svg/logotypy";
 
-  //this.isReady= true;
   switch (model.markaId) {
     case BaxMarka.Yanmar:
       model.modelBackground = environment.colorYanmar;

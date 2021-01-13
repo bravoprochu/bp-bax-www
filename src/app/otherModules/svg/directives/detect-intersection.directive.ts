@@ -1,4 +1,4 @@
-import { Directive, OnInit, Host, ElementRef, AfterViewInit, Renderer2, Output, EventEmitter, Input } from '@angular/core';
+import { Directive, OnInit, ElementRef, AfterViewInit, Renderer2, Output, EventEmitter, Input } from '@angular/core';
 
 
 @Directive({
@@ -22,9 +22,6 @@ export class DetectIntersectionDirective implements OnInit, AfterViewInit {
 
     this.renderer.setStyle(div, 'height', `250px`);
     this.renderer.setStyle(div, 'background-color', `${this.fill}`);
-    
-    //this.renderer.setStyle(div, 'width', `100%`);
-    //this.renderer.set
 
     this.renderer.appendChild(htmlEl,div); 
 

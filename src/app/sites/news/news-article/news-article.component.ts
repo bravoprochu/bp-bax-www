@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Renderer2, ViewEncapsulation, AfterViewInit, NgZone } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Renderer2, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { tap, takeUntil } from 'rxjs/operators';
 import { INewsArticle } from '../interfaces/i-news-article';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonFunctionsService } from 'src/app/shared/services/common-functions.service';
-import { Subject, timer } from 'rxjs';
+import { Subject } from 'rxjs';
 import { PantoneToHexService } from 'src/app/otherModules/pantoneToHex/pantone-to-hex.service';
 import { IPantoneToHex } from 'src/app/otherModules/pantoneToHex/interfaces/i-pantone-to-hex';
 import { SVGElementProp } from 'src/app/otherModules/svg/classes/svg-element-prop';
@@ -17,7 +17,8 @@ import { bpActiveRouteChange$ } from 'src/app/shared/rxConst/bpActRouteChange';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { INewsPayload } from '../interfaces/i-news-payload';
 import { isNullOrUndefined } from 'util';
-import { BP_ANIM_SVG_INIT } from 'src/app/shared/animations/bp_anim_svg-init';
+import { MetaUpdaterService } from 'src/app/otherModules/meta/meta-updater.service';
+import { SvgCommonFunctionsService } from 'src/app/otherModules/svg/svg-common-functions.service';
 
 
 
@@ -73,7 +74,9 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
     private mediaObserver: MediaObserver,
     private pantoneService: PantoneToHexService,
     private renderer: Renderer2,
-    private ngZone: NgZone
+    private metaSrv: MetaUpdaterService,
+    private svgSrv: SvgCommonFunctionsService
+
   ) { }
 
 
@@ -190,13 +193,12 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
 
     const image1 = <SVGImageElement>this.renderer.createElement('image', 'svg');
 
-    //this.renderer.setAttribute(image1, 'href', this.data.imgUrl + `?_${new Date().getTime()}`);
     this.renderer.setAttribute(image1, 'href', this.data.imgUrl);
 
     const rectBorderToRender: SVGRectElement[] = [];
     const imagePercent = 0.70;
 
-    //this.svgImageProp.setPositionAttributeByCenterViewBoxPercent(image1, imagePercent);
+
     
 
     //
@@ -210,15 +212,9 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
 
       this.renderer.appendChild(this.svgImageTEST.nativeElement, image1);
       const ratio = preImg.naturalWidth/preImg.naturalHeight;
-      // image1.setAttribute('height', preImg.naturalHeight);
-      // image1.setAttribute('width', preImg.naturalWidth);
       this.svgImageProp.setPositionAttributeByCenterViewBoxPercent(image1, 0.8, preImg.naturalHeight, preImg.naturalWidth)
       let step = -7;
-      // rectBorderToRender.forEach(r=>{
-      //     this.renderer.appendChild(this.svgImage.nativeElement, r);
 
-      // });
-      // const middle = this.svgImageProp.getCenterPositionByPercent(imagePercent);
       const h = image1.height.animVal.value.toString();
       const w =image1.width.animVal.value.toString();
       
@@ -253,11 +249,6 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
       evImg.preventDefault();
       evImg.stopImmediatePropagation();
 
-      // let i: any;
-      // if(evImg['path'] != undefined) {i = evImg['path'][0];} 
-      // if(evImg['explicitOriginalTarget'] != undefined) {i = evImg['explicitOriginalTarget'];} 
-
-      // image1.onload = onLoadImageFn(i);
     }
 
   
@@ -268,19 +259,7 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
       const i: HTMLImageElement  = mozz ? mozz : chr[0];
 
     }
-
-    // image1.onload = (imagesEv) => {
-    //   console.log('image1 loaded...', imagesEv.timeStamp);
-
-    //   image1.setAttribute('width', i.naturalWidth.toString());
-    //   image1.setAttribute('height', i.naturalHeight.toString());
-    //   image1.setAttribute('x', "0");
-    //   image1.setAttribute('y', "0");
-
-
-    //   this.renderer.appendChild(this.svgImage.nativeElement, image1);
-    // }
-    
+  
     
     
       image1.onload = onLoadImageFn();
@@ -288,12 +267,10 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
 
 
   getNext() {
-    // console.log('swipe left...', this.dataPayload)
     this.router.navigateByUrl(`/news/${this.dataPayload.nextId}`);
   }
   
   getPrev() {
-    //console.log('swipe right..');
     this.router.navigateByUrl(`/news/${this.dataPayload.prevId}`);
   }
 
@@ -307,41 +284,14 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
           
           this.initData();
           this.initSVGData();
+
           
           const _title = `${this.data.title.title} ${isNullOrUndefined(this.data.title.shortTitle)? '': this.data.title.shortTitle} ${isNullOrUndefined(this.data.title.subtitle)? '': this.data.title.subtitle} ${isNullOrUndefined(this.data.title.subtitle2)? '': this.data.title.subtitle2}`
-          this.cf.metaTitleUpdate(`NEWS | ${_title}`);
-          this.cf.metaDescriptionUpdate(_title);
-          this.cf.metaOpenGraphProductTag(_title, window.location.href, `${window.location.origin}${(<string>this.data.imgUrl).replace('.','')}`);
-
-          
-          
-
-          // this.ngZone.runTask(()=>{
-          //   const el = (<HTMLElement>this.bg.nativeElement);
-            
-            
-
-          //   setTimeout(() => {
-          //     console.log(el.scrollHeight );  
-          //     el.scrollTo({top: 0, behavior: 'smooth'});
-          //     window.scrollTo(0,0);
-          //   }, 1000);
-
-            
-            
-          // })
-
-
-          // console.log(window.scrollY);
-          // window.scroll(0, 0);
-          
-
-          
-          
-          
+          this.metaSrv.metaTitleUpdate(`${_title} | NEWS`);
+          this.metaSrv.metaDescriptionUpdate(this.metaSrv.htmlTextToPlain(this.data.text));          
+          this.metaSrv.metaOpenGraphProductTag(_title, this.svgSrv.getOriginUrl()+this.router.url, `${this.svgSrv.getOriginUrl()}${(<string>this.data.imgUrl)}`);
         },
         (err) => console.log('actRoute error', err),
-        // () => console.log('actRoute finish..')
       )
   }
 
@@ -353,8 +303,6 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
     this.initLinkToShare(window.location.pathname);
     
       this.data = Object.assign({}, this.dataPayload.news);
-      // this.data.youtubeEmbedUrl = this.data.youtubeEmbedUrl ? this.sanitizer.bypassSecurityTrustResourceUrl(this.data.youtubeEmbedUrl) : null;
-      // this.data.text = d.text ? this.sanitizer.bypassSecurityTrustHtml(this.data.text) : null;
       this.isReady = true;
     this.initSVGData();
   }
@@ -370,27 +318,6 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
 
 
   swipe(ev: any) {
-    // console.log(ev);
-    // ev.preventDefault();
-    // window.scrollTo({top: ev.center.y})
-    // switch (ev.direction) {
-    //   case 8:
-    //   //this.getNext();
-    //   window.scrollTo({top: ev.center.y})
-    //   break;
-
-    //   case 16:
-    //   window.scrollTo({top: ev.center.y})
-    //    //this.getPrev();
-    //   break;
-
-
-    //   default:
-        
-    //   break
-    // }
-    // console.log('swipe', ev);
-
   }
 
 
