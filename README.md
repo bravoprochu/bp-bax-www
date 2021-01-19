@@ -2,5 +2,5 @@
 
 Angular/material design, news, products data from webAPI server
 
-- svg dynamic render
-- 
+- svg color backgrond dynamic render,
+- multicondition reactive form filter (products)
